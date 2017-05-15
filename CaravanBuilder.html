@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+<!--Demo at https://htmlpreview.github.io/?https://github.com/Ambeco/CaravanCharacterBuilder/blob/master/CaravanBuilder.html-->
 <html>
 <head>
     <meta charset="utf-8" />
@@ -73,7 +74,7 @@
         </span>
         <h4>Sphere Attunement</h4>
         Exp required to raise a specialization. Starts at 8, but you have 6 points to spend to reduce exp costs. A sphere’s cost cannot be less than 3x and requires 2 points to be reduced from 4x to 3x.
-        <a href="#" onClick="toggleExpanded('sphereoptions'); return false;">Details</a><br />
+        <a href="#" onClick="toggleExpanded('racedetails'); return false;">Details</a><br />
         <span id="remainingAttunementPoints">6 exp reductions remaining.</span><br />
 
         Martial: <span id="martialTotal">8</span> = 
@@ -104,19 +105,59 @@
         
 
         <span id="racedetails" style="display:none;">
-            <b>Martial</b> is essentially the physical training sphere, so it covers a wide range of specializations, such as archery or ninjutsu.<br />
-
-            <b>Arcane</b> is all about the study of arcane magic. Arcane magic tends to be more about destruction and manipulating everything around you to fit your liking. This results in a great deal of utility.<br />
-
-            <b>Divine</b> is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.<br />
-
-            <b>Nature</b> is all about natural magic. Nature magic allows you to shape the natural world to your liking. Nature is similar to divine, in that they have a lot of healing, buffing, and offensive capabilities.<br />
-
-            <b>Animus</b> is all about influencing others around you. This could be done through the mind with psionic abilities, or through charisma as a bard. <br /><br/>
-            <br />
+            <ul>
+                <li><b>Martial</b> is essentially the physical training sphere, so it covers a wide range of specializations, such as archery or ninjutsu.</li>
+                <li><b>Arcane</b> is all about the study of arcane magic. Arcane magic tends to be more about destruction and manipulating everything around you to fit your liking. This results in a great deal of utility.</li>
+                <li><b>Divine</b> is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.</li>
+                <li><b>Nature</b> is all about natural magic. Nature magic allows you to shape the natural world to your liking. Nature is similar to divine, in that they have a lot of healing, buffing, and offensive capabilities.</li>
+                <li><b>Animus</b> is all about influencing others around you. This could be done through the mind with psionic abilities, or through charisma as a bard.</li>
+            </ul>
             Additionally, you can manipulate how much experience it costs to raise attributes and skills. You can spend 2 points to lower the experience cost by 1x for either your attributes or skills. You can also gain 2 points by raising the experience cost by 1x for either your attributes or skills. The attunement for attributes and skills can only be raised or lowered once.
         </span>
-    </form>
+
+        <h4>Attributes</h4>
+        Bonuses to rolls. Each Attribute begins with one automatic point. At character creation, you may distribute an additional 5 points into one category, 3 points in a second category, and 2 points into a third category.
+        <a href="#" onClick="toggleExpanded('attributeDetails'); return false;">Details</a><br />
+        <span id="attributeWarning">5 into one category, 3 into a second category, and 2 into the final category.</span><br />
+        <br />
+        <b>Physical</b><br/>
+        Brawn: <span id="brawnTotal">1</span> = 1 + 
+        <input type="number" name="brawnInitial" id="brawnInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('brawn');" />
+        <span id="brawnBonuses"></span><br />        
+        
+        Dexterity: <span id="dexterityTotal">1</span> = 1 +
+        <input type="number" name="dexterityInitial" id="dexterityInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('dexterity');" />
+        <span id="dexterityBonuses"></span><br />        
+
+        <b>Social</b><br />
+        Presence : <span id="presenceTotal">1</span> = 1 +
+        <input type="number" name="presenceInitial" id="presenceInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('presence');" />
+        <span id="dexBonuses"></span><br />        
+        
+        Subterfuge : <span id="subterfugeTotal">1</span> = 1 +
+        <input type="number" name="subterfugeInitial" id="subterfugeInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('subterfuge');" />
+        <span id="subterfugeBonuses"></span><br />
+
+        <b>Mental</b><br />
+        Senses : <span id="sensesTotal">1</span> = 1 +
+        <input type="number" name="sensesInitial" id="sensesInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('senses');" />
+        <span id="sensesBonuses"></span><br />
+
+        Intellect : <span id="intellectTotal">1</span> = 1 +
+        <input type="number" name="intellectInitial" id="intellectInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('intellect');" />
+        <span id="intellectBonuses"></span><br />
+
+        <span id="attributeDetails" style="display:none;">
+            <ul>
+                <li>Brawn - This a measure of how strong and hearty a creature is.</li>
+                <li>Dexterity - This is a measure of how agile and deft a creature is.</li>
+                <li>Presence - This is a measure of the force of personality and charm a creature has.</li>
+                <li>Subterfuge - This is a measure of how beguiling or deceitful a creature is.</li>
+                <li>Senses - This is a measure of the wits and mindfulness of a creature.</li>
+                <li>Intellect - This is a measure of the intuition and reason of a creature.</li>
+            </ul>
+        </span>
+</form>
     <script>
         function toggleExpanded(viewid) {
             var view = document.getElementById(viewid);
@@ -126,6 +167,7 @@
                 view.style.display = 'none';
             }
         }
+
         function onChangeRace() {
             var race = document.getElementById('race').value;
             if (race == 'kith') {
@@ -136,6 +178,7 @@
                 document.getElementById('kithCategory').style.display = "none";
             }
         }
+
         function onChangeSphere(sphereName) {
             if (sphereName != undefined) {
                 var view = document.getElementById(sphereName + 'Attunement');
@@ -146,11 +189,11 @@
                 }
             }
 
-            var martial = document.getElementById('martialAttunement').value;
-            var arcane = document.getElementById('arcaneAttunement').value;
-            var divine = document.getElementById('divineAttunement').value;
-            var nature = document.getElementById('natureAttunement').value;
-            var animus = document.getElementById('animusAttunement').value;
+            var martial = parseInt(document.getElementById('martialAttunement').value);
+            var arcane = parseInt(document.getElementById('arcaneAttunement').value);
+            var divine = parseInt(document.getElementById('divineAttunement').value);
+            var nature = parseInt(document.getElementById('natureAttunement').value);
+            var animus = parseInt(document.getElementById('animusAttunement').value);
             var attributes = document.getElementById('attributeAttunement').checked;
             var skills = document.getElementById('skillsAttunement').checked;
             var spent = 0;
@@ -168,6 +211,49 @@
             } else {
                 message.style.color = "#EE0000";
                 message.textContent = "Too many points spent, you can only spend 6";
+            }
+        }
+
+        function onChangeInitialAttribute(sphereName) {
+            if (sphereName != undefined) {
+                var view = document.getElementById(sphereName + 'Initial');
+                if (view.value <= 5 && view.value >= 0) {
+                    view.style.color = "#000000";
+                } else {
+                    view.style.color = "#EE0000";
+                }
+            }
+            var brawn = parseInt(document.getElementById('brawnInitial').value);
+            var dexterity = parseInt(document.getElementById('dexterityInitial').value);
+            var presence = parseInt(document.getElementById('presenceInitial').value);
+            var subterfuge = parseInt(document.getElementById('subterfugeInitial').value);
+            var senses = parseInt(document.getElementById('sensesInitial').value);
+            var intellect = parseInt(document.getElementById('intellectInitial').value);
+            var physical = brawn + dexterity;
+            var social = subterfuge + presence;
+            var mental = senses + intellect;
+            var max = Math.max(physical, social, mental);
+            var min = Math.min(physical, social, mental);
+            var mid = physical + social + mental - min - max;
+            var message = document.getElementById('attributeWarning');
+            if (max > 5 || min < 0) {
+                message.style.color = "#EE0000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
+            } else if (max == 5 && min == 2 && mid == 3) {
+                message.style.color = "#000000";
+                message.textContent = "0 points remaining";
+            } else if (max == 5 && mid < 3) {
+                message.style.color = "#000000";
+                message.textContent = "3 points into a second category, and 2 into the final category.";
+            } else if (max == 5 && mid == 3 && min < 2) {
+                message.style.color = "#000000";
+                message.textContent = "2 points in final category";
+            } else if (max <= 5 && min <= 2 && mid <= 3) {
+                message.style.color = "#000000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
+            } else {
+                message.style.color = "#EE0000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
             }
         }
     </script>
