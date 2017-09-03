@@ -33,13 +33,16 @@ body {
     width: 7in;
     margin: auto;
     background-color: white;
+    box-shadow: 0.02in 0.02in darkgrey;
+    margin-right:3.5in;
 }
 @media print {
     body {
         background-color: white;
     }
     #sheet {
-        border-right: thick solid darkgrey;
+        box-shadow: 0in 0in white;
+        margin-right:0in;
     }
 }
 #caravanHeader {
@@ -221,4 +224,19 @@ body {
 #notesValue {
     width:6.99in;
     min-height:1in;
+}
+
+
+#floatingDescriptions {
+    position:absolute;
+    left:7.15in;
+    top:1in;
+    width:3.5in;
+    background-color:lightsteelblue;
+    box-shadow: 0.02in 0.02in darkgrey;
+}
+@media print {
+    #floatingDescriptions {
+        display:none;
+    }
 }
