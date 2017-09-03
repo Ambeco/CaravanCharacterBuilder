@@ -1,46 +1,24 @@
 ﻿namespace Caravan {
 
-    interface ChoiceSource { }
-    enum ChoiceIdBrand { }
-    export type ChoiceId = number & ChoiceIdBrand;
-    enum OptionSetIdBrand { }
-    export type OptionSetId = number & OptionSetIdBrand;
-    enum OptionIdBrand { }
-    export type OptionId = number & OptionIdBrand;
-
-    interface Ii11n {
-        getChoiceName(id: ChoiceId): string;
-        getOption(id: OptionId): string;
-    };
-    let i11n: Ii11n;
-
-    function spliceValue<T>(array: T[], value: T): T[] {
-        let idx = array.indexOf(value);
-        if (idx >= 0) {
-            return array.splice(idx, 1);
-        }
-        return array;
-    }
-
-    interface ChoiceSelectionListener {
+    export interface ChoiceSource { }
+    
+    export interface ChoiceSelectionListener {
         (newOption: Option, choice: Choice, oldOption: Option): boolean;
     }
 
-    class Choice {
+    export class Choice {
         private listeners: Set<ChoiceSelectionListener>;
         private selection: Option;
 
-        constructor(private id: ChoiceId, private source: ChoiceSource, private options: OptionSet) {
-            assert(i11n.getChoiceName(id) != null);
+        constructor(private strings: ChoiceStrings, private source: ChoiceSource, private options: OptionSet) {
             this.listeners = new Set<ChoiceSelectionListener>();
             this.selection = null;
             for (let i = 0; i < options.size(); i++) {
                 options.addChoice(this);
             }
         }
-
-        getId(): ChoiceId { return this.id; }
-        getName(): string { return i11n.getChoiceName(this.id); }
+        
+        getName(): string { return this.strings.getName(); }
         getSelection(): Option { return this.selection; }
 
         addOnChangeListener(listener: ChoiceSelectionListener): void { this.listeners.add(listener); }
@@ -63,12 +41,10 @@
         }
     }
 
-    class OptionSet {
+    export class OptionSet {
         choices: Set<Choice>;
 
-        constructor(private id:OptionSetId, private options: Set<Option>, private unique: boolean) {
-        }
-        getId(): OptionSetId { return this.id; }
+        constructor(private options: Set<Option>, private unique: boolean) { }
         size(): number { return this.options.size; }
         has(option: Option): boolean { return this.options.has(option); }
 
@@ -95,19 +71,18 @@
         }
     }
 
-    class Option {
+    export class Option {
         private optionSet: OptionSet;
 
-        constructor(private id: OptionId) {
-            assert(i11n.getOption(id) != null);
-        }
-        getId(): OptionId { return this.id; }
-        getName(): string { return i11n.getOption(this.id); }
-        getDescription(): String { return i11n.getOption(this.id); }
+        constructor(private strings: OptionStrings) { }
+        getName(): string { return this.strings.getName(); }
+        getDescription(): String { return this.strings.getDescription(); }
+
         setOptionSet(optionSet: OptionSet): void {
             assert(this.optionSet == null || this.optionSet == optionSet);
             this.optionSet = optionSet;
         }
+
         isSelected(): boolean { return this.optionSet.isSelected(this); }
         onDeselect() { }
         onSelect() { }

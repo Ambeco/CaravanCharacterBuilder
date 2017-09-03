@@ -30,9 +30,6 @@
       <Link>caravan.css</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\src\i11n\en-us.js">
-      <Link>i11n\en-us.js</Link>
-    </Content>
     <Content Include="..\..\..\src\legacy.html">
       <Link>legacy.html</Link>
     </Content>
@@ -53,6 +50,15 @@
   <ItemGroup>
     <TypeScriptCompile Include="..\..\..\src\caravan.ts">
       <Link>caravan.ts</Link>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="..\..\..\src\data.ts">
+      <Link>data.ts</Link>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="..\..\..\src\i11n\en-us.ts">
+      <Link>i11n\en-us.ts</Link>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="..\..\..\src\i11n\i11n.ts">
+      <Link>i11n\i11n.ts</Link>
     </TypeScriptCompile>
     <TypeScriptCompile Include="..\..\..\src\utilities.ts">
       <Link>utilities.ts</Link>
@@ -79,6 +85,7 @@
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
