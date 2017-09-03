@@ -1,0 +1,59 @@
+﻿@page {
+   size: 7in 9.25in;
+   margin: 27mm 16mm 27mm 16mm;
+}
+
+body {
+    background-color: lightgray;
+}
+
+div {
+    margin:1px;
+    background-color: expression("rgb(" + Math.floor(Math.random() * 255)
+      + "," + Math.floor(Math.random() * 255) + ","
+      + Math.floor(Math.random() * 255) + ")");
+}
+
+h1 {
+    margin:1px;
+    background-color: expression("rgb(" + Math.floor(Math.random() * 255)
+      + "," + Math.floor(Math.random() * 255) + ","
+      + Math.floor(Math.random() * 255) + ")");
+}
+
+h2 {
+    margin:1px;
+    background-color: expression("rgb(" + Math.floor(Math.random() * 255)
+      + "," + Math.floor(Math.random() * 255) + ","
+      + Math.floor(Math.random() * 255) + ")");
+}
+
+span {
+    margin:1px;
+    background-color: expression("rgb(" + Math.floor(Math.random() * 255)
+      + "," + Math.floor(Math.random() * 255) + ","
+      + Math.floor(Math.random() * 255) + ")");
+}
+
+input {
+    margin:1px;
+    background-color: expression("rgb(" + Math.floor(Math.random() * 255)
+      + "," + Math.floor(Math.random() * 255) + ","
+      + Math.floor(Math.random() * 255) + ")");
+}
+
+#sheet {
+    width: 7in;
+    margin: auto;
+    background-color: white;
+}
+
+@media print {
+    #sheet {
+        border-right: thick solid darkgrey;
+    }
+}
+
+#expBlock {
+    float: right;
+}
