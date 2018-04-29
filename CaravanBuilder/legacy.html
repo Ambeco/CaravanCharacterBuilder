@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<!--Demo at https://htmlpreview.github.io/?https://github.com/Ambeco/CaravanCharacterBuilder/blob/master/CaravanBuilder.html-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Caravan Character Builder</title>
+</head>
+<body>
+    <h1>Caravan Character Builder</h1>
+    <p><a href="https://docs.google.com/document/d/1jLt6tPZ9AwJi8U8MeR9ul8mvm0P9TXdw4KgWGZn6ebk/edit#">Rules</a></p>
+    <form>
+        <h4>Identity</h4>
+        <label for="name">Name</label> <input type="text" name="name" id="name"><br>
+
+        <label for="race">Race</label> <select name="race" id="race" onchange="onChangeRace();">
+            <option value="human">Human</option>
+            <option value="elf">Elf</option>
+            <option value="drawrf">Dwarf</option>
+            <option value="kith">Kith</option>
+            <option value="orc">Orc</option>
+            <option value="golem">Golem</option>
+            <option value="gnome">Gnome</option>
+            <option value="halfelf">Half-Elf</option>
+            <option value="kith">Kith</option>
+        </select>
+        <a href="#" onClick="toggleExpanded('racedetails'); return false;">Details</a><br />
+        <label for="race" id="kithCategoryLabel" style="display:none;">Kith Category</label> <select name="kithCategory" id="kithCategory" style="display:none;" onchange="onChangeRace();">
+            <option value="brawn">Brawn</option>
+            <option value="dexterity">Dexterity</option>
+            <option value="presence">Presence</option>
+            <option value="subterfuge">Subterfuge</option>
+            <option value="senses">Senses</option>
+            <option value="intellect">Intellect</option>
+        </select>
+        <span id="racedetails" style="display:none;">
+            <h5>Human</h5>
+            Humans are the driving force of the world. There is no typical human, and you would be hard pressed to go anywhere in the world and not encounter humans.<br />
+            You don't follow the attribute and skill allocation process like normal. Instead you can put 12 points in to attributes as you see fit, and 30 points into skills as you see fit.
+            <h5>Elf</h5>
+            Elves are intelligent and perceptive creatures. They tend to be taller than humans and have large, pointed ears. They are exceptionally swift.<br />
+            +1 to the mental attribute category<br />
+            Elven Swiftness: +2 to movement speed.
+            <h5>Dwarf</h5>
+            Dwarves are short and stout. Partially because of their center of gravity being much lower, partially because they are generally stubborn as all hell, dwarves have a hard time being moved.<br />
+            +1 to the physical attribute category<br />
+            Dwarven Stubbornness: Cannot be forcefully moved and movement speed can’t be reduced (does not make you immune to losing all movement)
+            <h5>Kith</h5>
+            Kith are an off breed of humans that somehow evolved to have some traits of animals. It is still a mystery how Kith can represent any number of different beasts but still can reproduce.<br />
+            Choose the animal you are based on. Although humanoid, you will have traits of the chosen animal, such as ears, tails, fur, etc. The full extent of what animal traits you have is completely up to you. Whatever animal you choose will fit into a category, chosen by the GM. Either Brawn, Dexterity, Presence, Subterfuge, Senses or Intellect. You get different bonuses based off what category your animal falls under.
+            <ul>
+                <li>Brawn - +1 Brawn, gain natural claws that use brawl to attack and deal brawn +2 damage, and cost 3 AP.</li>
+                <li>Dexterity - +1 Dexterity, +2 movement speed</li>
+                <li>Presence - +1 Presence, gain a bonus die on all social rolls</li>
+                <li>Subterfuge - +1 Subterfuge, gain a bonus die on all stealth, guise, skulduggery, and deception rolls</li>
+                <li>Senses - +1 Senses, difficulty of perception rolls are reduced by 1</li>
+                <li>Intellect - +1 Intellect, you can use Intellect instead of dexterity for weapon attack rolls</li>
+            </ul>
+            <h5>Orc</h5>
+            Orcs are ferocious creatures. Typically taller and larger than humans, they tend to be pretty intimidating. Orcs have green or grey skin color. They are very strong, but tend to be less intelligent than the other races.<br />
+            +2 to the physical attribute category, -1 to the mental attribute category<br />
+            Resilience: Gain +2 HP
+            <h5>Golem</h5>
+            Golems are rather large creatures seemingly made of stone. These creatures were accidentally created when a large arcane ritual went wrong. The golems are a pretty rare sight in the world, and because of their recent existence in the world, they lack the etiquette in social circles. Regardless, they are immensely strong and surprisingly dexterous.<br />
+            +2 to the physical attribute category, -1 to the social attribute category<br />
+            Unbreakable: +1 titan soak
+            <h5>Gnome</h5>
+            Gnomes are very small creatures. Essentially they can be considered short humans on terms of how they look. Gnomes however, are incredibly smart and perceptive, but their small size makes them lack in strength. They also have a natural resistance to magic.<br />
+            +2 to the mental attribute category, -1 to the physical attribute category<br />
+            Magic Resistance: Reduces the number of successes on any spell that targets you by 1 (this can cause the spell to fail) This even reduces the effects of friendly spells.
+            <h5>Half-elf</h5>
+            Half-elves are a mix between humans and elves. In the past, there was a lot of racism towards half-elves from both humans and elves. Because of this mistreatment, half-elves needed to adapt and survive. They became very persuasive, or good liars, to integrate themselves into a place that they would belong. Although the racism has all but disappeared, this social aptitude stuck with half-elves.<br />
+            +1 to the social attribute category<br />
+            Grace: You get a bonus die on all social rolls
+        </span>
+        <h4>Sphere Attunement</h4>
+        Exp required to raise a specialization. Starts at 8, but you have 6 points to spend to reduce exp costs. A sphere’s cost cannot be less than 3x and requires 2 points to be reduced from 4x to 3x.
+        <a href="#" onClick="toggleExpanded('racedetails'); return false;">Details</a><br />
+        <span id="remainingAttunementPoints">6 exp reductions remaining.</span><br />
+
+        Martial: <span id="martialTotal">8</span> =
+        <input type="number" name="martialAttunement" id="martialAttunement" min="3" max="8" value="8" oninput="onChangeSphere('martial');" />
+        <span id="martialBonuses"></span><br />
+
+        Arcane: <span id="arcaneTotal">8</span> =
+        <input type="number" name="arcaneAttunement" id="arcaneAttunement" min="3" max="8" value="8" oninput="onChangeSphere('arcane');" />
+        <span id="arcaneBonuses"></span><br />
+
+        Divine: <span id="divineTotal">8</span> =
+        <input type="number" name="divineAttunement" id="divineAttunement" min="3" max="8" value="8" oninput="onChangeSphere('divine');" />
+        <span id="divineBonuses"></span><br />
+
+        Nature: <span id="natureTotal">8</span> =
+        <input type="number" name="natureAttunement" id="natureAttunement" min="3" max="8" value="8" oninput="onChangeSphere('nature');" />
+        <span id="natureBonuses"></span><br />
+
+        Animus: <span id="animusTotal">8</span> =
+        <input type="number" name="animusAttunement" id="animusAttunement" min="3" max="8" value="8" oninput="onChangeSphere('animus');" />
+        <span id="animusBonuses"></span><br />
+
+        <label for="attributeAttunement">Attributes: </label>
+        <input type="checkbox" name="attributeAttunement" id="attributeAttunement" value="true" onchange="onChangeSphere(undefined);" /> (costs 2)<br />
+
+        <label for="skillsAttunement">Skills: </label>
+        <input type="checkbox" name="skillsAttunement" id="skillsAttunement" value="true" onchange="onChangeSphere(undefined);" /> (costs 2)<br />
+
+
+        <span id="spheredetails" style="display:none;">
+            <ul>
+                <li><b>Martial</b> is essentially the physical training sphere, so it covers a wide range of specializations, such as archery or ninjutsu.</li>
+                <li><b>Arcane</b> is all about the study of arcane magic. Arcane magic tends to be more about destruction and manipulating everything around you to fit your liking. This results in a great deal of utility.</li>
+                <li><b>Divine</b> is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.</li>
+                <li><b>Nature</b> is all about natural magic. Nature magic allows you to shape the natural world to your liking. Nature is similar to divine, in that they have a lot of healing, buffing, and offensive capabilities.</li>
+                <li><b>Animus</b> is all about influencing others around you. This could be done through the mind with psionic abilities, or through charisma as a bard.</li>
+            </ul>
+            Additionally, you can manipulate how much experience it costs to raise attributes and skills. You can spend 2 points to lower the experience cost by 1x for either your attributes or skills. You can also gain 2 points by raising the experience cost by 1x for either your attributes or skills. The attunement for attributes and skills can only be raised or lowered once.
+        </span>
+
+        <h4>Attributes</h4>
+        Bonuses to rolls. Each Attribute begins with one automatic point. At character creation, you may distribute an additional 5 points into one category, 3 points in a second category, and 2 points into a third category.
+        <a href="#" onClick="toggleExpanded('attributeDetails'); return false;">Details</a><br />
+        <span id="attributeWarning">5 into one category, 3 into a second category, and 2 into the final category.</span><br />
+        <br />
+        <b>Physical</b><br />
+        Brawn: <span id="brawnTotal">1</span> = 1 +
+        <input type="number" name="brawnInitial" id="brawnInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('brawn');" />
+        <span id="brawnBonuses"></span><br />
+
+        Dexterity: <span id="dexterityTotal">1</span> = 1 +
+        <input type="number" name="dexterityInitial" id="dexterityInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('dexterity');" />
+        <span id="dexterityBonuses"></span><br />
+
+        <b>Social</b><br />
+        Presence : <span id="presenceTotal">1</span> = 1 +
+        <input type="number" name="presenceInitial" id="presenceInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('presence');" />
+        <span id="dexBonuses"></span><br />
+
+        Subterfuge : <span id="subterfugeTotal">1</span> = 1 +
+        <input type="number" name="subterfugeInitial" id="subterfugeInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('subterfuge');" />
+        <span id="subterfugeBonuses"></span><br />
+
+        <b>Mental</b><br />
+        Senses : <span id="sensesTotal">1</span> = 1 +
+        <input type="number" name="sensesInitial" id="sensesInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('senses');" />
+        <span id="sensesBonuses"></span><br />
+
+        Intellect : <span id="intellectTotal">1</span> = 1 +
+        <input type="number" name="intellectInitial" id="intellectInitial" min="0" max="5" value="0" oninput="onChangeInitialAttribute('intellect');" />
+        <span id="intellectBonuses"></span><br />
+
+        <span id="attributeDetails" style="display:none;">
+            <ul>
+                <li>Brawn - This a measure of how strong and hearty a creature is.</li>
+                <li>Dexterity - This is a measure of how agile and deft a creature is.</li>
+                <li>Presence - This is a measure of the force of personality and charm a creature has.</li>
+                <li>Subterfuge - This is a measure of how beguiling or deceitful a creature is.</li>
+                <li>Senses - This is a measure of the wits and mindfulness of a creature.</li>
+                <li>Intellect - This is a measure of the intuition and reason of a creature.</li>
+            </ul>
+        </span>
+    </form>
+    <script>
+        function toggleExpanded(viewid) {
+            var view = document.getElementById(viewid);
+            if (view.style.display == 'none') {
+                view.style.display = 'block';
+            } else {
+                view.style.display = 'none';
+            }
+        }
+
+        function onChangeRace() {
+            var race = document.getElementById('race').value;
+            if (race == 'kith') {
+                document.getElementById('kithCategoryLabel').style.display = "inline-flex";
+                document.getElementById('kithCategory').style.display = "inline-block";
+            } else {
+                document.getElementById('kithCategoryLabel').style.display = "none";
+                document.getElementById('kithCategory').style.display = "none";
+            }
+        }
+
+        function onChangeSphere(sphereName) {
+            if (sphereName != undefined) {
+                var view = document.getElementById(sphereName + 'Attunement');
+                if (view.value <= 8 && view.value >= 3) {
+                    view.style.color = "#000000";
+                } else {
+                    view.style.color = "#EE0000";
+                }
+            }
+
+            var martial = parseInt(document.getElementById('martialAttunement').value);
+            var arcane = parseInt(document.getElementById('arcaneAttunement').value);
+            var divine = parseInt(document.getElementById('divineAttunement').value);
+            var nature = parseInt(document.getElementById('natureAttunement').value);
+            var animus = parseInt(document.getElementById('animusAttunement').value);
+            var attributes = document.getElementById('attributeAttunement').checked;
+            var skills = document.getElementById('skillsAttunement').checked;
+            var spent = 0;
+            spent += (8 - martial) + (martial <= 3 ? 1 : 0);
+            spent += (8 - arcane) + (arcane <= 3 ? 1 : 0);
+            spent += (8 - divine) + (divine <= 3 ? 1 : 0);
+            spent += (8 - nature) + (nature <= 3 ? 1 : 0);
+            spent += (8 - animus) + (animus <= 3 ? 1 : 0);
+            spent += (attributes ? 2 : 0);
+            spent += (skills ? 2 : 0);
+            var message = document.getElementById('remainingAttunementPoints');
+            if (spent <= 6) {
+                message.style.color = "#000000";
+                message.textContent = (6 - spent) + " exp reductions remaining.";
+            } else {
+                message.style.color = "#EE0000";
+                message.textContent = "Too many points spent, you can only spend 6";
+            }
+        }
+
+        function onChangeInitialAttribute(sphereName) {
+            if (sphereName != undefined) {
+                var view = document.getElementById(sphereName + 'Initial');
+                if (view.value <= 5 && view.value >= 0) {
+                    view.style.color = "#000000";
+                } else {
+                    view.style.color = "#EE0000";
+                }
+            }
+            var brawn = parseInt(document.getElementById('brawnInitial').value);
+            var dexterity = parseInt(document.getElementById('dexterityInitial').value);
+            var presence = parseInt(document.getElementById('presenceInitial').value);
+            var subterfuge = parseInt(document.getElementById('subterfugeInitial').value);
+            var senses = parseInt(document.getElementById('sensesInitial').value);
+            var intellect = parseInt(document.getElementById('intellectInitial').value);
+            var physical = brawn + dexterity;
+            var social = subterfuge + presence;
+            var mental = senses + intellect;
+            var max = Math.max(physical, social, mental);
+            var min = Math.min(physical, social, mental);
+            var mid = physical + social + mental - min - max;
+            var message = document.getElementById('attributeWarning');
+            if (max > 5 || min < 0) {
+                message.style.color = "#EE0000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
+            } else if (max == 5 && min == 2 && mid == 3) {
+                message.style.color = "#000000";
+                message.textContent = "0 points remaining";
+            } else if (max == 5 && mid < 3) {
+                message.style.color = "#000000";
+                message.textContent = "3 points into a second category, and 2 into the final category.";
+            } else if (max == 5 && mid == 3 && min < 2) {
+                message.style.color = "#000000";
+                message.textContent = "2 points in final category";
+            } else if (max <= 5 && min <= 2 && mid <= 3) {
+                message.style.color = "#000000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
+            } else {
+                message.style.color = "#EE0000";
+                message.textContent = "5 into one category, 3 into a second category, and 2 into the final category.";
+            }
+        }
+    </script>
+</body>
+</html>
