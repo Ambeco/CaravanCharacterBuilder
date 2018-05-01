@@ -22,5 +22,5 @@ let subterfugeInput: HTMLInputElement = document.getElementById('subterfugeValue
 let sensesInput: HTMLInputElement = document.getElementById('sensesValue') as HTMLInputElement;
 let intellectInput: HTMLInputElement = document.getElementById('intellectValue') as HTMLInputElement;
 
-let attunementPoints = new Currency("attunementPoints", 6);
+let attunementPoints = new Currency("attunementPoints", 6, false);
 let raceOption = new ChoiceOption("race", raceInput, races);

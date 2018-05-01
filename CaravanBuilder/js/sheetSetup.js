@@ -1,0 +1,25 @@
+import { ChoiceOption } from "./types/ChoiceOption.js";
+import { races } from "./data/raceData.js";
+import { Currency } from "./types/Currency";
+let nameInput = document.getElementById('nameValue');
+let raceInput = document.getElementById('raceValue');
+let initiativeInput = document.getElementById('initiativeValue');
+let totalSoakInput = document.getElementById('totalSoakValue');
+let armorSoakInput = document.getElementById('armorSoakValue');
+let titanSoakInput = document.getElementById('titanSoakValue');
+let movementSpeedInput = document.getElementById('movementSpeedValue');
+let otherSpeedInput = document.getElementById('otherSpeedValue');
+let martialInput = document.getElementById('martialValue');
+let arcaneInput = document.getElementById('arcaneValue');
+let divineInput = document.getElementById('divineValue');
+let natureInput = document.getElementById('natureValue');
+let animusInput = document.getElementById('animusValue');
+let brawnInput = document.getElementById('brawnValue');
+let dexterityInput = document.getElementById('dexterityValue');
+let presenceInput = document.getElementById('presenceValue');
+let subterfugeInput = document.getElementById('subterfugeValue');
+let sensesInput = document.getElementById('sensesValue');
+let intellectInput = document.getElementById('intellectValue');
+let attunementPoints = new Currency("attunementPoints", 6, false);
+let raceOption = new ChoiceOption("race", raceInput, races);
+//# sourceMappingURL=sheetSetup.js.map

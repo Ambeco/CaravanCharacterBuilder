@@ -227,10 +227,29 @@ body {
 }
 
 
+
+#floatingHistoryBox {
+    position: absolute;
+    left: 7.2in;
+    /*top: 27mm;*/
+    height: 1.80in;
+    width: 3.5in;
+    overflow-y: scroll;
+    background-color: lightsteelblue;
+    box-shadow: 0.02in 0.02in darkgrey;
+}
+@media print {
+    #floatingHistoryBox {
+        display: none;
+    }
+}
+
+
+
 #floatingDescriptionBox {
     position: absolute;
     left: 7.2in;
-    top: 1in;
+    top: 2in;
     width: 3.5in;
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
