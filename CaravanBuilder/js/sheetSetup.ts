@@ -1,5 +1,6 @@
 ﻿import { ChoiceOption } from "./types/ChoiceOption.js";
 import { races } from "./data/raceData.js";
+import { Currency } from "./types/Currency";
 
 let nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
 let raceInput: HTMLInputElement = document.getElementById('raceValue') as HTMLInputElement;
@@ -21,4 +22,5 @@ let subterfugeInput: HTMLInputElement = document.getElementById('subterfugeValue
 let sensesInput: HTMLInputElement = document.getElementById('sensesValue') as HTMLInputElement;
 let intellectInput: HTMLInputElement = document.getElementById('intellectValue') as HTMLInputElement;
 
+let attunementPoints = new Currency("attunementPoints", 6);
 let raceOption = new ChoiceOption("race", raceInput, races);

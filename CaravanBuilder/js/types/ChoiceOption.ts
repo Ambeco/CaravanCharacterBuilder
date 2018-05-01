@@ -6,6 +6,10 @@ export interface ChoiceChangeListener {
     (option: ChoiceOption, oldChoice: Choice): void;
 }
 
+/**
+ * A multiple choice field of a form.
+ * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
+ */
 export class ChoiceOption {
     private readonly name: string;
     private readonly uiElement: HTMLInputElement;

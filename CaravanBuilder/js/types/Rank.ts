@@ -5,6 +5,10 @@ export interface RankHost {
     getName(): string;
     getSelection(): Rank;
 }
+/**
+ * A single possibility of a number field of a form.
+ * RankOption=Strength. Rank=4.
+ */
 export class Rank {
     private readonly name: string;
     private readonly value: number;

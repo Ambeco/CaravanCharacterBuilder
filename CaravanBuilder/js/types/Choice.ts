@@ -5,6 +5,10 @@ export interface ChoiceHost {
     getOptionName(choice : Choice): string;
     isSelected(choice: Choice): boolean;
 }
+/**
+ * A single possibility of a multiple choice field of a form.
+ * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
+ */
 export class Choice {
     private readonly name: string;
     private readonly description: string;

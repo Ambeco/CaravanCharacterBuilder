@@ -2,6 +2,9 @@
 export interface SheetFeatureSource {
     getSheetFeatureSourceName(): string;
 }
+/**
+ * A feature that displays on the character sheet that may or may not affect any other part of the sheet.
+ */
 export class SheetFeature {
     private readonly name: string;
     private readonly description: string;

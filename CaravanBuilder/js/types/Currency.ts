@@ -1,59 +1,31 @@
 ﻿
-export interface CurrencyListener {
-    (changedCurency: Currency, transaction: Transaction): void;
-}
-export class Transaction {
-    private readonly name: string;
-    private readonly initialCount: number;
-    private readonly delta: number;
-
-    constructor(name: string, initialCount: number, delta: number) {
-        this.name = name;
-        this.initialCount = initialCount;
-        this.delta = delta;
-    }
-    getName(): string { return this.name; }
-    getInitialCount(): number { return this.initialCount; }
-    getDelta(): number { return this.delta; }
-}
-
-export let currencies: Map <string, Currency> = new Map<string, Currency>();
+/**
+ * A category of points that can be earned or spent
+ * Cost=5 Xp.  Currency=Xp.
+ * Requirement=3 Divine.  Currency=Divine.
+ **/
+export let namedCurrencies: Map <string, Currency> = new Map<string, Currency>();
 export class Currency {
     private readonly name: string;
     private readonly initialCount: number;
-    private currentCount: number;
-    private transactions: Array<Transaction>;
-    private readonly callbacks: Set<CurrencyListener>;
+    private readonly conversions: Map<Currency, number>; //1.5 means 1 of this is 1.5 of that
 
     constructor(name: string, initialCount: number) {
         this.name = name;
         this.initialCount = initialCount;
-        this.currentCount = initialCount;
-        this.transactions = new Array<Transaction>();
-        this.callbacks = new Set<CurrencyListener>();
-        if (currencies.get(name) != null) throw "two currencies with name " + name;
-        currencies.set(name, this);
+        this.conversions = new Map<Currency, number>();
+        if (namedCurrencies.get(name) != null) throw "two currencies with name " + name;
+        namedCurrencies.set(name, this);
     }
     getName(): string { return this.name; }
-    getCount(): number { return this.currentCount; }
+    getInitialCount(): number { return this.initialCount; }
+    getConversions(): Map<Currency, number> { return this.conversions; }
 
-    addListener(listener: CurrencyListener) { this.callbacks.add(listener); }
-    removeListener(listener: CurrencyListener): boolean { return this.callbacks.delete(listener); }
-
-    addTransaction(name: string, delta: number) {
-        if (this.currentCount + delta <0) throw this.name + " cannot be negative";
-        let transaction: Transaction = new Transaction(name, this.currentCount, delta);
-        this.transactions.push(transaction);
-        this.currentCount = this.currentCount + delta;
-        for (let listener of this.callbacks) {
-            listener(this, transaction);
+    setConversions(conversions: Map<Currency, number>) {
+        for (let currency of conversions.keys()) {
+            this.conversions.set(currency, conversions.get(currency));
         }
     }
 
-    popTransaction(transaction: Transaction) {
-        if (this.transactions.length == 0) throw transaction.getName + " transaction not found in queue";
-        let last: Transaction = this.transactions[this.transactions.length - 1];
-        if (last != transaction) throw "found " + last.getName() + " instead";
-        this.transactions.pop();
-    }
+    static getCurrency(name: String): Currency { return namedCurrencies.get(this.name); }
 }

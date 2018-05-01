@@ -5,6 +5,10 @@ export interface ChoiceSetHost {
     getName(): string;
     getSelection(): Choice;
 }
+/**
+ * The set of possibiliities for a multiple choice field of a form.
+ * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
+ */
 export class ChoiceSet {
     private readonly choices: Set<Choice>;
     private readonly unique: boolean;

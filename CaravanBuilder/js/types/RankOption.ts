@@ -5,6 +5,10 @@ export interface RankChangeListener {
     (changed: RankOption, oldRank: Rank): void;
 }
 
+/**
+ * A number choice field of a form.
+ * RankOption=Strength. Rank=4.
+ */
 export class RankOption {
     private readonly name: string;
     private readonly ranks: Array<Rank>;
