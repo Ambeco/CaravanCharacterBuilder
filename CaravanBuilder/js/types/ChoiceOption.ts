@@ -49,6 +49,9 @@ export class ChoiceOption {
         }
         const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
         categoryBlock.title = stripHtml(this.category.getDescription());
+        categoryBlock.onclick = function () {
+            uiElement.focus();
+        };
     }
         
     getName(): string { return this.name; }
