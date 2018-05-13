@@ -55,7 +55,7 @@ const raceFlora = new Choice("Flora",
     ])
 );
 const raceImmortal = new Choice("Immortal",
-    "Not a true race, any individual may become immortal. Whether through an accident of fate, divine heritage, or a pact with demonic forces, an immortal is someone blessed (or cursed) to live forever.<b/>An immortal can be killed.A spear through the heart or having their head removed will still result in death.However their body does not age and will naturally live forever.<b/>An immortal looks just like their base race, but gain none of the racial benefits associated with their base race.Instead, they gain the following trait:",
+    "Not a true race, any individual may become immortal. Whether through an accident of fate, divine heritage, or a pact with demonic forces, an immortal is someone blessed (or cursed) to live forever.<br/>An immortal can be killed.A spear through the heart or having their head removed will still result in death.However their body does not age and will naturally live forever.<br/>An immortal looks just like their base race, but gain none of the racial benefits associated with their base race. Instead, they gain the following trait:",
     new Set<SheetFeature>([
         new SheetFeature("Time is on your side", "You do not age, and will naturally live forever. In addition, the number of times you can be healed between full rests is increased by one.")
     ])
@@ -63,7 +63,7 @@ const raceImmortal = new Choice("Immortal",
 const raceShaitan = new Choice("Shaitan",
     "The shaitan are descendents of demons.  Though human in appearance normally, they can draw on their demonic bloodline to take on horrific and powerful forms.",
     new Set<SheetFeature>([
-        new SheetFeature("Demonic Adaptation", "You can draw on your demonic blood to gain tremendous power or influence for a short time. This transformation requires no AP and can be done any time. The transformation lasts for an hour. Your base attributes remain the same, however you may temporarily raise one attribute of your choice by two ranks (this can go above 5) at the cost of lowering one attribute of your choice by one rank. If the attribute you choose to lower would drop below 1, you must choose a different attribute instead.<b/>These changes manifest in horrific and terrifying ways.  If you were to increase Brawn, for example, you may become a massive brute with horns and spikes.  If you were to increase Presence, your eyes may glow a demonic red and your toothy grin may beguile those around you.  When using this ability, briefly describe to the table how your transformation manifests. You may only transform in this way once per rest.")
+        new SheetFeature("Demonic Adaptation", "You can draw on your demonic blood to gain tremendous power or influence for a short time. This transformation requires no AP and can be done any time. The transformation lasts for an hour. Your base attributes remain the same, however you may temporarily raise one attribute of your choice by two ranks (this can go above 5) at the cost of lowering one attribute of your choice by one rank. If the attribute you choose to lower would drop below 1, you must choose a different attribute instead.<br/>These changes manifest in horrific and terrifying ways.  If you were to increase Brawn, for example, you may become a massive brute with horns and spikes.  If you were to increase Presence, your eyes may glow a demonic red and your toothy grin may beguile those around you.  When using this ability, briefly describe to the table how your transformation manifests. You may only transform in this way once per rest.")
     ])
 );
 const raceLarva = new Choice("Larva",
@@ -72,7 +72,7 @@ const raceLarva = new Choice("Larva",
         new SheetFeature("Shapeshift", "For 5 AP you can change your appearance to look like any other humanoid race. If you have studied someone for at least a minute, you can choose to look exactly like them, otherwise you take on a generic appearance for the race you choose.")
     ])
 );
-const kithDescription = "Kith are an off breed of humans that somehow evolved to have some traits of animals. It is still a mystery how Kith can represent any number of different beasts but still can reproduce.<b/>Choose the animal you are based on.Although humanoid, you will have traits of the chosen animal, such as ears, tails, fur, etc.The full extent of what animal traits you have is completely up to you.";
+const kithDescription = "Kith are an off breed of humans that somehow evolved to have some traits of animals. It is still a mystery how Kith can represent any number of different beasts but still can reproduce.<br/>Choose the animal you are based on.Although humanoid, you will have traits of the chosen animal, such as ears, tails, fur, etc.The full extent of what animal traits you have is completely up to you.";
 const raceKithBrawn = new Choice("Kith (Brawn)",
     kithDescription,
     new Set<SheetFeature>([

@@ -1,7 +1,7 @@
 ﻿import { Choice } from "./Choice.js";
 import { ChoiceSet } from "./ChoiceSet.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
-import { findParentWithClass } from "../util/treeNavigation.js";
+import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 
 
 export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {
@@ -52,12 +52,14 @@ export class ChoiceOption {
             dataListElement.appendChild(child);
         }
         const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
-        categoryBlock.title = this.category.getDescription();
+        categoryBlock.title = stripHtml(this.category.getDescription());
     }
         
     getName(): string { return this.name; }
     getSelection(): Choice { return this.selection; }
+    getChoiceSet(): ChoiceSet { return this.choices; }
     getCategory(): OptionCategory { return this.category; }
+    getUiElement(): HTMLInputElement { return this.uiElement;}
 
     addOnChangeListener(listener: ChoiceChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: ChoiceChangeListener): boolean { return this.listeners.delete(listener); }

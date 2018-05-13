@@ -286,11 +286,14 @@ body {
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
 }
+#focusDescription {
+    float:none;
+}
 #focusTitle {
     text-align: left;
 }
 #searchBox {
-    width: 98%
+    width: 2in;
 }
 #searchHeader {
     display: inline-block

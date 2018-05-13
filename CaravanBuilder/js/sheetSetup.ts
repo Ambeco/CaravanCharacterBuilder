@@ -8,6 +8,7 @@ import { skills } from "./data/skillData.js";
 import { clarifyError } from "./util/ClarifyError.js";
 import { toCamelCase } from "./util/Camelcase.js";
 import { focusListener } from "./floatingDescriptionHelper.js";
+import { stripHtml } from "./util/treeNavigation.js";
 
 
 const nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
@@ -40,7 +41,7 @@ for (let attunement of coreAttunements) {
 }
     
 attunementAttributes.setUiElement(atunementAttributesInput, focusListener);
-atunementAttributesBlock.title = attunementAttributes.getDescription();
+atunementAttributesBlock.title = stripHtml(attunementAttributes.getDescription());
 
 for (let attribute of attributes) {
     try {
@@ -53,7 +54,7 @@ for (let attribute of attributes) {
 }
     
 attunementSkills.setUiElement(atunementSkillsInput, focusListener);
-atunementSkillsBlock.title = attunementSkills.getDescription();
+atunementSkillsBlock.title = stripHtml(attunementSkills.getDescription());
 
 for (let skill of skills) {
     try {

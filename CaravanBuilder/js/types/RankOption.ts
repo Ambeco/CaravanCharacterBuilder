@@ -1,6 +1,6 @@
 ﻿import { Rank } from "./Rank.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
-import { findParentWithClass } from "../util/treeNavigation.js";
+import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 
 
 export interface RankChangeListener {
@@ -41,7 +41,7 @@ export class RankOption {
         const parentblock: HTMLElement = uiElement.parentElement;
         parentblock.title = this.description;
         const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
-        categoryBlock.title = this.category.getDescription();
+        categoryBlock.title = stripHtml(this.category.getDescription());
     }
 
     getName(): string { return this.name; }
