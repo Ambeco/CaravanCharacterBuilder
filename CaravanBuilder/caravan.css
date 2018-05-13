@@ -23,8 +23,8 @@ h1, h2, h3 {
 
 
 @page {
-   size: 7in 9.25in;
-   margin: 27mm 16mm 27mm 16mm;
+    size: 7in 9.25in;
+    margin: 1.06in 0.63in 1.06in 0.63in;
 }
 body {
     background-color: lightgray;
@@ -262,9 +262,9 @@ body {
 #floatingHistoryBox {
     position: absolute;
     left: 7.2in;
-    /*top: 27mm;*/
     height: 1.80in;
-    width: 3.5in;
+    right: 0.1in;
+    min-width: 4in;
     overflow-y: scroll;
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
@@ -281,7 +281,8 @@ body {
     position: absolute;
     left: 7.2in;
     top: 2in;
-    width: 3.5in;
+    right: 0.1in;
+    min-width: 4in;
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
 }
@@ -295,7 +296,7 @@ body {
     display: inline-block
 }
 #searchSelect {
-    float: right
+    display: block
 }
 @media print {
     #floatingDescriptionBox {

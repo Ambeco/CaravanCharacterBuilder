@@ -1,5 +1,5 @@
 ﻿import { Rank } from "./Rank.js";
-import { OptionCategory } from "./OptionCategory.js";
+import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass } from "../util/treeNavigation.js";
 
 
@@ -16,7 +16,7 @@ export class RankOption {
     public readonly description: string;
     public readonly category: OptionCategory;
     private uiElement: HTMLInputElement;
-    public readonly ranks: Rank[];
+    private readonly ranks: Rank[];
     private readonly listeners: Set<RankChangeListener>;
     public selectionIndex: number;
 
@@ -31,9 +31,13 @@ export class RankOption {
             rank.setRankOption(this);
         }
     }
-    public setUiElement(uiElement: HTMLInputElement) {
+    public setUiElement(uiElement: HTMLInputElement, focusListener: CategoryFocusChangeListener) {
+        const category: OptionCategory = this.category;
         this.uiElement = uiElement;
         uiElement.onchange = this.onUIChange;
+        uiElement.onfocus = function () {
+            focusListener.onCategoryGainFocus(uiElement, category);
+        }
         const parentblock: HTMLElement = uiElement.parentElement;
         parentblock.title = this.description;
         const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");

@@ -1,9 +1,12 @@
 ﻿import { Choice } from "./Choice.js";
 import { ChoiceSet } from "./ChoiceSet.js";
-import { OptionCategory } from "./OptionCategory.js";
+import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass } from "../util/treeNavigation.js";
 
 
+export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {
+    onChoiceGainFocus(uiElement: HTMLInputElement, choice: ChoiceOption): void;
+}
 export interface ChoiceChangeListener {
     (option: ChoiceOption, oldChoice: Choice): void;
 }
@@ -14,7 +17,7 @@ export interface ChoiceChangeListener {
  */
 export class ChoiceOption {
     public readonly name: string;
-    public readonly category: OptionCategory
+    public readonly category: OptionCategory;
     private uiElement: HTMLInputElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
@@ -28,9 +31,13 @@ export class ChoiceOption {
         this.selection = null;
         choices.addOption(this);
     }
-    public setUiElement(uiElement: HTMLInputElement) {
+    public setUiElement(uiElement: HTMLInputElement, focusListener: ChoiceFocusChangeListener) {
+        const choice: ChoiceOption = this;
         this.uiElement = uiElement;
         this.uiElement.onchange = this.onUIChange;
+        this.uiElement.onfocus = function () {
+            focusListener.onChoiceGainFocus(uiElement, choice);
+        };
         const listName: string = this.uiElement.getAttribute("list");
         if (listName == null) throw Error("cannot find list attribute for ui element " + this.uiElement);
         const dataListElement: HTMLElement = document.getElementById(listName);
@@ -50,6 +57,7 @@ export class ChoiceOption {
         
     getName(): string { return this.name; }
     getSelection(): Choice { return this.selection; }
+    getCategory(): OptionCategory { return this.category; }
 
     addOnChangeListener(listener: ChoiceChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: ChoiceChangeListener): boolean { return this.listeners.delete(listener); }

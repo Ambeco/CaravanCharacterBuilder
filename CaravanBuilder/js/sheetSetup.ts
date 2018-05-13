@@ -7,6 +7,7 @@ import { RankOption } from "./types/RankOption.js";
 import { skills } from "./data/skillData.js";
 import { clarifyError } from "./util/ClarifyError.js";
 import { toCamelCase } from "./util/Camelcase.js";
+import { focusListener } from "./floatingDescriptionHelper.js";
 
 
 const nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
@@ -25,39 +26,40 @@ const atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement;
     
 const attunementPoints = new Currency("attunementPoints", 6, false);
     
-raceOption.setUiElement(raceInput);
+raceOption.setUiElement(raceInput, focusListener);
+raceInput.focus();
 
 for (let attunement of coreAttunements) {
     try {
         const inputName = attunement.getName().toLocaleLowerCase() + 'Value';
         const attunementInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
-        attunement.setUiElement(attunementInput);
+        attunement.setUiElement(attunementInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + attunement.getName());
     }
 }
     
-attunementAttributes.setUiElement(atunementAttributesInput);
+attunementAttributes.setUiElement(atunementAttributesInput, focusListener);
 atunementAttributesBlock.title = attunementAttributes.getDescription();
 
 for (let attribute of attributes) {
     try {
         const inputName = attribute.getName().toLocaleLowerCase() + 'Value';
         const attributeInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
-        attribute.setUiElement(attributeInput);
+        attribute.setUiElement(attributeInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + attribute.getName());
     }
 }
     
-attunementSkills.setUiElement(atunementSkillsInput);
+attunementSkills.setUiElement(atunementSkillsInput, focusListener);
 atunementSkillsBlock.title = attunementSkills.getDescription();
 
 for (let skill of skills) {
     try {
         const inputName = toCamelCase(skill.getName()) + 'Value';
         const skillInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
-        skill.setUiElement(skillInput);
+        skill.setUiElement(skillInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + skill.getName());
     }
