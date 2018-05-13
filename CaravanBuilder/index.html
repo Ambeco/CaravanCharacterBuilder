@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="caravan.css">
 </head>
 <body>
+    <script type="module" src="js/sheetSetup.js" async>
+    </script>
+    <script src="//use.edgefonts.net/stencil-std.js" asyn></script>
     <div id="sheet">
         <h1 id="caravanHeader">Caravan</h1>
         <div id="expBlock" class="metaItemBlock">
@@ -21,12 +24,11 @@
             </div>
             <div id="raceBlock" class="metaItemBlock categoryBlock" title="test title<b>hi</b>">
                 <div id="raceTitle" class="MetaTitle">Race</div>
-                <input id="raceValue" class="metaInput" list="raceList" />
-                <datalist id="raceList">
+                <select id="raceValue" class="metaInput">
                     <option value="Human">Human</option>
                     <option value="Dwarf">Dwarf</option>
                     <option value="Elf">Elf</option>
-                </datalist>
+                </select>
             </div>
             <div id="initiativeBlock" class="metaItemBlock">
                 <div id="initiativeTitle" class="MetaTitle">Initiative</div>
@@ -502,14 +504,13 @@
     <div id="floatingDescriptionBox">
         <h2 id="focusTitle">Race</h2>
         <div id="focusDescription">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Select the race of your character.
         </div>
-        <input id="searchBox" class="metaInput" list="searchList" />
-        <datalist id="searchList">
+        <select id="searchBox" class="metaInput">
             <option value="Human">Human</option>
             <option value="Dwarf">Dwarf</option>
             <option value="Elf">Elf</option>
-        </datalist>
+        </select>
         <br />
         <h3 id="searchHeader">Human</h3>
         <button id="searchSelect" type="button">Select</button>
@@ -518,11 +519,7 @@
         </div>
         <ul id="searchFeatures">
             <li><b>Human Perseverance</b>: You gain +1 maximum resolve</li>
-            <li><b>Human Perseverance</b>: You gain +1 maximum resolve</li>
-            <li><b>Human Perseverance</b>: You gain +1 maximum resolve</li>
         </ul>
     </div>
-    <script type="module" src="js/sheetSetup.js" async></script>
-    <script src="//use.edgefonts.net/stencil-std.js"></script>
 </body>
 </html>

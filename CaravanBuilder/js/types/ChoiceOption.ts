@@ -34,22 +34,18 @@ export class ChoiceOption {
     public setUiElement(uiElement: HTMLInputElement, focusListener: ChoiceFocusChangeListener) {
         const choice: ChoiceOption = this;
         this.uiElement = uiElement;
-        this.uiElement.onchange = this.onUIChange;
-        this.uiElement.onfocus = function () {
+        uiElement.onchange = this.onUIChange;
+        uiElement.onfocus = function () {
             focusListener.onChoiceGainFocus(uiElement, choice);
         };
-        const listName: string = this.uiElement.getAttribute("list");
-        if (listName == null) throw Error("cannot find list attribute for ui element " + this.uiElement);
-        const dataListElement: HTMLElement = document.getElementById(listName);
-        if (listName == null) throw Error("cannot find list " + listName + " for ui element " + this.uiElement);
-        while (dataListElement.lastChild) {
-            dataListElement.removeChild(dataListElement.lastChild);
+        while (uiElement.lastChild) {
+            uiElement.removeChild(uiElement.lastChild);
         }
         for (let choice of this.choices) {
             const child = document.createElement('option');
             child.value = choice.getName();
             child.appendChild(document.createTextNode(choice.getName()));
-            dataListElement.appendChild(child);
+            uiElement.appendChild(child);
         }
         const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
         categoryBlock.title = stripHtml(this.category.getDescription());
