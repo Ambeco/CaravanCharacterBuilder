@@ -6,9 +6,9 @@ export interface SheetFeatureSource {
  * A feature that displays on the character sheet that may or may not affect any other part of the sheet.
  */
 export class SheetFeature {
-    private readonly name: string;
-    private readonly description: string;
-    private source: SheetFeatureSource;
+    public readonly name: string;
+    public readonly description: string;
+    public source: SheetFeatureSource;
 
     constructor(name: string, description: string) {
         this.name = name;

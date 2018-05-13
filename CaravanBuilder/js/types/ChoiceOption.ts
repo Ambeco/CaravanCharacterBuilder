@@ -18,7 +18,7 @@ export class ChoiceOption {
     private uiElement: HTMLInputElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
-    private selection: Choice;
+    public selection: Choice;
 
     constructor(newName: string, category: OptionCategory, choices: ChoiceSet) {
         this.name = newName;

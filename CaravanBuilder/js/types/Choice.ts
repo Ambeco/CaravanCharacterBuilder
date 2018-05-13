@@ -10,8 +10,8 @@ export interface ChoiceHost {
  * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
  */
 export class Choice {
-    private readonly name: string;
-    private readonly description: string;
+    public readonly name: string;
+    public readonly description: string;
     private readonly features: Set<SheetFeature>
     private choiceSet: ChoiceHost;
 

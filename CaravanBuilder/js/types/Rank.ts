@@ -10,9 +10,9 @@ export interface RankHost {
  * RankOption=Strength. Rank=4.
  */
 export class Rank {
-    private readonly name: string;
-    private readonly value: number;
-    private readonly description: string;
+    public readonly name: string;
+    public readonly value: number;
+    public readonly description: string;
     private readonly features: Set<SheetFeature>
     private rankOption: RankHost;
     

@@ -7,8 +7,8 @@
 export let namedCurrencies: Map<string, Currency> = new Map<string, Currency>();
 export let importantCurrencies: Set<Currency> = new Set<Currency>();
 export class Currency {
-    private readonly name: string;
-    private readonly initialCount: number;
+    public readonly name: string;
+    public readonly initialCount: number;
     private readonly justifyToUser: boolean;
     private readonly conversions: Map<Currency, number>; //1.5 means 1 of this is 1.5 of that
 

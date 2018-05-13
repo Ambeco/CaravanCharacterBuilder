@@ -12,13 +12,13 @@ export interface RankChangeListener {
  * RankOption=Strength. Rank=4.
  */
 export class RankOption {
-    private readonly name: string;
-    private readonly description: string;
-    private readonly category: OptionCategory;
+    public readonly name: string;
+    public readonly description: string;
+    public readonly category: OptionCategory;
     private uiElement: HTMLInputElement;
-    private readonly ranks: Rank[];
+    public readonly ranks: Rank[];
     private readonly listeners: Set<RankChangeListener>;
-    private selectionIndex: number;
+    public selectionIndex: number;
 
     constructor(newName: string, category:OptionCategory, ranks: Rank[], description:string) {
         this.name = newName;
