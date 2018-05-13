@@ -34,7 +34,7 @@ body {
     margin: auto;
     background-color: white;
     box-shadow: 0.02in 0.02in darkgrey;
-    margin-right:3.5in;
+    margin-right:8in;
 }
 @media print {
     body {
@@ -263,8 +263,7 @@ body {
     position: absolute;
     left: 7.2in;
     height: 1.80in;
-    right: 0.1in;
-    min-width: 4in;
+    width: 7in;
     overflow-y: scroll;
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
@@ -281,8 +280,7 @@ body {
     position: absolute;
     left: 7.2in;
     top: 2in;
-    right: 0.1in;
-    min-width: 4in;
+    width: 7in;
     background-color: lightsteelblue;
     box-shadow: 0.02in 0.02in darkgrey;
 }
