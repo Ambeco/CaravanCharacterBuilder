@@ -51,7 +51,7 @@ export class Rank {
     onSelect() { }
 }
 export function duplicateRankArray(ranks: Rank[]): Rank[] {
-    let result: Rank[] = new Array<Rank>(ranks.length);
+    const result: Rank[] = new Array<Rank>(ranks.length);
     for (let i = 0; i < ranks.length; i++) {
         result[i] = ranks[i].clone();
     }

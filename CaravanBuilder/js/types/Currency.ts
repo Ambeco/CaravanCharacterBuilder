@@ -4,8 +4,8 @@
  * Cost=5 Xp.  Currency=Xp.
  * Requirement=3 Divine.  Currency=Divine.
  **/
-export let namedCurrencies: Map<string, Currency> = new Map<string, Currency>();
-export let importantCurrencies: Set<Currency> = new Set<Currency>();
+export const namedCurrencies: Map<string, Currency> = new Map<string, Currency>();
+export const importantCurrencies: Set<Currency> = new Set<Currency>();
 export class Currency {
     public readonly name: string;
     public readonly initialCount: number;

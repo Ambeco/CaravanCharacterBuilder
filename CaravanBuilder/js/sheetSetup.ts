@@ -9,28 +9,28 @@ import { clarifyError } from "./util/ClarifyError.js";
 import { toCamelCase } from "./util/Camelcase.js";
 
 
-let nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
-let raceInput: HTMLInputElement = document.getElementById('raceValue') as HTMLInputElement;
-let raceBlock: HTMLElement = raceInput.parentElement;
-let initiativeInput: HTMLInputElement = document.getElementById('initiativeValue') as HTMLInputElement;
-let totalSoakInput: HTMLInputElement = document.getElementById('totalSoakValue') as HTMLInputElement;
-let armorSoakInput: HTMLInputElement = document.getElementById('armorSoakValue') as HTMLInputElement;
-let titanSoakInput: HTMLInputElement = document.getElementById('titanSoakValue') as HTMLInputElement;
-let movementSpeedInput: HTMLInputElement = document.getElementById('movementSpeedValue') as HTMLInputElement;
-let otherSpeedInput: HTMLInputElement = document.getElementById('otherSpeedValue') as HTMLInputElement;
-let atunementAttributesInput: HTMLInputElement = document.getElementById('attributeValue') as HTMLInputElement;
-let atunementAttributesBlock: HTMLElement = atunementAttributesInput.parentElement;
-let atunementSkillsInput: HTMLInputElement = document.getElementById('skillsValue') as HTMLInputElement;
-let atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement;
+const nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
+const raceInput: HTMLInputElement = document.getElementById('raceValue') as HTMLInputElement;
+const raceBlock: HTMLElement = raceInput.parentElement;
+const initiativeInput: HTMLInputElement = document.getElementById('initiativeValue') as HTMLInputElement;
+const totalSoakInput: HTMLInputElement = document.getElementById('totalSoakValue') as HTMLInputElement;
+const armorSoakInput: HTMLInputElement = document.getElementById('armorSoakValue') as HTMLInputElement;
+const titanSoakInput: HTMLInputElement = document.getElementById('titanSoakValue') as HTMLInputElement;
+const movementSpeedInput: HTMLInputElement = document.getElementById('movementSpeedValue') as HTMLInputElement;
+const otherSpeedInput: HTMLInputElement = document.getElementById('otherSpeedValue') as HTMLInputElement;
+const atunementAttributesInput: HTMLInputElement = document.getElementById('attributeValue') as HTMLInputElement;
+const atunementAttributesBlock: HTMLElement = atunementAttributesInput.parentElement;
+const atunementSkillsInput: HTMLInputElement = document.getElementById('skillsValue') as HTMLInputElement;
+const atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement;
     
-let attunementPoints = new Currency("attunementPoints", 6, false);
+const attunementPoints = new Currency("attunementPoints", 6, false);
     
 raceOption.setUiElement(raceInput);
 
 for (let attunement of coreAttunements) {
     try {
-        let inputName = attunement.getName().toLocaleLowerCase() + 'Value';
-        let attunementInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        const inputName = attunement.getName().toLocaleLowerCase() + 'Value';
+        const attunementInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
         attunement.setUiElement(attunementInput);
     } catch (e) {
         clarifyError(e, "while processing " + attunement.getName());
@@ -42,8 +42,8 @@ atunementAttributesBlock.title = attunementAttributes.getDescription();
 
 for (let attribute of attributes) {
     try {
-        let inputName = attribute.getName().toLocaleLowerCase() + 'Value';
-        let attributeInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        const inputName = attribute.getName().toLocaleLowerCase() + 'Value';
+        const attributeInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
         attribute.setUiElement(attributeInput);
     } catch (e) {
         clarifyError(e, "while processing " + attribute.getName());
@@ -55,8 +55,8 @@ atunementSkillsBlock.title = attunementSkills.getDescription();
 
 for (let skill of skills) {
     try {
-        let inputName = toCamelCase(skill.getName()) + 'Value';
-        let skillInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        const inputName = toCamelCase(skill.getName()) + 'Value';
+        const skillInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
         skill.setUiElement(skillInput);
     } catch (e) {
         clarifyError(e, "while processing " + skill.getName());

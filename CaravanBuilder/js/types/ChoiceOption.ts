@@ -31,20 +31,20 @@ export class ChoiceOption {
     public setUiElement(uiElement: HTMLInputElement) {
         this.uiElement = uiElement;
         this.uiElement.onchange = this.onUIChange;
-        let listName: string = this.uiElement.getAttribute("list");
+        const listName: string = this.uiElement.getAttribute("list");
         if (listName == null) throw Error("cannot find list attribute for ui element " + this.uiElement);
-        let dataListElement: HTMLElement = document.getElementById(listName);
+        const dataListElement: HTMLElement = document.getElementById(listName);
         if (listName == null) throw Error("cannot find list " + listName + " for ui element " + this.uiElement);
         while (dataListElement.lastChild) {
             dataListElement.removeChild(dataListElement.lastChild);
         }
         for (let choice of this.choices) {
-            let child = document.createElement('option');
+            const child = document.createElement('option');
             child.value = choice.getName();
             child.appendChild(document.createTextNode(choice.getName()));
             dataListElement.appendChild(child);
         }
-        let categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
+        const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
         categoryBlock.title = this.category.getDescription();
     }
         
@@ -68,7 +68,7 @@ export class ChoiceOption {
     }
     select(choice: Choice): void {
         if (choice != null && !this.choices.contains(choice)) throw Error("cannot select choice " + choice + " that isn't in this choiceSet");
-        let previous: Choice = this.selection;
+        const previous: Choice = this.selection;
         previous.onDeselect();
         this.selection = choice;
         this.selection.onSelect();

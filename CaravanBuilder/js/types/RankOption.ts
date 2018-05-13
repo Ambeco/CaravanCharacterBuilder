@@ -34,9 +34,9 @@ export class RankOption {
     public setUiElement(uiElement: HTMLInputElement) {
         this.uiElement = uiElement;
         uiElement.onchange = this.onUIChange;
-        let parentblock: HTMLElement = uiElement.parentElement;
+        const parentblock: HTMLElement = uiElement.parentElement;
         parentblock.title = this.description;
-        let categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
+        const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
         categoryBlock.title = this.category.getDescription();
     }
 
@@ -62,12 +62,12 @@ export class RankOption {
         return true;
     }
     select(rank: Rank): void {
-        let newIndex: number = this.ranks.indexOf(rank);
+        const newIndex: number = this.ranks.indexOf(rank);
         if (newIndex == null) throw rank.getName() + " is not part of " + this.name;
         this.selectIndex(newIndex);
     }
     selectIndex(newIndex: number): void {
-        let previousIndex: number = this.selectionIndex;
+        const previousIndex: number = this.selectionIndex;
         if (previousIndex != null) this.ranks[previousIndex].onDeselect();
         this.selectionIndex = newIndex;
         this.ranks[newIndex].onSelect();
