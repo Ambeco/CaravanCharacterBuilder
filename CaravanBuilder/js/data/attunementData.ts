@@ -1,8 +1,9 @@
 ﻿import { RankOption } from "../types/RankOption.js";
-import { Rank } from "../types/Rank.js";
+import { Rank, duplicateRankArray } from "../types/Rank.js";
 import { SheetFeature } from "../types/SheetFeature.js";
+import { OptionCategory } from "../types/OptionCategory.js";
 
-let AttunementDescription: string =
+let attunementCategory: OptionCategory = new OptionCategory("Attunement",
     "<p>All heroes are attuned in different ways. Certain spheres of power come naturally to you, whereas others might not.</p>"
     + "<p>This is represented in game by how much experience it costs to raise your specializations. Specializations are where you get new abilities and bonuses, like being able to cast fire spells or heal.</p>"
     + "<p>All specializations fall under one of five spheres of power. These spheres are martial, arcane, divine, nature and animus.</p>"
@@ -28,53 +29,36 @@ let AttunementDescription: string =
     + "<li>Skald(Animus / Martial 5x, all else 8x) < /li>"
     + "<li>Controller(Animus / Arcane 5x, all else 8x) < /li>"
     + "<li>Favored Soul(Animus / Divine 5x, all else 8x) < /li>"
-    + "<li>Primal(Animus / Nature 5x, all else 8x) < /li></ul>:";
+    + "<li>Primal(Animus / Nature 5x, all else 8x) < /li></ul>:");
 
-let attunementMartial: RankOption = new RankOption("Martial", [
+let attunementRanks: Rank[] = [
     new Rank(8, null, null, new Set<SheetFeature>()),
     new Rank(7, null, null, new Set<SheetFeature>()),
     new Rank(6, null, null, new Set<SheetFeature>()),
     new Rank(5, null, null, new Set<SheetFeature>()),
     new Rank(4, null, null, new Set<SheetFeature>()),
     new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementArcane: RankOption = new RankOption("Arcane", [
-    new Rank(8, null, null, new Set<SheetFeature>()),
-    new Rank(7, null, null, new Set<SheetFeature>()),
-    new Rank(6, null, null, new Set<SheetFeature>()),
-    new Rank(5, null, null, new Set<SheetFeature>()),
+];
+export let attunementMartial: RankOption = new RankOption("Martial", attunementCategory, duplicateRankArray(attunementRanks), "Martial covers non - magical, physical ability. It could be something simple, such as expertise with the bow or sword or something a little more devious, such as thievery and assassination.");
+export let attunementArcane: RankOption = new RankOption("Arcane", attunementCategory, duplicateRankArray(attunementRanks), "Arcane is a form of magic that requires study and practice.Whereas divine magic is granted through deities and nature magic is learned from the creatures and plant life around you, arcane magic is learned through rigorous study and experimentation. Arcane mages use their knowledge of the way the world’s constants work and then twist those to suit their needs. This allows arcane magic to cover almost any aspect.");
+export let attunementDivine: RankOption = new RankOption("Divine", attunementCategory, duplicateRankArray(attunementRanks), "Divine is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.");
+export let attunementNature: RankOption = new RankOption("Nature", attunementCategory, duplicateRankArray(attunementRanks), "Nature is all about gaining strength through the natural world around you. Learning how predators dominate an ecosystem and gaining their abilities. Discovering how certain plants survive in various climates and mirroring those talents. Nature magic allows you to shape the natural world to your liking.");
+export let attunementAnimus: RankOption = new RankOption("Animus", attunementCategory, duplicateRankArray(attunementRanks), "Animus is all about influencing others around you. Generally there are two main way to influence people. Charm, persuasion, seduction and other such stuff have been tools for people to get what they want since people could speak. Others prefer to influence using simply their mind, through various methods of psionic ability. Psionic ability being the way to manipulate people and the world using nothing but your mind.");
+export let attunementAttributes: RankOption = new RankOption("Attributes", attunementCategory, [
     new Rank(4, null, null, new Set<SheetFeature>()),
     new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementDivine: RankOption = new RankOption("Divine", [
-    new Rank(8, null, null, new Set<SheetFeature>()),
-    new Rank(7, null, null, new Set<SheetFeature>()),
-    new Rank(6, null, null, new Set<SheetFeature>()),
-    new Rank(5, null, null, new Set<SheetFeature>()),
-    new Rank(4, null, null, new Set<SheetFeature>()),
-    new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementNature: RankOption = new RankOption("Nature", [
-    new Rank(8, null, null, new Set<SheetFeature>()),
-    new Rank(7, null, null, new Set<SheetFeature>()),
-    new Rank(6, null, null, new Set<SheetFeature>()),
-    new Rank(5, null, null, new Set<SheetFeature>()),
-    new Rank(4, null, null, new Set<SheetFeature>()),
-    new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementAnimus: RankOption = new RankOption("Animus", [
-    new Rank(8, null, null, new Set<SheetFeature>()),
-    new Rank(7, null, null, new Set<SheetFeature>()),
-    new Rank(6, null, null, new Set<SheetFeature>()),
-    new Rank(5, null, null, new Set<SheetFeature>()),
-    new Rank(4, null, null, new Set<SheetFeature>()),
-    new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementAttributes: RankOption = new RankOption("Attributes", [
-    new Rank(4, null, null, new Set<SheetFeature>()),
-    new Rank(3, null, null, new Set<SheetFeature>()),
-]);
-let attunementSkills: RankOption = new RankOption("Skills", [
+],
+"Normally attributes require 4x your current rating, but you can spend 2 attunement points to lower the experience cost by 1x for either your attributes or skills. You can also, instead, gain 2 attunement points by raising the experience cost by 1x for your attributes. The attunement for attributes can only be raised or lowered once.");
+export let attunementSkills: RankOption = new RankOption("Skills", attunementCategory, [
     new Rank(2, null, null, new Set<SheetFeature>()),
     new Rank(1, null, null, new Set<SheetFeature>()),
-]);
+],
+    "Normally attributes require 2x your current rating, but you can spend 2 attunement points to lower the experience cost by 1x for either your attributes or skills. You can also, instead, gain 2 attunement points by raising the experience cost by 1x for your skills. The attunement for skills can only be raised or lowered once.");
+
+export let coreAttunements: RankOption[] = [
+    attunementMartial,
+    attunementArcane,
+    attunementDivine,
+    attunementNature,
+    attunementAnimus,
+]

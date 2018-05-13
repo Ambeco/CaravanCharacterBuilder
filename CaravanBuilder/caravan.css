@@ -47,9 +47,40 @@ body {
 }
 #caravanHeader {
     float: left;
+    width: 4.6in;
 }
 #expBlock {
     float: right;
+}
+
+
+#metaBlock {
+    width: 4.6in;
+}
+.metaInput {
+    width: 0.7in;
+}
+#nameValue {
+    width: 1.7in;
+}
+#raceValue {
+    width: 1.7in;
+}
+#hpBlock {
+    width: 2.3in;
+}
+#hpBlock {
+    width: 2.3in;
+}
+.hpItemBlock {
+    float: none;
+    display: inline;
+}
+.hpCurInput {
+    width: 0.6in;
+}
+.hpMaxInput {
+    width: 0.6in;
 }
 
 
@@ -78,13 +109,13 @@ body {
 
 
 .skillCategoryBlock {
-    width:2.29in;
+    width:3.49in;
 }
 .skillCategoryHeader {
     text-align:center;
 }
 .skillItemBlock {
-    width:2.28in;
+    width:3.48in;
 }
 .skillTitle {
     float:left;

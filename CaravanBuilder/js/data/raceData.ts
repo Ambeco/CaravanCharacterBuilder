@@ -1,6 +1,10 @@
 ﻿import { SheetFeature } from "../types/SheetFeature.js";
 import { Choice } from "../types/Choice.js";
 import { ChoiceSet } from "../types/ChoiceSet.js";
+import { ChoiceOption } from "../types/ChoiceOption.js";
+import { OptionCategory } from "../types/OptionCategory.js";
+
+let raceCategory: OptionCategory = new OptionCategory("Race", "Select the race of your character");
 
 let raceHuman = new Choice("Human",
     "Humans are the driving force of the world. They are an adaptable race, able to thrive in a wide range of conditions, and you would be hard pressed to go anywhere in the world and not encounter humans.",
@@ -126,3 +130,4 @@ export let races: ChoiceSet = new ChoiceSet(
         raceKithIntellect,
     ]),
     true);
+export let raceOption = new ChoiceOption("race", raceCategory, races);

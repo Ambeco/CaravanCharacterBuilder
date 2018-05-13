@@ -28,7 +28,7 @@ export class Choice {
     getSheetFeatureSourceName(): string { return this.choiceSet.getOptionName(this) + ": " + name;}
 
     setChoiceSet(choiceSet: ChoiceHost): void {
-        if (this.choiceSet != null && this.choiceSet != choiceSet) throw "Cannot modify ChoiceSet";
+        if (this.choiceSet != null && this.choiceSet != choiceSet) throw Error("Cannot modify ChoiceSet");
         this.choiceSet = choiceSet;
     }
     getChoiceSet(): ChoiceHost {

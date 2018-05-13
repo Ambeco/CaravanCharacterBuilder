@@ -1,5 +1,7 @@
 ﻿import { Choice } from "./Choice.js";
 import { ChoiceSet } from "./ChoiceSet.js";
+import { OptionCategory } from "./OptionCategory.js";
+import { findParentWithClass } from "../util/treeNavigation.js";
 
 
 export interface ChoiceChangeListener {
@@ -11,35 +13,39 @@ export interface ChoiceChangeListener {
  * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
  */
 export class ChoiceOption {
-    private readonly name: string;
-    private readonly uiElement: HTMLInputElement;
+    public readonly name: string;
+    public readonly category: OptionCategory
+    private uiElement: HTMLInputElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
     private selection: Choice;
 
-    constructor(newName: string, uiElement: HTMLInputElement, choices: ChoiceSet) {
+    constructor(newName: string, category: OptionCategory, choices: ChoiceSet) {
         this.name = newName;
-        this.uiElement = uiElement;
+        this.category = category;
         this.choices = choices;
         this.listeners = new Set<ChoiceChangeListener>();
         this.selection = null;
         choices.addOption(this);
-        this.setupUi();
     }
-    private setupUi() {
+    public setUiElement(uiElement: HTMLInputElement) {
+        this.uiElement = uiElement;
         this.uiElement.onchange = this.onUIChange;
         let listName: string = this.uiElement.getAttribute("list");
-        if (listName == null) throw "cannot find list attribute for ui element " + this.uiElement;
+        if (listName == null) throw Error("cannot find list attribute for ui element " + this.uiElement);
         let dataListElement: HTMLElement = document.getElementById(listName);
-        if (listName == null) throw "cannot find list " + listName + " for ui element " + this.uiElement;
+        if (listName == null) throw Error("cannot find list " + listName + " for ui element " + this.uiElement);
         while (dataListElement.lastChild) {
             dataListElement.removeChild(dataListElement.lastChild);
         }
         for (let choice of this.choices) {
             let child = document.createElement('option');
             child.value = choice.getName();
+            child.appendChild(document.createTextNode(choice.getName()));
             dataListElement.appendChild(child);
         }
+        let categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
+        categoryBlock.title = this.category.getDescription();
     }
         
     getName(): string { return this.name; }
@@ -61,7 +67,7 @@ export class ChoiceOption {
         return this.choices.mayBeSelected(choice);
     }
     select(choice: Choice): void {
-        if (choice != null && !this.choices.contains(choice)) throw "cannot select choice " + choice + " that isn't in this choiceSet";
+        if (choice != null && !this.choices.contains(choice)) throw Error("cannot select choice " + choice + " that isn't in this choiceSet");
         let previous: Choice = this.selection;
         previous.onDeselect();
         this.selection = choice;

@@ -91,7 +91,10 @@
     <TypeScriptCompile Include="js\data\attunementData.ts" />
     <TypeScriptCompile Include="js\sheetSetup.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
+    <TypeScriptCompile Include="js\util\camelCase.ts" />
+    <TypeScriptCompile Include="js\util\clarifyError.ts" />
     <TypeScriptCompile Include="js\types\Cost.ts" />
+    <TypeScriptCompile Include="js\types\OptionCategory.ts" />
     <TypeScriptCompile Include="js\types\RankOption.ts" />
     <TypeScriptCompile Include="js\types\Rank.ts" />
     <TypeScriptCompile Include="js\types\Currency.ts" />
@@ -105,6 +108,7 @@
     <TypeScriptCompile Include="js\types\SheetFeature.ts" />
     <TypeScriptCompile Include="js\types\Transaction.ts" />
     <TypeScriptCompile Include="js\types\Wallet.ts" />
+    <TypeScriptCompile Include="js\util\treeNavigation.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

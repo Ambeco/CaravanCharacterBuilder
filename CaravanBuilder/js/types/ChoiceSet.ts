@@ -32,7 +32,7 @@ export class ChoiceSet {
     addOption(option : ChoiceSetHost) { this.options.add(option); }
 
     mayBeSelected(choice: Choice): boolean {
-        if (!this.choices.has(choice)) throw "cannot select choice " + choice + " that isn't in this choiceSet";
+        if (!this.choices.has(choice)) throw Error("cannot select choice " + choice + " that isn't in this choiceSet");
         if (!this.unique)
             return true;
         return !this.isSelected(choice);
@@ -41,7 +41,7 @@ export class ChoiceSet {
         return this.getOptionBySelection(choice) != null;
     }
     private getOptionBySelection(choice: Choice) {
-        if (!this.choices.has(choice)) throw "cannot get choice " + choice + " that isn't in this choiceSet";
+        if (!this.choices.has(choice)) throw Error("cannot get choice " + choice + " that isn't in this choiceSet");
         for (let option of this.options) {
             if (option.getSelection() === choice)
                 return option;

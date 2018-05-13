@@ -17,7 +17,7 @@ export class Currency {
         this.initialCount = initialCount;
         this.justifyToUser = justifyToUser;
         this.conversions = new Map<Currency, number>();
-        if (namedCurrencies.get(name) != null) throw "two currencies with name " + name;
+        if (namedCurrencies.get(name) != null) throw Error("two currencies with name " + name);
         namedCurrencies.set(name, this);
         if (justifyToUser) {
             importantCurrencies.add(this);
