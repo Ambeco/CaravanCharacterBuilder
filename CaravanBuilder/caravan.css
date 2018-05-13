@@ -1,6 +1,6 @@
 ﻿@font-face {
-  font-family: "myFont";
-  src: url("//use.edgefonts.net/stencil-std.ttf");
+    font-family: "stencil-std, sans-serif;";
+    src: url("//use.edgefonts.net/stencil-std.ttf");
 }
 
 div {
