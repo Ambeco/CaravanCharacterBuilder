@@ -189,27 +189,27 @@ function parseRequirements(requirements: string): Requirement {
         if (requirements == null || requirements.length == 0) {
             return null;
         }
-        let regex = "Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?";
+        console.log(requirements);
+        let regex = /Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?/;
         let requirementMatches: RegExpMatchArray = requirements.match(regex);
         if (requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
-        regex = "Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)(?: combination of)(?: the) \[([^\]]+)\] specializations?"
+        regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? \[([^\]]+)\] specializations?/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
-        regex = "Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)(?: combination of)(?: the) ([^\[\]]+) specializations?"
+        regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? ([^\[]+?) specializations?/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
-        regex = "Requires you to know (.+?) before you can purchase"
+        regex = /Requires you to know (.+?) before you can purchase/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
-        console.log("failing to parse requirements");
         throw new Error("Unable to parse " + requirements);
     } catch (e) {
         clarifyError(e, "while parsing requirement " + requirements);
