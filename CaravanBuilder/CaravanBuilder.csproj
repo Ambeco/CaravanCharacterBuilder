@@ -86,12 +86,14 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="js\abilityTools.ts" />
     <TypeScriptCompile Include="js\data\attributeData.ts" />
     <TypeScriptCompile Include="js\data\backgroundData.ts" />
     <TypeScriptCompile Include="js\data\skillData.ts" />
     <TypeScriptCompile Include="js\data\attunementData.ts" />
     <TypeScriptCompile Include="js\floatingDescriptionHelper.ts" />
     <TypeScriptCompile Include="js\sheetSetup.ts" />
+    <TypeScriptCompile Include="js\types\BaseAbility.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
     <TypeScriptCompile Include="js\util\camelCase.ts" />
     <TypeScriptCompile Include="js\util\clarifyError.ts" />
@@ -111,7 +113,6 @@
     <TypeScriptCompile Include="js\types\Transaction.ts" />
     <TypeScriptCompile Include="js\types\Wallet.ts" />
     <TypeScriptCompile Include="js\util\treeNavigation.ts" />
-    <TypeScriptCompile Include="js\abilityTool.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
