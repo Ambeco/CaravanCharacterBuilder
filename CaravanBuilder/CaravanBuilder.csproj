@@ -93,6 +93,7 @@
     <TypeScriptCompile Include="js\data\attunementData.ts" />
     <TypeScriptCompile Include="js\floatingDescriptionHelper.ts" />
     <TypeScriptCompile Include="js\sheetSetup.ts" />
+    <TypeScriptCompile Include="js\types\Augment.ts" />
     <TypeScriptCompile Include="js\types\BaseAbility.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
     <TypeScriptCompile Include="js\util\camelCase.ts" />
