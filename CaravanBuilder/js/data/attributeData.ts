@@ -14,11 +14,11 @@ const attributeCategory: OptionCategory = new OptionCategory("Attribute",
     + "<p>Intellect is a measure of the intuition and reason of a creature.</p>");
 
 const attunementRanks: Rank[] = [
-    new Rank(1, null, null, new Set<SheetFeature>()),
-    new Rank(2, null, null, new Set<SheetFeature>()),
-    new Rank(3, null, null, new Set<SheetFeature>()),
-    new Rank(4, null, null, new Set<SheetFeature>()),
-    new Rank(5, null, null, new Set<SheetFeature>()),
+    new Rank(1, null, null, null, null),
+    new Rank(2, null, null, null, null),
+    new Rank(3, null, null, null, null),
+    new Rank(4, null, null, null, null),
+    new Rank(5, null, null, null, null),
 ];
 export const attributeBrawn: RankOption = new RankOption("Brawn", attributeCategory, duplicateRankArray(attunementRanks), "Brawn is a measure of how strong and hearty a creature is.");
 export const attributeDexterity: RankOption = new RankOption("Dexterity", attributeCategory, duplicateRankArray(attunementRanks), "Dexterity is a measure of how agile and deft a creature is.");

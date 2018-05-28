@@ -1,7 +1,7 @@
 ﻿import { Cost, Requirement } from "./Cost.js";
 import { RankOption } from "./RankOption.js";
 import { SheetFeature } from "./SheetFeature.js";
-import { AugmentHost } from "./Augment";
+import { AugmentSource } from "./Augment.js";
 
 
 export class Roll {
@@ -14,7 +14,7 @@ export class Roll {
     }
 }
 
-export class BaseAbility implements AugmentHost {
+export class BaseAbility implements AugmentSource {
     public readonly name: string;
     public readonly requirements: Requirement;
     public readonly time: Cost;

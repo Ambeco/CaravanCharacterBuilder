@@ -1,16 +1,16 @@
 ﻿import { SheetFeature } from "./SheetFeature.js";
-import { AugmentHost, Augment } from "./Augment";
+import { AugmentSource, Augment } from "./Augment";
 
 
 export interface RankHost {
     readonly name: string;
-    readonly selection: Rank;
+    getSelection(): Rank;
 }
 /**
  * A single possibility of a number field of a form.
  * RankOption=Strength. Rank=4.
  */
-export class Rank implements AugmentHost {
+export class Rank implements AugmentSource {
     public readonly name: string;
     public readonly value: number;
     public readonly description: string;
@@ -54,7 +54,7 @@ export class Rank implements AugmentHost {
         return this.features;
     }
 
-    isSelected(): boolean { return this.rankOption.selection === this; }
+    isSelected(): boolean { return this.rankOption.getSelection() === this; }
     onDeselect() { }
     onSelect() { }
 }
