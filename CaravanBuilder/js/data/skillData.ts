@@ -105,3 +105,7 @@ export const skills: RankOption[] = [
     skillSurvival,
     skillTechnology,
 ]
+
+export const skillWeapon: RankOption = new RankOption("Weapon", skillCategory, duplicateRankArray(attunementRanks), "The skill for the weapon in use.")
+
+export const psuedoSkills: RankOption[] = skills.slice(0).concat(skillWeapon);

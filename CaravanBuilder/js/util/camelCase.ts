@@ -1,6 +1,9 @@
 ﻿export function toCamelCase(str:string) {
-    return str.replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, function (match:string, index:number) {
-        if (+match === 0) return ""; // or if (/\s+/.test(match)) for white spaces
-        return index == 0 ? match.toLowerCase() : match.toUpperCase();
+    const firstPass = str.replace(/\s([_A-Za-z])/g, function (match:string, letter:string) {
+        return letter.toUpperCase();
     });
+    const secondPass = firstPass.replace(/[^_a-zA-Z]/g, function (match: string) {
+        return "_";
+    });
+    return secondPass;
 }

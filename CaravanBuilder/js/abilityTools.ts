@@ -2,21 +2,29 @@
 import { BaseAbility, Roll } from "./types/BaseAbility.js";
 import { RankOption } from "./types/RankOption.js";
 import { attributes } from "./data/attributeData.js";
-import { skills } from "./data/skillData.js";
+import { psuedoSkills } from "./data/skillData.js";
 import { Currency } from "./types/Currency.js";
 import { Cost, Requirement } from "./types/Cost.js";
+import { toCamelCase } from "./util/Camelcase.js";
 
 const editableDiv: HTMLElement = document.getElementById('editableDiv');
+const resultDiv: HTMLElement = document.getElementById('resultDiv');
+
+let lastAbilityName: string = "START";
 
 editableDiv.oninput = function () {
     console.log(editableDiv.innerHTML);
     console.log("start");
-    findAbilities(editableDiv, 0);
-    console.log("end");
+    const abilities: BaseAbility[] = new Array<BaseAbility>();
+    findAbilities(editableDiv, abilities);
+    console.log("parsed");
+    writeAbilities(abilities, resultDiv);
+    editableDiv.style.display = "none";
+    resultDiv.style.display = "block";
+    console.log("done");
 }
 
-function findAbilities(parent: Element, depth:number): void {
-    
+function findAbilities(parent: Element, results: BaseAbility[]): void {
     const childCount: number = parent.children.length;
     for (var i = 0; i < childCount; i++) {
         try {
@@ -30,14 +38,19 @@ function findAbilities(parent: Element, depth:number): void {
                     if (name == null) {
                         throw new Error("unable to find title");
                     }
-                    const requirements: string = findRequirements(parent, i);
-                    const ability: BaseAbility = parseAbility(name, requirements, child);
+                    try {
+                        const requirements: string = findRequirements(parent, i);
+                        const ability: BaseAbility = parseAbility(name, requirements, child);
+                        results.push(ability);
+                    } finally {
+                        lastAbilityName = name;
+                    }
                 }
             } else {
-                findAbilities(child, depth + 1);
+                findAbilities(child, results);
             }
         } catch (e) {
-            clarifyError(e, "while processing child " + i + " of " + parent.tagName);
+            clarifyError(e, "while processing child " + i + " of " + parent.tagName + " after ability " + lastAbilityName);
         }
     }
 }
@@ -176,7 +189,7 @@ function attributeByName(name: string): RankOption {
 }
 
 function skillByName(name: string): RankOption {
-    for (let option of skills) {
+    for (let option of psuedoSkills) {
         if (option.getName() == name) {
             return option;
         }
@@ -192,22 +205,22 @@ function parseRequirements(requirements: string): Requirement {
         console.log(requirements);
         let regex = /Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?/;
         let requirementMatches: RegExpMatchArray = requirements.match(regex);
-        if (requirementMatches.length > 1) {
+        if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
         regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? \[([^\]]+)\] specializations?/;
         requirementMatches = requirements.match(regex);
-        if (requirementMatches.length > 1) {
+        if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
         regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? ([^\[]+?) specializations?/;
         requirementMatches = requirements.match(regex);
-        if (requirementMatches.length > 1) {
+        if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
         regex = /Requires you to know (.+?) before you can purchase/;
         requirementMatches = requirements.match(regex);
-        if (requirementMatches.length > 1) {
+        if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches);
         }
         throw new Error("Unable to parse " + requirements);
@@ -219,4 +232,51 @@ function parseRequirements(requirements: string): Requirement {
 function createRequirement(requirementMatches: RegExpMatchArray): Requirement {
     const currency = Currency.getCurrency(requirementMatches[2]);
     return new Requirement(parseInt(requirementMatches[1]), currency);
+}
+
+function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {
+    let body: string = "<pre>";
+    for (let ability of abilities) {
+        try {
+            body += writeAbility(ability);
+        } catch (e) {
+            clarifyError(e, "while writing ability " + ability.name);
+        }
+    }
+    body += "export const abilities: BaseAbility[] = [\n";
+    for (let ability of abilities) {
+        body += "\tability" + toCamelCase(ability.name) + ",\n";
+    }
+    body += "];</pre>";
+    output.innerHTML += body;
+}
+
+function writeAbility(ability: BaseAbility): string {
+    let result: string = "export const ability" + toCamelCase(ability.name) + ": BaseAbility = new BaseAbility(\"" + ability.name + "\",\n\t";
+    if (ability.requirements != null) {
+        result += "new Requirement(\'" + ability.requirements.amount + ",Currency.getCurrency(\"" + ability.requirements.currency + "\")),\n\t";
+    } else {
+        result += "null,\n\t";
+    }
+    if (ability.time != null) {
+        result += "new Cost(" + ability.time.amount + ", Currency.getCurrency(\"" + ability.time.currency + "\")),\n\t"
+    } else {
+        result += "null,\n\t";
+    }
+    result += "[";
+    for (let tag in ability.tags) {
+        result += "\"" + tag + "\", ";
+    }
+    result += "],\n\t";
+    if (ability.roll != null) {
+        result += "new Roll(attributeByName(\"" + ability.roll.attribute.name + "\"), skillByName(\"" + ability.roll.skill.name + "\")),\n\t"
+    } else {
+        result += "null,\n\t";
+    }
+    result += ability.difficulty + ",\n\t"
+        + ability.augmentSlots + ",\n\t"
+        + "\"" + ability.target + "\",\n\t"
+        + "\"" + ability.effect + "\",\n\t"
+        + "\"" + ability.availability + "\");\n";
+    return result;
 }
