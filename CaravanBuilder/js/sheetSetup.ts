@@ -34,6 +34,7 @@ for (let attunement of coreAttunements) {
     try {
         const inputName = attunement.getName().toLocaleLowerCase() + 'Value';
         const attunementInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        if (attunementInput == null) throw new Error("Could not find view " + inputName);
         attunement.setUiElement(attunementInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + attunement.getName());
@@ -47,6 +48,7 @@ for (let attribute of attributes) {
     try {
         const inputName = attribute.getName().toLocaleLowerCase() + 'Value';
         const attributeInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        if (attributeInput == null) throw new Error("Could not find view " + inputName);
         attribute.setUiElement(attributeInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + attribute.getName());
@@ -60,6 +62,7 @@ for (let skill of skills) {
     try {
         const inputName = toCamelCase(skill.getName()) + 'Value';
         const skillInput: HTMLInputElement = document.getElementById(inputName) as HTMLInputElement;
+        if (skillInput == null) throw new Error("Could not find view " + inputName);
         skill.setUiElement(skillInput, focusListener);
     } catch (e) {
         clarifyError(e, "while processing " + skill.getName());

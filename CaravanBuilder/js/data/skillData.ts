@@ -39,7 +39,7 @@ export const skillIntimidate: RankOption = new RankOption("Intimidate", skillCat
 export const skillInsight: RankOption = new RankOption("Insight", skillCategory, duplicateRankArray(attunementRanks),
     "Skill in sensing things as how they truly are. Can be used to detect magic, recognize lies, identify the function of magic items or to determine an objects value."
     + "< p > <b>Focus Examples: </b> Magic sense, detect lies, appraiser</p >");
-export const skillInvestigation: RankOption = new RankOption("Investigation ", skillCategory, duplicateRankArray(attunementRanks),
+export const skillInvestigation: RankOption = new RankOption("Investigation", skillCategory, duplicateRankArray(attunementRanks),
     "Ability to thoroughly examine an item, an area, or any other thing you might need to inspect. You might make an investigation roll if trying to find the device that opens a secret door or to find the trigger for a trap."
     + "< p > <b>Focus Examples: </b> small details, following a lead, hidden caches, contraband</p >");
 export const skillKnowledge: RankOption = new RankOption("Knowledge", skillCategory, duplicateRankArray(attunementRanks),

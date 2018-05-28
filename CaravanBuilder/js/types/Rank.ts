@@ -1,5 +1,5 @@
 ﻿import { SheetFeature } from "./SheetFeature.js";
-import { AugmentSource, Augment } from "./Augment";
+import { AugmentSource, Augment } from "./Augment.js";
 
 
 export interface RankHost {
@@ -24,10 +24,10 @@ export class Rank implements AugmentSource {
         this.description = description;
         this.features = features || new Set<SheetFeature>();
         this.augments = augments || new Set<Augment>();
-        for (let feature of features) {
+        for (let feature of this.features) {
             feature.setSheetFeatureSource(this);
         }
-        for (let augment of augments) {
+        for (let augment of this.augments) {
             augment.setAugmentSource(this);
         }
     }
