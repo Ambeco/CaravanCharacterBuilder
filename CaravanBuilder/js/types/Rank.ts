@@ -2,8 +2,8 @@
 
 
 export interface RankHost {
-    getName(): string;
-    getSelection(): Rank;
+    readonly name: string;
+    readonly selection: Rank;
 }
 /**
  * A single possibility of a number field of a form.
@@ -30,7 +30,7 @@ export class Rank {
     getName(): string { return this.name; }
     getValue(): number { return this.value; }
     getDescription(): string { return this.description; }
-    getSheetFeatureSourceName(): string { return this.rankOption.getName() + ": " + name; }
+    getSheetFeatureSourceName(): string { return this.rankOption.name + ": " + name; }
     clone(): Rank {
         return new Rank(this.value, this.name, this.description, this.features);
     }
@@ -46,7 +46,7 @@ export class Rank {
         return this.features;
     }
 
-    isSelected(): boolean { return this.rankOption.getSelection() === this; }
+    isSelected(): boolean { return this.rankOption.selection === this; }
     onDeselect() { }
     onSelect() { }
 }

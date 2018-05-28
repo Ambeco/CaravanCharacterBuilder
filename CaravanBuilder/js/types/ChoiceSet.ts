@@ -2,8 +2,8 @@
 
 
 export interface ChoiceSetHost {
-    getName(): string;
-    getSelection(): Choice;
+    readonly name: string;
+    readonly selection: Choice;
 }
 /**
  * The set of possibiliities for a multiple choice field of a form.
@@ -24,7 +24,7 @@ export class ChoiceSet {
     }
     size(): number { return this.choices.size; }
     contains(choice: Choice): boolean { return this.choices.has(choice); }
-    getOptionName(choice: Choice): string { return this.getOptionBySelection(choice).getName(); }
+    getOptionName(choice: Choice): string { return this.getOptionBySelection(choice).name; }
     [Symbol.iterator]() {
         return this.choices[Symbol.iterator]();
     }
@@ -43,7 +43,7 @@ export class ChoiceSet {
     private getOptionBySelection(choice: Choice) {
         if (!this.choices.has(choice)) throw Error("cannot get choice " + choice + " that isn't in this choiceSet");
         for (let option of this.options) {
-            if (option.getSelection() === choice)
+            if (option.selection === choice)
                 return option;
         };
         return null;
