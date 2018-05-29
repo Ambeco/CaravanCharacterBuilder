@@ -9,9 +9,12 @@ div {
 table {
     float: left;
 }
+input {
+    height: .15in;
+    line-height: .15in;
+}
 input[type=range] {
     width:.5in;
-    height:.1in;
 }
 th {
     text-align:center;
@@ -37,6 +40,10 @@ body {
     margin-right:8in;
 }
 @media print {
+    @page {
+        size: 7in 9.25in;
+        margin: 0in 0in 0in 0in;
+    }
     body {
         background-color: white;
     }
@@ -51,11 +58,15 @@ body {
 }
 #expBlock {
     float: right;
+    height: 0.37in;
 }
 
 
 #metaBlock {
     width: 4.6in;
+}
+.metaItemBlock {
+    height:0.25in;
 }
 .metaInput {
     width: 0.7in;
@@ -68,9 +79,7 @@ body {
 }
 #hpBlock {
     width: 2.3in;
-}
-#hpBlock {
-    width: 2.3in;
+    height:
 }
 .hpItemBlock {
     float: none;
@@ -98,9 +107,7 @@ body {
 
 .attributeCategoryBlock {
     width: 2.29in;
-}
-.attributeCategoryHeader {
-    text-align:center;
+    height: 0.45in;
 }
 .attributeItemBlock {
     float:right;
@@ -119,6 +126,11 @@ body {
 }
 .skillTitle {
     float:left;
+    width:1.2in;
+}
+.skillFocus {
+    float: left;
+    width:1.6in;
 }
 .skillValue {
     float:right;
@@ -132,7 +144,7 @@ body {
     width:2.28in;
 }
 .specializationTitle {
-    width:1.65in;
+    width:1.57in;
 }
 
 
@@ -142,58 +154,47 @@ body {
 #traitsHeader {
     text-align:center;
 }
+.traitItemBlock {
+    height: 0.25in;
+}
 .traitItem {
-    width:2.28in;
-}
-
-
-#willpowerBlock {
-    width:2.29in;
-}
-#willpowerHeader {
-    text-align:center;
-}
-#willpowerValue {
-    width:2.28in;
+    width: 2.15in;
 }
 
 
 #backgroundsBlock {
     width:2.29in;
-    position:absolute;
-    left: 2.40in;
-    top:7.8in;
-
 }
 #backgroundHeader {
     text-align:center;
 }
 .backgroundItemBlock {
     width:2.28in;
+    height:0.25in;
 }
 .backgroundTitle {
-    width:1.65in;
+    width:1.57in;
 }
 
 
-#healthBlock {
-    width:2.29in;
-    margin-bottom:.8in;
+#resourcesBlock {
+    width: 2.29in;
 }
-.healthTitle {
-    width:1.20in;
-    float:left;
+.resourceItemBlock {
+    height: 0.25in;
 }
-.healthValue {
-    width:.5in;
-    float:left;
+.resourceTitle {
+    width: 1.57in;
+    float: left;
 }
-.healthPenalty {
-    width:.5in;
-    float:left;
+.resourcedValue {
+    width: .5in;
+    float: left;
 }
 @media print {
-    #healthBlock {page-break-after: always;}
+    #backgroundsBlock {
+        page-break-after: always;
+    }
 }
 
 

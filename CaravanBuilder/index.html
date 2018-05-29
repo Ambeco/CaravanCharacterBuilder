@@ -35,7 +35,7 @@
                 <input id="initiativeValue" class="metaInput" type="number" />
             </div>
             <div id="totalSoakBlock" class="metaItemBlock">
-                <div id="totalSoakTitle" class="MetaTitle">Total Soak</div>
+                <div id="totalSoakTitle" class="MetaTitle">Soak</div>
                 <input id="totalSoakValue" class="metaInput" type="number" />
             </div>
             <div id="titanSoakBlock" class="metaItemBlock">
@@ -97,7 +97,6 @@
         <div id="attributesBlock" class="categoryBlock">
             <h2 id="attributesHeader">Attributes <input id="attributeValue" class="attributeValue" type="range" min="3" max="4" /></h2>
             <div id="physicalBlock" class="attributeCategoryBlock">
-                <h3 id="physicalHeader" class="attributeCategoryHeader">Physical</h3>
                 <div id="brawnBlock" class="attributeItemBlock physicalItemBlock">
                     <div id="brawnTitle" class="attributeTitle">Brawn</div>
                     <input id="brawnValue" class="attributeValue" type="range" min="1" max="5" />
@@ -108,7 +107,6 @@
                 </div>
             </div>
             <div id="socialBlock" class="attributeCategoryBlock">
-                <h3 id="socialHeader" class="attributeCategoryHeader">Social</h3>
                 <div id="presenceBlock" class="attributeItemBlock socialItemBlock">
                     <div id="presenceTitle" class="attributeTitle">Presence</div>
                     <input id="presenceValue" class="attributeValue" type="range" min="1" max="5" />
@@ -119,7 +117,6 @@
                 </div>
             </div>
             <div id="mentalBlock" class="attributeCategoryBlock">
-                <h3 id="mentalHeader" class="attributeCategoryHeader">Mental</h3>
                 <div id="sensesBlock" class="attributeItemBlock mentalItemBlock">
                     <div id="sensesTitle" class="attributeTitle">Senses</div>
                     <input id="sensesValue" class="attributeValue" type="range" min="1" max="5" />
@@ -135,94 +132,114 @@
             <div id="leftSkillBlock" class="skillCategoryBlock">
                 <div id="animalHandlingBlock" class="skillItemBlock talentItemBlock">
                     <div id="animalHandlingTitle" class="skillTitle">Animal Handling</div>
+                    <input id="animalHandlingFocus" class="skillFocus" type="text" />
                     <input id="animalHandlingValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="athleticsBlock" class="skillItemBlock talentItemBlock">
                     <div id="athleticsTitle" class="skillTitle">Athletics</div>
+                    <input id="athleticsFocus" class="skillFocus" type="text" />
                     <input id="athleticsValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="brawlBlock" class="skillItemBlock talentItemBlock">
                     <div id="brawlTitle" class="skillTitle">Brawl</div>
+                    <input id="brawlFocus" class="skillFocus" type="text" />
                     <input id="brawlValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="deceptionBlock" class="skillItemBlock talentItemBlock">
                     <div id="deceptionTitle" class="skillTitle">Deception</div>
+                    <input id="deceptionFocus" class="skillFocus" type="text" />
                     <input id="deceptionValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="disciplineBlock" class="skillItemBlock talentItemBlock">
                     <div id="disciplineTitle" class="skillTitle">Discipline</div>
+                    <input id="disciplineFocus" class="skillFocus" type="text" />
                     <input id="disciplineValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="insightBlock" class="skillItemBlock talentItemBlock">
                     <div id="insightTitle" class="skillTitle">Insight</div>
+                    <input id="insightFocus" class="skillFocus" type="text" />
                     <input id="insightValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="intimidateBlock" class="skillItemBlock talentItemBlock">
                     <div id="intimidateTitle" class="skillTitle">Intimidate</div>
+                    <input id="intimidateFocus" class="skillFocus" type="text" />
                     <input id="intimidateValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="investigationBlock" class="skillItemBlock talentItemBlock">
                     <div id="investigationTitle" class="skillTitle">Investigation</div>
+                    <input id="InvestigationFocus" class="skillFocus" type="text" />
                     <input id="investigationValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="knowledgeBlock" class="skillItemBlock talentItemBlock">
                     <div id="knowledgeTitle" class="skillTitle">Knowledge</div>
+                    <input id="knowledgeFocus" class="skillFocus" type="text" />
                     <input id="knowledgeValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="leadershipBlock" class="skillItemBlock talentItemBlock">
                     <div id="leadershipTitle" class="skillTitle">Leadership</div>
+                    <input id="leadershipFocus" class="skillFocus" type="text" />
                     <input id="leadershipValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="craftBlock" class="skillItemBlock talentItemBlock">
                     <div id="craftTitle" class="skillTitle">Craft</div>
-                    <input class="craftName" type="text" />
+                    <input id="craftFocus" class="skillFocus" type="text" />
                     <input id="craftValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
             </div>
             <div id="rightSkillBlock" class="skillCategoryBlock">
                 <div id="medicineBlock" class="skillItemBlock abilityItemBlock">
                     <div id="medicineTitle" class="skillTitle">Medicine</div>
+                    <input id="medicineFocus" class="skillFocus" type="text" />
                     <input id="medicineValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="meleeBlock" class="skillItemBlock abilityItemBlock">
                     <div id="meleeTitle" class="skillTitle">Melee</div>
+                    <input id="meleeFocus" class="skillFocus" type="text" />
                     <input id="meleeValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="perceptionBlock" class="skillItemBlock abilityItemBlock">
                     <div id="perceptionTitle" class="skillTitle">Perception</div>
+                    <input id="perceptionFocus" class="skillFocus" type="text" />
                     <input id="perceptionValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="persuasionBlock" class="skillItemBlock abilityItemBlock">
                     <div id="persuasionTitle" class="skillTitle">Persuasion</div>
+                    <input id="persuasionFocus" class="skillFocus" type="text" />
                     <input id="persuasionValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="rangedBlock" class="skillItemBlock abilityItemBlock">
                     <div id="rangedTitle" class="skillTitle">Ranged</div>
+                    <input id="rangedFocus" class="skillFocus" type="text" />
                     <input id="rangedValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="skulduggeryBlock" class="skillItemBlock abilityItemBlock">
                     <div id="skulduggeryTitle" class="skillTitle">Skulduggery</div>
+                    <input id="skulduggeryFocus" class="skillFocus" type="text" />
                     <input id="skulduggeryValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="spellcastingBlock" class="skillItemBlock abilityItemBlock">
                     <div id="spellcastingTitle" class="skillTitle">Spellcasting</div>
+                    <input id="spellcastingFocus" class="skillFocus" type="text" />
                     <input id="spellcastingValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="stealthBlock" class="skillItemBlock abilityItemBlock">
                     <div id="stealthTitle" class="skillTitle">Stealth</div>
+                    <input id="stealthtFocus" class="skillFocus" type="text" />
                     <input id="stealthValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="survivalBlock" class="skillItemBlock abilityItemBlock">
                     <div id="survivalTitle" class="skillTitle">Survival</div>
+                    <input id="survivalFocus" class="skillFocus" type="text" />
                     <input id="survivalValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="technologyBlock" class="skillItemBlock abilityItemBlock">
                     <div id="technologyTitle" class="skillTitle">Technology</div>
+                    <input id="technologyFocus" class="skillFocus" type="text" />
                     <input id="technologyValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
                 <div id="performBlock" class="skillItemBlock abilityItemBlock">
                     <div id="performTitle" class="skillTitle">Perform</div>
-                    <input class="performName" type="text" />
+                    <input id="performFocus" class="skillFocus" type="text" />
                     <input id="performValue" class="skillValue" type="range" min="0" max="5" />
                 </div>
             </div>
@@ -316,18 +333,27 @@
         </div>
         <div id="traitsBlock" class="categoryBlock">
             <h2 id="traitsHeader">Traits</h2>
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-            <input class="traitItem" type="text" />
-        </div>
-        <div id="willpowerBlock" class="categoryBlock">
-            <h2 id="willpowerHeader">Willpower</h2>
-            <input id="willpowerValue" type="range" min="0" max="10" />
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
+            <div class="traitItemBlock">
+                <input class="traitItem" type="text" />
+            </div>
         </div>
         <div id="backgroundsBlock" class="categoryBlock">
             <h2 id="backgroundHeader">Background</h2>
@@ -360,37 +386,35 @@
                 <input class="backgroundValue" type="range" min="0" max="5" />
             </div>
         </div>
-        <div id="healthBlock" class="categoryBlock">
-            <h2 id="healthHeader">Health</h2>
-            <div id="wellBlock" class="healthItemBlock">
-                <div id="wellTitle" class="healthTitle">Well</div>
-                <input id="wellValue" class="healthValue" type="text" />
-                <div id="wellPenalty" class="healthPenalty"></div>
+        <div id="resourcesBlock" class="categoryBlock">
+            <h2 id="resourcesHeader">Resources</h2>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" value="AP" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
-            <div id="marredBlock" class="healthItemBlock">
-                <div id="marredTitle" class="healthTitle">Marred</div>
-                <input id="marredValue" class="healthValue" type="text" />
-                <div id="marredPenalty" class="healthPenalty"></div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" value="Heals" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
-            <div id="painedBlock" class="healthItemBlock">
-                <div id="painedTitle" class="healthTitle">Pained</div>
-                <input id="painedValue" class="healthValue" type="text" />
-                <div id="painedPenalty" class="healthPenalty">-1</div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" value="Resolve" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
-            <div id="woundedBlock" class="healthItemBlock">
-                <div id="woundedTitle" class="healthTitle">Wounded</div>
-                <input id="woundedValue" class="healthValue" type="text" />
-                <div id="woundedPenalty" class="healthPenalty">-2</div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
-            <div id="mangledBlock" class="healthItemBlock">
-                <div id="mangledTitle" class="healthTitle">Mangled</div>
-                <input id="mangledValue" class="healthValue" type="text" />
-                <div id="mangledPenalty" class="healthPenalty">-3</div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
-            <div id="unconscousBlock" class="healthItemBlock">
-                <div id="unconscousTitle" class="healthTitle">Unconscious</div>
-                <input id="unconscousValue" class="healthValue" type="text" />
-                <div id="unconscousPenalty" class="healthPenalty">X</div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
+            </div>
+            <div class="resourceItemBlock">
+                <input class="resourceTitle" type="text" />
+                <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
         </div>
         <table id="weaponTable">
