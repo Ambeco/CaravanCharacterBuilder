@@ -8,6 +8,10 @@ div {
 }
 table {
     float: left;
+    border-spacing:0;
+}
+td {
+    padding:0;
 }
 input {
     height: .15in;
@@ -79,7 +83,6 @@ body {
 }
 #hpBlock {
     width: 2.3in;
-    height:
 }
 .hpItemBlock {
     float: none;
@@ -107,11 +110,10 @@ body {
 
 .attributeCategoryBlock {
     width: 2.29in;
-    height: 0.45in;
 }
 .attributeItemBlock {
     float:right;
-    margin-right:.5in;
+    margin-right:.4in;
 }
 
 
@@ -122,7 +124,7 @@ body {
     text-align:center;
 }
 .skillItemBlock {
-    width:3.48in;
+    width:3.39in;
 }
 .skillTitle {
     float:left;
@@ -130,7 +132,7 @@ body {
 }
 .skillFocus {
     float: left;
-    width:1.6in;
+    width:1.42in;
 }
 .skillValue {
     float:right;
@@ -198,55 +200,124 @@ body {
 }
 
 
-#weaponTable {
-    width:7in;
+#capacityBlock {
+    float:right
 }
-#weaponTable input {
-    width:1.07in;
+
+
+#weaponTable {
+    width: 3.45in;
+    table-layout: fixed;
+    clear: left
+}
+.weaponName {
+    width: 0.55in;
+}
+.weaponAP {
+    width: 0.25in;
+}
+.weaponSkill {
+    width: 0.30in;
+}
+.weaponDamage {
+    width: 0.55in;
+}
+.weaponRange {
+    width: 0.5in;
+}
+.weaponWeight {
+    width: 0.25in;
+}
+.weaponSpecial {
+    width: .5in;
 }
 
 
 #armorTable {
-    width:7in;
+    width:3.45in;
     table-layout : fixed;
 }
-#armorTable input {
-    width:1.65in;
+.armorName {
+    width: 0.9in;
 }
-
-
-#shieldTable {
-    width:7in;
-    table-layout : fixed;
+.armorWeight {
+    width: 0.3in;
 }
-#shieldTable input {
-    width:1.35in;
-}
-
-
-#goldBlock {
-    position:absolute;
-    left: 3.5in;
-    top:12.29in;
-}
-#goldHeader {
-    float:left;
-}
-#goldValue {
-    float:left;
+.armorEffect {
+    width: 2.1in;
 }
 
 
 #itemsBlock {
-    width:7in;
+    width: 3.45in;
+    table-layout: fixed;
+    float: right
 }
-#itemsHeader {
-    margin-left: 1in;
-    text-align: left;
+.gearName {
+    width: 0.6in;
 }
-.itemItem {
-    width: 3.40in;
-    float:left;
+.gearWeight {
+    width: 0.3in;
+}
+.gearEffect {
+    width: 2.3in;
+}
+
+
+#abilitiesBlock {
+    width:6.96in;
+}
+.abilityName {
+    width:0.6in;
+}
+.abilityAP {
+    width: 0.3in;
+}
+.abilitySkill {
+    width: 0.9in;
+}
+.abilityDie {
+    width: 0.3in;
+}
+.abilityRange {
+    width: 0.4in;
+}
+.abilityAugments {
+    width: 0.3in;
+}
+.abilityEffects {
+    width: 3.5in;
+}
+
+
+#augmentsBlock {
+    width: 6.96in;
+}
+.augmentRow {
+    width: 3.43in;
+}
+.augmentName {
+    width: 0.6in;
+}
+.augmentSLT {
+    width: 0.3in;
+}
+.augmentTags {
+    width: 0.6in;
+}
+.augmentEffects {
+    width: 1.4in;
+}
+.augmentsHeader > div {
+    padding-right: 0.105in;
+}
+
+
+#featureBlock {
+    width: 6.90in;
+}
+.featureText {
+    width:2.19in;
 }
 
 

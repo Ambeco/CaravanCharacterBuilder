@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=672"/>
     <title>Caravan Character Builder</title>
     <link rel="stylesheet" href="caravan.css">
-</head>
+    </head>
 <body>
     <script type="module" src="js/sheetSetup.js" async>
     </script>
@@ -417,102 +417,431 @@
                 <input class="resourcedValue" type="range" min="0" max="5" />
             </div>
         </div>
+        <div id="goldBlock">
+            <span id="goldTitle">Gold</span>
+            <input id="goldValue" type="text" />
+        </div>
+        <div id="capacityBlock">
+            <span id="capacityTitle">Capacity</span>
+            <input id="capacityValue" type="number" />
+        </div>
         <table id="weaponTable">
             <tr>
-                <th>Weapons</th>
-                <th>AP</th>
-                <th>Skill</th>
-                <th>Damage</th>
-                <th>Type</th>
-                <th>Special</th>
+                <th class="weaponName">Weapon</th>
+                <th class="weaponAP">AP</th>
+                <th class="weaponSkill">Skill</th>
+                <th class="weaponDamage">Damage</th>
+                <th class="weaponRange">Range</th>
+                <th class="weaponWeight">Wgt</th>
+                <th class="weaponSpecial">Special</th>
             </tr>
             <tr class="weaponRow">
                 <td><input class="weaponName" type="text"></td>
-                <td><input class="weaponAP" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
                 <td><input class="weaponSkill" type="text"></td>
-                <td><input class="weaponDamage" type="text"></td>
-                <td><input class="weaponType" type="text"></td>
+                <td><input class="weaponDamage" type="number"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
                 <td><input class="weaponSpecial" type="text"></td>
             </tr>
             <tr class="weaponRow">
                 <td><input class="weaponName" type="text"></td>
-                <td><input class="weaponAP" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
                 <td><input class="weaponSkill" type="text"></td>
                 <td><input class="weaponDamage" type="text"></td>
-                <td><input class="weaponType" type="text"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
                 <td><input class="weaponSpecial" type="text"></td>
             </tr>
             <tr class="weaponRow">
                 <td><input class="weaponName" type="text"></td>
-                <td><input class="weaponAP" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
                 <td><input class="weaponSkill" type="text"></td>
                 <td><input class="weaponDamage" type="text"></td>
-                <td><input class="weaponType" type="text"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
                 <td><input class="weaponSpecial" type="text"></td>
             </tr>
             <tr class="weaponRow">
                 <td><input class="weaponName" type="text"></td>
-                <td><input class="weaponAP" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
                 <td><input class="weaponSkill" type="text"></td>
                 <td><input class="weaponDamage" type="text"></td>
-                <td><input class="weaponType" type="text"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
                 <td><input class="weaponSpecial" type="text"></td>
+            </tr>
+            <tr class="weaponRow">
+                <td><input class="weaponName" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
+                <td><input class="weaponSkill" type="text"></td>
+                <td><input class="weaponDamage" type="text"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
+                <td><input class="weaponSpecial" type="text"></td>
+            </tr>
+            <tr class="weaponRow">
+                <td><input class="weaponName" type="text"></td>
+                <td><input class="weaponAP" type="number"></td>
+                <td><input class="weaponSkill" type="text"></td>
+                <td><input class="weaponDamage" type="text"></td>
+                <td><input class="weaponRange" type="number"></td>
+                <td><input class="weaponWeight" type="number"></td>
+                <td><input class="weaponSpecial" type="text"></td>
+            </tr>
+        </table>
+        <table id="itemsBlock">
+            <tr>
+                <th class="gearName">Gear</th>
+                <th class="gearWeight">Wgt</th>
+                <th class="gearEffect">Effect</th>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
+            </tr>
+            <tr class="gearRow">
+                <td><input class="gearName" type="text"></td>
+                <td><input class="gearWeight" type="number"></td>
+                <td><input class="gearEffect" type="text"></td>
             </tr>
         </table>
         <table id="armorTable">
             <tr>
-                <th>Armor</th>
-                <th>Soak</th>
-                <th>Penalty</th>
-                <th>Special</th>
+                <th class="armorName">Armor/Shield</th>
+                <th class="armorWeight">Wgt</th>
+                <th class="armorEffect">Effect</th>
             </tr>
             <tr class="armorRow">
                 <td><input class="armorName" type="text"></td>
-                <td><input class="armorSoak" type="text"></td>
-                <td><input class="armorPenalty" type="text"></td>
-                <td><input class="armorSpecial" type="text"></td>
+                <td><input class="armorWeight" type="number"></td>
+                <td><input class="armorEffect" type="text"></td>
             </tr>
             <tr class="armorRow">
                 <td><input class="armorName" type="text"></td>
-                <td><input class="armorSoak" type="text"></td>
-                <td><input class="armorPenalty" type="text"></td>
-                <td><input class="armorSpecial" type="text"></td>
+                <td><input class="armorWeight" type="number"></td>
+                <td><input class="armorEffect" type="text"></td>
+            </tr>
+            <tr class="armorRow">
+                <td><input class="armorName" type="text"></td>
+                <td><input class="armorWeight" type="number"></td>
+                <td><input class="armorEffect" type="text"></td>
+            </tr>
+            <tr class="armorRow">
+                <td><input class="armorName" type="text"></td>
+                <td><input class="armorWeight" type="number"></td>
+                <td><input class="armorEffect" type="text"></td>
             </tr>
         </table>
-        <table id="shieldTable">
+        <table id="abilitiesBlock">
             <tr>
-                <th>Shield</th>
-                <th>Parry</th>
-                <th>AP Reduction</th>
-                <th>Penalty</th>
-                <th>Special</th>
+                <th class="abilityName">Ability</th>
+                <th class="abilityAP">AP</th>
+                <th class="abilitySkill">Skill</th>
+                <th class="abilityDie">Die</th>
+                <th class="abilityRange">Range</th>
+                <th class="abilityAugments">Aug</th>
+                <th class="abilityEffects">Effect</th>
             </tr>
-            <tr class="shieldRow">
-                <td><input class="shieldName" type="text"></td>
-                <td><input class="shieldParry" type="text"></td>
-                <td><input class="shieldReduction" type="text"></td>
-                <td><input class="shieldPenalty" type="text"></td>
-                <td><input class="shieldSpecial" type="text"></td>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
+            </tr>
+            <tr class="abilityRow">
+                <td><input class="abilityName" type="text"></td>
+                <td><input class="abilityAP" type="number"></td>
+                <td><input class="abilitySkill" type="text"></td>
+                <td><input class="abilityDie" type="number"></td>
+                <td><input class="abilityRange" type="number"></td>
+                <td><input class="abilityAugments" type="number"></td>
+                <td><input class="abilityEffects" type="text"></td>
             </tr>
         </table>
-        <div id="goldBlock">
-            <h2 id="goldHeader">Gold</h2>
-            <input id="goldValue" type="text" />
-        </div>
-        <div id="itemsBlock">
-            <h2 id="itemsHeader">Items</h2>
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-            <input class="itemItem" type="text" />
-        </div>
-        <div id="notesBlock">
-            <h2 id="notesHeader">Notes</h2>
-            <textarea id="notesValue"></textarea>
+        <div id="augmentsBlock">
+            <div class="augmentsHeader augmentRow">
+                <div class="augmentName">Augment</div>
+                <div class="augmentSLT">SLT</div>
+                <div class="augmentTags">Tags</div>
+                <div class="augmentEffects">Effect</div>
+            </div>
+            <div class="augmentsHeader augmentRow">
+                <div class="augmentName">Augment</div>
+                <div class="augmentSLT">SLT</div>
+                <div class="augmentTags">Tags</div>
+                <div class="augmentEffects">Effect</div>
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+            <div class="augmentRow">
+                <input class="augmentName" type="text">
+                <input class="augmentSLT" type="text">
+                <input class="augmentTags" type="text">
+                <input class="augmentEffects" type="text">
+            </div>
+         </div>
+        <div id="featureBlock">
+            <h2 id="featureHeader">Features</h2>
+            <div id="featureList">
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+                <input type="text" class="featureText" />
+            </div>
         </div>
     </div>
     <div id="floatingHistoryBox">
