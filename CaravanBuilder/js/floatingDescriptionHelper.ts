@@ -54,14 +54,14 @@ searchSelect.onclick = function () {
     currentOption.getUiElement().value = currentChoice.getName();
 }
 
-function onGenericCategoryGainFocus(uiElement: HTMLInputElement, category: OptionCategory): void {
+function onGenericCategoryGainFocus(uiElement: HTMLElement, category: OptionCategory): void {
     floatingDescriptionBlock.style.display = cssDescriptionBlockDisplay;
     focusTitle.textContent = category.getName();
     focusDescription.innerHTML = category.getDescription();
     currentCateogry = category;
 }
 
-function onCategoryGainFocusImpl(uiElement: HTMLInputElement, category: OptionCategory): void {
+function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategory): void {
     if (category == currentCateogry) return;
     onGenericCategoryGainFocus(uiElement, category);
     currentOption = null;
@@ -73,7 +73,7 @@ function onCategoryGainFocusImpl(uiElement: HTMLInputElement, category: OptionCa
     searchFeatures.style.display = "none";
 }
 
-function onChoiceGainFocusImpl(uiElement: HTMLInputElement, option: ChoiceOption): void {
+function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption): void {
     if (option == currentOption) return;
     onGenericCategoryGainFocus(uiElement, option.getCategory());
     currentOption = option;

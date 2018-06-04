@@ -17,6 +17,8 @@ export class Cost {
     }
     getAmount(): number { return this.amount; }
     getCurrency(): Currency { return this.currency; }
+
+    toString() { return this.amount + " " + this.currency.name;}
 }
 
 /**
@@ -34,4 +36,6 @@ export class Requirement {
     }
     getAmount(): number { return this.amount; }
     getCurrency(): Currency { return this.currency; }
+
+    toString() { return this.amount + " " + this.currency.getName(); }
 }

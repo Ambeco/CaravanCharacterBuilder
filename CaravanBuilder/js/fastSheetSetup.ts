@@ -12,7 +12,7 @@ import { stripHtml } from "./util/treeNavigation.js";
 
 
 const nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
-const raceInput: HTMLInputElement = document.getElementById('raceValue') as HTMLInputElement;
+const raceInput: HTMLSelectElement = document.getElementById('raceValue') as HTMLSelectElement;
 const raceBlock: HTMLElement = raceInput.parentElement;
 const initiativeInput: HTMLInputElement = document.getElementById('initiativeValue') as HTMLInputElement;
 const totalSoakInput: HTMLInputElement = document.getElementById('totalSoakValue') as HTMLInputElement;
@@ -68,3 +68,5 @@ for (let skill of skills) {
         clarifyError(e, "while processing " + skill.getName());
     }
 }
+
+export const fastSetupComplete: boolean = true;

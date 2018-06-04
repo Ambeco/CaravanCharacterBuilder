@@ -90,11 +90,15 @@
     <TypeScriptCompile Include="js\data\backgroundData.ts" />
     <TypeScriptCompile Include="js\data\skillData.ts" />
     <TypeScriptCompile Include="js\data\attunementData.ts" />
+    <TypeScriptCompile Include="js\abilitySheetSetup.ts" />
     <TypeScriptCompile Include="js\floatingDescriptionHelper.ts" />
-    <TypeScriptCompile Include="js\sheetSetup.ts" />
+    <TypeScriptCompile Include="js\fastSheetSetup.ts" />
     <TypeScriptCompile Include="js\types\Augment.ts" />
     <TypeScriptCompile Include="js\types\BaseAbility.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
+    <TypeScriptCompile Include="js\types\AbilityChoice.ts" />
+    <TypeScriptCompile Include="js\types\AbilityChoiceSet.ts" />
+    <TypeScriptCompile Include="js\types\AbilityChoiceOption.ts" />
     <TypeScriptCompile Include="js\util\camelCase.ts" />
     <TypeScriptCompile Include="js\util\clarifyError.ts" />
     <TypeScriptCompile Include="js\types\Cost.ts" />

@@ -2,8 +2,8 @@
 import { RankOption } from "../types/RankOption.js";
 import { attributes } from "./attributeData.js";
 import { psuedoSkills } from "./skillData.js";
-import { Cost } from "../types/Cost";
-import { Currency } from "../types/Currency";
+import { Cost } from "../types/Cost.js";
+import { Currency } from "../types/Currency.js";
 
 function attributeByName(name: string): RankOption {
     for (let attribute of attributes) {
@@ -112,7 +112,7 @@ export const abilityConfidence: BaseAbility = new BaseAbility("Confidence",
     "This ability can be activated at any time. When you activate this ability, you enter a stance. The stance effects last until the end of the encounter or until you choose to end it at any time. While under the effects of Confidence, you deal +3 damage with all of your attacks, but take five more damage from all sources. In addition, once per round, if you are at full health, you may use a [Basic] ability for no AP cost.",
     "Unlimited usage. You may only have one [Stance] ability active at a time.");
 export const ability_Duel_: BaseAbility = new BaseAbility("  Duel ",
-    null
+    null,
     new Cost(1, Currency.getCurrency("xp")),
     new Cost(2, Currency.getCurrency("undefined")),
     [],

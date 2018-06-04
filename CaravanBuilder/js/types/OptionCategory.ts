@@ -1,7 +1,7 @@
 ﻿
 
 export interface CategoryFocusChangeListener {
-    onCategoryGainFocus(uiElement: HTMLInputElement, category: OptionCategory): void;
+    onCategoryGainFocus(uiElement: HTMLElement, category: OptionCategory): void;
 }
 /**
  * A category for a set of Options

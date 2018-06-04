@@ -1,4 +1,4 @@
-﻿import { Cost } from "./Cost";
+﻿import { Cost } from "./Cost.js";
 
 export interface AugmentSource {
     readonly name: string;

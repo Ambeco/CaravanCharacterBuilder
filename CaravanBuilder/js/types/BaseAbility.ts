@@ -12,6 +12,9 @@ export class Roll {
         this.attribute = attribute;
         this.skill = skill;
     }
+    public toString(): string {
+        return this.attribute.name + " + " + this.skill.name;
+    }
 }
 
 export class BaseAbility implements AugmentSource {
@@ -49,5 +52,32 @@ export class BaseAbility implements AugmentSource {
         this.target = target;
         this.effect = effect;
         this.availability = availability;
+    }
+
+    public getAbilityDescription(): string {
+        let description: string = "<h3>" + this.name + "</h>";
+        if (this.requirements != null) {
+            description += "<br/><i>Requires at least " + this.requirements.amount + " total ranks in any combinations of " + this.requirements.currency.name + "</i>";
+        }
+        description += "<table><tr><td>EXP</td><td>Time</td><td>Tags</td><td>Roll</td><td>Difficulty</td><td>Augment Slots</td><tr>";
+        description += "<td>" + this.cost + "</td>";
+        description += "<td>" + this.time + "</td>";
+        description += "<td>" + BaseAbility.toTagString(this.tags) + "</td>";
+        description += "<td>" + this.roll + "</td>";
+        description += "<td>" + this.difficulty + "</td>";
+        description += "<td>" + this.augmentSlots + "</td></tr>";
+        description += "<tr><td colspan=\"2\">Targeting</td><td colspan=\"4\">" + this.target + "</td></tr>";
+        description += "<tr><td colspan=\"2\">Effect</td><td colspan=\"4\">" + this.effect + "</td></tr>";
+        description += "<tr><td colspan=\"2\">Availability</td><td colspan=\"4\">" + this.availability + "</td></tr></table>";
+        return description;
+    }
+
+    private static toTagString(tags: string[]): string {
+        if (tags.length == 0) { return ""; }
+        let result: string = "";
+        for (let tag of tags) {
+            result += "[" + tag + "], ";
+        }
+        return result.substr(0, result.length - 2);
     }
 }
