@@ -127,7 +127,8 @@ function parseAbility(name: string, requirements: string, table: Element): BaseA
         const effectCell: Element = table.children[1].children[3].children[1];
         const availabilityCell: Element = table.children[1].children[4].children[1];
         const requirements_ = parseRequirements(requirements);
-        const cost = parseCost(timeCell);
+        const cost = parseCost(expCell);
+        const time = parseTime(timeCell);
         const tags = parseTags(tagsCell);
         const roll = parseRoll(rollCell);
         const difficulty = parseInt(difficultyCell.textContent);
@@ -135,20 +136,30 @@ function parseAbility(name: string, requirements: string, table: Element): BaseA
         const target = targettingCell.textContent;
         const effect = effectCell.textContent;
         const availability = availabilityCell.textContent;
-        const result = new BaseAbility(name, requirements_, cost, tags, roll, difficulty, augment, target, effect, availability);
+        const result = new BaseAbility(name, requirements_, cost, time, tags, roll, difficulty, augment, target, effect, availability);
         return result;
     } catch (e) {
         clarifyError(e, "while parsing ability " + name);
     }
 }
 
-function parseCost(timeCell: Element): Cost {
+function parseCost(expCell: Element): Cost {
     try {
-        const amount = parseInt(timeCell.textContent);
+        const amount = parseInt(expCell.textContent);
         const xp = Currency.getCurrency("xp");
         return new Cost(amount, xp);
     } catch (e) {
-        clarifyError(e, "while parsing cost " + timeCell.textContent);
+        clarifyError(e, "while parsing cost " + expCell.textContent);
+    }
+}
+
+function parseTime(timeCell: Element): Cost {
+    try {
+        const amount = parseInt(timeCell.textContent);
+        const xp = Currency.getCurrency("AP");
+        return new Cost(amount, xp);
+    } catch (e) {
+        clarifyError(e, "while parsing time " + timeCell.textContent);
     }
 }
 

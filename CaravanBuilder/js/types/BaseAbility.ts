@@ -17,6 +17,7 @@ export class Roll {
 export class BaseAbility implements AugmentSource {
     public readonly name: string;
     public readonly requirements: Requirement;
+    public readonly cost: Cost;
     public readonly time: Cost;
     public readonly tags: string[];
     public readonly roll: Roll;
@@ -29,6 +30,7 @@ export class BaseAbility implements AugmentSource {
     constructor(
         name: string,
         requirements: Requirement,
+        cost: Cost,
         time: Cost,
         tags: string[],
         roll: Roll,
@@ -38,6 +40,7 @@ export class BaseAbility implements AugmentSource {
         effect: string,
         availability: string) {
         this.name = name;
+        this.cost = cost;
         this.time = time;
         this.tags = tags;
         this.roll = roll;
