@@ -18,10 +18,10 @@ export class Rank implements AugmentSource {
     private readonly augments: Set<Augment>
     private rankOption: RankHost;
     
-    constructor(value: number, name: string, description: string, features: Set<SheetFeature>, augments: Set<Augment>) {
-        this.name = name || value.toString();
+    constructor(value: number, name: string | null, description: string | null, features: Set<SheetFeature> | null, augments: Set<Augment> | null) {
+        this.name = name || ("Rank" + value.toString());
         this.value = value;
-        this.description = description;
+        this.description = description || "";
         this.features = features || new Set<SheetFeature>();
         this.augments = augments || new Set<Augment>();
         for (let feature of this.features) {

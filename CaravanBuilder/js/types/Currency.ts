@@ -17,8 +17,8 @@ export class Currency {
         this.initialCount = initialCount;
         this.justifyToUser = justifyToUser;
         this.conversions = new Map<Currency, number>();
-        if (namedCurrencies.get(name) != null) throw Error("two currencies with name " + name);
-        namedCurrencies.set(name, this);
+        if (namedCurrencies.get(name.toLowerCase()) != null) throw Error("two currencies with name " + name);
+        namedCurrencies.set(name.toLowerCase(), this);
         if (justifyToUser) {
             importantCurrencies.add(this);
         }
@@ -26,6 +26,7 @@ export class Currency {
     getName(): string { return this.name; }
     getInitialCount(): number { return this.initialCount; }
     getConversions(): Map<Currency, number> { return this.conversions; }
+    toString() { return this.name;}
 
     setConversions(conversions: Map<Currency, number>) {
         for (let currency of conversions.keys()) {
@@ -33,5 +34,11 @@ export class Currency {
         }
     }
 
-    static getCurrency(name: String): Currency { return namedCurrencies.get(this.name); }
+    static getCurrency(name: string): Currency { return namedCurrencies.get(name.toLowerCase()); }
+    static setAlternativeName(alternative: string, formal:string): void { 
+        const currency: Currency  = namedCurrencies.get(formal);
+        if (currency == null) 
+            throw new Error("Could not find currency " + formal); 
+        namedCurrencies.set(alternative, currency);
+    }
 }

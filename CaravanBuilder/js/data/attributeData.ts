@@ -35,3 +35,12 @@ export const attributes: RankOption[] = [
     attributeSenses,
     attributeIntellect,
 ]
+
+export function attributeByName(name: string): RankOption | undefined {
+    for (let attribute of attributes) {
+        if (attribute.name == name) {
+            return attribute;
+        }
+    }
+    return undefined;
+}

@@ -52,6 +52,15 @@ export class RankOption {
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
 
+    getRankForValue(value: number): Rank {
+        for (let rank of this.ranks) {
+            if (rank.value == value) {
+                return rank;
+            }
+        }
+        throw new Error("cannot find rank " + value + " for option " + this.name);
+    }
+
     addOnChangeListener(listener: RankChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: RankChangeListener): boolean { return this.listeners.delete(listener); }
     onUIChange(event: Event) {

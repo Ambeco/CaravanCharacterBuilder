@@ -1,27 +1,33 @@
-﻿import { clarifyError } from "./util/ClarifyError.js";
-import { BaseAbility, Roll } from "./types/BaseAbility.js";
-import { RankOption } from "./types/RankOption.js";
-import { attributes } from "./data/attributeData.js";
-import { psuedoSkills } from "./data/skillData.js";
-import { Currency } from "./types/Currency.js";
-import { Cost, Requirement } from "./types/Cost.js";
-import { toCamelCase } from "./util/Camelcase.js";
+﻿import { clarifyError } from "./../util/ClarifyError.js";
+import { BaseAbility, Roll } from "./../types/BaseAbility.js";
+import { RankOption } from "./../types/RankOption.js";
+import { attributes, attributeByName } from "./../data/attributeData.js";
+import { psuedoSkills, skillByName } from "./../data/skillData.js";
+import { Currency } from "./../types/Currency.js";
+import { Cost } from "./../types/Cost.js";
+import { toCamelCase } from "./../util/Camelcase.js";
+import { Requirement, RankRequirement, SpecializationRequirement, AttunementRequirement, AttributeRequirement, SkillRequirement, TagRequirement } from "../types/Requirement.js";
+import { Rank } from "../types/Rank.js";
+import { attunmentByName } from "../data/attunementData.js";
+import { specializationByName } from "../data/specializationData.js";
+import { tagByName } from "../data/tagData.js";
+import { Tag } from "../types/Tag.js";
 
-const editableDiv: HTMLElement = document.getElementById('editableDiv');
-const resultDiv: HTMLElement = document.getElementById('resultDiv');
+const editableDiv: HTMLElement = document.getElementById('editableDiv') as HTMLElement;
+const resultDiv: HTMLElement = document.getElementById('resultDiv') as HTMLElement;
 
 let lastAbilityName: string = "START";
 
+new Currency("exp", 0, false);
+Currency.setAlternativeName("xp", "exp");
+new Currency("ap", 0, false);
+
 editableDiv.oninput = function () {
-    console.log(editableDiv.innerHTML);
-    console.log("start");
     const abilities: BaseAbility[] = new Array<BaseAbility>();
     findAbilities(editableDiv, abilities);
-    console.log("parsed");
     writeAbilities(abilities, resultDiv);
     editableDiv.style.display = "none";
     resultDiv.style.display = "block";
-    console.log("done");
 }
 
 function findAbilities(parent: Element, results: BaseAbility[]): void {
@@ -55,9 +61,12 @@ function findAbilities(parent: Element, results: BaseAbility[]): void {
     }
 }
 
-function findAbilityName(parent: Element, beforeIndex: number): string {
+function findAbilityName(parent: Element, beforeIndex: number): string|null {
     while (beforeIndex == 0) {
         const firstParent = parent;
+        if (parent.parentElement == null) {
+            return null;
+        }
         parent = parent.parentElement;
         beforeIndex = 0;
         while (parent.children[beforeIndex] != firstParent)
@@ -77,7 +86,7 @@ function findAbilityName(parent: Element, beforeIndex: number): string {
                 return maybeResult;
             }
         } catch (e) {
-            clarifyError(e, "while processing child " + i + " of " + parent.tagName);
+            clarifyError(e, "while processisng child " + i + " of " + parent.tagName);
         }
     }
     return null;
@@ -131,8 +140,8 @@ function parseAbility(name: string, requirements: string, table: Element): BaseA
         const time = parseTime(timeCell);
         const tags = parseTags(tagsCell);
         const roll = parseRoll(rollCell);
-        const difficulty = parseInt(difficultyCell.textContent);
-        const augment = parseInt(augmentCell.textContent);
+        const difficulty = parseInt(difficultyCell.textContent) || 0;
+        const augment = parseInt(augmentCell.textContent) || 0;
         const target = targettingCell.textContent;
         const effect = effectCell.textContent;
         const availability = availabilityCell.textContent;
@@ -145,8 +154,9 @@ function parseAbility(name: string, requirements: string, table: Element): BaseA
 
 function parseCost(expCell: Element): Cost {
     try {
-        const amount = parseInt(expCell.textContent);
+        const amount = parseInt(expCell.textContent) || 0;
         const xp = Currency.getCurrency("xp");
+        if (xp == null)
         return new Cost(amount, xp);
     } catch (e) {
         clarifyError(e, "while parsing cost " + expCell.textContent);
@@ -155,7 +165,7 @@ function parseCost(expCell: Element): Cost {
 
 function parseTime(timeCell: Element): Cost {
     try {
-        const amount = parseInt(timeCell.textContent);
+        const amount = parseInt(timeCell.textContent) || 0;
         const xp = Currency.getCurrency("AP");
         return new Cost(amount, xp);
     } catch (e) {
@@ -163,13 +173,14 @@ function parseTime(timeCell: Element): Cost {
     }
 }
 
-function parseTags(tagsCell: Element): string[] {
+function parseTags(tagsCell: Element): Tag[] {
     try {
         if (tagsCell.textContent.length == 0) {
-            return new Array<string>();
+            return [];
         }
         const tagMatches: RegExpMatchArray = tagsCell.textContent.match(/(?:\s*\[([^\]]+)\],?)+/);
-        const tags: string[] = tagMatches.slice(1, tagMatches.length - 1);
+        const strings: string[] = tagMatches.slice(1, tagMatches.length - 1);
+        const tags: Tag[] = strings.map(tagByName);
         return tags;
     } catch (e) {
         clarifyError(e, "while parsing tags " + tagsCell.textContent);
@@ -190,24 +201,6 @@ function parseRoll(rollCell: Element): Roll {
     }
 }
 
-function attributeByName(name: string): RankOption {
-    for (let option of attributes) {
-        if (option.getName() == name) {
-            return option;
-        }
-    }
-    throw new Error("cannot find attribute " + name);
-}
-
-function skillByName(name: string): RankOption {
-    for (let option of psuedoSkills) {
-        if (option.getName() == name) {
-            return option;
-        }
-    }
-    throw new Error("cannot find skill " + name);
-}
-
 function parseRequirements(requirements: string): Requirement {
     try {
         if (requirements == null || requirements.length == 0) {
@@ -217,22 +210,22 @@ function parseRequirements(requirements: string): Requirement {
         let regex = /Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?/;
         let requirementMatches: RegExpMatchArray = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
-            return createRequirement(requirementMatches);
+            return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
         regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? \[([^\]]+)\] specializations?/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
-            return createRequirement(requirementMatches);
+            return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
         regex = /Requires (?:at least |a total of )?(\d+)(?: total)? ranks?(?: in| of)(?: any)?(?: combination of)?(?: the)? ([^\[]+?) specializations?/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
-            return createRequirement(requirementMatches);
+            return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
         regex = /Requires you to know (.+?) before you can purchase/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
-            return createRequirement(requirementMatches);
+            return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
         throw new Error("Unable to parse " + requirements);
     } catch (e) {
@@ -240,9 +233,27 @@ function parseRequirements(requirements: string): Requirement {
     }
 }
 
-function createRequirement(requirementMatches: RegExpMatchArray): Requirement {
-    const currency = Currency.getCurrency(requirementMatches[2]);
-    return new Requirement(parseInt(requirementMatches[1]), currency);
+function createRequirement(name: string, count: number): Requirement {
+    const tag: Tag = tagByName(name);
+    if (tag != undefined) {
+        return new TagRequirement(count, tag);
+    }
+    const skill: RankOption = skillByName(name);
+    if (skill != undefined) {
+        return new SkillRequirement(skill.getRankForValue(count));
+    }
+    const attribute: RankOption = attributeByName(name);
+    if (attribute != undefined) {
+        return new AttributeRequirement(attribute.getRankForValue(count));
+    }
+    const attunement: RankOption = attunmentByName(name);
+    if (attunement != undefined) {
+        return new AttunementRequirement(attunement.getRankForValue(count));
+    }
+    const specialization: RankOption = specializationByName(name);
+    if (specialization != undefined) {
+        return new SpecializationRequirement(specialization.getRankForValue(count));
+    }
 }
 
 function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {
@@ -256,34 +267,23 @@ function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {
     }
     body += "export const abilities: BaseAbility[] = [\n";
     for (let ability of abilities) {
-        body += "\tability" + toCamelCase(ability.name) + ",\n";
+        body += "\t" + toCamelCase("ability " + ability.name) + ",\n";
     }
     body += "];</pre>";
     output.innerHTML += body;
 }
 
 function writeAbility(ability: BaseAbility): string {
-    let result: string = "export const ability" + toCamelCase(ability.name) + ": BaseAbility = new BaseAbility(\"" + ability.name + "\",\n\t";
-    if (ability.requirements != null) {
-        result += "new Requirement(\'" + ability.requirements.amount + ",Currency.getCurrency(\"" + ability.requirements.currency + "\")),\n\t";
-    } else {
-        result += "null,\n\t";
-    }
-    if (ability.time != null) {
-        result += "new Cost(" + ability.time.amount + ", Currency.getCurrency(\"" + ability.time.currency + "\")),\n\t"
-    } else {
-        result += "null,\n\t";
-    }
+    let result: string = "export const " + toCamelCase("ability " + ability.name) + ": BaseAbility = new BaseAbility(\"" + ability.name + "\",\n\t";
+    result += (ability.requirements ? ability.requirements.toTypeScript() : null) + ",\n\t";
+    result += (ability.cost ? ability.cost.toTypeScript() : null) + ",\n\t";
+    result += (ability.time ? ability.time.toTypeScript() : null) + ",\n\t";
     result += "[";
     for (let tag in ability.tags) {
         result += "\"" + tag + "\", ";
     }
     result += "],\n\t";
-    if (ability.roll != null) {
-        result += "new Roll(attributeByName(\"" + ability.roll.attribute.name + "\"), skillByName(\"" + ability.roll.skill.name + "\")),\n\t"
-    } else {
-        result += "null,\n\t";
-    }
+    result += (ability.roll ? ability.roll.toTypeScript() : null) + ",\n\t";
     result += ability.difficulty + ",\n\t"
         + ability.augmentSlots + ",\n\t"
         + "\"" + ability.target + "\",\n\t"

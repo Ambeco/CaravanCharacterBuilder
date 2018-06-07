@@ -62,3 +62,12 @@ export const coreAttunements: RankOption[] = [
     attunementNature,
     attunementAnimus,
 ]
+
+export function attunmentByName(name: string): RankOption | undefined {
+    for (let attunement of coreAttunements) {
+        if (attunement.name == name) {
+            return attunement;
+        }
+    }
+    return undefined;
+}

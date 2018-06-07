@@ -12,30 +12,16 @@ export class Cost {
     public readonly currency: Currency;
 
     constructor(amount: number, currency: Currency) {
+        if (Number.isNaN(amount)) throw new Error("cost of " + currency.name + " cannot be NaN");
+        if (currency == null) throw new Error("currency cannot be null");
         this.amount = amount;
         this.currency = currency;
     }
     getAmount(): number { return this.amount; }
     getCurrency(): Currency { return this.currency; }
 
-    toString() { return this.amount + " " + this.currency.name;}
-}
-
-/**
- * The prerequirement of a Choice or Rank.
- * Requirement=5 Divine.  Currency=Divine.
- * When the user selects the choice/rank, they do not lose any of that currency
- */
-export class Requirement {
-    public readonly amount: number;
-    public readonly currency: Currency;
-
-    constructor(amount: number, currency: Currency) {
-        this.amount = amount;
-        this.currency = currency;
+    toString() { return this.amount + " " + this.currency.name; }
+    toTypeScript() {
+        return "new Cost(" + this.amount + ", Currency.getCurrency(\"" + this.currency + "\"))";
     }
-    getAmount(): number { return this.amount; }
-    getCurrency(): Currency { return this.currency; }
-
-    toString() { return this.amount + " " + this.currency.getName(); }
 }

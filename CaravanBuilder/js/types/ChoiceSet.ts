@@ -40,7 +40,7 @@ export class ChoiceSet {
     isSelected(choice: Choice): boolean {
         return this.getOptionBySelection(choice) != null;
     }
-    private getOptionBySelection(choice: Choice) {
+    private getOptionBySelection(choice: Choice): ChoiceSetHost {
         if (!this.choices.has(choice)) throw Error("cannot get choice " + choice + " that isn't in this choiceSet");
         for (let option of this.options) {
             if (option.selection === choice)

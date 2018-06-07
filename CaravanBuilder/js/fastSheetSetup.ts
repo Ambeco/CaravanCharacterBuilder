@@ -13,7 +13,7 @@ import { stripHtml } from "./util/treeNavigation.js";
 
 const nameInput: HTMLInputElement = document.getElementById('nameValue') as HTMLInputElement;
 const raceInput: HTMLSelectElement = document.getElementById('raceValue') as HTMLSelectElement;
-const raceBlock: HTMLElement = raceInput.parentElement;
+const raceBlock: HTMLElement = raceInput.parentElement as HTMLElement;
 const initiativeInput: HTMLInputElement = document.getElementById('initiativeValue') as HTMLInputElement;
 const totalSoakInput: HTMLInputElement = document.getElementById('totalSoakValue') as HTMLInputElement;
 const armorSoakInput: HTMLInputElement = document.getElementById('armorSoakValue') as HTMLInputElement;
@@ -21,9 +21,9 @@ const titanSoakInput: HTMLInputElement = document.getElementById('titanSoakValue
 const movementSpeedInput: HTMLInputElement = document.getElementById('movementSpeedValue') as HTMLInputElement;
 const otherSpeedInput: HTMLInputElement = document.getElementById('otherSpeedValue') as HTMLInputElement;
 const atunementAttributesInput: HTMLInputElement = document.getElementById('attributeValue') as HTMLInputElement;
-const atunementAttributesBlock: HTMLElement = atunementAttributesInput.parentElement;
+const atunementAttributesBlock: HTMLElement = atunementAttributesInput.parentElement as HTMLElement;
 const atunementSkillsInput: HTMLInputElement = document.getElementById('skillsValue') as HTMLInputElement;
-const atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement;
+const atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement as HTMLElement;
     
 const attunementPoints = new Currency("attunementPoints", 6, false);
     

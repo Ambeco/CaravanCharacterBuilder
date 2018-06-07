@@ -9,7 +9,7 @@ export class AbilityChoice extends Choice {
     public readonly ability: BaseAbility;
 
     constructor(ability: BaseAbility) {
-        const description = ability.getAbilityDescription();
+        const description = ability.getAbilityDescriptionHTML();
         super(ability.name, description, new Set<SheetFeature>([new SheetFeature(ability.name, description)]));
         this.ability = ability;
     }

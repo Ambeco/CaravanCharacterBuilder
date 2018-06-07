@@ -3,7 +3,7 @@ import { OptionCategory } from "./types/OptionCategory.js";
 import { Choice } from "./types/Choice.js";
 
 
-const floatingDescriptionBlock: HTMLElement = document.getElementById('floatingDescriptionBox');
+const floatingDescriptionBlock: HTMLElement = document.getElementById('floatingDescriptionBox') as HTMLElement;
 const focusTitle: HTMLHeadingElement = document.getElementById('focusTitle') as HTMLHeadingElement;
 const focusDescription: HTMLDivElement = document.getElementById('focusDescription') as HTMLDivElement;
 const searchBox: HTMLSelectElement = document.getElementById('searchBox') as HTMLSelectElement;
@@ -12,18 +12,18 @@ const searchHeader: HTMLHeadingElement = document.getElementById('searchHeader')
 const searchDetails: HTMLDivElement = document.getElementById('searchDetails') as HTMLDivElement;
 const searchFeatures: HTMLUListElement = document.getElementById('searchFeatures') as HTMLUListElement;
 
-const cssDescriptionBlockDisplay: string = floatingDescriptionBlock.style.display;
-const cssSearchBoxDisplay: string = searchBox.style.display;
-const cssSearchSelectDisplay: string = searchSelect.style.display;
-const cssSearchHeaderDisplay: string = searchHeader.style.display;
-const cssSearchDetailsDisplay: string = searchDetails.style.display;
-const cssSearchFeaturesDisplay: string = searchFeatures.style.display;
+const cssDescriptionBlockDisplay: string = floatingDescriptionBlock.style.display || "block";
+const cssSearchBoxDisplay: string = searchBox.style.display || "block";
+const cssSearchSelectDisplay: string = searchSelect.style.display || "block";
+const cssSearchHeaderDisplay: string = searchHeader.style.display || "block";
+const cssSearchDetailsDisplay: string = searchDetails.style.display || "block";
+const cssSearchFeaturesDisplay: string = searchFeatures.style.display || "block";
 
 
-var currentCateogry: OptionCategory = null;
-var currentOption: ChoiceOption = null;
+var currentCateogry: OptionCategory | null = null;
+var currentOption: ChoiceOption | null = null;
 var choiceMap: Map<string, Choice> = new Map<string, Choice>();
-var currentChoice: Choice = null;
+var currentChoice: Choice | null = null;
 
 
 function onSearchResults(choice: Choice) {
@@ -44,14 +44,16 @@ function onSearchResults(choice: Choice) {
 }
 searchBox.oninput = function () {
    if (searchBox.selectedIndex != -1) {
-        const choice: Choice = choiceMap.get(searchBox.value);
-       if (choice != null) {
+       const choice: Choice | undefined = choiceMap.get(searchBox.value);
+       if (choice != undefined) {
            onSearchResults(choice);
         }
     }
 }
 searchSelect.onclick = function () {
-    currentOption.getUiElement().value = currentChoice.getName();
+    if (currentOption != null && currentChoice != null) {
+        currentOption.getUiElement().value = currentChoice.getName();
+    }
 }
 
 function onGenericCategoryGainFocus(uiElement: HTMLElement, category: OptionCategory): void {
