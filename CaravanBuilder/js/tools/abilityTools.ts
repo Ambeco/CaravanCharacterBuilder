@@ -1,5 +1,5 @@
 ﻿import { clarifyError } from "./../util/ClarifyError.js";
-import { BaseAbility, Roll } from "./../types/BaseAbility.js";
+import { Ability, Roll } from "./../types/BaseAbility.js";
 import { RankOption } from "./../types/RankOption.js";
 import { attributes, attributeByName } from "./../data/attributeData.js";
 import { psuedoSkills, skillByName } from "./../data/skillData.js";
@@ -20,14 +20,14 @@ const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "ca
 let lastAbilityName: string = "START";
 
 editableDiv.oninput = function () {
-    const abilities: BaseAbility[] = new Array<BaseAbility>();
+    const abilities: Ability[] = new Array<Ability>();
     findAbilities(editableDiv, abilities);
     writeAbilities(abilities, resultDiv);
     editableDiv.style.display = "none";
     resultDiv.style.display = "block";
 }
 
-function findAbilities(parent: Element, results: BaseAbility[]): void {
+function findAbilities(parent: Element, results: Ability[]): void {
     const childCount: number = parent.children.length;
     for (var i = 0; i < childCount; i++) {
         try {
@@ -44,7 +44,7 @@ function findAbilities(parent: Element, results: BaseAbility[]): void {
                     }
                     try {
                         const requirements: string|null = findRequirements(parent, i);
-                        const ability: BaseAbility = parseAbility(name, requirements, child);
+                        const ability: Ability = parseAbility(name, requirements, child);
                         results.push(ability);
                     } finally {
                         lastAbilityName = name;
@@ -121,7 +121,7 @@ function findRequirements(parent: Element, beforeIndex: number): string|null {
     return null;
 }
 
-function parseAbility(name: string, requirements: string|null, table: Element): BaseAbility {
+function parseAbility(name: string, requirements: string|null, table: Element): Ability {
     try {
         console.log("creating " + name);
         const expCell: Element = table.children[1].children[1].children[0];
@@ -143,7 +143,7 @@ function parseAbility(name: string, requirements: string|null, table: Element): 
         const target = targettingCell.textContent || "";
         const effect = effectCell.textContent || "";
         const availability = availabilityCell.textContent || "";
-        const result = new BaseAbility(name, requirements_, cost, time, tags, roll, difficulty, augment, target, effect, availability);
+        const result = new Ability(name, requirements_, cost, time, tags, roll, difficulty, augment, target, effect, availability);
         return result;
     } catch (e) {
         return clarifyError(e, "while parsing ability " + name);
@@ -256,7 +256,7 @@ function createRequirement(name: string, count: number): Requirement|null {
     return null;
 }
 
-function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {
+function writeAbilities(abilities: Ability[], output: HTMLElement): void {
     let body: string = "<pre>";
     for (let ability of abilities) {
         try {
@@ -273,7 +273,7 @@ function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {
     output.innerHTML += body;
 }
 
-function writeAbility(ability: BaseAbility): string {
+function writeAbility(ability: Ability): string {
     let result: string = "export const " + toCamelCase("ability " + ability.name) + ": BaseAbility = new BaseAbility(\"" + ability.name + "\",\n\t";
     result += (ability.requirements ? ability.requirements.toTypeScript() : null) + ",\n\t";
     result += (ability.cost ? ability.cost.toTypeScript() : null) + ",\n\t";

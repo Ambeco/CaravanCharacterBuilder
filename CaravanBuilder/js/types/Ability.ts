@@ -23,7 +23,7 @@ export class Roll {
     }
 }
 
-export class BaseAbility implements AugmentSource {
+export class Ability implements AugmentSource {
     public readonly name: string;
     public readonly requirements: Requirement | null;
     public readonly cost: Cost | null;

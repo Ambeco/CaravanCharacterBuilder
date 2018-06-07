@@ -96,7 +96,7 @@
     <TypeScriptCompile Include="js\floatingDescriptionHelper.ts" />
     <TypeScriptCompile Include="js\fastSheetSetup.ts" />
     <TypeScriptCompile Include="js\types\Augment.ts" />
-    <TypeScriptCompile Include="js\types\BaseAbility.ts" />
+    <TypeScriptCompile Include="js\types\Ability.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
     <TypeScriptCompile Include="js\types\AbilityChoice.ts" />
     <TypeScriptCompile Include="js\types\AbilityChoiceSet.ts" />

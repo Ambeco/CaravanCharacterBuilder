@@ -1,6 +1,6 @@
 ﻿import { SheetFeature } from "./SheetFeature.js";
 import { Choice } from "./Choice.js";
-import { BaseAbility } from "./BaseAbility.js";
+import { Ability } from "./BaseAbility.js";
 
 /**
  * An ability option in the page

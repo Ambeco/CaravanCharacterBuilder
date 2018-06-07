@@ -2,7 +2,7 @@
 import { OptionCategory } from "./OptionCategory.js";
 import { ChoiceOption, ChoiceFocusChangeListener } from "./ChoiceOption.js";
 import { AbilityChoiceSet } from "./AbilityChoiceSet.js";
-import { BaseAbility } from "./BaseAbility.js";
+import { Ability } from "./BaseAbility.js";
 import { AbilityChoice } from "./AbilityChoice.js";
 import { nonNull } from "../util/nonNull.js";
 
@@ -42,7 +42,7 @@ export class AbilityChoiceOption extends ChoiceOption {
     select(choice: Choice): boolean {
         if (!super.select(choice)) return false;
         if (choice != null) {
-            const ability: BaseAbility = (choice as AbilityChoice).ability;
+            const ability: Ability = (choice as AbilityChoice).ability;
             this.apUiElement.value = ability.time != null ? ability.time.amount.toString() : "N/A";
             this.skillUiElement.value = ability.roll != null ? ability.roll.toString() : "N/A";
             this.rangeUiElement.value = ability.target;
