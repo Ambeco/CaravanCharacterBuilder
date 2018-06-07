@@ -367,7 +367,8 @@ body {
     width: 2in;
 }
 #searchHeader {
-    display: inline-block
+    display: inline-block;
+    text-align: left;
 }
 #searchSelect {
     display: block

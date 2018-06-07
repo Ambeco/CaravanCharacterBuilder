@@ -35,7 +35,7 @@ export class ChoiceOption {
     public setUiElement(uiElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener) {
         const choice: ChoiceOption = this;
         this.uiElement = uiElement;
-        uiElement.onchange = this.onUIChange;
+        uiElement.onchange = function () { choice.onUIChange(); };
         uiElement.onfocus = function () {
             focusListener.onChoiceGainFocus(uiElement, choice);
         };
@@ -64,6 +64,7 @@ export class ChoiceOption {
     addOnChangeListener(listener: ChoiceChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: ChoiceChangeListener): boolean { return this.listeners.delete(listener); }
     onUIChange() {
+        nonNull(this.choices, "how did this happen");
         for (let choice of this.choices) {
             if (choice.getName() == this.uiElement.value) {
                 this.select(choice);
