@@ -76,8 +76,8 @@ function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategor
     searchFeatures.style.display = "none";
 }
 
-function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption): void {
-    if (option == currentOption) return;
+function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption, selectedChoice: Choice): void {
+    if (option == currentOption && selectedChoice == currentChoice) return;
     onGenericCategoryGainFocus(uiElement, option.getCategory());
     currentOption = option;
     searchBox.style.display = cssSearchBoxDisplay;
@@ -89,19 +89,20 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
         searchBox.removeChild(searchBox.lastChild);
     }
     choiceMap.clear();
-    currentChoice = null;
-    searchBox.value = "";
     for (let choice of option.getChoiceSet()) {
         const child = document.createElement('option');
         child.value = choice.getName();
         child.appendChild(document.createTextNode(choice.getName()));
         searchBox.appendChild(child);
         choiceMap.set(choice.getName(), choice);
-        if (currentChoice == null && choice.getName() == option.getName()) {
+        if (currentChoice == null && choice === selectedChoice) {
             searchBox.value = choice.getName();
             onSearchResults(choice);
         }
     }
+    currentChoice = selectedChoice;
+    searchBox.value = selectedChoice.getName();
+    onSearchResults(selectedChoice);
 }
 
 

@@ -6,7 +6,7 @@ import { nonNull } from "../util/nonNull.js";
 
 
 export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {
-    onChoiceGainFocus(uiElement: HTMLSelectElement, choice: ChoiceOption): void;
+    onChoiceGainFocus(uiElement: HTMLSelectElement, option: ChoiceOption, choice: Choice|null): void;
 }
 export interface ChoiceChangeListener {
     (option: ChoiceOption, oldChoice: Choice|null): void;
@@ -33,14 +33,14 @@ export class ChoiceOption {
         choices.addOption(this);
     }
     public setUiElement(uiElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener) {
-        const choice: ChoiceOption = this;
+        const option: ChoiceOption = this;
         this.uiElement = uiElement;
         uiElement.onchange = function () {
-            choice.onUIChange();
-            focusListener.onChoiceGainFocus(uiElement, choice)
+            option.onUIChange();
+            focusListener.onChoiceGainFocus(uiElement, option, option.selection)
         };
         uiElement.onfocus = function () {
-            focusListener.onChoiceGainFocus(uiElement, choice);
+            focusListener.onChoiceGainFocus(uiElement, option, option.selection);
         };
         while (uiElement.lastChild) {
             uiElement.removeChild(uiElement.lastChild);
