@@ -2,7 +2,7 @@
 import { OptionCategory } from "./OptionCategory.js";
 import { ChoiceOption, ChoiceFocusChangeListener } from "./ChoiceOption.js";
 import { AbilityChoiceSet } from "./AbilityChoiceSet.js";
-import { Ability } from "./BaseAbility.js";
+import { Ability } from "./Ability.js";
 import { AbilityChoice } from "./AbilityChoice.js";
 import { nonNull } from "../util/nonNull.js";
 

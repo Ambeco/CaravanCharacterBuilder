@@ -1,9 +1,9 @@
-﻿import { SheetFeature } from "./SheetFeature.js";
-import { Choice } from "./Choice.js";
-import { Ability } from "./BaseAbility.js";
+﻿
 
 /**
- * An ability option in the page
+ * An tag for abilities and specializations
+ * 
+ * Examples: Ice, Psychic, Enthrall, Ranged
  */
 export class Tag {
     public readonly name: string;

@@ -1,4 +1,4 @@
-﻿import { Ability, Roll } from "../types/BaseAbility.js";
+﻿import { Ability, Roll } from "../types/Ability.js";
 import { RankOption } from "../types/RankOption.js";
 import { attributes, attributeByName, attributeDexterity, attributeBrawn, attributePresence, attributeSenses, attributeSubterfuge, attributeIntellect } from "./attributeData.js";
 import { psuedoSkills, skillByName, skillMelee, skillAthletics, skillIntimidate, skillSpellcasting, skillBrawl, skillInsight, skillDiscipline, skillPerform, skillDeception, skillWeapon, skillPersuasion, skillLeadership, skillRanged } from "./skillData.js";

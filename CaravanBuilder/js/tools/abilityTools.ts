@@ -1,5 +1,5 @@
 ﻿import { clarifyError } from "./../util/ClarifyError.js";
-import { Ability, Roll } from "./../types/BaseAbility.js";
+import { Ability, Roll } from "./../types/Ability.js";
 import { RankOption } from "./../types/RankOption.js";
 import { attributes, attributeByName } from "./../data/attributeData.js";
 import { psuedoSkills, skillByName } from "./../data/skillData.js";
@@ -265,7 +265,7 @@ function writeAbilities(abilities: Ability[], output: HTMLElement): void {
             clarifyError(e, "while writing ability " + ability.name);
         }
     }
-    body += "export const abilities: BaseAbility[] = [\n";
+    body += "export const abilities: Ability[] = [\n";
     for (let ability of abilities) {
         body += "\t" + toCamelCase("ability " + ability.name) + ",\n";
     }
@@ -274,7 +274,7 @@ function writeAbilities(abilities: Ability[], output: HTMLElement): void {
 }
 
 function writeAbility(ability: Ability): string {
-    let result: string = "export const " + toCamelCase("ability " + ability.name) + ": BaseAbility = new BaseAbility(\"" + ability.name + "\",\n\t";
+    let result: string = "export const " + toCamelCase("ability " + ability.name) + ": Ability = new Ability(\"" + ability.name + "\",\n\t";
     result += (ability.requirements ? ability.requirements.toTypeScript() : null) + ",\n\t";
     result += (ability.cost ? ability.cost.toTypeScript() : null) + ",\n\t";
     result += (ability.time ? ability.time.toTypeScript() : null) + ",\n\t";

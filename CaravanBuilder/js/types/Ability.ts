@@ -63,11 +63,11 @@ export class Ability implements AugmentSource {
     }
 
     public getAbilityDescriptionHTML(): string {
-        let description: string = "<h3>" + this.name + "</h>";
+        let description: string = "<h3>" + this.name + "</h3>";
         if (this.requirements != null) {
-            description += "<br/><i>Requires at least " + this.requirements + "</i>";
+            description += "<i>Requires at least " + this.requirements + "</i>";
         }
-        description += "<table><tr><td>EXP</td><td>Time</td><td>Tags</td><td>Roll</td><td>Difficulty</td><td>Augment Slots</td><tr>";
+        description += "<table class=\"abilityDescription\"><tr><td>EXP</td><td>Time</td><td>Tags</td><td>Roll</td><td>Difficulty</td><td>Augment Slots</td><tr>";
         description += "<td>" + (this.cost ? this.cost.toString() : "") + "</td>";
         description += "<td>" + (this.time ? this.time.toString() : "") + "</td>";
         description += "<td>" + this.tags.join() + "</td>";
