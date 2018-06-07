@@ -48,7 +48,7 @@ export class ChoiceOption {
             child.appendChild(document.createTextNode(choice.getName()));
             uiElement.appendChild(child);
         }
-        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + name);
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + this.name);
         categoryBlock.title = stripHtml(this.category.getDescription());
         categoryBlock.onclick = function () {
             uiElement.focus();

@@ -25,11 +25,6 @@ const attunementAttributesBlock: HTMLElement = nonNull(attunementAttributesInput
 const attunementSkillsInput: HTMLInputElement = nonNull(document.getElementById('skillsValue'), "cannot find skillsValue") as HTMLInputElement;
 const attunementSkillsBlock: HTMLElement = nonNull(attunementSkillsInput.parentElement, "cannot find attunementSkillsInput.parentElement") as HTMLElement;
     
-const attunementPoints = new Currency("attunementPoints", 6, false);
-const currencyExp = new Currency("exp", 0, false);
-Currency.setAlternativeName("xp", "exp");
-const currencyAp = new Currency("ap", 0, false);
-    
 raceOption.setUiElement(raceInput, focusListener);
 raceInput.focus();
 

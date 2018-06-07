@@ -1,11 +1,11 @@
 ﻿
 export function findParentWithClass(uiElement: HTMLElement, classname: string): HTMLElement | null {
     for (; ;) {
-        if (uiElement.parentElement == null) {
-            return null; 
-        } else if (uiElement.classList.contains(classname)) {
+        if (uiElement.classList.contains(classname)) {
             return uiElement;
-        }
+        }else if (uiElement.parentElement == null) {
+            return null; 
+        } 
         uiElement = uiElement.parentElement;
     }
 }

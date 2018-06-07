@@ -14,9 +14,9 @@ for (let i = 0; i < abilities.length; i++) {
 }
 const abilityChoiceSet: AbilityChoiceSet = new AbilityChoiceSet(new Set<AbilityChoice>(abilityChoices), true);
 const abilityChoiceOptions: AbilityChoiceOption[] = new Array<AbilityChoiceOption>(abilitiesBlock.children.length - 1);
-for (let i = 0; i < abilitiesBlock.children.length; i++) {
+for (let i = 0; i < abilitiesBlock.children[0].children.length; i++) {
     if (i == 0) continue;
     abilityChoiceOptions[i - 1] = new AbilityChoiceOption(abilityChoiceSet);
-    const uiElement = nonNull(abilitiesBlock.children[i], "child " + i + " cant be null") as HTMLElement;
+    const uiElement = nonNull(abilitiesBlock.children[0].children[i], "child " + i + " cant be null") as HTMLElement;
     abilityChoiceOptions[i - 1].setUiElement(uiElement, focusListener);
 }

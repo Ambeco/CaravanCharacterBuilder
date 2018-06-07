@@ -19,10 +19,6 @@ const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "ca
 
 let lastAbilityName: string = "START";
 
-const currencyExp = new Currency("exp", 0, false);
-Currency.setAlternativeName("xp", "exp");
-const currencyAp = new Currency("ap", 0, false);
-
 editableDiv.oninput = function () {
     const abilities: BaseAbility[] = new Array<BaseAbility>();
     findAbilities(editableDiv, abilities);

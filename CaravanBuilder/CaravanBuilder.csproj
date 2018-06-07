@@ -86,6 +86,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="js\data\currencyData.ts" />
     <TypeScriptCompile Include="js\tools\abilityTools.ts" />
     <TypeScriptCompile Include="js\data\attributeData.ts" />
     <TypeScriptCompile Include="js\data\backgroundData.ts" />
