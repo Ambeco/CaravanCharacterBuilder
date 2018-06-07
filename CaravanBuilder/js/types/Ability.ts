@@ -68,11 +68,11 @@ export class Ability implements AugmentSource {
             description += "<i>Requires at least " + this.requirements + "</i>";
         }
         description += "<table class=\"abilityDescription\"><tr><td>EXP</td><td>Time</td><td>Tags</td><td>Roll</td><td>Difficulty</td><td>Augment Slots</td><tr>";
-        description += "<td>" + (this.cost ? this.cost.toString() : "") + "</td>";
-        description += "<td>" + (this.time ? this.time.toString() : "") + "</td>";
-        description += "<td>" + this.tags.join() + "</td>";
-        description += "<td>" + (this.roll ? this.roll.toString() : "") + "</td>";
-        description += "<td>" + this.difficulty + "</td>";
+        description += "<td>" + (this.cost ? this.cost.toString() : "N/A") + "</td>";
+        description += "<td>" + (this.time ? this.time.toString() : "N/A") + "</td>";
+        description += "<td>" + this.tags.join(" ") + "</td>";
+        description += "<td>" + (this.roll ? this.roll.toString() : "N/A") + "</td>";
+        description += "<td>" + (this.difficulty > 0 ? this.difficulty : "N/A") + "</td>";
         description += "<td>" + this.augmentSlots + "</td></tr>";
         description += "<tr><td colspan=\"2\">Targeting</td><td colspan=\"4\">" + this.target + "</td></tr>";
         description += "<tr><td colspan=\"2\">Effect</td><td colspan=\"4\">" + this.effect + "</td></tr>";

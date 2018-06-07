@@ -10,7 +10,7 @@ export class AbilityChoice extends Choice {
 
     constructor(ability: Ability) {
         const description = ability.getAbilityDescriptionHTML();
-        super(ability.name, description, new Set<SheetFeature>([new SheetFeature(ability.name, description)]));
+        super(ability.name, description, new Set<SheetFeature>());
         this.ability = ability;
     }
 }
