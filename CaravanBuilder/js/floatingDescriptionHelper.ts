@@ -1,16 +1,17 @@
 ﻿import { ChoiceOption, ChoiceFocusChangeListener } from "./types/ChoiceOption";
 import { OptionCategory } from "./types/OptionCategory.js";
 import { Choice } from "./types/Choice.js";
+import { nonNull } from "./util/nonNull";
 
 
-const floatingDescriptionBlock: HTMLElement = document.getElementById('floatingDescriptionBox') as HTMLElement;
-const focusTitle: HTMLHeadingElement = document.getElementById('focusTitle') as HTMLHeadingElement;
-const focusDescription: HTMLDivElement = document.getElementById('focusDescription') as HTMLDivElement;
-const searchBox: HTMLSelectElement = document.getElementById('searchBox') as HTMLSelectElement;
-const searchSelect: HTMLButtonElement = document.getElementById('searchSelect') as HTMLButtonElement;
-const searchHeader: HTMLHeadingElement = document.getElementById('searchHeader') as HTMLHeadingElement;
-const searchDetails: HTMLDivElement = document.getElementById('searchDetails') as HTMLDivElement;
-const searchFeatures: HTMLUListElement = document.getElementById('searchFeatures') as HTMLUListElement;
+const floatingDescriptionBlock: HTMLElement = nonNull(document.getElementById('floatingDescriptionBox'), "cannot find floatingDescriptionBox") as HTMLElement;
+const focusTitle: HTMLHeadingElement = nonNull(document.getElementById('focusTitle'), "cannot find focusTitle") as HTMLHeadingElement;
+const focusDescription: HTMLDivElement = nonNull(document.getElementById('focusDescription'), "cannot find focusDescription") as HTMLDivElement;
+const searchBox: HTMLSelectElement = nonNull(document.getElementById('searchBox'), "cannot find searchBox") as HTMLSelectElement;
+const searchSelect: HTMLButtonElement = nonNull(document.getElementById('searchSelect'), "cannot find searchSelect") as HTMLButtonElement;
+const searchHeader: HTMLHeadingElement = nonNull(document.getElementById('searchHeader'), "cannot find searchHeader") as HTMLHeadingElement;
+const searchDetails: HTMLDivElement = nonNull(document.getElementById('searchDetails'), "cannot find searchDetails") as HTMLDivElement;
+const searchFeatures: HTMLUListElement = nonNull(document.getElementById('searchFeatures'), "cannot find searchFeatures") as HTMLUListElement;
 
 const cssDescriptionBlockDisplay: string = floatingDescriptionBlock.style.display || "block";
 const cssSearchBoxDisplay: string = searchBox.style.display || "block";

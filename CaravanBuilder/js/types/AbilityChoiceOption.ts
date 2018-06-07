@@ -4,6 +4,7 @@ import { ChoiceOption, ChoiceFocusChangeListener } from "./ChoiceOption.js";
 import { AbilityChoiceSet } from "./AbilityChoiceSet.js";
 import { BaseAbility } from "./BaseAbility.js";
 import { AbilityChoice } from "./AbilityChoice.js";
+import { nonNull } from "../util/nonNull";
 
 
 const abilityCategory: OptionCategory = new OptionCategory("Abilities", "The abilites that your character can perform");
@@ -25,17 +26,18 @@ export class AbilityChoiceOption extends ChoiceOption {
     public setUiElement(uiElement: HTMLElement, focusListener: ChoiceFocusChangeListener) {
         if (uiElement instanceof HTMLSelectElement) {
             super.setUiElement(uiElement, focusListener);
+            return;
         }
         if (!(uiElement.children[0].children[0] instanceof HTMLSelectElement)) {
             throw new Error("uiElement needs to be a select or an abilityRow")
         }
-        super.setUiElement(uiElement.children[0].children[0] as HTMLSelectElement, focusListener);
-        this.apUiElement = uiElement.children[1].children[0] as HTMLInputElement;
-        this.skillUiElement = uiElement.children[2].children[0] as HTMLInputElement;
-        this.difUiElement = uiElement.children[3].children[0] as HTMLInputElement;
-        this.rangeUiElement = uiElement.children[4].children[0] as HTMLInputElement;
-        this.augmentUiElement = uiElement.children[5].children[0] as HTMLInputElement;
-        this.effectUiElement = uiElement.children[6].children[0] as HTMLInputElement;
+        super.setUiElement(nonNull(uiElement.children[0].children[0], "abilityRow code doesn't match html") as HTMLSelectElement, focusListener);
+        this.apUiElement = nonNull(uiElement.children[1].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
+        this.skillUiElement = nonNull(uiElement.children[2].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
+        this.difUiElement = nonNull(uiElement.children[3].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
+        this.rangeUiElement = nonNull(uiElement.children[4].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
+        this.augmentUiElement = nonNull(uiElement.children[5].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
+        this.effectUiElement = nonNull(uiElement.children[6].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
     }
     select(choice: Choice): boolean {
         if (!super.select(choice)) return false;

@@ -14,8 +14,8 @@ import { tagByName } from "../data/tagData.js";
 import { Tag } from "../types/Tag.js";
 import { nonNull, nonNullArray } from "../util/nonNull.js";
 
-const editableDiv: HTMLElement = document.getElementById('editableDiv') as HTMLElement;
-const resultDiv: HTMLElement = document.getElementById('resultDiv') as HTMLElement;
+const editableDiv: HTMLElement = nonNull(document.getElementById('editableDiv'), "cannot find editableDiv") as HTMLElement;
+const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "cannot find editableDiv") as HTMLElement;
 
 let lastAbilityName: string = "START";
 

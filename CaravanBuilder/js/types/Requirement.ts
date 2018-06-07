@@ -1,6 +1,6 @@
 ﻿import { Currency } from "./Currency.js";
 import { RankOption } from "./RankOption.js";
-import { Rank } from "./Rank.js";
+import { Rank, RankHost } from "./Rank.js";
 import { toCamelCase } from "../util/Camelcase.js";
 import { Tag } from "./Tag.js";
 
@@ -70,7 +70,7 @@ export abstract class RankRequirement implements Requirement {
         this.rank = rank;
     }
     geRank(): Rank { return this.rank; }
-    getOption(): RankOption { return this.rank.getRankOption() as RankOption; }
+    getOption(): RankHost { return this.rank.getRankOption(); }
     abstract toTypeScript(): string;
 
     toString() { return this.rank.value + " ranks of " + this.rank.getRankOption().name; }

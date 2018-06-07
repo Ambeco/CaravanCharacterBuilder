@@ -2,9 +2,11 @@
 import { AbilityChoice } from "./types/AbilityChoice.js";
 import { AbilityChoiceSet } from "./types/AbilityChoiceSet.js";
 import { abilities } from "./data/abilityData.js";
+import { focusListener } from "./floatingDescriptionHelper";
+import { nonNull } from "./util/nonNull";
 
 
-const abilitiesBlock: HTMLTableElement = document.getElementById('abilitiesBlock') as HTMLTableElement;
+const abilitiesBlock: HTMLTableElement = nonNull(document.getElementById('abilitiesBlock'), "cannot find abilitiesBlock") as HTMLTableElement;
 
 const abilityChoices: AbilityChoice[] = new Array<AbilityChoice>(abilities.length);
 for (let i = 0; i < abilities.length; i++) {
@@ -15,4 +17,6 @@ const abilityChoiceOptions: AbilityChoiceOption[] = new Array<AbilityChoiceOptio
 for (let i = 0; i < abilitiesBlock.children.length; i++) {
     if (i == 0) continue;
     abilityChoiceOptions[i - 1] = new AbilityChoiceOption(abilityChoiceSet);
+    const uiElement = nonNull(abilitiesBlock.children[i], "child " + i + " cant be null") as HTMLElement;
+    abilityChoiceOptions[i - 1].setUiElement(uiElement, focusListener);
 }
