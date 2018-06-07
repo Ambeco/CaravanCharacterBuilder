@@ -4,7 +4,7 @@ import { ChoiceOption, ChoiceFocusChangeListener } from "./ChoiceOption.js";
 import { AbilityChoiceSet } from "./AbilityChoiceSet.js";
 import { BaseAbility } from "./BaseAbility.js";
 import { AbilityChoice } from "./AbilityChoice.js";
-import { nonNull } from "../util/nonNull";
+import { nonNull } from "../util/nonNull.js";
 
 
 const abilityCategory: OptionCategory = new OptionCategory("Abilities", "The abilites that your character can perform");

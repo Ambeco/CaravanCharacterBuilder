@@ -1,7 +1,7 @@
 ﻿import { ChoiceOption, ChoiceFocusChangeListener } from "./types/ChoiceOption";
 import { OptionCategory } from "./types/OptionCategory.js";
 import { Choice } from "./types/Choice.js";
-import { nonNull } from "./util/nonNull";
+import { nonNull } from "./util/nonNull.js";
 
 
 const floatingDescriptionBlock: HTMLElement = nonNull(document.getElementById('floatingDescriptionBox'), "cannot find floatingDescriptionBox") as HTMLElement;

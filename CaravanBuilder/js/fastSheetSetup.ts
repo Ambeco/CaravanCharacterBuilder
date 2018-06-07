@@ -9,7 +9,7 @@ import { clarifyError } from "./util/ClarifyError.js";
 import { toCamelCase } from "./util/Camelcase.js";
 import { focusListener } from "./floatingDescriptionHelper.js";
 import { stripHtml } from "./util/treeNavigation.js";
-import { nonNull } from "./util/nonNull";
+import { nonNull } from "./util/nonNull.js";
 
 
 const nameInput: HTMLInputElement = nonNull(document.getElementById('nameValue'), "cannot find nameValue") as HTMLInputElement;
@@ -17,7 +17,6 @@ const raceInput: HTMLSelectElement = nonNull(document.getElementById('raceValue'
 const raceBlock: HTMLElement = nonNull(raceInput.parentElement, "cannot find raceInput.parent") as HTMLElement;
 const initiativeInput: HTMLInputElement = nonNull(document.getElementById('initiativeValue'), "cannot find initiativeValue") as HTMLInputElement;
 const totalSoakInput: HTMLInputElement = nonNull(document.getElementById('totalSoakValue'), "cannot find totalSoakValue") as HTMLInputElement;
-const armorSoakInput: HTMLInputElement = nonNull(document.getElementById('armorSoakValue'), "cannot find armorSoakValue") as HTMLInputElement;
 const titanSoakInput: HTMLInputElement = nonNull(document.getElementById('titanSoakValue'), "cannot find titanSoakValue") as HTMLInputElement;
 const movementSpeedInput: HTMLInputElement = nonNull(document.getElementById('movementSpeedValue'), "cannot find movementSpeedValue") as HTMLInputElement;
 const otherSpeedInput: HTMLInputElement = nonNull(document.getElementById('otherSpeedValue'), "cannot find otherSpeedValue") as HTMLInputElement;
@@ -37,7 +36,7 @@ raceInput.focus();
 for (let attunement of coreAttunements) {
     try {
         const inputName = attunement.getName().toLocaleLowerCase() + 'Value';
-        const attunementInput: HTMLInputElement = nonNul(document.getElementById(inputName), "cannot find " + inputName) as HTMLInputElement;
+        const attunementInput: HTMLInputElement = nonNull(document.getElementById(inputName), "cannot find " + inputName) as HTMLInputElement;
         if (attunementInput == null) throw new Error("Could not find view " + inputName);
         attunement.setUiElement(attunementInput, focusListener);
     } catch (e) {

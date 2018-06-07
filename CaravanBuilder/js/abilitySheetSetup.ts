@@ -2,8 +2,8 @@
 import { AbilityChoice } from "./types/AbilityChoice.js";
 import { AbilityChoiceSet } from "./types/AbilityChoiceSet.js";
 import { abilities } from "./data/abilityData.js";
-import { focusListener } from "./floatingDescriptionHelper";
-import { nonNull } from "./util/nonNull";
+import { focusListener } from "./floatingDescriptionHelper.js";
+import { nonNull } from "./util/nonNull.js";
 
 
 const abilitiesBlock: HTMLTableElement = nonNull(document.getElementById('abilitiesBlock'), "cannot find abilitiesBlock") as HTMLTableElement;
