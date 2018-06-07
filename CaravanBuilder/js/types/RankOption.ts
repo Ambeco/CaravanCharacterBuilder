@@ -33,9 +33,13 @@ export class RankOption {
         }
     }
     public setUiElement(uiElement: HTMLInputElement, focusListener: CategoryFocusChangeListener) {
+        const option: RankOption = this;
         const category: OptionCategory = this.category;
         this.uiElement = uiElement;
-        uiElement.onchange = this.onUIChange;
+        uiElement.onchange = function () {
+            option.onUIChange();
+            focusListener.onCategoryGainFocus(uiElement, category)
+        };
         uiElement.onfocus = function () {
             focusListener.onCategoryGainFocus(uiElement, category);
         }
@@ -65,7 +69,7 @@ export class RankOption {
 
     addOnChangeListener(listener: RankChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: RankChangeListener): boolean { return this.listeners.delete(listener); }
-    onUIChange(event: Event) {
+    onUIChange() {
         for (let rank of this.ranks) {
             if (rank.getName() == this.uiElement.value) {
                 this.select(rank);

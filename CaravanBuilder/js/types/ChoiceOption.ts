@@ -35,7 +35,10 @@ export class ChoiceOption {
     public setUiElement(uiElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener) {
         const choice: ChoiceOption = this;
         this.uiElement = uiElement;
-        uiElement.onchange = function () { choice.onUIChange(); };
+        uiElement.onchange = function () {
+            choice.onUIChange();
+            focusListener.onChoiceGainFocus(uiElement, choice)
+        };
         uiElement.onfocus = function () {
             focusListener.onChoiceGainFocus(uiElement, choice);
         };
