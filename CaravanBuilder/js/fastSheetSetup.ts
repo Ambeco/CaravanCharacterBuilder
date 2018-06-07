@@ -20,12 +20,15 @@ const armorSoakInput: HTMLInputElement = document.getElementById('armorSoakValue
 const titanSoakInput: HTMLInputElement = document.getElementById('titanSoakValue') as HTMLInputElement;
 const movementSpeedInput: HTMLInputElement = document.getElementById('movementSpeedValue') as HTMLInputElement;
 const otherSpeedInput: HTMLInputElement = document.getElementById('otherSpeedValue') as HTMLInputElement;
-const atunementAttributesInput: HTMLInputElement = document.getElementById('attributeValue') as HTMLInputElement;
-const atunementAttributesBlock: HTMLElement = atunementAttributesInput.parentElement as HTMLElement;
-const atunementSkillsInput: HTMLInputElement = document.getElementById('skillsValue') as HTMLInputElement;
-const atunementSkillsBlock: HTMLElement = atunementSkillsInput.parentElement as HTMLElement;
+const attunementAttributesInput: HTMLInputElement = document.getElementById('attributeValue') as HTMLInputElement;
+const attunementAttributesBlock: HTMLElement = attunementAttributesInput.parentElement as HTMLElement;
+const attunementSkillsInput: HTMLInputElement = document.getElementById('skillsValue') as HTMLInputElement;
+const attunementSkillsBlock: HTMLElement = attunementSkillsInput.parentElement as HTMLElement;
     
 const attunementPoints = new Currency("attunementPoints", 6, false);
+const currencyExp = new Currency("exp", 0, false);
+Currency.setAlternativeName("xp", "exp");
+const currencyAp = new Currency("ap", 0, false);
     
 raceOption.setUiElement(raceInput, focusListener);
 raceInput.focus();
@@ -41,8 +44,8 @@ for (let attunement of coreAttunements) {
     }
 }
     
-attunementAttributes.setUiElement(atunementAttributesInput, focusListener);
-atunementAttributesBlock.title = stripHtml(attunementAttributes.getDescription());
+attunementAttributes.setUiElement(attunementAttributesInput, focusListener);
+attunementAttributesBlock.title = stripHtml(attunementAttributes.getDescription());
 
 for (let attribute of attributes) {
     try {
@@ -55,8 +58,8 @@ for (let attribute of attributes) {
     }
 }
     
-attunementSkills.setUiElement(atunementSkillsInput, focusListener);
-atunementSkillsBlock.title = stripHtml(attunementSkills.getDescription());
+attunementSkills.setUiElement(attunementSkillsInput, focusListener);
+attunementSkillsBlock.title = stripHtml(attunementSkills.getDescription());
 
 for (let skill of skills) {
     try {

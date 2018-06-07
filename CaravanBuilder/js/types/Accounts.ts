@@ -2,6 +2,7 @@
 import { Cost } from "./Cost.js";
 import { Currency } from "./Currency.js";
 import { Wallet } from "./wallet.js";
+import { nonNull, nonNaN } from "../util/nonNull.js";
 
 /**
  * A "manager" for CompleteTransactions that work accross Wallets. 
@@ -37,7 +38,7 @@ export class Accounts {
         let remains = amount - wallet.getCount();
         for (let otherCurrency of currency.getConversions().keys()) {
             if (transactions.has(otherCurrency)) continue;
-            const conversionRatio = currency.getConversions().get(otherCurrency);
+            const conversionRatio = nonNaN(currency.getConversions().get(otherCurrency), "cannot get conversion from " + currency.name + " to " + otherCurrency.name);
             const otherAmount = remains * conversionRatio;
             const otherRemains = this.getTransactionImpl(otherCurrency, otherAmount, multiplier*conversionRatio, transactions);
             remains = otherRemains / conversionRatio;

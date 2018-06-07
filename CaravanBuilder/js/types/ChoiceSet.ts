@@ -3,7 +3,7 @@
 
 export interface ChoiceSetHost {
     readonly name: string;
-    readonly selection: Choice;
+    readonly selection: Choice | null;
 }
 /**
  * The set of possibiliities for a multiple choice field of a form.
@@ -24,7 +24,10 @@ export class ChoiceSet {
     }
     size(): number { return this.choices.size; }
     contains(choice: Choice): boolean { return this.choices.has(choice); }
-    getOptionName(choice: Choice): string { return this.getOptionBySelection(choice).name; }
+    getOptionName(choice: Choice): string | undefined {
+        const host = this.getOptionBySelection(choice);
+        return host ? host.name : undefined;
+    }
     [Symbol.iterator]() {
         return this.choices[Symbol.iterator]();
     }
@@ -40,12 +43,12 @@ export class ChoiceSet {
     isSelected(choice: Choice): boolean {
         return this.getOptionBySelection(choice) != null;
     }
-    private getOptionBySelection(choice: Choice): ChoiceSetHost {
+    private getOptionBySelection(choice: Choice): ChoiceSetHost | undefined {
         if (!this.choices.has(choice)) throw Error("cannot get choice " + choice + " that isn't in this choiceSet");
         for (let option of this.options) {
             if (option.selection === choice)
                 return option;
         };
-        return null;
+        return undefined;
     }
 }

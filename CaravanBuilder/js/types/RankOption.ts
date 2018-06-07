@@ -1,6 +1,7 @@
 ﻿import { Rank } from "./Rank.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
+import { nonNull } from "../util/nonNull.js";
 
 
 export interface RankChangeListener {
@@ -38,9 +39,10 @@ export class RankOption {
         uiElement.onfocus = function () {
             focusListener.onCategoryGainFocus(uiElement, category);
         }
-        const parentblock: HTMLElement = uiElement.parentElement;
+        const parentblock: HTMLElement|null = uiElement.parentElement;
+        if (parentblock == null) throw new Error("RankOption" + name + " has no parent UI");
         parentblock.title = this.description;
-        const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for RankOption " + name);
         categoryBlock.title = stripHtml(this.category.getDescription());
         categoryBlock.onclick = function () {
             uiElement.focus();
@@ -70,7 +72,7 @@ export class RankOption {
                 return;
             }
         }
-        this.select(null);
+        this.select(this.ranks[0]);
     }
 
     mayBeSelected(rank: Rank): boolean {

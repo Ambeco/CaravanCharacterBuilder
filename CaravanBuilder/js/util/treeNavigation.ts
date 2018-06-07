@@ -1,7 +1,9 @@
 ﻿
-export function findParentWithClass(uiElement: HTMLElement, classname: string) {
+export function findParentWithClass(uiElement: HTMLElement, classname: string): HTMLElement | null {
     for (; ;) {
-        if (uiElement == null || uiElement.classList.contains(classname)) {
+        if (uiElement.parentElement == null) {
+            return null; 
+        } else if (uiElement.classList.contains(classname)) {
             return uiElement;
         }
         uiElement = uiElement.parentElement;

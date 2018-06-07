@@ -2,13 +2,14 @@
 import { ChoiceSet } from "./ChoiceSet.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
+import { nonNull } from "../util/nonNull.js";
 
 
 export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {
     onChoiceGainFocus(uiElement: HTMLSelectElement, choice: ChoiceOption): void;
 }
 export interface ChoiceChangeListener {
-    (option: ChoiceOption, oldChoice: Choice): void;
+    (option: ChoiceOption, oldChoice: Choice|null): void;
 }
 
 /**
@@ -21,7 +22,7 @@ export class ChoiceOption {
     private uiElement: HTMLSelectElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
-    public selection: Choice;
+    public selection: Choice | null;
 
     constructor(name: string, category: OptionCategory, choices: ChoiceSet) {
         this.name = name;
@@ -47,7 +48,7 @@ export class ChoiceOption {
             child.appendChild(document.createTextNode(choice.getName()));
             uiElement.appendChild(child);
         }
-        const categoryBlock: HTMLElement = findParentWithClass(uiElement, "categoryBlock");
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + name);
         categoryBlock.title = stripHtml(this.category.getDescription());
         categoryBlock.onclick = function () {
             uiElement.focus();
@@ -55,7 +56,7 @@ export class ChoiceOption {
     }
         
     getName(): string { return this.name; }
-    getSelection(): Choice { return this.selection; }
+    getSelection(): Choice | null { return this.selection; }
     getChoiceSet(): ChoiceSet { return this.choices; }
     getCategory(): OptionCategory { return this.category; }
     getUiElement(): HTMLSelectElement { return this.uiElement;}
@@ -75,19 +76,19 @@ export class ChoiceOption {
     mayBeSelected(choice: Choice): boolean {
         return this.choices.mayBeSelected(choice);
     }
-    select(choice: Choice): boolean {
+    select(choice: Choice| null): boolean {
         if (choice != null && !this.choices.contains(choice)) throw Error("cannot select choice " + choice + " that isn't in this choiceSet");
         if (choice == this.selection) { return false; }
-        const previous: Choice = this.selection;
-        previous.onDeselect();
+        const previous: Choice | null = this.selection;
+        if (previous != null) previous.onDeselect();
         this.selection = choice;
-        this.selection.onSelect();
+        if (this.selection != null) this.selection.onSelect();
         for (let callback of this.listeners) {
             callback(this, previous);
         }
         if (choice == null && this.uiElement.value != "") {
             this.uiElement.value = "";
-        } else if (choice.getName() != this.uiElement.value) {
+        } else if (choice != null && choice.getName() != this.uiElement.value) {
             this.uiElement.value = choice.getName();
         }
         return true;

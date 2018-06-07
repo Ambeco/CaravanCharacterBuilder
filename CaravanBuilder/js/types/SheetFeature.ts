@@ -1,4 +1,6 @@
-﻿
+﻿import { nonNull } from "../util/nonNull.js";
+
+
 export interface SheetFeatureSource {
     getSheetFeatureSourceName(): string;
 }
@@ -8,7 +10,7 @@ export interface SheetFeatureSource {
 export class SheetFeature {
     public readonly name: string;
     public readonly description: string;
-    public source: SheetFeatureSource;
+    public source: SheetFeatureSource|null;
 
     constructor(name: string, description: string) {
         this.name = name;
@@ -21,5 +23,5 @@ export class SheetFeature {
 
     getName(): string { return this.name; }
     getDescription(): string { return this.description; }
-    getSourceName(): string { return this.source.getSheetFeatureSourceName(); }
+    getSourceName(): string { return nonNull(this.source, "Feature " + name + " has no source").getSheetFeatureSourceName(); }
 }

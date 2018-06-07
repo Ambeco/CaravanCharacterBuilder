@@ -12,15 +12,16 @@ import { attunmentByName } from "../data/attunementData.js";
 import { specializationByName } from "../data/specializationData.js";
 import { tagByName } from "../data/tagData.js";
 import { Tag } from "../types/Tag.js";
+import { nonNull, nonNullArray } from "../util/nonNull.js";
 
 const editableDiv: HTMLElement = document.getElementById('editableDiv') as HTMLElement;
 const resultDiv: HTMLElement = document.getElementById('resultDiv') as HTMLElement;
 
 let lastAbilityName: string = "START";
 
-new Currency("exp", 0, false);
+const currencyExp = new Currency("exp", 0, false);
 Currency.setAlternativeName("xp", "exp");
-new Currency("ap", 0, false);
+const currencyAp = new Currency("ap", 0, false);
 
 editableDiv.oninput = function () {
     const abilities: BaseAbility[] = new Array<BaseAbility>();
@@ -39,13 +40,14 @@ function findAbilities(parent: Element, results: BaseAbility[]): void {
                 if (child.children[1].tagName.toLowerCase() != "tbody") throw new Error("found " + child.children[1].tagName + " looking for table body");
                 if (child.children[1].children[0].tagName.toLowerCase() != "tr") throw new Error("found " + child.children[1].tagName + " looking for table row");
                 if (child.children[1].children[0].children[0].tagName.toLowerCase() != "td") throw new Error("found " + child.children[1].tagName + " looking for table data");
-                if (child.children[1].children[0].children[0].textContent.toLowerCase() == "exp") {
-                    const name: string = findAbilityName(parent, i);
+                const tableData = child.children[1].children[0].children[0];
+                if (tableData.textContent != null && tableData.textContent.toLowerCase() == "exp") {
+                    const name: string | null = findAbilityName(parent, i);
                     if (name == null) {
                         throw new Error("unable to find title");
                     }
                     try {
-                        const requirements: string = findRequirements(parent, i);
+                        const requirements: string|null = findRequirements(parent, i);
                         const ability: BaseAbility = parseAbility(name, requirements, child);
                         results.push(ability);
                     } finally {
@@ -78,7 +80,7 @@ function findAbilityName(parent: Element, beforeIndex: number): string|null {
             if (child.tagName.toLowerCase() == "table") {
                 return null;
             }
-            if (child.textContent.length > 0 && !child.textContent.startsWith("Requires")) {
+            if (child.textContent != null && child.textContent.length > 0 && !child.textContent.startsWith("Requires")) {
                 return child.textContent;
             }
             const maybeResult = findAbilityName(child, child.children.length);
@@ -86,14 +88,14 @@ function findAbilityName(parent: Element, beforeIndex: number): string|null {
                 return maybeResult;
             }
         } catch (e) {
-            clarifyError(e, "while processisng child " + i + " of " + parent.tagName);
+            clarifyError(e, "while processing child " + i + " of " + parent.tagName);
         }
     }
     return null;
 }
 
-function findRequirements(parent: Element, beforeIndex: number): string {
-    while (beforeIndex == 0) {
+function findRequirements(parent: Element, beforeIndex: number): string|null {
+    while (beforeIndex == 0 && parent.parentElement != null) {
         const firstParent = parent;
         parent = parent.parentElement;
         beforeIndex = 0;
@@ -106,7 +108,7 @@ function findRequirements(parent: Element, beforeIndex: number): string {
             if (child.tagName.toLowerCase() == "table") {
                 return null;
             }
-            if (child.textContent.length > 0) {
+            if (child.textContent != null && child.textContent.length > 0) {
                 if (child.textContent.startsWith("Requires")) {
                     return child.textContent;
                 }
@@ -123,7 +125,7 @@ function findRequirements(parent: Element, beforeIndex: number): string {
     return null;
 }
 
-function parseAbility(name: string, requirements: string, table: Element): BaseAbility {
+function parseAbility(name: string, requirements: string|null, table: Element): BaseAbility {
     try {
         console.log("creating " + name);
         const expCell: Element = table.children[1].children[1].children[0];
@@ -140,75 +142,76 @@ function parseAbility(name: string, requirements: string, table: Element): BaseA
         const time = parseTime(timeCell);
         const tags = parseTags(tagsCell);
         const roll = parseRoll(rollCell);
-        const difficulty = parseInt(difficultyCell.textContent) || 0;
-        const augment = parseInt(augmentCell.textContent) || 0;
-        const target = targettingCell.textContent;
-        const effect = effectCell.textContent;
-        const availability = availabilityCell.textContent;
+        const difficulty = parseInt(difficultyCell.textContent || "0") || 0;
+        const augment = parseInt(augmentCell.textContent || "0") || 0;
+        const target = targettingCell.textContent || "";
+        const effect = effectCell.textContent || "";
+        const availability = availabilityCell.textContent || "";
         const result = new BaseAbility(name, requirements_, cost, time, tags, roll, difficulty, augment, target, effect, availability);
         return result;
     } catch (e) {
-        clarifyError(e, "while parsing ability " + name);
+        return clarifyError(e, "while parsing ability " + name);
     }
 }
 
 function parseCost(expCell: Element): Cost {
     try {
-        const amount = parseInt(expCell.textContent) || 0;
+        const amount = parseInt(expCell.textContent || "0") || 0;
         const xp = Currency.getCurrency("xp");
-        if (xp == null)
         return new Cost(amount, xp);
     } catch (e) {
-        clarifyError(e, "while parsing cost " + expCell.textContent);
+        return clarifyError(e, "while parsing cost " + expCell.textContent);
     }
 }
 
 function parseTime(timeCell: Element): Cost {
     try {
-        const amount = parseInt(timeCell.textContent) || 0;
+        const amount = parseInt(timeCell.textContent || "0") || 0;
         const xp = Currency.getCurrency("AP");
         return new Cost(amount, xp);
     } catch (e) {
-        clarifyError(e, "while parsing time " + timeCell.textContent);
+        return clarifyError(e, "while parsing time " + timeCell.textContent);
     }
 }
 
 function parseTags(tagsCell: Element): Tag[] {
     try {
-        if (tagsCell.textContent.length == 0) {
+        if (tagsCell.textContent == null || tagsCell.textContent.length == 0) {
             return [];
         }
-        const tagMatches: RegExpMatchArray = tagsCell.textContent.match(/(?:\s*\[([^\]]+)\],?)+/);
+        const tagMatches: RegExpMatchArray | null = tagsCell.textContent.match(/(?:\s*\[([^\]]+)\],?)+/);
+        if (tagMatches == null) throw new Error("Unable to parse tags " + tagsCell.textContent);
         const strings: string[] = tagMatches.slice(1, tagMatches.length - 1);
-        const tags: Tag[] = strings.map(tagByName);
+        const tags: Tag[] = nonNullArray(strings.map(tagByName), "failed to find tags " + tagsCell.textContent);
         return tags;
     } catch (e) {
-        clarifyError(e, "while parsing tags " + tagsCell.textContent);
+        return clarifyError(e, "while parsing tags " + tagsCell.textContent);
     }
 }
 
-function parseRoll(rollCell: Element): Roll {
+function parseRoll(rollCell: Element): Roll|null {
     try {
-        if (rollCell.textContent.length == 0 || rollCell.textContent.toLowerCase() == "n/a") {
+        if (rollCell.textContent == null || rollCell.textContent.length == 0 || rollCell.textContent.toLowerCase() == "n/a") {
             return null;
         }
-        const rollMatches: RegExpMatchArray = rollCell.textContent.match(/\s*([^ +]+)\s*\+\s*([^ +]+)\s*/);
-        const attribute: RankOption = attributeByName(rollMatches[1]);
-        const skill: RankOption = skillByName(rollMatches[2]);
+        const rollMatches: RegExpMatchArray | null = rollCell.textContent.match(/\s*([^ +]+)\s*\+\s*([^ +]+)\s*/);
+        if (rollMatches == null) throw new Error("Unable to parse roll " + rollCell.textContent);
+        const attribute: RankOption = nonNull(attributeByName(rollMatches[1]), "cannot find attribute " + rollMatches[1]);
+        const skill: RankOption = nonNull(skillByName(rollMatches[2]), "cannot find attribute " + rollMatches[2]);
         return new Roll(attribute, skill);
     } catch (e) {
-        clarifyError(e, "while parsing roll " + rollCell.textContent);
+        return clarifyError(e, "while parsing roll " + rollCell.textContent);
     }
 }
 
-function parseRequirements(requirements: string): Requirement {
+function parseRequirements(requirements: string | null): Requirement|null {
     try {
         if (requirements == null || requirements.length == 0) {
             return null;
         }
         console.log(requirements);
         let regex = /Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?/;
-        let requirementMatches: RegExpMatchArray = requirements.match(regex);
+        let requirementMatches: RegExpMatchArray|null = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
@@ -229,31 +232,32 @@ function parseRequirements(requirements: string): Requirement {
         }
         throw new Error("Unable to parse " + requirements);
     } catch (e) {
-        clarifyError(e, "while parsing requirement " + requirements);
+        return clarifyError(e, "while parsing requirement " + requirements);
     }
 }
 
-function createRequirement(name: string, count: number): Requirement {
-    const tag: Tag = tagByName(name);
+function createRequirement(name: string, count: number): Requirement|null {
+    const tag: Tag|undefined = tagByName(name);
     if (tag != undefined) {
         return new TagRequirement(count, tag);
     }
-    const skill: RankOption = skillByName(name);
+    const skill: RankOption | undefined = skillByName(name);
     if (skill != undefined) {
         return new SkillRequirement(skill.getRankForValue(count));
     }
-    const attribute: RankOption = attributeByName(name);
+    const attribute: RankOption | undefined = attributeByName(name);
     if (attribute != undefined) {
         return new AttributeRequirement(attribute.getRankForValue(count));
     }
-    const attunement: RankOption = attunmentByName(name);
+    const attunement: RankOption | undefined = attunmentByName(name);
     if (attunement != undefined) {
         return new AttunementRequirement(attunement.getRankForValue(count));
     }
-    const specialization: RankOption = specializationByName(name);
+    const specialization: RankOption | undefined = specializationByName(name);
     if (specialization != undefined) {
         return new SpecializationRequirement(specialization.getRankForValue(count));
     }
+    return null;
 }
 
 function writeAbilities(abilities: BaseAbility[], output: HTMLElement): void {

@@ -2,7 +2,7 @@
 
 
 export interface ChoiceHost {
-    getOptionName(choice : Choice): string;
+    getOptionName(choice : Choice): string | undefined;
     isSelected(choice: Choice): boolean;
 }
 /**

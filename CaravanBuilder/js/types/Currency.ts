@@ -1,4 +1,6 @@
-﻿
+﻿import { nonNull } from "../util/nonNull.js";
+
+
 /**
  * A category of points that can be earned or spent
  * Cost=5 Xp.  Currency=Xp.
@@ -30,13 +32,13 @@ export class Currency {
 
     setConversions(conversions: Map<Currency, number>) {
         for (let currency of conversions.keys()) {
-            this.conversions.set(currency, conversions.get(currency));
+            this.conversions.set(currency, conversions.get(currency) as number);
         }
     }
 
-    static getCurrency(name: string): Currency { return namedCurrencies.get(name.toLowerCase()); }
+    static getCurrency(name: string): Currency { return nonNull(namedCurrencies.get(name.toLowerCase()), "failed to find currency " + name); }
     static setAlternativeName(alternative: string, formal:string): void { 
-        const currency: Currency  = namedCurrencies.get(formal);
+        const currency: Currency = Currency.getCurrency(formal);
         if (currency == null) 
             throw new Error("Could not find currency " + formal); 
         namedCurrencies.set(alternative, currency);

@@ -25,9 +25,9 @@
  *     at HTMLDivElement.editableDiv.oninput (http://localhost:10202/js/abilityTools.js:11:5)
  *     
  */
-export function clarifyError(e: any, clarification: string) {
-    if (e instanceof Error) {
-        const insertPosition = lastDifferentLineIndex(e.stack, new Error().stack);
+export function clarifyError(e: any, clarification: string): never {
+    if (e instanceof Error && e.stack != null) {
+        const insertPosition = lastDifferentLineIndex(e.stack, new Error().stack as string);
         e.stack = e.stack.substr(0, insertPosition) + "\n" + clarification + e.stack.substr(insertPosition);
     }
     throw e;

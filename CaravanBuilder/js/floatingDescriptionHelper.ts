@@ -96,7 +96,7 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
         child.appendChild(document.createTextNode(choice.getName()));
         searchBox.appendChild(child);
         choiceMap.set(choice.getName(), choice);
-        if (currentChoice == null || currentChoice.getName() == option.getName()) {
+        if (currentChoice == null && choice.getName() == option.getName()) {
             searchBox.value = choice.getName();
             onSearchResults(choice);
         }

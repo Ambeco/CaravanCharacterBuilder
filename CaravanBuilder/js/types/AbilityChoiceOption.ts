@@ -38,13 +38,13 @@ export class AbilityChoiceOption extends ChoiceOption {
         this.effectUiElement = uiElement.children[6].children[0] as HTMLInputElement;
     }
     select(choice: Choice): boolean {
-        if (!super.select(choice)) return;
+        if (!super.select(choice)) return false;
         if (choice != null) {
             const ability: BaseAbility = (choice as AbilityChoice).ability;
-            this.apUiElement.value = ability.time.amount.toString();
-            this.skillUiElement.value = ability.roll.toString();
+            this.apUiElement.value = ability.time != null ? ability.time.amount.toString() : "N/A";
+            this.skillUiElement.value = ability.roll != null ? ability.roll.toString() : "N/A";
             this.rangeUiElement.value = ability.target;
-            this.augmentUiElement.value = ability.augmentSlots.toString();
+            this.augmentUiElement.value = ability.augmentSlots > 0 ? ability.augmentSlots.toString() : "N/A";
             this.effectUiElement.value = ability.effect;
         } else {
             this.apUiElement.value = "";

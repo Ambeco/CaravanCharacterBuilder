@@ -38,7 +38,7 @@
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
-    <TypeScriptStrictNullChecks>False</TypeScriptStrictNullChecks>
+    <TypeScriptStrictNullChecks>True</TypeScriptStrictNullChecks>
     <TypeScriptOutFile>
     </TypeScriptOutFile>
     <TypeScriptOutDir />
@@ -86,7 +86,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="js\data\tagData.ts" />
     <TypeScriptCompile Include="js\tools\abilityTools.ts" />
     <TypeScriptCompile Include="js\data\attributeData.ts" />
     <TypeScriptCompile Include="js\data\backgroundData.ts" />
@@ -95,7 +94,6 @@
     <TypeScriptCompile Include="js\abilitySheetSetup.ts" />
     <TypeScriptCompile Include="js\floatingDescriptionHelper.ts" />
     <TypeScriptCompile Include="js\fastSheetSetup.ts" />
-    <TypeScriptCompile Include="js\types\Tag.ts" />
     <TypeScriptCompile Include="js\types\Augment.ts" />
     <TypeScriptCompile Include="js\types\BaseAbility.ts" />
     <TypeScriptCompile Include="js\types\Accounts.ts" />
@@ -120,6 +118,7 @@
     <TypeScriptCompile Include="js\types\SheetFeature.ts" />
     <TypeScriptCompile Include="js\types\Transaction.ts" />
     <TypeScriptCompile Include="js\types\Wallet.ts" />
+    <TypeScriptCompile Include="js\util\nonNull.ts" />
     <TypeScriptCompile Include="js\util\treeNavigation.ts" />
   </ItemGroup>
   <ItemGroup>

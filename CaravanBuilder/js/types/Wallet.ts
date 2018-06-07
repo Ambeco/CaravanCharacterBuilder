@@ -1,5 +1,6 @@
 ﻿import { Currency } from "./Currency.js";
 import { CurrencyTransaction, CompleteTransaction } from "./Transaction.js";
+import { nonNull } from "../util/nonNull.js";
 
 export interface CurrencyListener {
     (changedCurency: Wallet, transaction: CurrencyTransaction): void;
@@ -16,7 +17,7 @@ export class Wallet {
     private transactions: Array<CurrencyTransaction>;
     private readonly callbacks: Set<CurrencyListener>;
 
-    static getWallet(currency: Currency) { return wallets.get(currency); }
+    static getWallet(currency: Currency): Wallet { return nonNull(wallets.get(currency), "cannot get Wallet for currency " + currency.name); }
 
     constructor(currency: Currency, initialCount: number) {
         this.currency = currency;
