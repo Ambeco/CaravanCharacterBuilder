@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="caravan.css">
     </head>
 <body>
-    <script type="module" src="js/fastSheetSetup.js" async></script>
-    <script type="module" src="js/abilitySheetSetup.js" async></script>
-    <script src="//use.edgefonts.net/stencil-std.js" asyn></script>
+    <script src="scripts/SystemJS/system.js"></script>
+    <script src="caravan.js"></script>
+    <script src="//use.edgefonts.net/stencil-std.js" async></script>
     <div id="sheet">
         <h1 id="caravanHeader">Caravan</h1>
         <div id="expBlock" class="metaItemBlock">
@@ -813,7 +813,7 @@
                 <input class="augmentTags" type="text">
                 <input class="augmentEffects" type="text">
             </div>
-         </div>
+        </div>
         <div id="featureBlock" class="categoryBlock">
             <h2 id="featureHeader">Features</h2>
             <div id="featureList">
@@ -873,5 +873,10 @@
             <li><b>Human Perseverance</b>: You gain +1 maximum resolve</li>
         </ul>
     </div>
+
+    <script async>
+        System.import("fastSheetSetup").catch(function (err) { console.error(err); });
+        System.import("abilitySheetSetup").catch(function (err) { console.error(err); });
+    </script>
 </body>
 </html>

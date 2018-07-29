@@ -34,13 +34,12 @@
     <WarningLevel>4</WarningLevel>
     <TypeScriptTarget>ES2015</TypeScriptTarget>
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptModuleKind>System</TypeScriptModuleKind>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>True</TypeScriptNoImplicitAny>
     <TypeScriptRemoveComments>True</TypeScriptRemoveComments>
     <TypeScriptStrictNullChecks>True</TypeScriptStrictNullChecks>
-    <TypeScriptOutFile>
-    </TypeScriptOutFile>
+    <TypeScriptOutFile>caravan.js</TypeScriptOutFile>
     <TypeScriptOutDir />
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
     <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
@@ -82,7 +81,12 @@
     <Content Include="caravan.css" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
+    <Content Include="scripts\SystemJS\system-production.js" />
+    <Content Include="scripts\SystemJS\system-production.src.js" />
+    <Content Include="scripts\SystemJS\system.js" />
+    <Content Include="scripts\SystemJS\system.src.js" />
     <Content Include="tools\abilities.html" />
+    <Content Include="tools\specializations.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

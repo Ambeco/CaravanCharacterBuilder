@@ -1,0 +1,304 @@
+﻿<span id="docs-internal-guid-b033dc4b-1040-5f9a-a7c6-850f15827b51">
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:3pt;">
+    <span style="font-size: 26pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      :Martial:
+    </span>
+  </p>
+  <h2 dir="ltr" style="line-height:1.38;margin-top:18pt;margin-bottom:6pt;">
+    <span style="font-size: 16pt; font-family: Arial; font-weight: 400; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Defender [Tank]
+    </span>
+  </h2>
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;">
+    <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      1: Shield Mastery - Shields you wear gain +1 damage and the Concussive property. Shields also lose the unwieldy property. In addition, you gain a list of augments that you can apply to the ability,
+    </span>
+    <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Taunt.
+    </span>
+  </p>
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+    <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Taunt Augments
+    </span>
+  </p>
+  <div dir="ltr" style="margin-left:0pt;">
+    <table style="border:none;border-collapse:collapse">
+      <colgroup>
+        <col width="83" />
+        <col width="104" />
+        <col width="437" />
+      </colgroup>
+      <tbody>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Augment Cost
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Name
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Effect
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Cower
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Targets affected by your
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Taunt
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                deal 3 less damage with all of their attacks. This augment can be applied multiple times.
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Punishment
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                If any target affected by your
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Taunt
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                attacks one of your allies, you may immediately perform a [Basic] ability for no AP cost.
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Presence
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                The duration of
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Taunt
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                is doubled. This augment can be applied multiple times.
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                All Alone
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Targets affected by your
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Taunt
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                cannot benefit from any bonuses gained from having nearby allies and cannot help make a target be flanked.
+              </span>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br />
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;">
+    <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      2: Dauntless - You gain an extra 2 AP each turn that can only be spent on [Out-of-Turn] actions. In addition, you gain +2 titan soak. Soak from armor you wear is doubled.
+    </span>
+  </p>
+  <br />
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;">
+    <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      3: True Defender -
+    </span>
+    <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Taunt’s
+    </span>
+    <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      range is increased by 30’ and can affect a number of additional creatures equal to your ranks in intimidate. In addition, you gain a list of augments you can apply to the ability,
+    </span>
+    <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Intercept.
+    </span>
+  </p>
+  <br />
+  <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+    <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+      Intercept Augments
+    </span>
+  </p>
+  <div dir="ltr" style="margin-left:0pt;">
+    <table style="border:none;border-collapse:collapse">
+      <colgroup>
+        <col width="86" />
+        <col width="116" />
+        <col width="423" />
+      </colgroup>
+      <tbody>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Augment Cost
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Name
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Effect
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Quickened Interception
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Intercept
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                costs no AP
+              </span>
+            </p>
+          </td>
+        </tr>
+        <tr style="height:0pt">
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                1
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Deadly Interception
+              </span>
+            </p>
+          </td>
+          <td style="border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;">
+            <p dir="ltr" style="line-height:1.2;margin-top:0pt;margin-bottom:0pt;">
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Directly after using
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Intercept,
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                you may perform a [Basic] ability for 2 less AP cost. The target of the ability must be the target of
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Intercept.
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                The [Basic] ability and
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-style: italic; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                Intercept
+              </span>
+              <span style="font-size: 12pt; font-family: Arial; font-variant-numeric: normal; font-variant-east-asian: normal; vertical-align: baseline; white-space: pre-wrap;">
+                are considered to be one action.
+              </span>
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br />
+</span>
