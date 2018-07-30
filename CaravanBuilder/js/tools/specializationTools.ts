@@ -22,7 +22,7 @@ import { SheetFeature } from "../types/SheetFeature.js";
 const editableDiv: HTMLElement = nonNull(document.getElementById('editableDiv'), "cannot find editableDiv") as HTMLElement;
 const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "cannot find editableDiv") as HTMLElement;
 
-const atunementMap: Map<string, RankOption[]> = new Map<string, RankOption[]>();
+const attunementMap: Map<string, RankOption[]> = new Map<string, RankOption[]>();
 let currentAttunementName: string = "Uninitialized";
 let currentSpecializationName: string | null = null;
 let currentSpecializationRequirements: Requirement | null = null;
@@ -45,15 +45,12 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 
 editableDiv.oninput = function () {
     console.log(editableDiv.innerHTML);
-    const attunements: RankOption[] = new Array<RankOption>();
     next(editableDiv);
     finishSpecialization();
-    //writeSpecializations(attunements, resultDiv);
-    //editableDiv.style.display = "none";
-    //resultDiv.style.display = "block";
+    writeSpecializations(attunementMap, resultDiv);
+    editableDiv.style.display = "none";
+    resultDiv.style.display = "block";
 }
-
-
 
 function next(parent: HTMLElement): void {
     const childCount: number = parent.childNodes.length;
@@ -116,7 +113,7 @@ function processText(text: string, style: CSSStyleDeclaration): void {
 function processAttunement(text: string): void {
     finishSpecialization();
     currentAttunementName = nonNull(text.match(/:([^:]+):/), "could not parse name from " + text)[1].trim();
-    atunementMap.set(currentAttunementName, [])
+    attunementMap.set(currentAttunementName, [])
     console.log("starting attunement " + currentAttunementName);
 }
 
@@ -139,6 +136,7 @@ function processNewRank(text: string): void {
 
 function finishRank() {
     if (currentRankName != null) {
+        console.log("ending rank " + currentRankName);
         currentRanks.push(new Rank(currentRanks.length + 1, currentRankName, currentRankDescription, null, new Set<Augment>(currentAugments)));
         currentAugments = [];
         currentRankDescription = "";
@@ -149,8 +147,9 @@ function finishRank() {
 function finishSpecialization() {
     finishRank();
     if (currentSpecializationName != null) {
+        console.log("ending specialization " + currentSpecializationName);
         const specialization = new RankOption(currentSpecializationName, specializationCategory, currentRanks, currentSpecializationDescription || currentSpecializationName);
-        nonNull(atunementMap.get(currentAttunementName), "cant find atunement " + currentAttunementName).push(specialization);
+        nonNull(attunementMap.get(currentAttunementName), "cant find atunement " + currentAttunementName).push(specialization);
         currentRanks = [];
         currentSpecializationName = null;
         currentSpecializationDescription = null;
@@ -188,21 +187,40 @@ function parseAugments(table: HTMLTableElement): void {
     }
 }
 
-function writeSpecialization(specialization: RankOption): string {
-    let result: string = "export const " + toCamelCase("specialization " + specialization.name) + ": RankOption = new RankOption(\"" + specialization.name + "\",\n\t";
-    /*    result += (ability.requirements ? ability.requirements.toTypeScript() : null) + ",\n\t";
-        result += (ability.cost ? ability.cost.toTypeScript() : null) + ",\n\t";
-        result += (ability.time ? ability.time.toTypeScript() : null) + ",\n\t";
-        result += "[";
-        for (let tag in ability.tags) {
-            result += "\"" + tag + "\", ";
+function writeSpecializations(attunementMap: Map<string, RankOption[]>, output: HTMLElement) {
+    let body: string = "<pre>";
+    for (let attunement of attunementMap) {
+        for (let specialization of attunement[1]) {
+            try {
+                body += writeSpecialization(specialization);
+            } catch (e) {
+                clarifyError(e, "while writing specialization " + specialization.name);
+            }
         }
-        result += "],\n\t";
-        result += (ability.roll ? ability.roll.toTypeScript() : null) + ",\n\t";
-        result += ability.difficulty + ",\n\t"
-            + ability.augmentSlots + ",\n\t"
-            + "\"" + ability.target + "\",\n\t"
-            + "\"" + ability.effect + "\",\n\t"
-            + "\"" + ability.availability + "\");\n";*/
+    }
+    body += "export const specializations: RankOption[] = [\n";
+    for (let attunement of attunementMap) {
+        for (let specialization of attunement[1]) {
+            body += "\t" + toCamelCase("specialization " + specialization.name) + ",\n";
+        }
+    }
+    body += "];</pre>";
+    output.innerHTML += body;
+}
+
+function writeSpecialization(specialization: RankOption): string {
+    let result: string = "";
+    for (let rank of specialization.getRanks()) {
+        if (rank.getAugments().size > 0) {
+            result += rank.augmentsToTypeScript();
+        }
+    }
+    result += "export const " + toCamelCase("specialization " + specialization.name) + ": RankOption = new RankOption(\"" + specialization.name + "\", specializationCategory\n\t";
+    result += "[\n\t";
+    for (let rank of specialization.getRanks()) {
+        result += "\t" + rank.toTypeScript() + "\n]\t"
+    }
+    result += "],\n\t";
+    result += "\"" + specialization.getDescription() + "\");\n\n";
     return result;
 }

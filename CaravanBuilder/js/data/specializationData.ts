@@ -4,7 +4,7 @@ import { RankOption } from "../types/RankOption.js";
 
 
 const specializationCategory: OptionCategory = new OptionCategory("Specializations",
-    "<p>blah blah</p>");
+    "<p>Ways to specialize your character and abilities</p>");
 
 //TODO: Rank as a Sheet Feature.
 //TODO: Add Augments

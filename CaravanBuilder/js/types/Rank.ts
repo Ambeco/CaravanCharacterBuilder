@@ -1,5 +1,6 @@
 ﻿import { SheetFeature } from "./SheetFeature.js";
 import { AugmentSource, Augment } from "./Augment.js";
+import { toCamelCase } from "../util/Camelcase";
 
 
 export interface RankHost {
@@ -36,6 +37,7 @@ export class Rank implements AugmentSource {
     getValue(): number { return this.value; }
     getDescription(): string { return this.description; }
     getSheetFeatureSourceName(): string { return this.rankOption.name + ": " + name; }
+    getAugments(): Set<Augment> { return this.augments; }
     clone(): Rank {
         return new Rank(this.value,
             this.name,
@@ -58,6 +60,28 @@ export class Rank implements AugmentSource {
     isSelected(): boolean { return this.rankOption.getSelection() === this; }
     onDeselect() { }
     onSelect() { }
+
+    public toString(): string {
+        return this.name;
+    }
+    public toTypeScript(): string {
+        let result = "new Rank(" + this.value + ", \"" + this.name + "\", \"" + this.description + "\", null, ";
+        if (this.augments.size == 0) {
+            result += "null";
+        } else {
+            result += toCamelCase("augmentSet " + this.rankOption.name + " " + this.name);
+        }
+        result += ");";
+        return result;
+    }
+    public augmentsToTypeScript(): string {
+        let result: string = "export const " + toCamelCase("augment set " + this.rankOption.name + " " + this.name) + ": Set<Augment> = new Set<Augment>([\n\t";
+        for (let augment of this.augments) {
+            result += augment.toTypeScript() + ",\n\t";
+        }
+        result += "],\n";
+        return result;
+    }
 }
 function duplicateFeatureSet(features: Set<SheetFeature>): Set<SheetFeature> {
     const result = new Set<SheetFeature>();

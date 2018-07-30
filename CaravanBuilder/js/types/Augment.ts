@@ -19,4 +19,11 @@ export class Augment {
     public setAugmentSource(source: AugmentSource): void {
         this.source = source;
     }
+
+    public toString(): string {
+        return this.name;
+    }
+    public toTypeScript(): string {
+        return "new Augment(\"" + this.name + "\", " + this.cost.toTypeScript() + ", \"" + this.effect + "\")";
+    }
 }

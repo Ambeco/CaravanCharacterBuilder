@@ -57,6 +57,7 @@ export class RankOption {
     getDescription(): string { return this.description; }
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
+    getRanks(): Rank[] { return this.ranks; }
 
     getRankForValue(value: number): Rank {
         for (let rank of this.ranks) {
