@@ -3,6 +3,7 @@ import { RankOption } from "./RankOption.js";
 import { Rank, RankHost } from "./Rank.js";
 import { toCamelCase } from "../util/Camelcase.js";
 import { Tag } from "./Tag.js";
+import { Ability } from "./Ability";
 
 
 
@@ -55,6 +56,25 @@ export class TagRequirement implements Requirement {
 
     toTypeScript(): string {
         return "new TagRequirement(\'" + this.amount + ",getTagByName(\"" + this.tag.name + "\"))";
+    }
+}
+
+/**
+ * The prerequirement of an Ability
+ * When the user selects the choice/rank, they do not lose any of that currency
+ */
+export class AbilityRequirement implements Requirement {
+    public readonly ability: Ability;
+
+    constructor(ability: Ability) {
+        this.ability = ability;
+    }
+    getAbility(): Ability { return this.ability; }
+
+    toString() { return "Requires the ability " + this.ability; }
+
+    toTypeScript(): string {
+        return "new AbilityRequirement(ability" + toCamelCase(this.ability.name) + ")";
     }
 }
 

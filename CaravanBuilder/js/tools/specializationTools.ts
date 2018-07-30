@@ -9,7 +9,7 @@ import { toCamelCase } from "./../util/Camelcase.js";
 import { Requirement, RankRequirement, SpecializationRequirement, AttunementRequirement, AttributeRequirement, SkillRequirement, TagRequirement } from "../types/Requirement.js";
 import { Rank } from "../types/Rank.js";
 import { attunmentByName } from "../data/attunementData.js";
-import { specializationByName } from "../data/specializationData.js";
+import { specializationByName, specializations } from "../data/specializationData.js";
 import { tagByName } from "../data/tagData.js";
 import { Tag } from "../types/Tag.js";
 import { nonNull, nonNullArray } from "../util/nonNull.js";
@@ -22,7 +22,7 @@ import { SheetFeature } from "../types/SheetFeature.js";
 const editableDiv: HTMLElement = nonNull(document.getElementById('editableDiv'), "cannot find editableDiv") as HTMLElement;
 const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "cannot find editableDiv") as HTMLElement;
 
-const attunementMap: Map<string, RankOption[]> = new Map<string, RankOption[]>();
+const attunementMap: Map<string, RankOption[]> = new Map<string, RankOption[]>([["Uninitialized",new Array<RankOption>()]]);
 let currentAttunementName: string = "Uninitialized";
 let currentSpecializationName: string | null = null;
 let currentSpecializationRequirements: Requirement | null = null;
@@ -31,6 +31,24 @@ let currentRanks: Rank[] = [];
 let currentRankName: string | null = null;
 let currentRankDescription: string = "";
 let currentAugments: Augment[] = [];
+
+let lastSpecializationName: string = "Uninitialized";
+let lastRankName: string = "Uninitialized";
+
+function reset(): void {
+    attunementMap.clear();
+    attunementMap.set("Uninitialized", []);
+    currentAttunementName = "Uninitialized";
+    currentSpecializationName = null;
+    currentSpecializationRequirements = null;
+    currentSpecializationDescription = null;
+    currentRanks = [];
+    currentRankName = null;
+    currentRankDescription = "";
+    currentAugments = [];
+    lastSpecializationName = "Uninitialized";
+    lastRankName = "Uninitialized";
+}
 
 const specializationCategory: OptionCategory = new OptionCategory("Specializations", "Ways to specialize your character and abilities");
 
@@ -44,7 +62,7 @@ window.onerror = function (msg, url, lineNo, columnNo, error) {
 }
 
 editableDiv.oninput = function () {
-    console.log(editableDiv.innerHTML);
+    reset();
     next(editableDiv);
     finishSpecialization();
     writeSpecializations(attunementMap, resultDiv);
@@ -61,11 +79,11 @@ function next(parent: HTMLElement): void {
                 processText(nonNull(child.textContent, "text is null").trim(), window.getComputedStyle(parent));
             } else if (child instanceof HTMLElement) {
                 const childElement = child as HTMLElement;
-                console.log(childElement.tagName);
                 if (childElement.tagName.toLowerCase() == "br") {
-                    console.log("skipping br");
                     continue;
-                } else if (["p", "span", "h2", "div", "b", "i"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
+                } else if (["p", "span", "h2"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
+                    processText(nonNull(child.textContent, "text is null").trim(), window.getComputedStyle(child));
+                } else if (["b", "div"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
                     next(child as HTMLElement);
                 } else if (childElement.tagName.toLocaleLowerCase() == "table") {
                     parseAugments(child as HTMLTableElement);
@@ -74,10 +92,14 @@ function next(parent: HTMLElement): void {
                 }
             } 
         } catch (e) {
-            const errMsg = "while processing child " + i + " of " + parent.tagName
-                + " after attunement " + currentAttunementName
-                + " after specialization " + (currentSpecializationName || "null")
-                + " after rank " + (currentRankName || "null");
+            let errMsg = "while processing child " + i + " of " + parent.tagName;
+            if (currentRankName != null) {
+                errMsg += " which is Rank " + currentRankName + " of Specialization " + currentSpecializationName;
+            } else if (currentSpecializationName) {
+                errMsg += " which is inside Specialization " + currentSpecializationName + " after Rank " + lastRankName;
+            } else {
+                errMsg += " which is after Specialization " + lastSpecializationName;
+            }
             clarifyError(e, errMsg);
         }
     }
@@ -90,16 +112,15 @@ function processText(text: string, style: CSSStyleDeclaration): void {
     }
     try {
         const fontSize = style.getPropertyValue('font-size');
-        if (fontSize == "26pt" || fontSize == "34.66px") {
+        if (text.match(/:([^:]+):/)) {
             processAttunement(text);
-        } else if (fontSize == "16pt" || fontSize == "21.33px") {
+        } else if (fontSize == "24px" || fontSize == "21.33px") {
             processSpecializationName(text);
         } else if (text.match(/\s*\d:\s[^-]+\s-\s/)) {
             processNewRank(text);
         } else if (text.match(/\((Requires[^\)]+)\)/)) {
             currentSpecializationRequirements = parseRequirements(text);
         } else if (style.getPropertyValue('text-align') == "center") {
-            console.log("skipping augment title " + text);
             return; // Augments title. skip
         } else {
             if (currentRankDescription == null) throw new Error("cannot process details '" + text + "' without a rank");
@@ -119,9 +140,9 @@ function processAttunement(text: string): void {
 
 function processSpecializationName(text: string): void {
     finishSpecialization();
-    const match = nonNull(text.match(/([^\[]+)(.+)/), "could not parse name from " + text);
+    const match = nonNull(text.match(/([^\[]+)(\[.+)?/), "could not parse name from " + text);
     currentSpecializationName = match[1].trim();
-    currentSpecializationDescription = match[2].trim();
+    currentSpecializationDescription = (match[2] || "").trim();
     console.log("starting specialization " + currentSpecializationName);
 }
 
@@ -136,7 +157,7 @@ function processNewRank(text: string): void {
 
 function finishRank() {
     if (currentRankName != null) {
-        console.log("ending rank " + currentRankName);
+        lastRankName = currentRankName;
         currentRanks.push(new Rank(currentRanks.length + 1, currentRankName, currentRankDescription, null, new Set<Augment>(currentAugments)));
         currentAugments = [];
         currentRankDescription = "";
@@ -147,9 +168,11 @@ function finishRank() {
 function finishSpecialization() {
     finishRank();
     if (currentSpecializationName != null) {
-        console.log("ending specialization " + currentSpecializationName);
+        lastSpecializationName = currentSpecializationName;
+        lastRankName = "Uninitialized";
         const specialization = new RankOption(currentSpecializationName, specializationCategory, currentRanks, currentSpecializationDescription || currentSpecializationName);
         nonNull(attunementMap.get(currentAttunementName), "cant find atunement " + currentAttunementName).push(specialization);
+        specializations.push(specialization);
         currentRanks = [];
         currentSpecializationName = null;
         currentSpecializationDescription = null;

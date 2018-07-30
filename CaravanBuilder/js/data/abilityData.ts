@@ -2096,3 +2096,12 @@ export const abilities: Ability[] = [
     abilityPsiTools,
     abilityPsiBlades,
 ];
+
+export function abilityByName(name: string): Ability | undefined {
+    for (let ability of abilities) {
+        if (ability.name == name) {
+            return ability;
+        }
+    }
+    return undefined;
+}

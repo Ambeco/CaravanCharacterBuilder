@@ -1,4 +1,4 @@
-﻿import { Requirement, TagRequirement, SkillRequirement, AttributeRequirement, AttunementRequirement, SpecializationRequirement } from "../types/Requirement";
+﻿import { Requirement, TagRequirement, SkillRequirement, AttributeRequirement, AttunementRequirement, SpecializationRequirement, AbilityRequirement } from "../types/Requirement";
 import { tagByName } from "../data/tagData.js";
 import { RankOption } from "../types/RankOption.js";
 import { skillByName } from "../data/skillData.js";
@@ -7,6 +7,8 @@ import { attunmentByName } from "../data/attunementData.js";
 import { attributeByName } from "../data/attributeData.js";
 import { clarifyError } from "../util/ClarifyError.js";
 import { Tag } from "../types/Tag.js";
+import { abilityByName } from "../data/abilityData";
+import { Ability } from "../types/Ability";
 
 
 
@@ -16,7 +18,7 @@ export function parseRequirements(requirements: string | null): Requirement | nu
             return null;
         }
         console.log(requirements);
-        let regex = /Requires (?:at least |a total of )?(\d+) ranks in ([^ ]+) (?:to purchase)?/;
+        let regex = /Requires (?:at least |a total of )?(\d+) ranks?(?: in| of) (.+?)(?: to purchase)?/;
         let requirementMatches: RegExpMatchArray | null = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
@@ -31,10 +33,15 @@ export function parseRequirements(requirements: string | null): Requirement | nu
         if (requirementMatches != null && requirementMatches.length > 1) {
             return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
         }
+        regex = /Requires the ability,? (.+)/;
+        requirementMatches = requirements.match(regex);
+        if (requirementMatches != null && requirementMatches.length > 1) {
+            return createRequirement(requirementMatches[1], 1);
+        }
         regex = /Requires you to know (.+?) before you can purchase/;
         requirementMatches = requirements.match(regex);
         if (requirementMatches != null && requirementMatches.length > 1) {
-            return createRequirement(requirementMatches[2], parseInt(requirementMatches[1]) || 0);
+            return createRequirement(requirementMatches[1], 1);
         }
         throw new Error("Unable to parse " + requirements);
     } catch (e) {
@@ -58,6 +65,10 @@ function createRequirement(name: string, count: number): Requirement | null {
     const attunement: RankOption | undefined = attunmentByName(name);
     if (attunement != undefined) {
         return new AttunementRequirement(attunement.getRankForValue(count));
+    }
+    const ability: Ability | undefined = abilityByName(name);
+    if (ability != undefined) {
+        return new AbilityRequirement(ability);
     }
     const specialization: RankOption | undefined = specializationByName(name);
     if (specialization != undefined) {
