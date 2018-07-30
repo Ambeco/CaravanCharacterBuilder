@@ -9,6 +9,7 @@ export interface RankHost {
 /**
  * A single possibility of a number field of a form.
  * RankOption=Strength. Rank=4.
+ * TODO: Add costs/requirements
  */
 export class Rank implements AugmentSource {
     public readonly name: string;
