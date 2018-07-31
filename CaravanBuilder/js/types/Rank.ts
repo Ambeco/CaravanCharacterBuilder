@@ -69,9 +69,9 @@ export class Rank implements AugmentSource {
         if (this.augments.size == 0) {
             result += "null";
         } else {
-            result += toCamelCase("augmentSet " + this.rankOption.name + " " + this.name);
+            result += toCamelCase("augment Set " + this.rankOption.name + " " + this.name);
         }
-        result += ");";
+        result += ")";
         return result;
     }
     public augmentsToTypeScript(): string {
@@ -79,7 +79,7 @@ export class Rank implements AugmentSource {
         for (let augment of this.augments) {
             result += augment.toTypeScript() + ",\n\t";
         }
-        result += "],\n";
+        result += "]);\n";
         return result;
     }
 }

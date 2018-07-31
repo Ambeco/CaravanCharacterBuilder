@@ -83,10 +83,19 @@ function next(parent: HTMLElement): void {
                     continue;
                 } else if (["p", "span", "h2"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
                     processText(nonNull(child.textContent, "text is null").trim(), window.getComputedStyle(child));
-                } else if (["b", "div"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
+                } else if (["b", "div", "hr"].indexOf(childElement.tagName.toLowerCase()) >= 0) {
                     next(child as HTMLElement);
                 } else if (childElement.tagName.toLocaleLowerCase() == "table") {
-                    parseAugments(child as HTMLTableElement);
+                    if (currentRankName == null)
+                        throw new Error("cannot process table without a rank");
+                    const table = child as HTMLTableElement;
+                    const isAugment = looksLikeAugments(table);
+                    if (isAugment[0])
+                        parseAugments(table);
+                    else {
+                        console.log("table doesnt look like augment, passed as description of " + currentRankName);
+                        currentRankDescription += " " + table.outerHTML;
+                    }
                 } else {
                     throw new Error("unknown element type " + childElement.tagName);
                 }
@@ -112,13 +121,13 @@ function processText(text: string, style: CSSStyleDeclaration): void {
     }
     try {
         const fontSize = style.getPropertyValue('font-size');
-        if (text.match(/:([^:]+):/)) {
+        if (text.match(/^:([^:]{3,25}):$/)) {
             processAttunement(text);
         } else if (fontSize == "24px" || fontSize == "21.33px") {
             processSpecializationName(text);
-        } else if (text.match(/\s*\d:\s[^-]+\s-\s/)) {
+        } else if (text.match(/^\s*\d:\s[^-]+\s-\s/)) {
             processNewRank(text);
-        } else if (text.match(/\((Requires[^\)]+)\)/)) {
+        } else if (text.match(/^\((Requires[^\)]+)\)$/)) {
             currentSpecializationRequirements = parseRequirements(text);
         } else if (style.getPropertyValue('text-align') == "center") {
             return; // Augments title. skip
@@ -133,7 +142,7 @@ function processText(text: string, style: CSSStyleDeclaration): void {
 
 function processAttunement(text: string): void {
     finishSpecialization();
-    currentAttunementName = nonNull(text.match(/:([^:]+):/), "could not parse name from " + text)[1].trim();
+    currentAttunementName = nonNull(text.match(/^:([^:]{3,25}):$/), "could not parse name from " + text)[1].trim();
     attunementMap.set(currentAttunementName, [])
     console.log("starting attunement " + currentAttunementName);
 }
@@ -149,7 +158,7 @@ function processSpecializationName(text: string): void {
 function processNewRank(text: string): void {
     finishRank();
     if (currentSpecializationName == null) throw new Error("cannot process rank '" + text + "' without a specialization");
-    const matcher = nonNull(text.match(/\s*\d:\s([^-]+)\s-\s(.*)/), "could not parse rank");
+    const matcher = nonNull(text.match(/^\s*\d:\s([^-]+)\s-\s(.*)/), "could not parse rank");
     currentRankName = matcher[1];
     currentRankDescription = matcher[2];
     console.log("starting rank " + currentRankName);
@@ -179,20 +188,24 @@ function finishSpecialization() {
     }
 }
 
-function parseAugments(table: HTMLTableElement): void {
+function looksLikeAugments(table: HTMLTableElement): [boolean, string] {
     try {
-        if (currentRankName == null) throw new Error("cannot process augment without a rank");
-        if (table.tagName.toLocaleLowerCase() != "table") throw new Error("expected table element");
-        if (table.children[0].tagName.toLocaleLowerCase() != "colgroup") throw new Error("expected colgroup element");
-        if (table.children[1].tagName.toLocaleLowerCase() != "tbody") throw new Error("expected tbody element");
-        if (table.children[1].children[0].tagName.toLocaleLowerCase() != "tr") throw new Error("expected tr element");
+        if (table.tagName.toLocaleLowerCase() != "table") return [false, "expected table element"];
+        if (table.children[0].tagName.toLocaleLowerCase() != "colgroup") return [false, "expected colgroup element"];
+        if (table.children[1].tagName.toLocaleLowerCase() != "tbody") return [false, "expected tbody element"];
+        if (table.children[1].children[0].tagName.toLocaleLowerCase() != "tr") return [false, "expected tr element"];
         let row = table.children[1].children[0] as HTMLTableRowElement;
-        if (row.children[0].textContent != "Augment Cost") throw new Error("expected 'Augment Cost', got '" + row.children[0].textContent + "' instead");
-        if (row.children[1].textContent != "Name") throw new Error("expected 'Name', got '" + row.children[0].textContent + "' instead");
-        if (row.children[2].textContent != "Effect") throw new Error("expected 'Effect', got '" + row.children[0].textContent + "' instead");
+        if (row.children[0].textContent != "Augment Cost") return [false, "expected 'Augment Cost', got '" + row.children[0].textContent + "' instead"];
+        if (row.children[1].textContent != "Name") return [false, "expected 'Name', got '" + row.children[0].textContent + "' instead"];
+        if (row.children[2].textContent != "Effect") return [false, "expected 'Effect', got '" + row.children[0].textContent + "' instead"];
     } catch (e) {
         clarifyError(e, "while processing augment table of rank " + currentRankName);
     }
+    return [true, ""];
+}
+
+function parseAugments(table: HTMLTableElement): void {
+    if (currentRankName == null) throw new Error("cannot process augment without a rank");
     for (let i = 1; i < table.children[1].children.length; i++) {
         let name: string|null = null;
         try {
@@ -211,7 +224,7 @@ function parseAugments(table: HTMLTableElement): void {
 }
 
 function writeSpecializations(attunementMap: Map<string, RankOption[]>, output: HTMLElement) {
-    let body: string = "<pre>";
+    let body: string = "";
     for (let attunement of attunementMap) {
         for (let specialization of attunement[1]) {
             try {
@@ -227,8 +240,8 @@ function writeSpecializations(attunementMap: Map<string, RankOption[]>, output: 
             body += "\t" + toCamelCase("specialization " + specialization.name) + ",\n";
         }
     }
-    body += "];</pre>";
-    output.innerHTML += body;
+    body += "];"
+    output.innerHTML = "<pre>" + escapeHTML(body) + "</pre>";
 }
 
 function writeSpecialization(specialization: RankOption): string {
@@ -238,12 +251,19 @@ function writeSpecialization(specialization: RankOption): string {
             result += rank.augmentsToTypeScript();
         }
     }
-    result += "export const " + toCamelCase("specialization " + specialization.name) + ": RankOption = new RankOption(\"" + specialization.name + "\", specializationCategory\n\t";
+    result += "export const " + toCamelCase("specialization " + specialization.name) + ": RankOption = new RankOption(\"" + specialization.name + "\", specializationCategory,\n\t";
     result += "[\n\t";
     for (let rank of specialization.getRanks()) {
-        result += "\t" + rank.toTypeScript() + "\n]\t"
+        result += "\t" + rank.toTypeScript() + ",\n\t"
     }
     result += "],\n\t";
     result += "\"" + specialization.getDescription() + "\");\n\n";
     return result;
+}
+
+const replacements: Map<string,string> = new Map<string,string>([["<", "&lt;"], [">", "&gt;"], ["&", "&amp;"], ["\"", "&quot;"]]);
+function escapeHTML(text: string): string {
+    return text.replace(/[<>&"]/g, function (character) {
+        return replacements.get(character) || character;
+    });
 }
