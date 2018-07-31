@@ -19,13 +19,14 @@ import { Augment } from "../types/Augment.js";
 import { currencyAp } from "../data/currencyData.js";
 import { SheetFeature } from "../types/SheetFeature.js";
 
+const instructions: HTMLElement = nonNull(document.getElementById('instructions'), "cannot find instructions") as HTMLElement;
 const editableDiv: HTMLElement = nonNull(document.getElementById('editableDiv'), "cannot find editableDiv") as HTMLElement;
 const resultDiv: HTMLElement = nonNull(document.getElementById('resultDiv'), "cannot find editableDiv") as HTMLElement;
 
 const attunementMap: Map<string, RankOption[]> = new Map<string, RankOption[]>([["Uninitialized",new Array<RankOption>()]]);
 let currentAttunementName: string = "Uninitialized";
 let currentSpecializationName: string | null = null;
-let currentSpecializationRequirements: Requirement | null = null;
+let currentSpecializationRequirements: Requirement[] = [];
 let currentSpecializationDescription: string | null = null;
 let currentRanks: Rank[] = [];
 let currentRankName: string | null = null;
@@ -40,7 +41,7 @@ function reset(): void {
     attunementMap.set("Uninitialized", []);
     currentAttunementName = "Uninitialized";
     currentSpecializationName = null;
-    currentSpecializationRequirements = null;
+    currentSpecializationRequirements = [];
     currentSpecializationDescription = null;
     currentRanks = [];
     currentRankName = null;
@@ -67,6 +68,7 @@ editableDiv.oninput = function () {
     finishSpecialization();
     writeSpecializations(attunementMap, resultDiv);
     editableDiv.style.display = "none";
+    instructions.style.display = "none";
     resultDiv.style.display = "block";
 }
 
@@ -128,7 +130,10 @@ function processText(text: string, style: CSSStyleDeclaration): void {
         } else if (text.match(/^\s*\d:\s[^-]+\s-\s/)) {
             processNewRank(text);
         } else if (text.match(/^\((Requires[^\)]+)\)$/)) {
-            currentSpecializationRequirements = parseRequirements(text);
+            const requirement = parseRequirements(text);
+            if (requirement != null) {
+                currentSpecializationRequirements.push(requirement);
+            }
         } else if (style.getPropertyValue('text-align') == "center") {
             return; // Augments title. skip
         } else {
