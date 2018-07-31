@@ -65,7 +65,7 @@ export class Rank implements AugmentSource {
         return this.name;
     }
     public toTypeScript(): string {
-        let result = "new Rank(" + this.value + ", \"" + this.name + "\", \"" + this.description + "\", null, ";
+        let result = "new Rank(" + this.value + ", \"" + this.name + "\", \"" + this.description.replace(/\"/g, '\\\"') + "\", null, ";
         if (this.augments.size == 0) {
             result += "null";
         } else {

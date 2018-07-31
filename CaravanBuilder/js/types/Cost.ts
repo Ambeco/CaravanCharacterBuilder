@@ -1,6 +1,7 @@
 ﻿import { Currency } from "./Currency.js";
 import { CompleteTransaction } from "./Transaction.js";
 import { Wallet } from "./wallet.js";
+import { toCamelCase } from "../util/Camelcase";
 
 /**
  * The cost of a Choice or Rank.
@@ -22,6 +23,6 @@ export class Cost {
 
     toString() { return this.amount + " " + this.currency.name; }
     toTypeScript() {
-        return "new Cost(" + this.amount + ", Currency.getCurrency(\"" + this.currency + "\"))";
+        return "new Cost(" + this.amount + ", " + toCamelCase("currency " + this.currency.name) + ")";
     }
 }

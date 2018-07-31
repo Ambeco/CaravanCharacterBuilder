@@ -1,9 +1,10 @@
 ﻿import { Rank, duplicateRankArray } from "../types/Rank.js";
 import { OptionCategory } from "../types/OptionCategory.js";
 import { RankOption } from "../types/RankOption.js";
-import { Augment } from "../types/Augment";
-import { Cost } from "../types/Cost";
-import { Currency } from "../types/Currency";
+import { Augment } from "../types/Augment.js";
+import { Cost } from "../types/Cost.js";
+import { Currency } from "../types/Currency.js";
+import { currencyAp } from "./CurrencyData.js";
 
 
 const specializationCategory: OptionCategory = new OptionCategory("Specializations",
@@ -13,14 +14,14 @@ const specializationCategory: OptionCategory = new OptionCategory("Specializatio
 //TODO: Add Augments
 //TODO: Add tags
 export const augmentSetDefenderShieldMastery: Set<Augment> = new Set<Augment>([
-    new Augment("Cower", new Cost(1, Currency.getCurrency("ap")), "Targets affected by your Taunt deal 3 less damage with all of their attacks. This augment can be applied multiple times."),
-    new Augment("Punishment", new Cost(1, Currency.getCurrency("ap")), "If any target affected by your Taunt attacks one of your allies, you may immediately perform a [Basic] ability for no AP cost."),
-    new Augment("Presence", new Cost(1, Currency.getCurrency("ap")), "The duration of Taunt is doubled. This augment can be applied multiple times."),
-    new Augment("All Alone", new Cost(1, Currency.getCurrency("ap")), "Targets affected by your Taunt cannot benefit from any bonuses gained from having nearby allies and cannot help make a target be flanked."),
+    new Augment("Cower", new Cost(1, currencyAp), "Targets affected by your Taunt deal 3 less damage with all of their attacks. This augment can be applied multiple times."),
+    new Augment("Punishment", new Cost(1, currencyAp), "If any target affected by your Taunt attacks one of your allies, you may immediately perform a [Basic] ability for no AP cost."),
+    new Augment("Presence", new Cost(1, currencyAp), "The duration of Taunt is doubled. This augment can be applied multiple times."),
+    new Augment("All Alone", new Cost(1, currencyAp), "Targets affected by your Taunt cannot benefit from any bonuses gained from having nearby allies and cannot help make a target be flanked."),
 ]);
 export const augmentSetDefenderTrueDefender: Set<Augment> = new Set<Augment>([
-    new Augment("Quickened Interception", new Cost(1, Currency.getCurrency("ap")), "Intercept costs no AP"),
-    new Augment("Deadly Interception", new Cost(1, Currency.getCurrency("ap")), "Directly after using Intercept, you may perform a [Basic] ability for 2 less AP cost. The target of the ability must be the target of Intercept. The [Basic] ability and Intercept are considered to be one action."),
+    new Augment("Quickened Interception", new Cost(1, currencyAp), "Intercept costs no AP"),
+    new Augment("Deadly Interception", new Cost(1, currencyAp), "Directly after using Intercept, you may perform a [Basic] ability for 2 less AP cost. The target of the ability must be the target of Intercept. The [Basic] ability and Intercept are considered to be one action."),
 ]);
 export const specializationDefender: RankOption = new RankOption("Defender", specializationCategory,
     [
@@ -39,14 +40,14 @@ export const specializationSentinel: RankOption = new RankOption("Sentinel", spe
     "[Tank]");
 
 export const augmentSetTitanUltimateWarrior: Set<Augment> = new Set<Augment>([
-    new Augment("Confidence", new Cost(1, Currency.getCurrency("ap")), "You gain an additional 20 temporary hit points. This augment can be applied multiple times."),
-    new Augment("Poise", new Cost(1, Currency.getCurrency("ap")), "You gain +5 AP immediately"),
-    new Augment("Composure", new Cost(1, Currency.getCurrency("ap")), "You regain 1 resolve."),
+    new Augment("Confidence", new Cost(1, currencyAp), "You gain an additional 20 temporary hit points. This augment can be applied multiple times."),
+    new Augment("Poise", new Cost(1, currencyAp), "You gain +5 AP immediately"),
+    new Augment("Composure", new Cost(1, currencyAp), "You regain 1 resolve."),
 ]);
 export const augmentSetTitanUltimateTitan: Set<Augment> = new Set<Augment>([
-    new Augment("Engerized", new Cost(1, Currency.getCurrency("ap")), "Your maximum AP is increased by 5, not 3."),
-    new Augment("Long-lasting", new Cost(1, Currency.getCurrency("ap")), "The difficulty is reduced by 2 and you gain two automatic successes on the roll."),
-    new Augment("Commander", new Cost(1, Currency.getCurrency("ap")), "Your companions gain the same benefits for the duration."),
+    new Augment("Engerized", new Cost(1, currencyAp), "Your maximum AP is increased by 5, not 3."),
+    new Augment("Long-lasting", new Cost(1, currencyAp), "The difficulty is reduced by 2 and you gain two automatic successes on the roll."),
+    new Augment("Commander", new Cost(1, currencyAp), "Your companions gain the same benefits for the duration."),
 ]);
 export const specializationTitan: RankOption = new RankOption("Titan", specializationCategory,
     [
@@ -65,19 +66,19 @@ export const specializationBladedancer: RankOption = new RankOption("Bladedancer
     "Bladedancer");
 
 export const augmentSetTacticianBasicManeuvers: Set<Augment> = new Set<Augment>([
-    new Augment("Pin", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is restrained until the end of your next turn."),
-    new Augment("Trip", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is knocked prone."),
-    new Augment("Dance", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, you may move the target 5’ in any direction. This augment can be applied multiple times."),
+    new Augment("Pin", new Cost(1, currencyAp), "If the attack deals damage, the target is restrained until the end of your next turn."),
+    new Augment("Trip", new Cost(1, currencyAp), "If the attack deals damage, the target is knocked prone."),
+    new Augment("Dance", new Cost(1, currencyAp), "If the attack deals damage, you may move the target 5’ in any direction. This augment can be applied multiple times."),
 ]);
 export const augmentSetTacticianComplexManeuvers: Set<Augment> = new Set<Augment>([
-    new Augment("Provoke", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target suffers two automatic failures on all attacks against creatures other than you until the end of your next turn."),
-    new Augment("Dirty Fighting", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is blinded until the end of your next turn."),
-    new Augment("Occupy", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target cannot perform [Out-of-Turn] actions until the end of your next turn."),
+    new Augment("Provoke", new Cost(1, currencyAp), "If the attack deals damage, the target suffers two automatic failures on all attacks against creatures other than you until the end of your next turn."),
+    new Augment("Dirty Fighting", new Cost(1, currencyAp), "If the attack deals damage, the target is blinded until the end of your next turn."),
+    new Augment("Occupy", new Cost(1, currencyAp), "If the attack deals damage, the target cannot perform [Out-of-Turn] actions until the end of your next turn."),
 ]);
 export const augmentSetTacticianMasterManeuvers: Set<Augment> = new Set<Augment>([
-    new Augment("Cleave", new Cost(1, Currency.getCurrency("ap")), "The ability also affects another creature within 5’ of the target."),
-    new Augment("Bash", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is stunned until the end of your next turn."),
-    new Augment("Nerve Pinch", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is paralyzed until the end of your next turn. This augment can only be applied once per encounter."),
+    new Augment("Cleave", new Cost(1, currencyAp), "The ability also affects another creature within 5’ of the target."),
+    new Augment("Bash", new Cost(1, currencyAp), "If the attack deals damage, the target is stunned until the end of your next turn."),
+    new Augment("Nerve Pinch", new Cost(1, currencyAp), "If the attack deals damage, the target is paralyzed until the end of your next turn. This augment can only be applied once per encounter."),
 ]);
 export const specializationTactician: RankOption = new RankOption("Tactician", specializationCategory,
     [
@@ -88,7 +89,7 @@ export const specializationTactician: RankOption = new RankOption("Tactician", s
     "Tactician");
 
 export const augmentSetTempestDualWielder: Set<Augment> = new Set<Augment>([
-    new Augment("Dual Strike", new Cost(1, Currency.getCurrency("ap")), "After resolving the effects of the ability, you may choose to deal the damage of your other held weapon to any creature within range. This damage is dealt as if you were to make a standard weapon attack with that weapon, but gain no bonus damage from successes on the roll. This cannot be parried or dodged. This augment can be applied multiple times, each time applying the damage as one attack (unless targeting different creatures)"),
+    new Augment("Dual Strike", new Cost(1, currencyAp), "After resolving the effects of the ability, you may choose to deal the damage of your other held weapon to any creature within range. This damage is dealt as if you were to make a standard weapon attack with that weapon, but gain no bonus damage from successes on the roll. This cannot be parried or dodged. This augment can be applied multiple times, each time applying the damage as one attack (unless targeting different creatures)"),
 ]);
 export const specializationTempest: RankOption = new RankOption("Tempest", specializationCategory,
     [
@@ -99,13 +100,13 @@ export const specializationTempest: RankOption = new RankOption("Tempest", speci
     "Tempest");
 
 export const augmentSetBerserkerFury: Set<Augment> = new Set<Augment>([
-    new Augment("Tough", new Cost(1, Currency.getCurrency("ap")), "You gain +5 titan soak for the duration. This augment can be applied multiple times."),
-    new Augment("Angry", new Cost(1, Currency.getCurrency("ap")), "You deal +5 damage on all attacks for the duration. This augment can be applied multiple times."),
-    new Augment("Tireless", new Cost(1, Currency.getCurrency("ap")), "You ignore the effects of exhaustion for the duration"),
-    new Augment("Awake", new Cost(1, Currency.getCurrency("ap")), "If you reach 0 health while raging, you do not go unconscious. Instead your health stays at 0 until the duration ends. Once the rage ability wears off, you immediately go unconscious if still at 0 health."),
-    new Augment("Fast", new Cost(1, Currency.getCurrency("ap")), "You may perform one move action for no AP cost on your turns for the duration."),
-    new Augment("Resist", new Cost(2, Currency.getCurrency("ap")), "You are immune to all adverse effects for the duration"),
-    new Augment("Frenzy", new Cost(3, Currency.getCurrency("ap")), "You fly into a bloodthirsty frenzy. You gain the benefits of all the augments above for the duration, but you see red and attack everything in sight. For the duration, you attack whatever creature is closest to you. If two or more creatures are tied for closest, choose the creature at random. If there are no creatures nearby to attack, you instead will attempt to destroy anything you can, such as breaking down doors, smashing holes through walls or shattering glass. When the rage effect wears off, you immediately fall unconscious for one hour."),
+    new Augment("Tough", new Cost(1, currencyAp), "You gain +5 titan soak for the duration. This augment can be applied multiple times."),
+    new Augment("Angry", new Cost(1, currencyAp), "You deal +5 damage on all attacks for the duration. This augment can be applied multiple times."),
+    new Augment("Tireless", new Cost(1, currencyAp), "You ignore the effects of exhaustion for the duration"),
+    new Augment("Awake", new Cost(1, currencyAp), "If you reach 0 health while raging, you do not go unconscious. Instead your health stays at 0 until the duration ends. Once the rage ability wears off, you immediately go unconscious if still at 0 health."),
+    new Augment("Fast", new Cost(1, currencyAp), "You may perform one move action for no AP cost on your turns for the duration."),
+    new Augment("Resist", new Cost(2, currencyAp), "You are immune to all adverse effects for the duration"),
+    new Augment("Frenzy", new Cost(3, currencyAp), "You fly into a bloodthirsty frenzy. You gain the benefits of all the augments above for the duration, but you see red and attack everything in sight. For the duration, you attack whatever creature is closest to you. If two or more creatures are tied for closest, choose the creature at random. If there are no creatures nearby to attack, you instead will attempt to destroy anything you can, such as breaking down doors, smashing holes through walls or shattering glass. When the rage effect wears off, you immediately fall unconscious for one hour."),
 ]);
 export const specializationBerserker: RankOption = new RankOption("Berserker", specializationCategory,
     [
@@ -124,10 +125,10 @@ export const specializationMarauder: RankOption = new RankOption("Marauder", spe
     "Marauder");
 
 export const augmentSetPoisonerPickYourPoison: Set<Augment> = new Set<Augment>([
-    new Augment("Highly Concentrated Poison", new Cost(1, Currency.getCurrency("ap")), "Attack deals +3 poison damage. This augment can be applied multiple times."),
-    new Augment("Debilitating Poison", new Cost(1, Currency.getCurrency("ap")), "Attacks that deal damage stun the target until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect."),
-    new Augment("Despair’s Bite", new Cost(1, Currency.getCurrency("ap")), "Attacks that deal damage cause the target to become afraid of everything until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect."),
-    new Augment("Reaper’s Touch", new Cost(1, Currency.getCurrency("ap")), "Attacks that deal damage cause the target to become paralyzed until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect. This augment can only be applied once per encounter."),
+    new Augment("Highly Concentrated Poison", new Cost(1, currencyAp), "Attack deals +3 poison damage. This augment can be applied multiple times."),
+    new Augment("Debilitating Poison", new Cost(1, currencyAp), "Attacks that deal damage stun the target until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect."),
+    new Augment("Despair’s Bite", new Cost(1, currencyAp), "Attacks that deal damage cause the target to become afraid of everything until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect."),
+    new Augment("Reaper’s Touch", new Cost(1, currencyAp), "Attacks that deal damage cause the target to become paralyzed until the end of their next turn. Creatures with at least two ranks in any combination of [Poison] specializations are immune to this effect. This augment can only be applied once per encounter."),
 ]);
 export const specializationPoisoner: RankOption = new RankOption("Poisoner", specializationCategory,
     [
@@ -146,7 +147,7 @@ export const specializationAdventurer: RankOption = new RankOption("Adventurer",
     "Adventurer");
 
 export const augmentSetAssassinWeakPoint: Set<Augment> = new Set<Augment>([
-    new Augment("Weak Point", new Cost(1, Currency.getCurrency("ap")), "This can be used on any single-target ability that deals damage. If the target is engaged with an enemy within 5’ or if you have any amount of automatic successes on the roll, add half of your intellect to the damage. If both conditions apply, add all of your intellect."),
+    new Augment("Weak Point", new Cost(1, currencyAp), "This can be used on any single-target ability that deals damage. If the target is engaged with an enemy within 5’ or if you have any amount of automatic successes on the roll, add half of your intellect to the damage. If both conditions apply, add all of your intellect."),
 ]);
 export const specializationAssassin: RankOption = new RankOption("Assassin", specializationCategory,
     [
@@ -157,9 +158,9 @@ export const specializationAssassin: RankOption = new RankOption("Assassin", spe
     "[Skulker]");
 
 export const augmentSetShadowStalker: Set<Augment> = new Set<Augment>([
-    new Augment("Prepared", new Cost(1, Currency.getCurrency("ap")), "Your next ability against the target on this turn gains +1 augment slot."),
-    new Augment("Smoke Screen", new Cost(1, Currency.getCurrency("ap")), "All creatures within 5’ of you before and after you teleport become staggered until the end of your next turn."),
-    new Augment("Versatile", new Cost(1, Currency.getCurrency("ap")), "You no longer need a target to teleport next to, instead you can teleport to any square within range. The AP cost is increased by 1."),
+    new Augment("Prepared", new Cost(1, currencyAp), "Your next ability against the target on this turn gains +1 augment slot."),
+    new Augment("Smoke Screen", new Cost(1, currencyAp), "All creatures within 5’ of you before and after you teleport become staggered until the end of your next turn."),
+    new Augment("Versatile", new Cost(1, currencyAp), "You no longer need a target to teleport next to, instead you can teleport to any square within range. The AP cost is increased by 1."),
 ]);
 export const specializationShadow: RankOption = new RankOption("Shadow", specializationCategory,
     [
@@ -170,11 +171,11 @@ export const specializationShadow: RankOption = new RankOption("Shadow", special
     "[Skulker]");
 
 export const augmentSetNightbladeStalker: Set<Augment> = new Set<Augment>([
-    new Augment("Fast Blade", new Cost(1, Currency.getCurrency("ap")), "The AP cost is 0"),
-    new Augment("Deadly", new Cost(1, Currency.getCurrency("ap")), "The potency is increased by 5. This augment can be applied multiple times."),
-    new Augment("Death Surge", new Cost(2, Currency.getCurrency("ap")), "If the target dies, you gain 3 AP immediately. This augment can be applied multiple times."),
-    new Augment("Fulfilling", new Cost(2, Currency.getCurrency("ap")), "If the target dies, you regain 1 resolve."),
-    new Augment("Taste of Blood", new Cost(5, Currency.getCurrency("ap")), "If the target dies, you may use Assassinate again this encounter."),
+    new Augment("Fast Blade", new Cost(1, currencyAp), "The AP cost is 0"),
+    new Augment("Deadly", new Cost(1, currencyAp), "The potency is increased by 5. This augment can be applied multiple times."),
+    new Augment("Death Surge", new Cost(2, currencyAp), "If the target dies, you gain 3 AP immediately. This augment can be applied multiple times."),
+    new Augment("Fulfilling", new Cost(2, currencyAp), "If the target dies, you regain 1 resolve."),
+    new Augment("Taste of Blood", new Cost(5, currencyAp), "If the target dies, you may use Assassinate again this encounter."),
 ]);
 export const specializationNightblade: RankOption = new RankOption("Nightblade", specializationCategory,
     [
@@ -193,13 +194,13 @@ export const specializationGladiator: RankOption = new RankOption("Gladiator", s
     "Gladiator");
 
 export const augmentSetMyrmidonDeflect: Set<Augment> = new Set<Augment>([
-    new Augment("Counter", new Cost(1, Currency.getCurrency("ap")), "If you succeed on the Parry roll and reduce the successes to zero, you may immediately perform a [Basic] ability for no AP cost against the attacker."),
-    new Augment("Disarm", new Cost(1, Currency.getCurrency("ap")), "If you succeed on the Parry roll and reduce the successes to zero, the target drops whatever weapon was used to attack you. Only works when attack by a melee or brawl weapon."),
-    new Augment("Reflect", new Cost(1, Currency.getCurrency("ap")), "If you succeed on the Parry roll and reduce the successes to zero, you may reflect the attack on to a creature of your choice within 30’ of you. The attack deals damage as if you didn’t reduce the successes with Parry. Only works when attacked by ranged attack. (This augment does not allow you to use Parry against ranged attacks.)"),
+    new Augment("Counter", new Cost(1, currencyAp), "If you succeed on the Parry roll and reduce the successes to zero, you may immediately perform a [Basic] ability for no AP cost against the attacker."),
+    new Augment("Disarm", new Cost(1, currencyAp), "If you succeed on the Parry roll and reduce the successes to zero, the target drops whatever weapon was used to attack you. Only works when attack by a melee or brawl weapon."),
+    new Augment("Reflect", new Cost(1, currencyAp), "If you succeed on the Parry roll and reduce the successes to zero, you may reflect the attack on to a creature of your choice within 30’ of you. The attack deals damage as if you didn’t reduce the successes with Parry. Only works when attacked by ranged attack. (This augment does not allow you to use Parry against ranged attacks.)"),
 ]);
 export const augmentSetMyrmidonMasterOfTheBlade: Set<Augment> = new Set<Augment>([
-    new Augment("Feint", new Cost(1, Currency.getCurrency("ap")), "Your ability cannot be dodged or parried and the difficulty of the roll is reduced by 1. (minimum of 2) This augment can be applied multiple times."),
-    new Augment("Disarming Strike", new Cost(1, Currency.getCurrency("ap")), "If you deal damage with the attack, you can force the target to drop one item of your choice that they are holding."),
+    new Augment("Feint", new Cost(1, currencyAp), "Your ability cannot be dodged or parried and the difficulty of the roll is reduced by 1. (minimum of 2) This augment can be applied multiple times."),
+    new Augment("Disarming Strike", new Cost(1, currencyAp), "If you deal damage with the attack, you can force the target to drop one item of your choice that they are holding."),
 ]);
 export const specializationMyrmidon: RankOption = new RankOption("Myrmidon", specializationCategory,
     [
@@ -210,8 +211,8 @@ export const specializationMyrmidon: RankOption = new RankOption("Myrmidon", spe
     "Myrmidon");
 
 export const augmentSetWhisperSkewer: Set<Augment> = new Set<Augment>([
-    new Augment("Remise", new Cost(1, Currency.getCurrency("ap")), "Your next [Weapon] ability this turn costs no AP."),
-    new Augment("Feint", new Cost(1, Currency.getCurrency("ap")), "Your ability cannot be dodged or parried and the difficulty of the roll is reduced by 1. This augment can be applied multiple times."),
+    new Augment("Remise", new Cost(1, currencyAp), "Your next [Weapon] ability this turn costs no AP."),
+    new Augment("Feint", new Cost(1, currencyAp), "Your ability cannot be dodged or parried and the difficulty of the roll is reduced by 1. This augment can be applied multiple times."),
 ]);
 export const specializationWhisper: RankOption = new RankOption("Whisper", specializationCategory,
     [
@@ -222,9 +223,9 @@ export const specializationWhisper: RankOption = new RankOption("Whisper", speci
     "Whisper");
 
 export const augmentSetReaverRend: Set<Augment> = new Set<Augment>([
-    new Augment("Bleed", new Cost(1, Currency.getCurrency("ap")), "The target begins to bleed. At the start of the target’s turn, they take unsoakable damage equal to the base AP cost of the ability used. This is considered a bleed effect. This effect stacks with additional applications. This augment can be applied multiple times."),
-    new Augment("Devastate", new Cost(1, Currency.getCurrency("ap")), "The attack deals triple damage. You may only activate this augment once per encounter."),
-    new Augment("Hamstring", new Cost(1, Currency.getCurrency("ap")), "The target’s movement speed is reduced by 2 per augment slot used. This augment can be applied multiple times."),
+    new Augment("Bleed", new Cost(1, currencyAp), "The target begins to bleed. At the start of the target’s turn, they take unsoakable damage equal to the base AP cost of the ability used. This is considered a bleed effect. This effect stacks with additional applications. This augment can be applied multiple times."),
+    new Augment("Devastate", new Cost(1, currencyAp), "The attack deals triple damage. You may only activate this augment once per encounter."),
+    new Augment("Hamstring", new Cost(1, currencyAp), "The target’s movement speed is reduced by 2 per augment slot used. This augment can be applied multiple times."),
 ]);
 export const specializationReaver: RankOption = new RankOption("Reaver", specializationCategory,
     [
@@ -235,9 +236,9 @@ export const specializationReaver: RankOption = new RankOption("Reaver", special
     "Reaver");
 
 export const augmentSetDreadnoughtPowerfulSwings: Set<Augment> = new Set<Augment>([
-    new Augment("Crush", new Cost(1, Currency.getCurrency("ap")), "The target takes extra damage equal to twice the soak value of the target’s armor. This augment can be applied multiple times."),
-    new Augment("Powerful Swings", new Cost(1, Currency.getCurrency("ap")), "This attack cannot be parried and gains +2 potency."),
-    new Augment("Forceful Swings", new Cost(1, Currency.getCurrency("ap")), "The target is knocked prone"),
+    new Augment("Crush", new Cost(1, currencyAp), "The target takes extra damage equal to twice the soak value of the target’s armor. This augment can be applied multiple times."),
+    new Augment("Powerful Swings", new Cost(1, currencyAp), "This attack cannot be parried and gains +2 potency."),
+    new Augment("Forceful Swings", new Cost(1, currencyAp), "The target is knocked prone"),
 ]);
 export const specializationDreadnought: RankOption = new RankOption("Dreadnought", specializationCategory,
     [
@@ -248,9 +249,9 @@ export const specializationDreadnought: RankOption = new RankOption("Dreadnought
     "Dreadnought");
 
 export const augmentSetDragoonKeepAtArm_sReach: Set<Augment> = new Set<Augment>([
-    new Augment("Run Through", new Cost(1, Currency.getCurrency("ap")), "A creature within 5’ of the target takes half the damage the ability dealt. This augment can be applied multiple times."),
-    new Augment("Pin", new Cost(1, Currency.getCurrency("ap")), "The target is restrained until the end of your next turn."),
-    new Augment("Long Arm", new Cost(1, Currency.getCurrency("ap")), "The ability cannot be dodged and gains +2 potency. This augment can be applied multiple times."),
+    new Augment("Run Through", new Cost(1, currencyAp), "A creature within 5’ of the target takes half the damage the ability dealt. This augment can be applied multiple times."),
+    new Augment("Pin", new Cost(1, currencyAp), "The target is restrained until the end of your next turn."),
+    new Augment("Long Arm", new Cost(1, currencyAp), "The ability cannot be dodged and gains +2 potency. This augment can be applied multiple times."),
 ]);
 export const specializationDragoon: RankOption = new RankOption("Dragoon", specializationCategory,
     [
@@ -261,13 +262,13 @@ export const specializationDragoon: RankOption = new RankOption("Dragoon", speci
     "Dragoon");
 
 export const augmentSetWeaponMasterArmory: Set<Augment> = new Set<Augment>([
-    new Augment("Powerful Attacks", new Cost(1, Currency.getCurrency("ap")), "+3 potency. This augment can be applied multiple times."),
+    new Augment("Powerful Attacks", new Cost(1, currencyAp), "+3 potency. This augment can be applied multiple times."),
 ]);
 export const augmentSetWeaponMasterPracticeMakesPerfect: Set<Augment> = new Set<Augment>([
-    new Augment("Precise Strikes", new Cost(1, Currency.getCurrency("ap")), "If you get 5 or more successes on the roll, the attack ignores all soak, including titan soak, cannot be parried or dodged and deals +3 damage."),
+    new Augment("Precise Strikes", new Cost(1, currencyAp), "If you get 5 or more successes on the roll, the attack ignores all soak, including titan soak, cannot be parried or dodged and deals +3 damage."),
 ]);
 export const augmentSetWeaponMasterPerfectCounter: Set<Augment> = new Set<Augment>([
-    new Augment("Sunder Arms", new Cost(2, Currency.getCurrency("ap")), "You destroy one of the target’s wielded weapons. This augment can be applied multiple times."),
+    new Augment("Sunder Arms", new Cost(2, currencyAp), "You destroy one of the target’s wielded weapons. This augment can be applied multiple times."),
 ]);
 export const specializationWeaponMaster: RankOption = new RankOption("Weapon Master", specializationCategory,
     [
@@ -303,11 +304,11 @@ export const specializationDemolitionist: RankOption = new RankOption("Demolitio
     "Demolitionist");
 
 export const augmentSetArcheryTakeAim: Set<Augment> = new Set<Augment>([
-    new Augment("Don’t Breathe", new Cost(1, Currency.getCurrency("ap")), "Size Up costs no AP"),
+    new Augment("Don’t Breathe", new Cost(1, currencyAp), "Size Up costs no AP"),
 ]);
 export const augmentSetArcheryRanger: Set<Augment> = new Set<Augment>([
-    new Augment("Elemental Arrows", new Cost(1, Currency.getCurrency("ap")), "You may change the damage type of the ability to any damage type from a specialization tagged with one. You must have at least one rank in whatever specialization you are basing the damage off."),
-    new Augment("Marksman", new Cost(1, Currency.getCurrency("ap")), "If the target is sized up by you, you may add your senses to the damage. This augment can be applied multiple times."),
+    new Augment("Elemental Arrows", new Cost(1, currencyAp), "You may change the damage type of the ability to any damage type from a specialization tagged with one. You must have at least one rank in whatever specialization you are basing the damage off."),
+    new Augment("Marksman", new Cost(1, currencyAp), "If the target is sized up by you, you may add your senses to the damage. This augment can be applied multiple times."),
 ]);
 export const specializationArchery: RankOption = new RankOption("Archery", specializationCategory,
     [
@@ -318,9 +319,9 @@ export const specializationArchery: RankOption = new RankOption("Archery", speci
     "[Ranged]");
 
 export const augmentSetCrossbowExpertGoodAim: Set<Augment> = new Set<Augment>([
-    new Augment("Aim", new Cost(1, Currency.getCurrency("ap")), "You gain +1 automatic success on any ability used against the sized up creature. This augment can be applied multiple times."),
-    new Augment("Poisoned Tips", new Cost(1, Currency.getCurrency("ap")), "The ability now deals poison damage and staggers the target. It also gains the [Poison] tag."),
-    new Augment("Pinning Shot", new Cost(1, Currency.getCurrency("ap")), "If the target is sized up by you, the target is restrained until the end of their next turn. The target takes 5 unsoakable piercing damage if they spend resolve to remove the restrain effect."),
+    new Augment("Aim", new Cost(1, currencyAp), "You gain +1 automatic success on any ability used against the sized up creature. This augment can be applied multiple times."),
+    new Augment("Poisoned Tips", new Cost(1, currencyAp), "The ability now deals poison damage and staggers the target. It also gains the [Poison] tag."),
+    new Augment("Pinning Shot", new Cost(1, currencyAp), "If the target is sized up by you, the target is restrained until the end of their next turn. The target takes 5 unsoakable piercing damage if they spend resolve to remove the restrain effect."),
 ]);
 export const specializationCrossbowExpert: RankOption = new RankOption("Crossbow Expert", specializationCategory,
     [
@@ -330,12 +331,12 @@ export const specializationCrossbowExpert: RankOption = new RankOption("Crossbow
     "[Ranged]");
 
 export const augmentSetGunslingerGoodMaintenance: Set<Augment> = new Set<Augment>([
-    new Augment("Sniper", new Cost(1, Currency.getCurrency("ap")), "You ignore all penalties for firing at long range against the creature you size up."),
+    new Augment("Sniper", new Cost(1, currencyAp), "You ignore all penalties for firing at long range against the creature you size up."),
 ]);
 export const augmentSetGunslingerGunslinger: Set<Augment> = new Set<Augment>([
-    new Augment("Pierce", new Cost(1, Currency.getCurrency("ap")), "Can only be applied to single shot weapons. The ability deals its effects to another creature within 5’ of the target. This augment can be applied multiple times, each time you must choose a different creature within range."),
-    new Augment("Eagle Eye", new Cost(1, Currency.getCurrency("ap")), "Can only be applied to 3 shot clip weapons.The attack ignores all soak, including titan soak and deals +2 damage. This augment can be applied multiple times."),
-    new Augment("Unload", new Cost(1, Currency.getCurrency("ap")), "Can only be applied to 6 shot clip weapons.Directly after the ability resolves, a creature of your choice takes damage equal to the damage of any one weapon wielded. The target must be in range of the weapon used. The damage is soaked seperately. Successes on the initial roll add to the damage of this augment. This augment uses and requires ammo as normal. This augment can be applied multiple times, each time applying the damage as one attack (unless targeting different creatures)"),
+    new Augment("Pierce", new Cost(1, currencyAp), "Can only be applied to single shot weapons. The ability deals its effects to another creature within 5’ of the target. This augment can be applied multiple times, each time you must choose a different creature within range."),
+    new Augment("Eagle Eye", new Cost(1, currencyAp), "Can only be applied to 3 shot clip weapons.The attack ignores all soak, including titan soak and deals +2 damage. This augment can be applied multiple times."),
+    new Augment("Unload", new Cost(1, currencyAp), "Can only be applied to 6 shot clip weapons.Directly after the ability resolves, a creature of your choice takes damage equal to the damage of any one weapon wielded. The target must be in range of the weapon used. The damage is soaked seperately. Successes on the initial roll add to the damage of this augment. This augment uses and requires ammo as normal. This augment can be applied multiple times, each time applying the damage as one attack (unless targeting different creatures)"),
 ]);
 export const specializationGunslinger: RankOption = new RankOption("Gunslinger", specializationCategory,
     [
@@ -362,9 +363,9 @@ export const specializationCavalier: RankOption = new RankOption("Cavalier", spe
     "[Inspire]");
 
 export const augmentSetMartialArtistLethalHands: Set<Augment> = new Set<Augment>([
-    new Augment("Disarming Strike", new Cost(1, Currency.getCurrency("ap")), "After dealing damage, you force the target to drop a single held item. This augment can be applied multiple times."),
-    new Augment("Tripping Attack", new Cost(1, Currency.getCurrency("ap")), "After dealing damage, you force the target to fall prone."),
-    new Augment("Stunning Blow", new Cost(2, Currency.getCurrency("ap")), "After dealing damage, you stun the target until the end of their next turn."),
+    new Augment("Disarming Strike", new Cost(1, currencyAp), "After dealing damage, you force the target to drop a single held item. This augment can be applied multiple times."),
+    new Augment("Tripping Attack", new Cost(1, currencyAp), "After dealing damage, you force the target to fall prone."),
+    new Augment("Stunning Blow", new Cost(2, currencyAp), "After dealing damage, you stun the target until the end of their next turn."),
 ]);
 export const specializationMartialArtist: RankOption = new RankOption("Martial Artist", specializationCategory,
     [
@@ -374,8 +375,8 @@ export const specializationMartialArtist: RankOption = new RankOption("Martial A
     "Martial Artist");
 
 export const augmentSetMonkUnnaturalReflexes: Set<Augment> = new Set<Augment>([
-    new Augment("Disarm", new Cost(1, Currency.getCurrency("ap")), "If you successfully dodge and cause the attack to fail, you may grab and store or wield the weapon used for the attack (or the ammo used if it was a ranged attack)"),
-    new Augment("Redirect", new Cost(1, Currency.getCurrency("ap")), "If you successfully dodge and cause the attack to fail, you may redirect the attack to another target within the attack’s range. The attack deals its effects with the successes gained before you used Dodge"),
+    new Augment("Disarm", new Cost(1, currencyAp), "If you successfully dodge and cause the attack to fail, you may grab and store or wield the weapon used for the attack (or the ammo used if it was a ranged attack)"),
+    new Augment("Redirect", new Cost(1, currencyAp), "If you successfully dodge and cause the attack to fail, you may redirect the attack to another target within the attack’s range. The attack deals its effects with the successes gained before you used Dodge"),
 ]);
 export const specializationMonk: RankOption = new RankOption("Monk", specializationCategory,
     [
@@ -384,7 +385,7 @@ export const specializationMonk: RankOption = new RankOption("Monk", specializat
     "[Ki]");
 
 export const augmentSetBlazingWrathBurn: Set<Augment> = new Set<Augment>([
-    new Augment("Burn", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged ignite and begin to burn. At the start of any creature’s turn that is on fire from this effect take’s additional damage equal to half the damage that the spell did originally. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Burn", new Cost(1, currencyAp), "All creatures damaged ignite and begin to burn. At the start of any creature’s turn that is on fire from this effect take’s additional damage equal to half the damage that the spell did originally. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationBlazingWrath: RankOption = new RankOption("Blazing Wrath", specializationCategory,
     [
@@ -395,8 +396,8 @@ export const specializationBlazingWrath: RankOption = new RankOption("Blazing Wr
     "[Fire, Elemental]");
 
 export const augmentSetMysticTorrentDeluge: Set<Augment> = new Set<Augment>([
-    new Augment("Deluge", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged have -1 success on their next roll, additional applications of this effect increase the number of rolls with -1 success. Creatures with at least 2 ranks in any combination of [Water] specializations are immune to this effect. This augment can be applied multiple times."),
-    new Augment("Downpour", new Cost(1, Currency.getCurrency("ap")), "All creatures affected gain +1 automatic success on their next roll. Additional applications increase the number of rolls affected. This augment can be applied multiple times and additional augment slots used increases the number of automatic successes."),
+    new Augment("Deluge", new Cost(1, currencyAp), "All creatures damaged have -1 success on their next roll, additional applications of this effect increase the number of rolls with -1 success. Creatures with at least 2 ranks in any combination of [Water] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Downpour", new Cost(1, currencyAp), "All creatures affected gain +1 automatic success on their next roll. Additional applications increase the number of rolls affected. This augment can be applied multiple times and additional augment slots used increases the number of automatic successes."),
 ]);
 export const specializationMysticTorrent: RankOption = new RankOption("Mystic Torrent", specializationCategory,
     [
@@ -407,7 +408,7 @@ export const specializationMysticTorrent: RankOption = new RankOption("Mystic To
     "[Water, Elemental]");
 
 export const augmentSetEruptingEarthTopple: Set<Augment> = new Set<Augment>([
-    new Augment("Topple", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are knocked backwards 5’ and/or knocked prone. Creatures with at least 2 ranks in any combination of [Earth] specializations are immune to this effect. This augment can be applied multiple times, each slot increasing the knock backwards effect by 5’ per slot."),
+    new Augment("Topple", new Cost(1, currencyAp), "All creatures damaged are knocked backwards 5’ and/or knocked prone. Creatures with at least 2 ranks in any combination of [Earth] specializations are immune to this effect. This augment can be applied multiple times, each slot increasing the knock backwards effect by 5’ per slot."),
 ]);
 export const specializationEruptingEarth: RankOption = new RankOption("Erupting Earth", specializationCategory,
     [
@@ -418,8 +419,8 @@ export const specializationEruptingEarth: RankOption = new RankOption("Erupting 
     "[Earth, Elemental]");
 
 export const augmentSetHowlingZephyrAdvantage: Set<Augment> = new Set<Augment>([
-    new Augment("Opportunity", new Cost(1, Currency.getCurrency("ap")), "This spell has +5 potency against targets suffering at least -1 success on all of their rolls. This augment can be applied multiple times."),
-    new Augment("Vacuum", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are staggered for 1 turn. Creatures with at least 2 ranks in any combination of [Air] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Opportunity", new Cost(1, currencyAp), "This spell has +5 potency against targets suffering at least -1 success on all of their rolls. This augment can be applied multiple times."),
+    new Augment("Vacuum", new Cost(1, currencyAp), "All creatures damaged are staggered for 1 turn. Creatures with at least 2 ranks in any combination of [Air] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationHowlingZephyr: RankOption = new RankOption("Howling Zephyr", specializationCategory,
     [
@@ -434,7 +435,7 @@ export const specialization__ndAirSpec: RankOption = new RankOption("2nd Air Spe
     "[Air, Elemental]");
 
 export const augmentSetStaticChargeVulnerability: Set<Augment> = new Set<Augment>([
-    new Augment("Vulnerability", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged take +2 damage from all sources until the start of your next turn. Creatures with at least 2 ranks in any combination of [Lightning] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Vulnerability", new Cost(1, currencyAp), "All creatures damaged take +2 damage from all sources until the start of your next turn. Creatures with at least 2 ranks in any combination of [Lightning] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationStaticCharge: RankOption = new RankOption("Static Charge", specializationCategory,
     [
@@ -445,7 +446,7 @@ export const specializationStaticCharge: RankOption = new RankOption("Static Cha
     "[Lightning, Elemental]");
 
 export const augmentSetFrozenDelugeFreeze: Set<Augment> = new Set<Augment>([
-    new Augment("Freeze", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged have their movement speed reduced by 2 until the end of their next turn. If their movement speed is reduced down to 0, they freeze solid and become incapacitated until the end of their next turn.  Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Freeze", new Cost(1, currencyAp), "All creatures damaged have their movement speed reduced by 2 until the end of their next turn. If their movement speed is reduced down to 0, they freeze solid and become incapacitated until the end of their next turn.  Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationFrozenDeluge: RankOption = new RankOption("Frozen Deluge", specializationCategory,
     [
@@ -456,9 +457,9 @@ export const specializationFrozenDeluge: RankOption = new RankOption("Frozen Del
     "[Ice, Elemental]");
 
 export const augmentSetCryomancerIceMagician: Set<Augment> = new Set<Augment>([
-    new Augment("Frozen Legs", new Cost(1, Currency.getCurrency("ap")), "The target becomes restrained until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
-    new Augment("Locked Up", new Cost(1, Currency.getCurrency("ap")), "The target cannot perform [Out-of-Turn] actions until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
-    new Augment("Chill of Death", new Cost(2, Currency.getCurrency("ap")), "The target becomes doomed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
+    new Augment("Frozen Legs", new Cost(1, currencyAp), "The target becomes restrained until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
+    new Augment("Locked Up", new Cost(1, currencyAp), "The target cannot perform [Out-of-Turn] actions until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
+    new Augment("Chill of Death", new Cost(2, currencyAp), "The target becomes doomed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Ice] specializations are immune to this effect."),
 ]);
 export const specializationCryomancer: RankOption = new RankOption("Cryomancer", specializationCategory,
     [
@@ -469,9 +470,9 @@ export const specializationCryomancer: RankOption = new RankOption("Cryomancer",
     "[Ice, Elemental]");
 
 export const augmentSetOozingAcidDissolve: Set<Augment> = new Set<Augment>([
-    new Augment("Dissolve Armor", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged have their soak reduced by 1. Titan soak is unaffected. Creatures with at least 2 ranks in any combination of [Acid] specializations are immune to this effect. This augment can be applied multiple times."),
-    new Augment("Dissolve Flesh", new Cost(1, Currency.getCurrency("ap")), "Against creatures with 0 soak, (not including titan soak), the ability gains +5 potency. This augment can be applied multiple times."),
-    new Augment("Dissolve Gear", new Cost(2, Currency.getCurrency("ap")), "If the attack deals damage, you cause one piece of equipment the target is wielding or openly carrying to eat away and be destroyed."),
+    new Augment("Dissolve Armor", new Cost(1, currencyAp), "All creatures damaged have their soak reduced by 1. Titan soak is unaffected. Creatures with at least 2 ranks in any combination of [Acid] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Dissolve Flesh", new Cost(1, currencyAp), "Against creatures with 0 soak, (not including titan soak), the ability gains +5 potency. This augment can be applied multiple times."),
+    new Augment("Dissolve Gear", new Cost(2, currencyAp), "If the attack deals damage, you cause one piece of equipment the target is wielding or openly carrying to eat away and be destroyed."),
 ]);
 export const specializationOozingAcid: RankOption = new RankOption("Oozing Acid", specializationCategory,
     [
@@ -482,12 +483,12 @@ export const specializationOozingAcid: RankOption = new RankOption("Oozing Acid"
     "[Acid]");
 
 export const augmentSetWizardMalleableSpells: Set<Augment> = new Set<Augment>([
-    new Augment("Potent Spells", new Cost(1, Currency.getCurrency("ap")), "+3 Potency. This augment can be applied multiple times."),
-    new Augment("Long Range Spells", new Cost(1, Currency.getCurrency("ap")), "+30’ range. This augment can be applied multiple times."),
-    new Augment("Accurate Spells", new Cost(1, Currency.getCurrency("ap")), "+1 automatic success on the roll. This augment can be applied multiple times."),
-    new Augment("Forceful Spells", new Cost(1, Currency.getCurrency("ap")), "Move the target(s) up to 10ft as you see fit. This augment can be applied multiple times."),
-    new Augment("Wide Spells", new Cost(2, Currency.getCurrency("ap")), "Increase the number of targets by 1. This augment can be applied multiple times."),
-    new Augment("Hastened Spells", new Cost(2, Currency.getCurrency("ap")), "-1 AP to cast (minimum of 1) "),
+    new Augment("Potent Spells", new Cost(1, currencyAp), "+3 Potency. This augment can be applied multiple times."),
+    new Augment("Long Range Spells", new Cost(1, currencyAp), "+30’ range. This augment can be applied multiple times."),
+    new Augment("Accurate Spells", new Cost(1, currencyAp), "+1 automatic success on the roll. This augment can be applied multiple times."),
+    new Augment("Forceful Spells", new Cost(1, currencyAp), "Move the target(s) up to 10ft as you see fit. This augment can be applied multiple times."),
+    new Augment("Wide Spells", new Cost(2, currencyAp), "Increase the number of targets by 1. This augment can be applied multiple times."),
+    new Augment("Hastened Spells", new Cost(2, currencyAp), "-1 AP to cast (minimum of 1) "),
 ]);
 export const specializationWizard: RankOption = new RankOption("Wizard", specializationCategory,
     [
@@ -506,10 +507,10 @@ export const specializationArchmage: RankOption = new RankOption("Archmage", spe
     "[Force]");
 
 export const augmentSetIllusionistImprovedIllusions: Set<Augment> = new Set<Augment>([
-    new Augment("Large Illusions", new Cost(1, Currency.getCurrency("ap")), "The maximum volume increases by 15’ cubed. This augment can be applied multiple times."),
-    new Augment("Additional Senses", new Cost(1, Currency.getCurrency("ap")), "You can affect an additional sense of your choice. This augment can be applied multiple times."),
-    new Augment("Animation", new Cost(1, Currency.getCurrency("ap")), "The illusion can move"),
-    new Augment("Touch", new Cost(1, Currency.getCurrency("ap")), "The illusion now has physical substance. Its maximum density is that of wood."),
+    new Augment("Large Illusions", new Cost(1, currencyAp), "The maximum volume increases by 15’ cubed. This augment can be applied multiple times."),
+    new Augment("Additional Senses", new Cost(1, currencyAp), "You can affect an additional sense of your choice. This augment can be applied multiple times."),
+    new Augment("Animation", new Cost(1, currencyAp), "The illusion can move"),
+    new Augment("Touch", new Cost(1, currencyAp), "The illusion now has physical substance. Its maximum density is that of wood."),
 ]);
 export const specializationIllusionist: RankOption = new RankOption("Illusionist", specializationCategory,
     [
@@ -520,9 +521,9 @@ export const specializationIllusionist: RankOption = new RankOption("Illusionist
     "[Illusion]");
 
 export const augmentSetTricksterUnseen: Set<Augment> = new Set<Augment>([
-    new Augment("Cantrip", new Cost(1, Currency.getCurrency("ap")), "This usage doesn’t count against the number of times you can perform it per encounter. "),
-    new Augment("Hastened Casting", new Cost(1, Currency.getCurrency("ap")), "The AP cost is reduced to 0 and can be performed at any time. It gains the [Out-of-Turn] tag."),
-    new Augment("Mass Invisibility", new Cost(1, Currency.getCurrency("ap")), "The ability loses the targeting of ‘Self.’ Instead, you can now target up to 5 creatures within 60’. The AP cost to maintain Supreme Invisibility increases by 1 for each target over 1 (maximum of 7)"),
+    new Augment("Cantrip", new Cost(1, currencyAp), "This usage doesn’t count against the number of times you can perform it per encounter. "),
+    new Augment("Hastened Casting", new Cost(1, currencyAp), "The AP cost is reduced to 0 and can be performed at any time. It gains the [Out-of-Turn] tag."),
+    new Augment("Mass Invisibility", new Cost(1, currencyAp), "The ability loses the targeting of ‘Self.’ Instead, you can now target up to 5 creatures within 60’. The AP cost to maintain Supreme Invisibility increases by 1 for each target over 1 (maximum of 7)"),
 ]);
 export const specializationTrickster: RankOption = new RankOption("Trickster", specializationCategory,
     [
@@ -582,14 +583,14 @@ export const specializationSpellMastery: RankOption = new RankOption("Spell Mast
     "Spell Mastery");
 
 export const augmentSetNecromancerTransfer: Set<Augment> = new Set<Augment>([
-    new Augment("Transfer Essence", new Cost(1, Currency.getCurrency("ap")), "You or one of your companions are healed equal to the total damage done before soak is applied. This augment can be applied multiple times, multiplying the amount of healing by the amount of augment slots used."),
+    new Augment("Transfer Essence", new Cost(1, currencyAp), "You or one of your companions are healed equal to the total damage done before soak is applied. This augment can be applied multiple times, multiplying the amount of healing by the amount of augment slots used."),
 ]);
 export const augmentSetNecromancerMenagerie: Set<Augment> = new Set<Augment>([
-    new Augment("Corpse Explosion", new Cost(1, Currency.getCurrency("ap")), "At the end of your turn, your companion explodes in a shower of blood and guts. All creatures within 10’ take 20 unsoakable necrotic damage. If the companion is dead before the end of your turn, it does not explode."),
-    new Augment("Skilled", new Cost(1, Currency.getCurrency("ap")), "You may distribute 5 skill points as you see fit to the companion. This augment can be applied multiple times."),
-    new Augment("Talented", new Cost(1, Currency.getCurrency("ap")), "You may distribute 3 attributes points as you see fit to the companion. This augment can be applied multiple times."),
-    new Augment("Energetic", new Cost(1, Currency.getCurrency("ap")), "Your companion gains +1 maximum AP. This augment can be applied multiple times."),
-    new Augment("Potent", new Cost(2, Currency.getCurrency("ap")), "Your companion gains +2 HP, +1 health multiplier, +3 potency on all abilities, 1 attribute point and 3 skill points to distribute as you see fit. This augment can be applied multiple times."),
+    new Augment("Corpse Explosion", new Cost(1, currencyAp), "At the end of your turn, your companion explodes in a shower of blood and guts. All creatures within 10’ take 20 unsoakable necrotic damage. If the companion is dead before the end of your turn, it does not explode."),
+    new Augment("Skilled", new Cost(1, currencyAp), "You may distribute 5 skill points as you see fit to the companion. This augment can be applied multiple times."),
+    new Augment("Talented", new Cost(1, currencyAp), "You may distribute 3 attributes points as you see fit to the companion. This augment can be applied multiple times."),
+    new Augment("Energetic", new Cost(1, currencyAp), "Your companion gains +1 maximum AP. This augment can be applied multiple times."),
+    new Augment("Potent", new Cost(2, currencyAp), "Your companion gains +2 HP, +1 health multiplier, +3 potency on all abilities, 1 attribute point and 3 skill points to distribute as you see fit. This augment can be applied multiple times."),
 ]);
 export const specializationNecromancer: RankOption = new RankOption("Necromancer", specializationCategory,
     [
@@ -609,12 +610,12 @@ export const specializationLich: RankOption = new RankOption("Lich", specializat
     "Lich");
 
 export const augmentSetDiabolistFelMagic: Set<Augment> = new Set<Augment>([
-    new Augment("Fel Infused Spells", new Cost(0, Currency.getCurrency("ap")), "The ability gains the [Fire] tag and deals Felfire damage. (Felfire is a very rare damage type that very few creatures can resist. Creatures that are vulnerable to fire damage are also vulnerable to Felfire in the same way.)"),
+    new Augment("Fel Infused Spells", new Cost(0, currencyAp), "The ability gains the [Fire] tag and deals Felfire damage. (Felfire is a very rare damage type that very few creatures can resist. Creatures that are vulnerable to fire damage are also vulnerable to Felfire in the same way.)"),
 ]);
 export const augmentSetDiabolistDemonLord: Set<Augment> = new Set<Augment>([
-    new Augment("Broken Promise", new Cost(1, Currency.getCurrency("ap")), "The increased AP and potency buff wears off as soon as the enthrall wears off."),
-    new Augment("Soul Reaping", new Cost(1, Currency.getCurrency("ap")), "If the target dies while still affected by the AP and potency buff, you regain 20 health. This augment can be applied multiple times."),
-    new Augment("Vulnerable", new Cost(1, Currency.getCurrency("ap")), "The target takes 10 extra damage from all sources while enthralled. This augment can be applied multiple times."),
+    new Augment("Broken Promise", new Cost(1, currencyAp), "The increased AP and potency buff wears off as soon as the enthrall wears off."),
+    new Augment("Soul Reaping", new Cost(1, currencyAp), "If the target dies while still affected by the AP and potency buff, you regain 20 health. This augment can be applied multiple times."),
+    new Augment("Vulnerable", new Cost(1, currencyAp), "The target takes 10 extra damage from all sources while enthralled. This augment can be applied multiple times."),
 ]);
 export const specializationDiabolist: RankOption = new RankOption("Diabolist", specializationCategory,
     [
@@ -642,7 +643,7 @@ export const specializationRitualCaster: RankOption = new RankOption("Ritual Cas
     "Ritual Caster");
 
 export const augmentSetCrusaderBlindingStrike: Set<Augment> = new Set<Augment>([
-    new Augment("Blinding Strike", new Cost(1, Currency.getCurrency("ap")), "Creatures damaged are blinded until the end of their next turn."),
+    new Augment("Blinding Strike", new Cost(1, currencyAp), "Creatures damaged are blinded until the end of their next turn."),
 ]);
 export const specializationCrusader: RankOption = new RankOption("Crusader", specializationCategory,
     [
@@ -653,7 +654,7 @@ export const specializationCrusader: RankOption = new RankOption("Crusader", spe
     "Crusader");
 
 export const augmentSetExemplarRestoreTheFaithful: Set<Augment> = new Set<Augment>([
-    new Augment("Cauterize ", new Cost(1, Currency.getCurrency("ap")), "Damage dealt to the target instead heals them for the same amount. The ability gains the [Heal] and [Spell] tags."),
+    new Augment("Cauterize ", new Cost(1, currencyAp), "Damage dealt to the target instead heals them for the same amount. The ability gains the [Heal] and [Spell] tags."),
 ]);
 export const specializationExemplar: RankOption = new RankOption("Exemplar", specializationCategory,
     [
@@ -680,9 +681,9 @@ export const specializationMissionary: RankOption = new RankOption("Missionary",
     "Missionary");
 
 export const augmentSetPurifierPurifyingFlames: Set<Augment> = new Set<Augment>([
-    new Augment("Blinding Purity", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target is blinded until the end of your next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect."),
-    new Augment("Cleansing Purity", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target loses 1 soak. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect. This augment can be applied multiple times."),
-    new Augment("Holy Purity", new Cost(1, Currency.getCurrency("ap")), "If the attack deals damage, the target cannot be healed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect."),
+    new Augment("Blinding Purity", new Cost(1, currencyAp), "If the attack deals damage, the target is blinded until the end of your next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect."),
+    new Augment("Cleansing Purity", new Cost(1, currencyAp), "If the attack deals damage, the target loses 1 soak. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect. This augment can be applied multiple times."),
+    new Augment("Holy Purity", new Cost(1, currencyAp), "If the attack deals damage, the target cannot be healed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect."),
 ]);
 export const specializationPurifier: RankOption = new RankOption("Purifier", specializationCategory,
     [
@@ -693,7 +694,7 @@ export const specializationPurifier: RankOption = new RankOption("Purifier", spe
     "[Fire, Elemental]");
 
 export const augmentSetStormcallerInsulated: Set<Augment> = new Set<Augment>([
-    new Augment("Grounded", new Cost(1, Currency.getCurrency("ap")), "Creatures damage are knocked prone."),
+    new Augment("Grounded", new Cost(1, currencyAp), "Creatures damage are knocked prone."),
 ]);
 export const specializationStormcaller: RankOption = new RankOption("Stormcaller", specializationCategory,
     [
@@ -704,7 +705,7 @@ export const specializationStormcaller: RankOption = new RankOption("Stormcaller
     "[Lightning, Elemental]");
 
 export const augmentSetInquisitorSeekingInTheDark: Set<Augment> = new Set<Augment>([
-    new Augment("Grasping", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged by the spell become restrained until the end of their next turn. If the restrained condition is ended early, regardless of method, the creature takes 3 unsoakable Shadow damage. Creatures with at least 2 ranks of any combination of [Shadow] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Grasping", new Cost(1, currencyAp), "All creatures damaged by the spell become restrained until the end of their next turn. If the restrained condition is ended early, regardless of method, the creature takes 3 unsoakable Shadow damage. Creatures with at least 2 ranks of any combination of [Shadow] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationInquisitor: RankOption = new RankOption("Inquisitor", specializationCategory,
     [
@@ -715,10 +716,10 @@ export const specializationInquisitor: RankOption = new RankOption("Inquisitor",
     "[Shadow]");
 
 export const augmentSetInvokerVersatile: Set<Augment> = new Set<Augment>([
-    new Augment("Spread", new Cost(1, Currency.getCurrency("ap")), "Double the available targets. This augment can be applied multiple times."),
-    new Augment("Distant", new Cost(1, Currency.getCurrency("ap")), "Double the range. This augment can be applied multiple times."),
-    new Augment("Time", new Cost(1, Currency.getCurrency("ap")), "Double the duration. This augment can be applied multiple times."),
-    new Augment("Potency", new Cost(1, Currency.getCurrency("ap")), "+1 potency. This augment can be applied multiple times."),
+    new Augment("Spread", new Cost(1, currencyAp), "Double the available targets. This augment can be applied multiple times."),
+    new Augment("Distant", new Cost(1, currencyAp), "Double the range. This augment can be applied multiple times."),
+    new Augment("Time", new Cost(1, currencyAp), "Double the duration. This augment can be applied multiple times."),
+    new Augment("Potency", new Cost(1, currencyAp), "+1 potency. This augment can be applied multiple times."),
 ]);
 export const specializationInvoker: RankOption = new RankOption("Invoker", specializationCategory,
     [
@@ -761,6 +762,14 @@ export const specializationProphet: RankOption = new RankOption("Prophet", speci
     ],
     "[Prophecy]");
 
+export const specializationInfuser: RankOption = new RankOption("Infuser", specializationCategory,
+    [
+        new Rank(1, "Infusion", "You unlock the ability to infuse enchantments directly into people’s skin. You follow the rules for enchanting as per the crafting section, but can choose to enchant various body parts instead of equipment. The available body parts are: head, chest, arms, hands, legs and feet. Chest enchants must be (A) labeled enchants and hand enchants must be (W) labeled enchants. The other body parts must be (G) labeled enchants. Each body part can only have one infusion. When infusing, you decide what form it takes upon people’s skin. Some infusers weave divine symbols and some infusers create ornate tattoos. It can take whatever form you like, as long as it makes sense. The creature must be a willing participant and must be present for the entire time. Any creature with an infusion can spend an hour and remove any infusion upon its body. In addition, you can spend an hour and create an enchantment. This follows the standard rules for enchanting, but costs no money, requires no rolling and only takes an hour. You may perform a number of enchantments in this way equal to your ranks in Infuser x3. These special free enchants last until you choose to remove it. At the bottom of the specialization is a list of special enchants you learn with this specialization. They are divided by level, indicating what rank of Infuser you need before you can use the enchant.", null, null),
+        new Rank(2, "Acolyte Enchanter", "Reduce the difficulty to enchant gear by 1. In addition, whenever you perform a level 1 enchant, you may add another level 1 enchant as part of the enchantment.", null, null),
+        new Rank(3, "Master Enchanter", "The gold cost of your enchants are reduced by 250g per level of the enchant. Your enchants take 2 less hours per level of the enchant. In addition, you may perform three additional free enchants. (This affects your free enchants from Spellbinder and Infuser separately) <table style=\"border:none;border-collapse:collapse\"><colgroup><col width=\"98\"><col width=\"53\"><col width=\"429\"></colgroup><tbody><tr style=\"height:22pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\" colspan=\"3\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Available Enchantments</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W or A or G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Level</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Description</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">All of your basic attacks made with this weapon or when infused in this way gain the ability to move the target up to 10ft if you deal damage</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wielding this weapon or when infused in this way, all healing you do is increased by 2</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, creatures cannot size you up</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, you cannot be forcibly moved, unless you want to.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you gain +2 to initiative</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, allows you to see in the dark, even in magical darkness.</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">This generally goes into the head or a pair of goggles</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you may stick to surfaces at will. This allows you to do things like walk up walls and on the ceiling.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">All of your basic attacks made with this weapon or while you are infused in this way are made at -1 difficulty</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wielding this weapon or when infused in this way, you can parry attacks as if you were wielding a melee weapon. In addition, you may parry any type of single-target attack.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, you ignore any dice pool penalties from being injured</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, you are immune to poisons and diseases. In addition, you have +3 titan soak vs poison damage</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, one of your companions gains +2 maximum AP</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, the difficulty of perception and insight checks are reduced by 1.</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">This generally goes into the head or a pair of goggles</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you may perform one move action for no AP once per round</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">This generally goes on feet or boots</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you have +1 health modifier</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wielding this weapon or when infused in this way, your healing spells cost 1 less AP. (min 1) Staves and Wands with this enchant may still be spellbound as if it wasn’t enchanted.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Your basic attacks with this weapon or when you are infused in this way can deal the same effects to a creature directly behind it, in comparison to you.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">W</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Your basic attacks with this weapon or when you are infused in this way cannot be parried or dodged.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, you may become immune to damage at any time until the end of your next turn. You may only do this once per day.</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, all of your companions have +2 maximum AP</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">A</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this armor or when infused in this way, all of your soak is converted to titan soak</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you gain a flying speed equal to your movement speed</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you cannot be blinded.</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">This generally goes into the head or a pair of goggles</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, you may, once per encounter, use a point of resolve to remove an adverse effect without spending any resolve</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">G</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">While wearing this gear or when infused in this way, whenever you command any of your companions, 1 of your AP gives 2 to your companion.</span></p></td></tr></tbody></table>", null, null),
+    ],
+    "[Enchanting]");
+
 export const specializationFate: RankOption = new RankOption("Fate", specializationCategory,
     [
         new Rank(1, "Twisting Fate", "You now can twist fate to do your bidding. You gain four available twists. Anytime a creature makes a roll within 30’, you can choose to have that creature reroll the roll once. Each time you do this, you spend one of your available twists. You regain one twist each standard rest and regain all twists after a full rest.", null, null),
@@ -770,9 +779,9 @@ export const specializationFate: RankOption = new RankOption("Fate", specializat
     "Fate");
 
 export const augmentSetDeathDestroyer: Set<Augment> = new Set<Augment>([
-    new Augment("Drain Life", new Cost(1, Currency.getCurrency("ap")), "You are healed equal to the amount of damage dealt times the number of augment slots used. This augment can be applied multiple times"),
-    new Augment("Fear of Death", new Cost(1, Currency.getCurrency("ap")), "The targets are afraid of you until the end of your next turn."),
-    new Augment("Decay", new Cost(1, Currency.getCurrency("ap")), "Creatures affected age 5 years per augment slot used. Creatures that do not die of old age are unaffected. Undead creatures instead take 5 extra damage from the attack. This augment can be applied multiple times."),
+    new Augment("Drain Life", new Cost(1, currencyAp), "You are healed equal to the amount of damage dealt times the number of augment slots used. This augment can be applied multiple times"),
+    new Augment("Fear of Death", new Cost(1, currencyAp), "The targets are afraid of you until the end of your next turn."),
+    new Augment("Decay", new Cost(1, currencyAp), "Creatures affected age 5 years per augment slot used. Creatures that do not die of old age are unaffected. Undead creatures instead take 5 extra damage from the attack. This augment can be applied multiple times."),
 ]);
 export const specializationDeath: RankOption = new RankOption("Death", specializationCategory,
     [
@@ -783,13 +792,13 @@ export const specializationDeath: RankOption = new RankOption("Death", specializ
     "[Necrotic]");
 
 export const augmentSetDemonHunterFelTraining: Set<Augment> = new Set<Augment>([
-    new Augment("Fel Infused Weapons", new Cost(0, Currency.getCurrency("ap")), "The ability gains the [Fire] and [Spell] tags and deals Felfire damage. (Felfire is a very rare damage type that very few creatures can resist. Creatures that are vulnerable to fire damage are also vulnerable to Felfire in the same way.)"),
+    new Augment("Fel Infused Weapons", new Cost(0, currencyAp), "The ability gains the [Fire] and [Spell] tags and deals Felfire damage. (Felfire is a very rare damage type that very few creatures can resist. Creatures that are vulnerable to fire damage are also vulnerable to Felfire in the same way.)"),
 ]);
 export const augmentSetDemonHunterFightFelfireWithFelfire: Set<Augment> = new Set<Augment>([
-    new Augment("Hidden Form", new Cost(1, Currency.getCurrency("ap")), "Demon Form does not change your appearance."),
-    new Augment("Powerful Form", new Cost(1, Currency.getCurrency("ap")), "All of your attributes are increased by 3, not just one. Your demon appearance can appear as you wish."),
-    new Augment("Tough Form", new Cost(1, Currency.getCurrency("ap")), "While in Demon Form, you gain +3 soak and +2 health multiplier. (The extra health is gained immediately) "),
-    new Augment("Enduring Form", new Cost(1, Currency.getCurrency("ap")), "Demon Form lasts until you choose to release it."),
+    new Augment("Hidden Form", new Cost(1, currencyAp), "Demon Form does not change your appearance."),
+    new Augment("Powerful Form", new Cost(1, currencyAp), "All of your attributes are increased by 3, not just one. Your demon appearance can appear as you wish."),
+    new Augment("Tough Form", new Cost(1, currencyAp), "While in Demon Form, you gain +3 soak and +2 health multiplier. (The extra health is gained immediately) "),
+    new Augment("Enduring Form", new Cost(1, currencyAp), "Demon Form lasts until you choose to release it."),
 ]);
 export const specializationDemonHunter: RankOption = new RankOption("Demon Hunter", specializationCategory,
     [
@@ -800,13 +809,13 @@ export const specializationDemonHunter: RankOption = new RankOption("Demon Hunte
     "[Demonology]");
 
 export const augmentSetProtectionAuraOfProtection: Set<Augment> = new Set<Augment>([
-    new Augment("Protection", new Cost(2, Currency.getCurrency("ap")), "You can choose to take the damage and effects of any attack done on a creature inside your aura. This is decided before soak is applied."),
-    new Augment("Healing", new Cost(1, Currency.getCurrency("ap")), "All creatures in the aura receive 2 more health from all forms of healing. This augment can be applied multiple times."),
-    new Augment("Extension", new Cost(1, Currency.getCurrency("ap")), "The range of your Aura increases by 30’. This augment can be applied multiple times."),
+    new Augment("Protection", new Cost(2, currencyAp), "You can choose to take the damage and effects of any attack done on a creature inside your aura. This is decided before soak is applied."),
+    new Augment("Healing", new Cost(1, currencyAp), "All creatures in the aura receive 2 more health from all forms of healing. This augment can be applied multiple times."),
+    new Augment("Extension", new Cost(1, currencyAp), "The range of your Aura increases by 30’. This augment can be applied multiple times."),
 ]);
 export const augmentSetProtectionDefendTheWeak: Set<Augment> = new Set<Augment>([
-    new Augment("Revenge", new Cost(1, Currency.getCurrency("ap")), "If a creature affected by your Taunt deals damage to any of your allies, they immediately take 3 unsoakable radiant damage. This damage increases by 2 if the ally is affected by your Aura. The creature must be within 120’. This augment can be applied multiple times, multiplying the damage dealt by the amount of augment slots used."),
-    new Augment("Vengeance", new Cost(1, Currency.getCurrency("ap")), "Creatures affected by your Taunt take 2 more damage from all sources. This augment can be applied multiple times."),
+    new Augment("Revenge", new Cost(1, currencyAp), "If a creature affected by your Taunt deals damage to any of your allies, they immediately take 3 unsoakable radiant damage. This damage increases by 2 if the ally is affected by your Aura. The creature must be within 120’. This augment can be applied multiple times, multiplying the damage dealt by the amount of augment slots used."),
+    new Augment("Vengeance", new Cost(1, currencyAp), "Creatures affected by your Taunt take 2 more damage from all sources. This augment can be applied multiple times."),
 ]);
 export const specializationProtection: RankOption = new RankOption("Protection", specializationCategory,
     [
@@ -817,12 +826,12 @@ export const specializationProtection: RankOption = new RankOption("Protection",
     "[Tank]");
 
 export const augmentSetRetributionAuraOfRetribution: Set<Augment> = new Set<Augment>([
-    new Augment("Retribution", new Cost(1, Currency.getCurrency("ap")), "All those affected by your Aura deal 2 extra damage with all of their attacks. This augment can be applied multiple times."),
-    new Augment("Haste", new Cost(1, Currency.getCurrency("ap")), "All those affected by your Aura gain +2 to their movement speed. This augment can be applied multiple times."),
-    new Augment("Hunter", new Cost(2, Currency.getCurrency("ap")), "If any ally affected by your Aura takes damage from an enemy, you may choose to appear within 5’ of that enemy in an instant. The enemy must be within 120’."),
+    new Augment("Retribution", new Cost(1, currencyAp), "All those affected by your Aura deal 2 extra damage with all of their attacks. This augment can be applied multiple times."),
+    new Augment("Haste", new Cost(1, currencyAp), "All those affected by your Aura gain +2 to their movement speed. This augment can be applied multiple times."),
+    new Augment("Hunter", new Cost(2, currencyAp), "If any ally affected by your Aura takes damage from an enemy, you may choose to appear within 5’ of that enemy in an instant. The enemy must be within 120’."),
 ]);
 export const augmentSetRetributionVengeanceOfTheGods: Set<Augment> = new Set<Augment>([
-    new Augment("Smite", new Cost(1, Currency.getCurrency("ap")), "The damage is changed to deal radiant. In addition, this ability deals 5 extra damage to any undead or fiendish creature. This augment can be applied multiple times."),
+    new Augment("Smite", new Cost(1, currencyAp), "The damage is changed to deal radiant. In addition, this ability deals 5 extra damage to any undead or fiendish creature. This augment can be applied multiple times."),
 ]);
 export const specializationRetribution: RankOption = new RankOption("Retribution", specializationCategory,
     [
@@ -833,9 +842,9 @@ export const specializationRetribution: RankOption = new RankOption("Retribution
     "Retribution");
 
 export const augmentSetChampionAuraOfTheChampion: Set<Augment> = new Set<Augment>([
-    new Augment("Divine Champions", new Cost(3, Currency.getCurrency("ap")), "All those affected by your Aura can perform a [Basic] ability each round for no AP cost. "),
-    new Augment("Divine Grace", new Cost(2, Currency.getCurrency("ap")), "All those affected by your Aura gain +3 AP each round that can only be spent on [Out-of-Turn] abilities. "),
-    new Augment("Divine Speed", new Cost(1, Currency.getCurrency("ap")), "All those affected by your Aura may perform any move action for no AP cost once per round."),
+    new Augment("Divine Champions", new Cost(3, currencyAp), "All those affected by your Aura can perform a [Basic] ability each round for no AP cost. "),
+    new Augment("Divine Grace", new Cost(2, currencyAp), "All those affected by your Aura gain +3 AP each round that can only be spent on [Out-of-Turn] abilities. "),
+    new Augment("Divine Speed", new Cost(1, currencyAp), "All those affected by your Aura may perform any move action for no AP cost once per round."),
 ]);
 export const specializationChampion: RankOption = new RankOption("Champion", specializationCategory,
     [
@@ -846,7 +855,7 @@ export const specializationChampion: RankOption = new RankOption("Champion", spe
     "Champion");
 
 export const augmentSetOrderOfTheTemplarSpellReflect: Set<Augment> = new Set<Augment>([
-    new Augment("Anti-magic Strike", new Cost(1, Currency.getCurrency("ap")), "All targets damaged cannot cast [Spell] abilities until the end of their next turn."),
+    new Augment("Anti-magic Strike", new Cost(1, currencyAp), "All targets damaged cannot cast [Spell] abilities until the end of their next turn."),
 ]);
 export const specializationOrderOfTheTemplar: RankOption = new RankOption("Order of the Templar", specializationCategory,
     [
@@ -857,10 +866,10 @@ export const specializationOrderOfTheTemplar: RankOption = new RankOption("Order
     "Order of the Templar");
 
 export const augmentSetCompassion_sTouchAdeptHealer: Set<Augment> = new Set<Augment>([
-    new Augment("Range", new Cost(1, Currency.getCurrency("ap")), "+30’ range. This augment can be applied multiple times."),
-    new Augment("Targets", new Cost(1, Currency.getCurrency("ap")), "+1 target. This augment can be applied multiple times."),
-    new Augment("Potency", new Cost(1, Currency.getCurrency("ap")), "+3 potency. This augment can be applied multiple times."),
-    new Augment("Restore", new Cost(1, Currency.getCurrency("ap")), "You may remove one adverse effect currently affecting the target. This augment can be applied multiple times."),
+    new Augment("Range", new Cost(1, currencyAp), "+30’ range. This augment can be applied multiple times."),
+    new Augment("Targets", new Cost(1, currencyAp), "+1 target. This augment can be applied multiple times."),
+    new Augment("Potency", new Cost(1, currencyAp), "+3 potency. This augment can be applied multiple times."),
+    new Augment("Restore", new Cost(1, currencyAp), "You may remove one adverse effect currently affecting the target. This augment can be applied multiple times."),
 ]);
 export const specializationCompassion_sTouch: RankOption = new RankOption("Compassion's Touch", specializationCategory,
     [
@@ -871,7 +880,7 @@ export const specializationCompassion_sTouch: RankOption = new RankOption("Compa
     "[Heal]");
 
 export const augmentSetAscensionDivineGift: Set<Augment> = new Set<Augment>([
-    new Augment("Holy Light", new Cost(1, Currency.getCurrency("ap")), "If a friendly creature would take damage, it is instead healed for the same amount. This ability gains the [Heal] tag."),
+    new Augment("Holy Light", new Cost(1, currencyAp), "If a friendly creature would take damage, it is instead healed for the same amount. This ability gains the [Heal] tag."),
 ]);
 export const specializationAscension: RankOption = new RankOption("Ascension", specializationCategory,
     [
@@ -882,9 +891,9 @@ export const specializationAscension: RankOption = new RankOption("Ascension", s
     "[Radiant, Heal]");
 
 export const augmentSetAngelicCallCallOfLight: Set<Augment> = new Set<Augment>([
-    new Augment("Smite", new Cost(1, Currency.getCurrency("ap")), "This ability deals 5 extra damage to any undead or fiendish creature. This augment can be applied multiple times."),
-    new Augment("Judgement", new Cost(1, Currency.getCurrency("ap")), "This ability cannot be dodged or parried and the difficulty cannot be increased. "),
-    new Augment("Ray of Light", new Cost(1, Currency.getCurrency("ap")), "The range is doubled. This augment can be applied multiple times."),
+    new Augment("Smite", new Cost(1, currencyAp), "This ability deals 5 extra damage to any undead or fiendish creature. This augment can be applied multiple times."),
+    new Augment("Judgement", new Cost(1, currencyAp), "This ability cannot be dodged or parried and the difficulty cannot be increased. "),
+    new Augment("Ray of Light", new Cost(1, currencyAp), "The range is doubled. This augment can be applied multiple times."),
 ]);
 export const specializationAngelicCall: RankOption = new RankOption("Angelic Call", specializationCategory,
     [
@@ -895,7 +904,7 @@ export const specializationAngelicCall: RankOption = new RankOption("Angelic Cal
     "[Radiant]");
 
 export const augmentSetLuna_sServantCloakedInDarkness: Set<Augment> = new Set<Augment>([
-    new Augment("Darkness", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged by the spell become blinded by a magical darkness until the end of their next turn. Creatures with at least 2 ranks of any combination of [Shadow] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Darkness", new Cost(1, currencyAp), "All creatures damaged by the spell become blinded by a magical darkness until the end of their next turn. Creatures with at least 2 ranks of any combination of [Shadow] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationLuna_sServant: RankOption = new RankOption("Luna’s Servant", specializationCategory,
     [
@@ -906,7 +915,7 @@ export const specializationLuna_sServant: RankOption = new RankOption("Luna’s 
     "[Shadow]");
 
 export const augmentSetSol_sServantFlash: Set<Augment> = new Set<Augment>([
-    new Augment("Flash", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged become blinded until the end of their next turn. If the target was already blind from a temporary effect, then increase the duration by 1 round.  Creatures with at least 2 ranks in any combination of [Radiant] specializations are immune to this secondary effect. This augment can be applied multiple times."),
+    new Augment("Flash", new Cost(1, currencyAp), "All creatures damaged become blinded until the end of their next turn. If the target was already blind from a temporary effect, then increase the duration by 1 round.  Creatures with at least 2 ranks in any combination of [Radiant] specializations are immune to this secondary effect. This augment can be applied multiple times."),
 ]);
 export const specializationSol_sServant: RankOption = new RankOption("Sol’s Servant", specializationCategory,
     [
@@ -933,7 +942,7 @@ export const specializationElementalMastery: RankOption = new RankOption("Elemen
     "[Elemental]");
 
 export const augmentSetDiscipleOfRadi_vImpact: Set<Augment> = new Set<Augment>([
-    new Augment("Impact", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged become staggered until the end of their next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect. This augment can be applied multiple times."),
+    new Augment("Impact", new Cost(1, currencyAp), "All creatures damaged become staggered until the end of their next turn. Creatures with at least 2 ranks in any combination of [Fire] specializations are immune to this secondary effect. This augment can be applied multiple times."),
 ]);
 export const specializationDiscipleOfRadi_v: RankOption = new RankOption("Disciple of Radi’v", specializationCategory,
     [
@@ -944,8 +953,8 @@ export const specializationDiscipleOfRadi_v: RankOption = new RankOption("Discip
     "[Fire, Elemental]");
 
 export const augmentSetDiscipleOfSpygWaterCloak: Set<Augment> = new Set<Augment>([
-    new Augment("Slog", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are bogged down with water and lose 1 AP on their next turn. Creatures with at least 2 ranks in any combination of [Water] specializations do not suffer the AP reduction. This augment can be applied multiple times."),
-    new Augment("Rejuvenating Water", new Cost(2, Currency.getCurrency("ap")), "All creatures affected by this ability gain +2 AP on their next turn. This augment can be applied multiple times."),
+    new Augment("Slog", new Cost(1, currencyAp), "All creatures damaged are bogged down with water and lose 1 AP on their next turn. Creatures with at least 2 ranks in any combination of [Water] specializations do not suffer the AP reduction. This augment can be applied multiple times."),
+    new Augment("Rejuvenating Water", new Cost(2, currencyAp), "All creatures affected by this ability gain +2 AP on their next turn. This augment can be applied multiple times."),
 ]);
 export const specializationDiscipleOfSpyg: RankOption = new RankOption("Disciple of Spyg", specializationCategory,
     [
@@ -956,9 +965,9 @@ export const specializationDiscipleOfSpyg: RankOption = new RankOption("Disciple
     "[Water, Elemental]");
 
 export const augmentSetHydrologistLifeblood: Set<Augment> = new Set<Augment>([
-    new Augment("Erode", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged have their soak reduced by 1. Titan soak is unaffected. Creatures with at least 2 ranks in any combination of [Water] specializations are immune to this effect. This augment can be applied multiple times."),
-    new Augment("Mighty", new Cost(1, Currency.getCurrency("ap")), "+3 potency. This augment can be applied multiple times."),
-    new Augment("Trinity State", new Cost(1, Currency.getCurrency("ap")), "If this ability is being augmented by a [Fire] augment and an [Ice] augment, the potency is increased by 10. This augment can be applied multiple times."),
+    new Augment("Erode", new Cost(1, currencyAp), "All creatures damaged have their soak reduced by 1. Titan soak is unaffected. Creatures with at least 2 ranks in any combination of [Water] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Mighty", new Cost(1, currencyAp), "+3 potency. This augment can be applied multiple times."),
+    new Augment("Trinity State", new Cost(1, currencyAp), "If this ability is being augmented by a [Fire] augment and an [Ice] augment, the potency is increased by 10. This augment can be applied multiple times."),
 ]);
 export const specializationHydrologist: RankOption = new RankOption("Hydrologist", specializationCategory,
     [
@@ -969,8 +978,8 @@ export const specializationHydrologist: RankOption = new RankOption("Hydrologist
     "[Water, Elemental]");
 
 export const augmentSetDiscipleOfAleuelShiftingWinds: Set<Augment> = new Set<Augment>([
-    new Augment("Unbalance", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged by the spell are knocked prone. Creatures with at least 2 ranks of any combination of [Air] specializations are immune to this effect."),
-    new Augment("Shift", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged by the spell are able to be moved up to 10’. Creatures with at least 2 ranks of any combination of [Air] specializations are immune to this effect. This augment can be applied multiple times."),
+    new Augment("Unbalance", new Cost(1, currencyAp), "All creatures damaged by the spell are knocked prone. Creatures with at least 2 ranks of any combination of [Air] specializations are immune to this effect."),
+    new Augment("Shift", new Cost(1, currencyAp), "All creatures damaged by the spell are able to be moved up to 10’. Creatures with at least 2 ranks of any combination of [Air] specializations are immune to this effect. This augment can be applied multiple times."),
 ]);
 export const specializationDiscipleOfAleuel: RankOption = new RankOption("Disciple of Aleuel", specializationCategory,
     [
@@ -981,7 +990,7 @@ export const specializationDiscipleOfAleuel: RankOption = new RankOption("Discip
     "[Air, Elemental]");
 
 export const augmentSetDiscipleOfFanhaeOvercharge: Set<Augment> = new Set<Augment>([
-    new Augment("Overcharge", new Cost(1, Currency.getCurrency("ap")), "Spell gains +8 potency, all damaged creatures gains +3 AP on their next turn. This augment can be applied multiple times."),
+    new Augment("Overcharge", new Cost(1, currencyAp), "Spell gains +8 potency, all damaged creatures gains +3 AP on their next turn. This augment can be applied multiple times."),
 ]);
 export const specializationDiscipleOfFanhae: RankOption = new RankOption("Disciple of Fanhae", specializationCategory,
     [
@@ -992,7 +1001,7 @@ export const specializationDiscipleOfFanhae: RankOption = new RankOption("Discip
     "[Lightning, Elemental]");
 
 export const augmentSetDiscipleOfTilikSnowbound: Set<Augment> = new Set<Augment>([
-    new Augment("Shards", new Cost(1, Currency.getCurrency("ap")), "Spell has +5 potency if damaged creature’s soak is ignored. This augment can be applied multiple times."),
+    new Augment("Shards", new Cost(1, currencyAp), "Spell has +5 potency if damaged creature’s soak is ignored. This augment can be applied multiple times."),
 ]);
 export const specializationDiscipleOfTilik: RankOption = new RankOption("Disciple of Tilik", specializationCategory,
     [
@@ -1003,7 +1012,7 @@ export const specializationDiscipleOfTilik: RankOption = new RankOption("Discipl
     "[Ice, Elemental]");
 
 export const augmentSetDiscipleOfDawieWeathered: Set<Augment> = new Set<Augment>([
-    new Augment("Head Crack", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged become stunned until the end of their next turn. Creatures with at least 2 ranks in any combination of [Earth] specializations do not suffer the stunned effect."),
+    new Augment("Head Crack", new Cost(1, currencyAp), "All creatures damaged become stunned until the end of their next turn. Creatures with at least 2 ranks in any combination of [Earth] specializations do not suffer the stunned effect."),
 ]);
 export const specializationDiscipleOfDawie: RankOption = new RankOption("Disciple of Dawie", specializationCategory,
     [
@@ -1014,7 +1023,7 @@ export const specializationDiscipleOfDawie: RankOption = new RankOption("Discipl
     "[Earth, Elemental]");
 
 export const augmentSetNaturalistGrasp: Set<Augment> = new Set<Augment>([
-    new Augment("Grasp", new Cost(1, Currency.getCurrency("ap")), "The target is restrained until the end of their next turn."),
+    new Augment("Grasp", new Cost(1, currencyAp), "The target is restrained until the end of their next turn."),
 ]);
 export const specializationNaturalist: RankOption = new RankOption("Naturalist", specializationCategory,
     [
@@ -1033,42 +1042,42 @@ export const specializationNature_sChosen: RankOption = new RankOption("Nature�
     "Nature’s Chosen");
 
 export const augmentSetBeastmasterLink: Set<Augment> = new Set<Augment>([
-    new Augment("Camouflage", new Cost(1, Currency.getCurrency("ap")), "Your beast no longer needs to be obscured to hide. In addition, your beast may attempt to hide once per turn for no AP cost. "),
-    new Augment("Tremorsense", new Cost(1, Currency.getCurrency("ap")), "Your beast no longer needs to rely on sight to see. Your beast can sense the presence of all creatures within 30’ of it. "),
-    new Augment("Hard to Hit", new Cost(1, Currency.getCurrency("ap")), "Decrease the difficulty to dodge by 1. In addition, your beast may perform the Dodge ability once per round for no AP cost. "),
-    new Augment("Opposable Thumbs", new Cost(1, Currency.getCurrency("ap")), "Your beast gains manual dexterity. "),
-    new Augment("Regenerating Cells", new Cost(1, Currency.getCurrency("ap")), "All healing your beast receives is increased by 5. This augment can be applied multiple times."),
-    new Augment("Bruiser", new Cost(1, Currency.getCurrency("ap")), "All of your beast’s [Brawl] attacks deal +2 damage. This augment can be applied multiple times."),
-    new Augment("Spit", new Cost(1, Currency.getCurrency("ap")), "Your beast gains the ability, Poison Spit or the ability, Acid Spit. (Depending on the type of beast)."),
-    new Augment("Harry", new Cost(1, Currency.getCurrency("ap")), "Your beast gains a new ability, called Harry. If within 5’ of a creature, it can harry it for 3 AP. Until the start of your next turn, the target suffers one automatic failure on all rolls. While harrying an opponent, your beast automatically follows the target."),
-    new Augment("Provoke", new Cost(1, Currency.getCurrency("ap")), "Your beast gains a new ability, called Provoke.3 AP, roll brawn + intimidate, difficulty 6. Choose a creature within 60’. For a number of turns equal to successes on the roll, the target can only attack your beast. "),
+    new Augment("Camouflage", new Cost(1, currencyAp), "Your beast no longer needs to be obscured to hide. In addition, your beast may attempt to hide once per turn for no AP cost. "),
+    new Augment("Tremorsense", new Cost(1, currencyAp), "Your beast no longer needs to rely on sight to see. Your beast can sense the presence of all creatures within 30’ of it. "),
+    new Augment("Hard to Hit", new Cost(1, currencyAp), "Decrease the difficulty to dodge by 1. In addition, your beast may perform the Dodge ability once per round for no AP cost. "),
+    new Augment("Opposable Thumbs", new Cost(1, currencyAp), "Your beast gains manual dexterity. "),
+    new Augment("Regenerating Cells", new Cost(1, currencyAp), "All healing your beast receives is increased by 5. This augment can be applied multiple times."),
+    new Augment("Bruiser", new Cost(1, currencyAp), "All of your beast’s [Brawl] attacks deal +2 damage. This augment can be applied multiple times."),
+    new Augment("Spit", new Cost(1, currencyAp), "Your beast gains the ability, Poison Spit or the ability, Acid Spit. (Depending on the type of beast)."),
+    new Augment("Harry", new Cost(1, currencyAp), "Your beast gains a new ability, called Harry. If within 5’ of a creature, it can harry it for 3 AP. Until the start of your next turn, the target suffers one automatic failure on all rolls. While harrying an opponent, your beast automatically follows the target."),
+    new Augment("Provoke", new Cost(1, currencyAp), "Your beast gains a new ability, called Provoke.3 AP, roll brawn + intimidate, difficulty 6. Choose a creature within 60’. For a number of turns equal to successes on the roll, the target can only attack your beast. "),
 ]);
 export const augmentSetBeastmasterPredator: Set<Augment> = new Set<Augment>([
-    new Augment("Chameleon Skin", new Cost(1, Currency.getCurrency("ap")), "When your beast performs the Hide action, it goes invisible. Your beast automatically succeeds on the roll. "),
-    new Augment("Big Presence", new Cost(1, Currency.getCurrency("ap")), "If your beast uses the Provoke ability, you can choose to affect all creatures of your choice within range. "),
-    new Augment("Hardy", new Cost(1, Currency.getCurrency("ap")), "Your beast gains +2 titan soak. This augment can be applied multiple times."),
-    new Augment("Massive Claws", new Cost(1, Currency.getCurrency("ap")), "Your beast’s claw attack deals +2 damage and gains reach."),
-    new Augment("Massive Teeth", new Cost(1, Currency.getCurrency("ap")), "Your beast’s fang attack deals +2 damage and now ignores Titan soak. "),
-    new Augment("Poisonous", new Cost(1, Currency.getCurrency("ap")), "All damage your beast deals is now poison damage. Any time your beast deals poison damage, the target is staggered until the end of their next turn. (Cannot take this and Acidic or Elemental)"),
-    new Augment("Acidic", new Cost(1, Currency.getCurrency("ap")), "All damage your beast deals is now acid damage. Any time your beast deals acid damage, the target loses 1 soak. (Cannot take this and Poisonous or Elemental)"),
-    new Augment("Pounce", new Cost(1, Currency.getCurrency("ap")), "Your beast gains a new ability, called Pounce.For 5 AP, your creature performs a move action to move up to its speed and then can make a basic brawl attack. If it moves at least 2 squares, the attack deals 3 extra damage and will knock the target prone if it deals damage."),
-    new Augment("Elemental", new Cost(1, Currency.getCurrency("ap")), "Any time your beast deals damage, it now deals a specific damage type chosen when this augment is selected. The damage type can be any of the six elements (Fire, Ice, Water, Earth, Air, Lightning) (Cannot take this and Acidic or Poisonous)"),
-    new Augment("Improved Harry", new Cost(1, Currency.getCurrency("ap")), "While your beast is harrying a creature, per the ability, Harry, it is cannot be targeted with attacks."),
+    new Augment("Chameleon Skin", new Cost(1, currencyAp), "When your beast performs the Hide action, it goes invisible. Your beast automatically succeeds on the roll. "),
+    new Augment("Big Presence", new Cost(1, currencyAp), "If your beast uses the Provoke ability, you can choose to affect all creatures of your choice within range. "),
+    new Augment("Hardy", new Cost(1, currencyAp), "Your beast gains +2 titan soak. This augment can be applied multiple times."),
+    new Augment("Massive Claws", new Cost(1, currencyAp), "Your beast’s claw attack deals +2 damage and gains reach."),
+    new Augment("Massive Teeth", new Cost(1, currencyAp), "Your beast’s fang attack deals +2 damage and now ignores Titan soak. "),
+    new Augment("Poisonous", new Cost(1, currencyAp), "All damage your beast deals is now poison damage. Any time your beast deals poison damage, the target is staggered until the end of their next turn. (Cannot take this and Acidic or Elemental)"),
+    new Augment("Acidic", new Cost(1, currencyAp), "All damage your beast deals is now acid damage. Any time your beast deals acid damage, the target loses 1 soak. (Cannot take this and Poisonous or Elemental)"),
+    new Augment("Pounce", new Cost(1, currencyAp), "Your beast gains a new ability, called Pounce.For 5 AP, your creature performs a move action to move up to its speed and then can make a basic brawl attack. If it moves at least 2 squares, the attack deals 3 extra damage and will knock the target prone if it deals damage."),
+    new Augment("Elemental", new Cost(1, currencyAp), "Any time your beast deals damage, it now deals a specific damage type chosen when this augment is selected. The damage type can be any of the six elements (Fire, Ice, Water, Earth, Air, Lightning) (Cannot take this and Acidic or Poisonous)"),
+    new Augment("Improved Harry", new Cost(1, currencyAp), "While your beast is harrying a creature, per the ability, Harry, it is cannot be targeted with attacks."),
 ]);
 export const augmentSetBeastmasterBond: Set<Augment> = new Set<Augment>([
-    new Augment("Strength", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to brawn. This can go above 5. This augment can be applied multiple times."),
-    new Augment("Agile", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to dexterity. This can go above 5. This augment can be applied multiple times."),
-    new Augment("Alert", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to senses. This can go above 5. This augment can be applied multiple times."),
-    new Augment("Surprise Attack", new Cost(1, Currency.getCurrency("ap")), "If your beast attacks a creature that is unaware of its location, the attack deals +5 damage. "),
-    new Augment("Ranged Combatant", new Cost(1, Currency.getCurrency("ap")), "Your beast’s ranged attacks have their range increased by 60’ and deal +3 damage."),
-    new Augment("Well", new Cost(1, Currency.getCurrency("ap")), "Your beast gains +2 to its health modifier."),
-    new Augment("Scary", new Cost(1, Currency.getCurrency("ap")), "Any creature under the effects of the Provoke ability that your beast performs also suffers the Afraid condition. "),
-    new Augment("Energetic", new Cost(1, Currency.getCurrency("ap")), "Your beast’s maximum AP is increased by 2."),
-    new Augment("Vicious", new Cost(1, Currency.getCurrency("ap")), "Your beast’s attacks cost 1 less AP (minimum of 1)"),
-    new Augment("Withstand", new Cost(1, Currency.getCurrency("ap")), "At the end of your turn, your beast can choose to Withstand. If it does so, your beast gains +5 titan soak until the start of your turn, but is unable to to perform any actions. "),
-    new Augment("Ravager", new Cost(1, Currency.getCurrency("ap")), "Your beast may perform a [Basic] Brawl attack for no AP cost each round."),
-    new Augment("Toxic", new Cost(1, Currency.getCurrency("ap")), "Your beast’s attacks that deal poison or acid damage prevent the target from spending resolve on anything other than removing this effect until the end of their next turn. Additional applications increase the resolve cost to remove this effect."),
-    new Augment("Master Harry", new Cost(1, Currency.getCurrency("ap")), "If your beast is harrying a creature, per the ability, Harry, and the creature fails or botches any roll, your beast can make a basic attack against the creature immediately for no AP cost. In addition, harry now only costs 1 AP."),
+    new Augment("Strength", new Cost(1, currencyAp), "Gain +2 to brawn. This can go above 5. This augment can be applied multiple times."),
+    new Augment("Agile", new Cost(1, currencyAp), "Gain +2 to dexterity. This can go above 5. This augment can be applied multiple times."),
+    new Augment("Alert", new Cost(1, currencyAp), "Gain +2 to senses. This can go above 5. This augment can be applied multiple times."),
+    new Augment("Surprise Attack", new Cost(1, currencyAp), "If your beast attacks a creature that is unaware of its location, the attack deals +5 damage. "),
+    new Augment("Ranged Combatant", new Cost(1, currencyAp), "Your beast’s ranged attacks have their range increased by 60’ and deal +3 damage."),
+    new Augment("Well", new Cost(1, currencyAp), "Your beast gains +2 to its health modifier."),
+    new Augment("Scary", new Cost(1, currencyAp), "Any creature under the effects of the Provoke ability that your beast performs also suffers the Afraid condition. "),
+    new Augment("Energetic", new Cost(1, currencyAp), "Your beast’s maximum AP is increased by 2."),
+    new Augment("Vicious", new Cost(1, currencyAp), "Your beast’s attacks cost 1 less AP (minimum of 1)"),
+    new Augment("Withstand", new Cost(1, currencyAp), "At the end of your turn, your beast can choose to Withstand. If it does so, your beast gains +5 titan soak until the start of your turn, but is unable to to perform any actions. "),
+    new Augment("Ravager", new Cost(1, currencyAp), "Your beast may perform a [Basic] Brawl attack for no AP cost each round."),
+    new Augment("Toxic", new Cost(1, currencyAp), "Your beast’s attacks that deal poison or acid damage prevent the target from spending resolve on anything other than removing this effect until the end of their next turn. Additional applications increase the resolve cost to remove this effect."),
+    new Augment("Master Harry", new Cost(1, currencyAp), "If your beast is harrying a creature, per the ability, Harry, and the creature fails or botches any roll, your beast can make a basic attack against the creature immediately for no AP cost. In addition, harry now only costs 1 AP."),
 ]);
 export const specializationBeastmaster: RankOption = new RankOption("Beastmaster", specializationCategory,
     [
@@ -1079,37 +1088,37 @@ export const specializationBeastmaster: RankOption = new RankOption("Beastmaster
     "Beastmaster");
 
 export const augmentSetShapeshifterAnimalForm: Set<Augment> = new Set<Augment>([
-    new Augment("Camouflage", new Cost(1, Currency.getCurrency("ap")), "You no longer need to be obscured to hide. In addition, you may attempt to hide once per turn for no AP cost. "),
-    new Augment("Flying", new Cost(1, Currency.getCurrency("ap")), "Gain flying speed equal to movement speed. (if you already had a fly speed, increase movement by +2)."),
-    new Augment("Voice", new Cost(1, Currency.getCurrency("ap")), "Gain the ability to speak."),
-    new Augment("Tremorsense", new Cost(1, Currency.getCurrency("ap")), "You no longer need to rely on sight to see. You can sense the presence of all creatures within 30’ of you."),
-    new Augment("Hard to Hit", new Cost(1, Currency.getCurrency("ap")), "Decrease the difficulty to dodge by 1. In addition, you may perform the Dodge ability once per round for no AP cost."),
-    new Augment("Opposable Thumbs", new Cost(1, Currency.getCurrency("ap")), "Gain manual dexterity."),
-    new Augment("Regenerating Cells", new Cost(1, Currency.getCurrency("ap")), "All healing you recieve is increased by 5. This augment can be applied multiple times."),
-    new Augment("Bruiser", new Cost(1, Currency.getCurrency("ap")), "All of your [Brawl] attacks deal +2 damage. This augment can be applied multiple times."),
-    new Augment("Venomous", new Cost(1, Currency.getCurrency("ap")), "When performing any [Basic] ability, you can choose to change the damage type to poison or acid (depending on the beast)."),
-    new Augment("Fast Forming", new Cost(1, Currency.getCurrency("ap")), "The AP cost of Shapeshifting is reduced by 1. This augment can be applied multiple times."),
+    new Augment("Camouflage", new Cost(1, currencyAp), "You no longer need to be obscured to hide. In addition, you may attempt to hide once per turn for no AP cost. "),
+    new Augment("Flying", new Cost(1, currencyAp), "Gain flying speed equal to movement speed. (if you already had a fly speed, increase movement by +2)."),
+    new Augment("Voice", new Cost(1, currencyAp), "Gain the ability to speak."),
+    new Augment("Tremorsense", new Cost(1, currencyAp), "You no longer need to rely on sight to see. You can sense the presence of all creatures within 30’ of you."),
+    new Augment("Hard to Hit", new Cost(1, currencyAp), "Decrease the difficulty to dodge by 1. In addition, you may perform the Dodge ability once per round for no AP cost."),
+    new Augment("Opposable Thumbs", new Cost(1, currencyAp), "Gain manual dexterity."),
+    new Augment("Regenerating Cells", new Cost(1, currencyAp), "All healing you recieve is increased by 5. This augment can be applied multiple times."),
+    new Augment("Bruiser", new Cost(1, currencyAp), "All of your [Brawl] attacks deal +2 damage. This augment can be applied multiple times."),
+    new Augment("Venomous", new Cost(1, currencyAp), "When performing any [Basic] ability, you can choose to change the damage type to poison or acid (depending on the beast)."),
+    new Augment("Fast Forming", new Cost(1, currencyAp), "The AP cost of Shapeshifting is reduced by 1. This augment can be applied multiple times."),
 ]);
 export const augmentSetShapeshifterToughHide: Set<Augment> = new Set<Augment>([
-    new Augment("Chameleon Skin", new Cost(1, Currency.getCurrency("ap")), "When you perform the Hide action, you go invisible. You automatically succeed on the roll."),
-    new Augment("Big Presence", new Cost(1, Currency.getCurrency("ap")), "If you use the Taunt ability, you can choose to affect all creatures of your choice and the range is increased by 30’."),
-    new Augment("Hardy", new Cost(1, Currency.getCurrency("ap")), "You gain +2 titan soak. This augment can be applied multiple times."),
-    new Augment("Massive Claws", new Cost(1, Currency.getCurrency("ap")), "Your Retractable Claw ability deals +2 damage and gains reach."),
-    new Augment("Massive Teeth", new Cost(1, Currency.getCurrency("ap")), "Your Retractable Fangs ability deals +2 damage and now ignores Titan soak."),
-    new Augment("Terrible Poisons", new Cost(1, Currency.getCurrency("ap")), "Any [Poison] ability you use staggers the target until the end of their next turn if the attack dealt damage."),
-    new Augment("Vicious Acids", new Cost(1, Currency.getCurrency("ap")), "Any [Acid] ability you use causes the target to lose 1 soak if the attack dealt damage."),
+    new Augment("Chameleon Skin", new Cost(1, currencyAp), "When you perform the Hide action, you go invisible. You automatically succeed on the roll."),
+    new Augment("Big Presence", new Cost(1, currencyAp), "If you use the Taunt ability, you can choose to affect all creatures of your choice and the range is increased by 30’."),
+    new Augment("Hardy", new Cost(1, currencyAp), "You gain +2 titan soak. This augment can be applied multiple times."),
+    new Augment("Massive Claws", new Cost(1, currencyAp), "Your Retractable Claw ability deals +2 damage and gains reach."),
+    new Augment("Massive Teeth", new Cost(1, currencyAp), "Your Retractable Fangs ability deals +2 damage and now ignores Titan soak."),
+    new Augment("Terrible Poisons", new Cost(1, currencyAp), "Any [Poison] ability you use staggers the target until the end of their next turn if the attack dealt damage."),
+    new Augment("Vicious Acids", new Cost(1, currencyAp), "Any [Acid] ability you use causes the target to lose 1 soak if the attack dealt damage."),
 ]);
 export const augmentSetShapeshifterPerfectForm: Set<Augment> = new Set<Augment>([
-    new Augment("Strength", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to your brawn. This can go above 5."),
-    new Augment("Agile", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to your dexterity. This can go above 5. "),
-    new Augment("Alert", new Cost(1, Currency.getCurrency("ap")), "Gain +2 to your senses. This can go above 5."),
-    new Augment("Surprise Attack", new Cost(1, Currency.getCurrency("ap")), "If you attack a creature that is unaware of your location, the attack deals +5 damage."),
-    new Augment("Ranged Combatant", new Cost(1, Currency.getCurrency("ap")), "Your ranged attacks have their range increased by 60’ and deal +3 damage."),
-    new Augment("Scary", new Cost(1, Currency.getCurrency("ap")), "Any creature under the effects of the Taunt ability that you performed also suffers the Afraid condition."),
-    new Augment("Energetic", new Cost(1, Currency.getCurrency("ap")), "Your maximum AP is increased by 1."),
-    new Augment("Withstand", new Cost(1, Currency.getCurrency("ap")), "At the end of your turn, you can choose to Withstand. If you do so, you gain +5 titan soak until the start of your turn, but are unable to to perform any actions."),
-    new Augment("Ravager", new Cost(1, Currency.getCurrency("ap")), "You may perform a [Basic] Brawl attack for no AP cost each round."),
-    new Augment("Toxic", new Cost(1, Currency.getCurrency("ap")), "Your attacks that deal poison or acid damage prevent the target from spending resolve on anything other than removing this effect until the end of their next turn. Additional applications increase the resolve cost to remove this effect."),
+    new Augment("Strength", new Cost(1, currencyAp), "Gain +2 to your brawn. This can go above 5."),
+    new Augment("Agile", new Cost(1, currencyAp), "Gain +2 to your dexterity. This can go above 5. "),
+    new Augment("Alert", new Cost(1, currencyAp), "Gain +2 to your senses. This can go above 5."),
+    new Augment("Surprise Attack", new Cost(1, currencyAp), "If you attack a creature that is unaware of your location, the attack deals +5 damage."),
+    new Augment("Ranged Combatant", new Cost(1, currencyAp), "Your ranged attacks have their range increased by 60’ and deal +3 damage."),
+    new Augment("Scary", new Cost(1, currencyAp), "Any creature under the effects of the Taunt ability that you performed also suffers the Afraid condition."),
+    new Augment("Energetic", new Cost(1, currencyAp), "Your maximum AP is increased by 1."),
+    new Augment("Withstand", new Cost(1, currencyAp), "At the end of your turn, you can choose to Withstand. If you do so, you gain +5 titan soak until the start of your turn, but are unable to to perform any actions."),
+    new Augment("Ravager", new Cost(1, currencyAp), "You may perform a [Basic] Brawl attack for no AP cost each round."),
+    new Augment("Toxic", new Cost(1, currencyAp), "Your attacks that deal poison or acid damage prevent the target from spending resolve on anything other than removing this effect until the end of their next turn. Additional applications increase the resolve cost to remove this effect."),
 ]);
 export const specializationShapeshifter: RankOption = new RankOption("Shapeshifter", specializationCategory,
     [
@@ -1120,7 +1129,7 @@ export const specializationShapeshifter: RankOption = new RankOption("Shapeshift
     "[Tank]");
 
 export const augmentSetDefilerWither: Set<Augment> = new Set<Augment>([
-    new Augment("Wither", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged cannot be healed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Necrotic] specializations are immune to this secondary effect."),
+    new Augment("Wither", new Cost(1, currencyAp), "All creatures damaged cannot be healed until the end of your next turn. Creatures with at least 2 ranks in any combination of [Necrotic] specializations are immune to this secondary effect."),
 ]);
 export const specializationDefiler: RankOption = new RankOption("Defiler", specializationCategory,
     [
@@ -1131,7 +1140,7 @@ export const specializationDefiler: RankOption = new RankOption("Defiler", speci
     "[Necrotic]");
 
 export const augmentSetMephiteToxic: Set<Augment> = new Set<Augment>([
-    new Augment("Toxic", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are staggered until the end of their next turn. Creatures with at least 2 ranks in any combination of [Poison] specializations are immune to this secondary effect."),
+    new Augment("Toxic", new Cost(1, currencyAp), "All creatures damaged are staggered until the end of their next turn. Creatures with at least 2 ranks in any combination of [Poison] specializations are immune to this secondary effect."),
 ]);
 export const specializationMephite: RankOption = new RankOption("Mephite", specializationCategory,
     [
@@ -1150,8 +1159,8 @@ export const specializationWanderer: RankOption = new RankOption("Wanderer", spe
     "Wanderer");
 
 export const augmentSetRavagerSavage: Set<Augment> = new Set<Augment>([
-    new Augment("Bleed", new Cost(1, Currency.getCurrency("ap")), "The target begins to bleed. At the start of the target’s turn, they take unsoakable damage equal to the base AP cost of the ability used. This is a bleed effect. This effect stacks with additional applications. This augment can be applied multiple times."),
-    new Augment("Devastate", new Cost(1, Currency.getCurrency("ap")), "This ability deals triple damage. You may only activate this augment once per encounter."),
+    new Augment("Bleed", new Cost(1, currencyAp), "The target begins to bleed. At the start of the target’s turn, they take unsoakable damage equal to the base AP cost of the ability used. This is a bleed effect. This effect stacks with additional applications. This augment can be applied multiple times."),
+    new Augment("Devastate", new Cost(1, currencyAp), "This ability deals triple damage. You may only activate this augment once per encounter."),
 ]);
 export const specializationRavager: RankOption = new RankOption("Ravager", specializationCategory,
     [
@@ -1169,6 +1178,16 @@ export const specializationCarnage: RankOption = new RankOption("Carnage", speci
     ],
     "Carnage");
 
+export const specializationTrapper: RankOption = new RankOption("Trapper", specializationCategory,
+    [
+        new Rank(1, "Magical Trapsmith", "You unlock the ability to imbue magic into your traps. When making a kill trap, you can change the damage type to be any damage type that you have at least 3  ranks of a specialization in. In addition, you gain access to new effects for your hamper traps. Each rank of Trapper you gain unlocks a new type of trap. <table style=\"border:none;border-collapse:collapse\"><colgroup><col width=\"101\"><col width=\"71\"><col width=\"79\"><col width=\"294\"><col width=\"79\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><br><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Name</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Kill </span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">or</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple or</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Complex</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><br><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Effects</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Trapper</span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Rank </span></p><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Required</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Fear</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Makes the target afraid of you for a number of turns equal to successes</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Confusion</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Confuses the target for a number of turns equal to successes</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Stun</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Stuns the target for a number of turns equal to half your successes</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Charm</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Charms the target for a number of turns equal to your successes</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">4</span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Incapacitate</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Hamper</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Simple</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Incapacitates the target for a number of turns equal to half your successes</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;text-align: center;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">5</span></p></td></tr></tbody></table>", null, null),
+        new Rank(2, "Trapper", "You gain +2 dice to all rolls involving traps", null, null),
+        new Rank(3, "Camouflage", "The difficulty to find your traps is increased by 2", null, null),
+        new Rank(4, "Bait", "Non-sentient creatures that require standard food (aka edible for humans) that are within 60ft of any trap you assemble must make a senses + discipline, difficulty 9 roll. On a failure, the creature goes toward the trap and will trigger it as quickly as possible. This roll is only done up to twice; when first entering the radius and then again the first time its health ever drops below half and is in the radius. Creatures below half health make this roll with -2 successes.", null, null),
+        new Rank(5, "Master Hunter", "The time required to create complex traps is reduced by half. In addition, creatures current health has no effect on the duration of your hamper traps.", null, null),
+    ],
+    "[Trapmaking]");
+
 export const specializationBotanist: RankOption = new RankOption("Botanist", specializationCategory,
     [
         new Rank(1, "Herbalist", "The difficulty to identify, scavenge, or otherwise interact with natural herbs, flowers and plants is decreased by 1", null, null),
@@ -1178,7 +1197,7 @@ export const specializationBotanist: RankOption = new RankOption("Botanist", spe
     "[Brewing]");
 
 export const augmentSetRejuvenationNature_sGift: Set<Augment> = new Set<Augment>([
-    new Augment("Renew", new Cost(1, Currency.getCurrency("ap")), "This spell can now be maintained for a number of turns up to the number of augment slots used on this augment. When maintained, the target regains the effects of the ability at the start of your turn. If this effect causes healing, it does not count as a separate heal. Other augments applied do no reapply. It costs 1 AP to maintain a spell with this augment. This augment can be applied multiple times."),
+    new Augment("Renew", new Cost(1, currencyAp), "This spell can now be maintained for a number of turns up to the number of augment slots used on this augment. When maintained, the target regains the effects of the ability at the start of your turn. If this effect causes healing, it does not count as a separate heal. Other augments applied do no reapply. It costs 1 AP to maintain a spell with this augment. This augment can be applied multiple times."),
 ]);
 export const specializationRejuvenation: RankOption = new RankOption("Rejuvenation", specializationCategory,
     [
@@ -1213,11 +1232,11 @@ export const specializationThirdEye: RankOption = new RankOption("Third Eye", sp
     "Third Eye");
 
 export const augmentSetSoulShaperLifeWeaver: Set<Augment> = new Set<Augment>([
-    new Augment("Potency", new Cost(1, Currency.getCurrency("ap")), "+3 potency. This augment can be applied multiple times."),
-    new Augment("Reenergizing", new Cost(1, Currency.getCurrency("ap")), "The targets lose one stack of exhaustion. This augment can only be applied once per rest."),
-    new Augment("Clear", new Cost(1, Currency.getCurrency("ap")), "The targets are cured of a curse effect. This augment can only be applied once per rest."),
-    new Augment("Reinvigorating", new Cost(1, Currency.getCurrency("ap")), "The targets regain one resolve. This augment can only be applied once per rest."),
-    new Augment("Gentle Touch", new Cost(1, Currency.getCurrency("ap")), "This does not count against the number of available heals a creature has. This augment can only be applied once per encounter."),
+    new Augment("Potency", new Cost(1, currencyAp), "+3 potency. This augment can be applied multiple times."),
+    new Augment("Reenergizing", new Cost(1, currencyAp), "The targets lose one stack of exhaustion. This augment can only be applied once per rest."),
+    new Augment("Clear", new Cost(1, currencyAp), "The targets are cured of a curse effect. This augment can only be applied once per rest."),
+    new Augment("Reinvigorating", new Cost(1, currencyAp), "The targets regain one resolve. This augment can only be applied once per rest."),
+    new Augment("Gentle Touch", new Cost(1, currencyAp), "This does not count against the number of available heals a creature has. This augment can only be applied once per encounter."),
 ]);
 export const specializationSoulShaper: RankOption = new RankOption("Soul Shaper", specializationCategory,
     [
@@ -1228,9 +1247,9 @@ export const specializationSoulShaper: RankOption = new RankOption("Soul Shaper"
     "[Heal]");
 
 export const augmentSetPsychicMentalRecharge: Set<Augment> = new Set<Augment>([
-    new Augment("Fear", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are afraid of you until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
-    new Augment("Brain Freeze", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are restrained until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
-    new Augment("Numb", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged cannot perform [Out-of-Turn] abilities until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
+    new Augment("Fear", new Cost(1, currencyAp), "All creatures damaged are afraid of you until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
+    new Augment("Brain Freeze", new Cost(1, currencyAp), "All creatures damaged are restrained until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
+    new Augment("Numb", new Cost(1, currencyAp), "All creatures damaged cannot perform [Out-of-Turn] abilities until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
 ]);
 export const specializationPsychic: RankOption = new RankOption("Psychic", specializationCategory,
     [
@@ -1240,7 +1259,7 @@ export const specializationPsychic: RankOption = new RankOption("Psychic", speci
     "[Psychic]");
 
 export const augmentSetOutsiderAddle: Set<Augment> = new Set<Augment>([
-    new Augment("Addle", new Cost(1, Currency.getCurrency("ap")), "All creatures damaged are confused until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
+    new Augment("Addle", new Cost(1, currencyAp), "All creatures damaged are confused until the end of their next turn. Creatures with at least 2 ranks of any combination of [Psychic] specializations are immune to this effect."),
 ]);
 export const specializationOutsider: RankOption = new RankOption("Outsider", specializationCategory,
     [
@@ -1251,12 +1270,12 @@ export const specializationOutsider: RankOption = new RankOption("Outsider", spe
     "[Psychic]");
 
 export const augmentSetMindOverMatterPsychicCreations: Set<Augment> = new Set<Augment>([
-    new Augment("Mind Shield", new Cost(1, Currency.getCurrency("ap")), "If you get at least one success on the Parry roll, you are immune to any adverse effects."),
-    new Augment("Energy Absorb", new Cost(1, Currency.getCurrency("ap")), "If you successfully reduce the attack to 0 successes, you heal for the amount of damage the attack would have done before you used Parry."),
-    new Augment("Backlash", new Cost(1, Currency.getCurrency("ap")), "If you successfully reduce the attack to 0 successes, the attacker suffers psychic damage equal to the amount of damage the attack would have done before you used Parry."),
+    new Augment("Mind Shield", new Cost(1, currencyAp), "If you get at least one success on the Parry roll, you are immune to any adverse effects."),
+    new Augment("Energy Absorb", new Cost(1, currencyAp), "If you successfully reduce the attack to 0 successes, you heal for the amount of damage the attack would have done before you used Parry."),
+    new Augment("Backlash", new Cost(1, currencyAp), "If you successfully reduce the attack to 0 successes, the attacker suffers psychic damage equal to the amount of damage the attack would have done before you used Parry."),
 ]);
 export const augmentSetMindOverMatterBoundBlade: Set<Augment> = new Set<Augment>([
-    new Augment("Adaptive", new Cost(1, Currency.getCurrency("ap")), "Your bound weapons gain the concussive, penetrating, thrown, simple, reach or defensive trait before the ability is used. This augment can be applied multiple times, each time applying a different trait."),
+    new Augment("Adaptive", new Cost(1, currencyAp), "Your bound weapons gain the concussive, penetrating, thrown, simple, reach or defensive trait before the ability is used. This augment can be applied multiple times, each time applying a different trait."),
 ]);
 export const specializationMindOverMatter: RankOption = new RankOption("Mind Over Matter", specializationCategory,
     [
@@ -1274,12 +1293,12 @@ export const specializationSavant: RankOption = new RankOption("Savant", special
     "Savant");
 
 export const augmentSetKiSageMysticMage: Set<Augment> = new Set<Augment>([
-    new Augment("Unerring", new Cost(1, Currency.getCurrency("ap")), "This ability cannot be parried or dodged."),
-    new Augment("Ki Block", new Cost(1, Currency.getCurrency("ap")), "If the ability deals damage, the targets cannot be healed until the end of their next turn."),
-    new Augment("Drain", new Cost(2, Currency.getCurrency("ap")), "If the ability deals damage, the targets lose one point of resolve. Creatures can only be affected by this augment once per day."),
+    new Augment("Unerring", new Cost(1, currencyAp), "This ability cannot be parried or dodged."),
+    new Augment("Ki Block", new Cost(1, currencyAp), "If the ability deals damage, the targets cannot be healed until the end of their next turn."),
+    new Augment("Drain", new Cost(2, currencyAp), "If the ability deals damage, the targets lose one point of resolve. Creatures can only be affected by this augment once per day."),
 ]);
 export const augmentSetKiSageCloseYourEyes: Set<Augment> = new Set<Augment>([
-    new Augment("Focused", new Cost(1, Currency.getCurrency("ap")), "All targets gain +2 maximum AP for the duration."),
+    new Augment("Focused", new Cost(1, currencyAp), "All targets gain +2 maximum AP for the duration."),
 ]);
 export const specializationKiSage: RankOption = new RankOption("Ki Sage", specializationCategory,
     [
@@ -1290,12 +1309,12 @@ export const specializationKiSage: RankOption = new RankOption("Ki Sage", specia
     "[Ki]");
 
 export const augmentSetAdeptSecretSeals: Set<Augment> = new Set<Augment>([
-    new Augment("Seal of Strength", new Cost(2, Currency.getCurrency("ap")), "You may add your senses to the damage of all your attacks."),
-    new Augment("Seal of Synergy", new Cost(2, Currency.getCurrency("ap")), "Once per round on your turn you may perform a [Ki] + [Force] ability for no AP cost after performing a [Brawl] + [Weapon] ability and vice versa (still only once per turn, regardless of which comes first.)"),
-    new Augment("The Final Seal", new Cost(4, Currency.getCurrency("ap")), "You unlock all of the seals in your body. Apply every other augment you know for this ability. After the ability ends, you gain 3 stacks of exhaustion."),
+    new Augment("Seal of Strength", new Cost(2, currencyAp), "You may add your senses to the damage of all your attacks."),
+    new Augment("Seal of Synergy", new Cost(2, currencyAp), "Once per round on your turn you may perform a [Ki] + [Force] ability for no AP cost after performing a [Brawl] + [Weapon] ability and vice versa (still only once per turn, regardless of which comes first.)"),
+    new Augment("The Final Seal", new Cost(4, currencyAp), "You unlock all of the seals in your body. Apply every other augment you know for this ability. After the ability ends, you gain 3 stacks of exhaustion."),
 ]);
 export const augmentSetAdeptJustBreathe: Set<Augment> = new Set<Augment>([
-    new Augment("Death", new Cost(1, Currency.getCurrency("ap")), "All target’s attacks bypass all soak, including Titan soak. In addition, all target’s abilities gain +3 potency. This augment can only be applied once."),
+    new Augment("Death", new Cost(1, currencyAp), "All target’s attacks bypass all soak, including Titan soak. In addition, all target’s abilities gain +3 potency. This augment can only be applied once."),
 ]);
 export const specializationAdept: RankOption = new RankOption("Adept", specializationCategory,
     [
@@ -1306,7 +1325,7 @@ export const specializationAdept: RankOption = new RankOption("Adept", specializ
     "[Ki]");
 
 export const augmentSetMentalFortressBacklash: Set<Augment> = new Set<Augment>([
-    new Augment("Willpower", new Cost(1, Currency.getCurrency("ap")), "All targets are immune to adverse effects for the duration."),
+    new Augment("Willpower", new Cost(1, currencyAp), "All targets are immune to adverse effects for the duration."),
 ]);
 export const specializationMentalFortress: RankOption = new RankOption("Mental Fortress", specializationCategory,
     [
@@ -1316,8 +1335,8 @@ export const specializationMentalFortress: RankOption = new RankOption("Mental F
     "[Ki]");
 
 export const augmentSetTranquilTranquility: Set<Augment> = new Set<Augment>([
-    new Augment("Grace", new Cost(1, Currency.getCurrency("ap")), "The difficulty of Dodging and Parrying is reduced by two for all targets and the AP cost is reduced by 1 (Minimum of 1)."),
-    new Augment("Tranquil", new Cost(1, Currency.getCurrency("ap")), "All targets ignore the penalties of exhaustion and add three dice to all rolls. "),
+    new Augment("Grace", new Cost(1, currencyAp), "The difficulty of Dodging and Parrying is reduced by two for all targets and the AP cost is reduced by 1 (Minimum of 1)."),
+    new Augment("Tranquil", new Cost(1, currencyAp), "All targets ignore the penalties of exhaustion and add three dice to all rolls. "),
 ]);
 export const specializationTranquil: RankOption = new RankOption("Tranquil", specializationCategory,
     [
@@ -1335,6 +1354,16 @@ export const specializationShade: RankOption = new RankOption("Shade", specializ
     ],
     "[Skulker]");
 
+export const specializationSoulbinder: RankOption = new RankOption("Soulbinder", specializationCategory,
+    [
+        new Rank(1, "Animated Parts", "You have learned the basics of Soulbinding, the art of imbuing soul energy into objects. Crafting machines through artificing costs half the gold and half the time.", null, null),
+        new Rank(2, "Adept Soulbinder", "The difficulty of artificing is reduced by 1 for you. In addition, you have a reserve of soul energy on hand every day you can use to reduce the cost of the materials when artificing. Each day you can spend up to 200g without actually spending any gold. This increases to 500g at rank 5.", null, null),
+        new Rank(3, "Psychedelic Batons", "You learn how to implement new effects into batons you make. They all do 8 psychic damage. Rank 1 ‘Fearful Baton’ creatures that take damage from this weapon are afraid of you until the end of your next turn. Rank 3 ‘Confusing Baton’ creatures that take damage from this weapon are confused until the end of your next turn. Rank 5 ‘Chaos Baton’ creatures that take damage from this weapon are affected in different ways, depending on the number of successes on the roll. Regardless of the effect, it lasts until the end of your next turn. 1 success - the creature goes invisible, 2 successes - the creature is charmed, 3 successes - the creature is deafened and blinded, 4 successes - the creature is stunned and knocked prone, 5+ successes - the creature is incapacitated", null, null),
+        new Rank(4, "Mechanical Pal", "You learn the secret to creating near sentience in a mechanical golem. With a flash of inspiration, you may spend an hour to create your very own mechanical companion and imbue it with soul energy. When doing this, choose one of three templates to make: Guardian Bot, Executioner Droid or Support-a-tron. Once created, it becomes your companion. These robots are generally humanoid shaped, but don’t have to be. It has your ranks in all knowledge skills, and 18 points to spend in talents and abilities of your choice It’s attributes are set using an array of 5, 4, 3, 3, 2, 1 or 5, 5, 3, 3, 1, 1 You decide which attribute gets what rank. You may spend your own experience to improve the Mechanical Pal’s attributes or skills at the standard experience rate. You must also spend 25g per point of experience. You may make these mechanical pals for commercial use, but if they are not being designed to be your companion, you must make them with standard artificing rolls. Treat them as a rank 5 machine. <table style=\"border:none;border-collapse:collapse\"><colgroup><col width=\"125\"><col width=\"133\"><col width=\"117\"><col width=\"125\"><col width=\"125\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Available AP</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Command Limit</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Speed</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Soak</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Health </span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">5</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">5 x HP</span></p></td></tr></tbody></table> Construct - All constructs are immune to poisons, diseases, bleed effects and necrotic damage. In addition, they don't need to breathe, sleep, or eat Intelligence - Mechanical Pals can perform standard actions and wield most gear, unless the design doesn’t allow for it. Immunity - Once per encounter, the Guardian Bot may convert all of it’s soak into titan soak at any time. This lasts until the end of its next turn. Module - The pal has a number of modules that it can choose from, but may only have one active at a time. At the beginning of each encounter, choose what module your mechanical pal will have for the entire encounter. There are six modules to choose from, based off the six attributes. Each module can give three bonuses, based off the creature’s ranks in the attribute. Brawn: 1+ ranks - +1 damage per ranks of brawn on all attacks 3+ ranks - +1 health multiplier 5+ ranks - Can suffer the effects of any harmful attack directed towards a creature within 5ft Dexterity: 1+ ranks - +1 die on all dexterity rolls per ranks of dexterity 3+ ranks - Can make one move action for no AP cost each turn 5+ ranks - Can dodge once per round for no AP cost Presence: 1+ ranks - Taunt affects more targets equal to ranks in presence and the range is increased by 30ft 3+ ranks - Gain two automatic successes on all rolls 5+ ranks - Command limit is converted to maximum AP Subterfuge: 1+ ranks - ‘Immunity’ can be used a number of times more equal to ranks in subterfuge 3+ ranks - Taunt lasts forever and the difficulty is reduced by 2 5+ ranks - Creatures affected by Taunt suffer 1 automatic failure on all rolls. Senses: 1+ ranks - The difficulty of perception and insight rolls is reduced by ranks in senses 3+ ranks - Sizing up requires no AP 5+ ranks - Can parry once per round for no AP cost. Can parry all single target attacks Intellect: 1+ ranks - Take half damage from one damage type per ranks of intellect 3+ ranks - The AP to dodge and parry is reduced by 1 (to a min of 1) and the difficulty is reduced by 1 5+ ranks - Gain the effects of two rank 1s from different modules Bash - [Basic Brawl Attack] 3 AP, Brawn +2 bludgeoning damage Taunt - 3 AP, presence + intimidate, difficulty 6. A number of creatures equal to successes on the roll can only attack your mechanical pal for three turns. All targets must be within 30ft. <table style=\"border:none;border-collapse:collapse\"><colgroup><col width=\"125\"><col width=\"131\"><col width=\"119\"><col width=\"125\"><col width=\"125\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Available AP</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Command Limit</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Speed</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Soak</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Health </span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">5</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">8</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">4 x HP</span></p></td></tr></tbody></table> Construct - All constructs are immune to poisons, diseases, bleed effects and necrotic damage. In addition, they don't need to breathe, sleep, or eat Intelligence - Mechanical Pals can perform standard actions and wield most gear, unless the design doesn’t allow for it. Module - The pal has a number of modules that it can choose from, but may only have one active at a time. At the beginning of each encounter, choose what module your mechanical pal will have for the entire encounter. There are six modules to choose from, based off the six attributes. Each module can give three bonuses, based off the creature’s ranks in the attribute. Brawn: 1+ ranks - +1 damage per ranks of brawn on all attacks 3+ ranks - +1 health modifier 5+ ranks - Basic attacks can affect another creature within 5ft of the target. Dexterity: 1+ ranks - +1 die on all dexterity rolls per ranks of dexterity 3+ ranks - Can make one move action for no AP cost each turn 5+ ranks - Can dodge once per round for no AP cost Presence: 1+ ranks - Gain +1 HP per rank of presence 3+ ranks - Gain two automatic successes on all rolls 5+ ranks - Can use Eye Lasers one more time per encounter Subterfuge: 1+ ranks - Range of attacks that already have a range is increased by 10’ per rank of subterfuge 3+ ranks - This mechanical pal can not be targeted by harmful attacks or effects unless there is no other option 5+ ranks - You can not be targeted by harmful attacks or effects unless there is no other option Senses: 1+ ranks - The difficulty of perception and insight rolls is reduced by ranks in senses 3+ ranks - Sizing up requires no AP 5+ ranks - Can parry once per round for no AP cost. Can parry all single target attacks Intellect: 1+ ranks - Take half damage from one damage type per ranks of intellect 3+ ranks - The AP to dodge and parry is reduced by 1 (to a min of 1) and the difficulty is reduced by 1 5+ ranks - Gain the effects of two rank 1s from different modules Bash - [Basic Brawl Attack] 3 AP, Brawn +2 bludgeoning damage Eye Lasers - [Basic Ranged Attack] 3 AP, All creatures in a 5ft wide, 60ft long line take 18 fire damage. Usable once per encounter <table style=\"border:none;border-collapse:collapse\"><colgroup><col width=\"125\"><col width=\"128\"><col width=\"122\"><col width=\"125\"><col width=\"125\"></colgroup><tbody><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Available AP</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Command Limit</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Speed</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Soak</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Health </span></p></td></tr><tr style=\"height:0pt\"><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">2</span></p></td><td style=\"border-left:solid #000000 1pt;border-right:solid #000000 1pt;border-bottom:solid #000000 1pt;border-top:solid #000000 1pt;vertical-align:top;padding:5pt 5pt 5pt 5pt;\"><p style=\"line-height:1.2;margin-top:0pt;margin-bottom:0pt;\" dir=\"ltr\"><span style=\"font-size:12pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">4 x HP</span></p></td></tr></tbody></table> Construct - All constructs are immune to poisons, diseases, bleed effects and necrotic damage. In addition, they don't need to breathe, sleep, or eat Intelligence - Mechanical Pals can perform standard actions and wield most gear, unless the design doesn’t allow for it. Dart Gun - Support-a-trons wield a two-handed dart gun to administer their beneficial abilities Module - The pal has a number of modules that it can choose from, but may only have one active at a time. At the beginning of each encounter, choose what module your mechanical pal will have for the entire encounter. There are six modules to choose from, based off the six attributes. Each module can give three bonuses, based off the creature’s ranks in the attribute. Brawn: 1+ ranks - +1 soak per ranks of brawn 3+ ranks - +1 health multiplier 5+ ranks - Can suffer the effects of any harmful attack directed towards a creature within 5ft Dexterity: 1+ ranks - +1 die on all dexterity rolls per ranks of dexterity 3+ ranks - Can make one dodge action for no AP cost each round 5+ ranks - +2 maximum AP Presence: 1+ ranks - All healing is increased by 2 per rank in presence 3+ ranks - For each AP you give to this mechanical pal when commanding it, it gains two AP 5+ ranks - Dart Gun abilities can affect up to two targets within 10ft of each other Subterfuge: 1+ ranks - Dart Gun abilities have their range increased by 10ft per rank of subterfuge 3+ ranks - This mechanical pal can not be targeted by harmful attacks or effects unless there is no other option 5+ ranks - You can not be targeted by harmful attacks or effects unless there is no other option Senses: 1+ ranks - Poison Dart deals +1 damage per rank of senses 3+ ranks - Can parry once per round for no AP cost. Can parry while wielding the Dart Gun 5+ ranks - Automatically reveals any hidden creatures within 30ft to all allies Intellect: 1+ ranks - Take half damage from one damage type per ranks of intellect 3+ ranks - The AP to dodge and parry is reduced by 1 (to a min of 1) and the difficulty is reduced by 1 5+ ranks - Gain the effects of two rank 1s from different modules Bash - [Basic Brawl Attack] 3 AP, Brawn +2 bludgeoning damage Repair Dart - [Dart Gun] 2 AP, 30ft, the target regains 20 health (this can affect mechanical creatures and living creatures) Damage Dart - [Dart Gun] 2 AP, 30ft, the target deals 5 more damage on their next attack Defensive Dart - [Dart Gun] 2 AP, 30ft, the target gains +3 titan soak until the end of the mechanical pal’s next turn Poison Dart - [Dart Gun] 2 AP, 30ft, the target takes 5 unsoakable poison damage", null, null),
+        new Rank(5, "Master Soulbinder", "When you are wielding a weapon that is modified, you gain one automatic success on any attack roll with it. In addition, once per encounter, you may overload one of your mechanical pals. It gains 6 AP.", null, null),
+    ],
+    "[Artificing]");
+
 export const specializationMystic: RankOption = new RankOption("Mystic", specializationCategory,
     [
         new Rank(1, "Not the time", "When a charm you are wearing would be triggered, you can choose to not trigger it. Whenever you roll for a tarot card, roll twice and choose whichever result you prefer.", null, null),
@@ -1344,10 +1373,10 @@ export const specializationMystic: RankOption = new RankOption("Mystic", special
     "[Prophecy]");
 
 export const augmentSetMentalManipulationManipulator: Set<Augment> = new Set<Augment>([
-    new Augment("Confusion", new Cost(1, Currency.getCurrency("ap")), "The target suffers the confused condition while enthralled. The enthrall supersedes the confuse effect, meaning no matter the confusion result, the target cannot attack you."),
-    new Augment("Fear", new Cost(1, Currency.getCurrency("ap")), "The target suffers the afraid condition while enthralled. "),
-    new Augment("Control", new Cost(1, Currency.getCurrency("ap")), "While the target is enthralled, you may dictate an action for the target to take on each of its turns, using up to 2 of its AP. This augment can be applied multiple times, increasing the amount of AP that can be spent."),
-    new Augment("Focused", new Cost(1, Currency.getCurrency("ap")), "The target deals 5 extra damage on all of their attacks while enthralled. This augment can be applied multiple times."),
+    new Augment("Confusion", new Cost(1, currencyAp), "The target suffers the confused condition while enthralled. The enthrall supersedes the confuse effect, meaning no matter the confusion result, the target cannot attack you."),
+    new Augment("Fear", new Cost(1, currencyAp), "The target suffers the afraid condition while enthralled. "),
+    new Augment("Control", new Cost(1, currencyAp), "While the target is enthralled, you may dictate an action for the target to take on each of its turns, using up to 2 of its AP. This augment can be applied multiple times, increasing the amount of AP that can be spent."),
+    new Augment("Focused", new Cost(1, currencyAp), "The target deals 5 extra damage on all of their attacks while enthralled. This augment can be applied multiple times."),
 ]);
 export const specializationMentalManipulation: RankOption = new RankOption("Mental Manipulation", specializationCategory,
     [
@@ -1358,13 +1387,13 @@ export const specializationMentalManipulation: RankOption = new RankOption("Ment
     "[Enthrall]");
 
 export const augmentSetChangeOfHeartConvincing: Set<Augment> = new Set<Augment>([
-    new Augment("Doubt", new Cost(1, Currency.getCurrency("ap")), "While the targets are enthralled, they suffer 2 automatic failures on all rolls against any of your allies. This augment can be applied multiple times."),
-    new Augment("Irresistible", new Cost(1, Currency.getCurrency("ap")), "This ability requires one extra resolve to remove."),
-    new Augment("Trusting", new Cost(1, Currency.getCurrency("ap")), "The target takes 5 extra damage from all sources while enthralled. This augment can be applied multiple times."),
-    new Augment("Fatigue", new Cost(1, Currency.getCurrency("ap")), "After the enthrall effect wears off, the target is incapacitated on their next turn."),
+    new Augment("Doubt", new Cost(1, currencyAp), "While the targets are enthralled, they suffer 2 automatic failures on all rolls against any of your allies. This augment can be applied multiple times."),
+    new Augment("Irresistible", new Cost(1, currencyAp), "This ability requires one extra resolve to remove."),
+    new Augment("Trusting", new Cost(1, currencyAp), "The target takes 5 extra damage from all sources while enthralled. This augment can be applied multiple times."),
+    new Augment("Fatigue", new Cost(1, currencyAp), "After the enthrall effect wears off, the target is incapacitated on their next turn."),
 ]);
 export const augmentSetChangeOfHeartBrokenHeart: Set<Augment> = new Set<Augment>([
-    new Augment("Self Harm", new Cost(1, Currency.getCurrency("ap")), "This ability does not remove enthrall effects on the target."),
+    new Augment("Self Harm", new Cost(1, currencyAp), "This ability does not remove enthrall effects on the target."),
 ]);
 export const specializationChangeOfHeart: RankOption = new RankOption("Change of Heart", specializationCategory,
     [
@@ -1391,9 +1420,9 @@ export const specializationMinstrel: RankOption = new RankOption("Minstrel", spe
     "[Song]");
 
 export const augmentSetBardDedication: Set<Augment> = new Set<Augment>([
-    new Augment("Encore", new Cost(1, Currency.getCurrency("ap")), "The effects last for one additional turn. This augment can be applied multiple times."),
-    new Augment("Project", new Cost(1, Currency.getCurrency("ap")), "The range is increased by 30’. This augment can be applied multiple times."),
-    new Augment("Practiced", new Cost(1, Currency.getCurrency("ap")), "The ability gains one automatic success. This augment can be applied multiple times."),
+    new Augment("Encore", new Cost(1, currencyAp), "The effects last for one additional turn. This augment can be applied multiple times."),
+    new Augment("Project", new Cost(1, currencyAp), "The range is increased by 30’. This augment can be applied multiple times."),
+    new Augment("Practiced", new Cost(1, currencyAp), "The ability gains one automatic success. This augment can be applied multiple times."),
 ]);
 export const specializationBard: RankOption = new RankOption("Bard", specializationCategory,
     [
@@ -1412,9 +1441,9 @@ export const specializationSkald: RankOption = new RankOption("Skald", specializ
     "[Song, Inspire]");
 
 export const augmentSetWarlordInspirational: Set<Augment> = new Set<Augment>([
-    new Augment("Encouraging", new Cost(1, Currency.getCurrency("ap")), "The targets gain 5 temporary hit points. This augment can be applied multiple times."),
-    new Augment("Ferocity", new Cost(1, Currency.getCurrency("ap")), "The targets gain +2 potency on all abilities until the end of your next turn. This augment can be applied multiple times."),
-    new Augment("Speed", new Cost(1, Currency.getCurrency("ap")), "The targets gain +2 movement speed until the end of your next turn. This augment can be applied multiple times."),
+    new Augment("Encouraging", new Cost(1, currencyAp), "The targets gain 5 temporary hit points. This augment can be applied multiple times."),
+    new Augment("Ferocity", new Cost(1, currencyAp), "The targets gain +2 potency on all abilities until the end of your next turn. This augment can be applied multiple times."),
+    new Augment("Speed", new Cost(1, currencyAp), "The targets gain +2 movement speed until the end of your next turn. This augment can be applied multiple times."),
 ]);
 export const specializationWarlord: RankOption = new RankOption("Warlord", specializationCategory,
     [
@@ -1425,7 +1454,7 @@ export const specializationWarlord: RankOption = new RankOption("Warlord", speci
     "[Inspire]");
 
 export const augmentSetDiplomatBoomingVoice: Set<Augment> = new Set<Augment>([
-    new Augment("Steel Yourself", new Cost(1, Currency.getCurrency("ap")), "Targets gain +1 soak until the end of your next turn. This augment can be applied multiple times."),
+    new Augment("Steel Yourself", new Cost(1, currencyAp), "Targets gain +1 soak until the end of your next turn. This augment can be applied multiple times."),
 ]);
 export const specializationDiplomat: RankOption = new RankOption("Diplomat", specializationCategory,
     [
@@ -1436,7 +1465,7 @@ export const specializationDiplomat: RankOption = new RankOption("Diplomat", spe
     "[Inspire]");
 
 export const augmentSetConmanColdRead: Set<Augment> = new Set<Augment>([
-    new Augment("Rattle", new Cost(1, Currency.getCurrency("ap")), "Targets suffers -1 success on all rolls until the end of your next turn. This augment can be applied multiple times."),
+    new Augment("Rattle", new Cost(1, currencyAp), "Targets suffers -1 success on all rolls until the end of your next turn. This augment can be applied multiple times."),
 ]);
 export const specializationConman: RankOption = new RankOption("Conman", specializationCategory,
     [
@@ -1571,6 +1600,7 @@ export const specializations: RankOption[] = [
     specializationClairvoyant,
     specializationOracle,
     specializationProphet,
+    specializationInfuser,
     specializationFate,
     specializationDeath,
     specializationDemonHunter,
@@ -1601,6 +1631,7 @@ export const specializations: RankOption[] = [
     specializationWanderer,
     specializationRavager,
     specializationCarnage,
+    specializationTrapper,
     specializationBotanist,
     specializationRejuvenation,
     specializationAll_seeingEye,
@@ -1616,6 +1647,7 @@ export const specializations: RankOption[] = [
     specializationMentalFortress,
     specializationTranquil,
     specializationShade,
+    specializationSoulbinder,
     specializationMystic,
     specializationMentalManipulation,
     specializationChangeOfHeart,
