@@ -53,7 +53,7 @@ searchBox.oninput = function () {
 }
 searchSelect.onclick = function () {
     if (currentOption != null && currentChoice != null) {
-        currentOption.getUiElement().value = currentChoice.getName();
+        currentOption.getSelectUiElement().value = currentChoice.getName();
     }
 }
 
@@ -76,9 +76,12 @@ function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategor
     searchFeatures.style.display = "none";
 }
 
-function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption, selectedChoice: Choice): void {
+function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption, selectedChoice: Choice|null): void {
     if (option == currentOption && selectedChoice == currentChoice) return;
     onGenericCategoryGainFocus(uiElement, option.getCategory());
+    if (selectedChoice == null) {
+        return;
+    }
     currentOption = option;
     searchBox.style.display = cssSearchBoxDisplay;
     searchSelect.style.display = cssSearchSelectDisplay;

@@ -17,6 +17,7 @@ const abilityChoiceOptions: AbilityChoiceOption[] = new Array<AbilityChoiceOptio
 for (let i = 0; i < abilitiesBlock.children[0].children.length; i++) {
     if (i == 0) continue;
     abilityChoiceOptions[i - 1] = new AbilityChoiceOption(abilityChoiceSet);
-    const uiElement = nonNull(abilitiesBlock.children[0].children[i], "child " + i + " cant be null") as HTMLElement;
-    abilityChoiceOptions[i - 1].setUiElement(uiElement, focusListener);
+    const uiElement = nonNull(abilitiesBlock.children[0].children[i], "child " + i + " cant be null");
+    if (!(uiElement instanceof HTMLTableRowElement)) throw new Error("child of abilitiesBlock must be HTMLTableRowElement");
+    abilityChoiceOptions[i - 1].setAbilityElement(uiElement as HTMLTableRowElement, focusListener);
 }

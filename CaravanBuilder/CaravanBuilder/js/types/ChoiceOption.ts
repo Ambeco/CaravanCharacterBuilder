@@ -6,7 +6,7 @@ import { nonNull } from "../util/nonNull.js";
 
 
 export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {
-    onChoiceGainFocus(uiElement: HTMLSelectElement, option: ChoiceOption, choice: Choice|null): void;
+    onChoiceGainFocus(selectElement: HTMLSelectElement, option: ChoiceOption, choice: Choice|null): void;
 }
 export interface ChoiceChangeListener {
     (option: ChoiceOption, oldChoice: Choice|null): void;
@@ -19,7 +19,7 @@ export interface ChoiceChangeListener {
 export class ChoiceOption {
     public readonly name: string;
     public readonly category: OptionCategory;
-    private uiElement: HTMLSelectElement;
+    private selectElement: HTMLSelectElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
     public selection: Choice | null;
@@ -32,29 +32,29 @@ export class ChoiceOption {
         this.selection = null;
         choices.addOption(this);
     }
-    public setUiElement(uiElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener) {
+    public setSelectUiElement(selectElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener): void {
         const option: ChoiceOption = this;
-        this.uiElement = uiElement;
-        uiElement.onchange = function () {
+        this.selectElement = selectElement;
+        selectElement.onchange = function () {
             option.onUIChange();
-            focusListener.onChoiceGainFocus(uiElement, option, option.selection)
+            focusListener.onChoiceGainFocus(selectElement, option, option.selection)
         };
-        uiElement.onfocus = function () {
-            focusListener.onChoiceGainFocus(uiElement, option, option.selection);
+        selectElement.onfocus = function () {
+            focusListener.onChoiceGainFocus(selectElement, option, option.selection);
         };
-        while (uiElement.lastChild) {
-            uiElement.removeChild(uiElement.lastChild);
+        while (selectElement.lastChild) {
+            selectElement.removeChild(selectElement.lastChild);
         }
         for (let choice of this.choices) {
             const child = document.createElement('option');
             child.value = choice.getName();
             child.appendChild(document.createTextNode(choice.getName()));
-            uiElement.appendChild(child);
+            selectElement.appendChild(child);
         }
-        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + this.name);
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(selectElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + this.name);
         categoryBlock.title = stripHtml(this.category.getDescription());
         categoryBlock.onclick = function () {
-            uiElement.focus();
+            selectElement.focus();
         };
     }
         
@@ -62,13 +62,13 @@ export class ChoiceOption {
     getSelection(): Choice | null { return this.selection; }
     getChoiceSet(): ChoiceSet { return this.choices; }
     getCategory(): OptionCategory { return this.category; }
-    getUiElement(): HTMLSelectElement { return this.uiElement;}
+    getSelectUiElement(): HTMLSelectElement { return this.selectElement;}
 
     addOnChangeListener(listener: ChoiceChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: ChoiceChangeListener): boolean { return this.listeners.delete(listener); }
     onUIChange() {
         for (let choice of this.choices) {
-            if (choice.getName() == this.uiElement.value) {
+            if (choice.getName() == this.selectElement.value) {
                 this.select(choice);
                 return;
             }
@@ -89,10 +89,10 @@ export class ChoiceOption {
         for (let callback of this.listeners) {
             callback(this, previous);
         }
-        if (choice == null && this.uiElement.value != "") {
-            this.uiElement.value = "";
-        } else if (choice != null && choice.getName() != this.uiElement.value) {
-            this.uiElement.value = choice.getName();
+        if (choice == null && this.selectElement.value != "") {
+            this.selectElement.value = "";
+        } else if (choice != null && choice.getName() != this.selectElement.value) {
+            this.selectElement.value = choice.getName();
         }
         return true;
     }

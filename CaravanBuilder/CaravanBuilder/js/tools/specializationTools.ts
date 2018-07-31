@@ -53,15 +53,6 @@ function reset(): void {
 
 const specializationCategory: OptionCategory = new OptionCategory("Specializations", "Ways to specialize your character and abilities");
 
-const defaultOnError = window.onerror;
-window.onerror = function (msg, url, lineNo, columnNo, error) {
-    if (window.navigator.userAgent.indexOf("Edge") > -1) {
-        console.error(error != null ? error.stack : msg);
-    } else if (defaultOnError != null) {
-        defaultOnError(msg, url, lineNo, columnNo, error);
-    }
-}
-
 editableDiv.oninput = function () {
     reset();
     next(editableDiv);

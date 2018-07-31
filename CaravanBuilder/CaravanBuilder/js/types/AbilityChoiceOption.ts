@@ -23,15 +23,8 @@ export class AbilityChoiceOption extends ChoiceOption {
     constructor(choices: AbilityChoiceSet) {
         super("Ability", abilityCategory, choices);
     }
-    public setUiElement(uiElement: HTMLElement, focusListener: ChoiceFocusChangeListener) {
-        if (uiElement instanceof HTMLSelectElement) {
-            super.setUiElement(uiElement, focusListener);
-            return;
-        }
-        if (!(uiElement.children[0].children[0] instanceof HTMLSelectElement)) {
-            throw new Error("uiElement needs to be a select or an abilityRow")
-        }
-        super.setUiElement(nonNull(uiElement.children[0].children[0], "abilityRow code doesn't match html") as HTMLSelectElement, focusListener);
+    public setAbilityElement(uiElement: HTMLTableRowElement, focusListener: ChoiceFocusChangeListener) {
+        super.setSelectUiElement(nonNull(uiElement.children[0].children[0], "abilityRow code doesn't match html") as HTMLSelectElement, focusListener);
         this.apUiElement = nonNull(uiElement.children[1].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
         this.skillUiElement = nonNull(uiElement.children[2].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
         this.difUiElement = nonNull(uiElement.children[3].children[0], "abilityRow code doesn't match html") as HTMLInputElement;

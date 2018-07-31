@@ -7,7 +7,7 @@ import { Currency } from "../types/Currency.js";
 import { currencyAp } from "./CurrencyData.js";
 
 
-const specializationCategory: OptionCategory = new OptionCategory("Specializations",
+export const specializationCategory: OptionCategory = new OptionCategory("Specializations",
     "<p>Ways to specialize your character and abilities</p>");
 
 //TODO: Rank as a Sheet Feature.
