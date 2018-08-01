@@ -3,6 +3,7 @@ import { ChoiceSet } from "./ChoiceSet.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 import { nonNull } from "../util/nonNull.js";
+import { specializationCategory } from "../data/specializationData";
 
 
 export interface ChoiceFocusChangeListener extends CategoryFocusChangeListener {

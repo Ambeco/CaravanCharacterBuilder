@@ -14,11 +14,10 @@ for (let i = 0; i < specializations.length; i++) {
 }
 const specializationChoiceSet: RankChoiceSet = new RankChoiceSet(new Set<RankChoice>(specializationRankChoices), true);
 const specializationChoiceOptions: RankChoiceOption[] = new Array<RankChoiceOption>(specializationBlock.children.length - 1);
-console.log("adding " + specializationChoiceSet.size() + " specializations to " + specializationChoiceOptions.length + " dropdowns");
-for (let i = 0; i < specializationBlock.children[0].children.length; i++) {
+for (let i = 0; i < specializationBlock.children.length; i++) {
     if (i == 0) continue;
-    specializationChoiceOptions[i - 1] = new RankChoiceOption(specializationCategory.name, specializationCategory, specializationChoiceSet);
-    const uiElement = nonNull(specializationBlock.children[0].children[i], "child " + i + " cant be null");
+    specializationChoiceOptions[i - 1] = new RankChoiceOption("Specialization", specializationCategory, specializationChoiceSet);
+    const uiElement = nonNull(specializationBlock.children[i], "child " + i + " cant be null");
     if (!(uiElement instanceof HTMLDivElement)) throw new Error("child of specializationBlock must be HTMLDivElement");
     specializationChoiceOptions[i - 1].setRankElement(uiElement as HTMLDivElement, focusListener);
 }

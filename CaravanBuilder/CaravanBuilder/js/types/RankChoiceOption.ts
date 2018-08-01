@@ -28,7 +28,7 @@ export class RankChoiceOption extends ChoiceOption {
         }
         this.inputElement = uiElement.children[1] as HTMLInputElement;
         this.focusListener = focusListener;
-        this.setSelectUiElement(uiElement.children[0] as HTMLSelectElement, focusListener);
+        super.setSelectUiElement(uiElement.children[0] as HTMLSelectElement, focusListener);
     }
 
     select(choice: Choice | null): boolean {
@@ -37,9 +37,10 @@ export class RankChoiceOption extends ChoiceOption {
             this.inputElement.onchange = function () { };
             this.inputElement.onfocus = function () { };
             this.inputElement.value = "";
+        } else if (!(choice instanceof RankChoice)) {
+            throw new Error("how did choice " + choice.name + " end up in a RankChoiceOption?");
         } else {
-            const rank = choice as RankChoice;
-            rank.getRankOption().setUiElement(this.inputElement, this.focusListener);
+            choice.getRankOption().setUiElement(this.inputElement, this.focusListener);
         }
         return super.select(choice);
     }
