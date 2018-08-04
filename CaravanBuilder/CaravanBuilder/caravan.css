@@ -16,6 +16,7 @@ td {
 input {
     height: .15in;
     line-height: .15in;
+    margin: 0.03in;
 }
 input[type=range] {
     width:.5in;
