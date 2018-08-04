@@ -4,6 +4,7 @@ import { specializations, specializationCategory } from "./data/specializationDa
 import { RankChoiceOption } from "./types/RankChoiceOption";
 import { RankChoice } from "./types/RankChoice";
 import { RankChoiceSet } from "./types/RankChoiceSet";
+import { UniqueChoiceEnum, RequiredChoiceEnum } from "./types/ChoiceSet";
 
 
 const specializationBlock: HTMLTableElement = nonNull(document.getElementById('specializationBlock'), "cannot find specializationBlock") as HTMLTableElement;
@@ -12,7 +13,7 @@ const specializationRankChoices: RankChoice[] = new Array<RankChoice>(specializa
 for (let i = 0; i < specializations.length; i++) {
     specializationRankChoices[i] = new RankChoice(specializations[i]);
 }
-const specializationChoiceSet: RankChoiceSet = new RankChoiceSet(new Set<RankChoice>(specializationRankChoices), true);
+const specializationChoiceSet: RankChoiceSet = new RankChoiceSet(new Set<RankChoice>(specializationRankChoices), UniqueChoiceEnum.IsUnique, RequiredChoiceEnum.Optional);
 const specializationChoiceOptions: RankChoiceOption[] = new Array<RankChoiceOption>(specializationBlock.children.length - 1);
 for (let i = 0; i < specializationBlock.children.length; i++) {
     if (i == 0) continue;

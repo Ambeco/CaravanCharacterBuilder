@@ -5,18 +5,28 @@ export interface ChoiceSetHost {
     readonly name: string;
     readonly selection: Choice | null;
 }
+export enum UniqueChoiceEnum {
+    NotUnique,
+    IsUnique,
+}
+export enum RequiredChoiceEnum {
+    Optional,
+    Required,
+}
 /**
  * The set of possibiliities for a multiple choice field of a form.
  * ChoiceOption=Race. ChoiceSet=Human,Elf,Dwarf. Choice=Human.
  */
 export class ChoiceSet {
     private readonly choices: Set<Choice>;
-    private readonly unique: boolean;
+    public readonly unique: UniqueChoiceEnum;
+    public readonly required: RequiredChoiceEnum;
     private readonly options: Set<ChoiceSetHost>;
 
-    constructor(choices: Set<Choice>, unique: boolean) {
+    constructor(choices: Set<Choice>, unique: UniqueChoiceEnum, required: RequiredChoiceEnum) {
         this.choices = choices;
         this.unique = unique;
+        this.required = required;
         this.options = new Set<ChoiceSetHost>();
         for (let choice of choices.values()) {
             choice.setChoiceSet(this);

@@ -1,5 +1,5 @@
 ﻿import { Choice } from "./Choice.js";
-import { ChoiceSet } from "./ChoiceSet.js";
+import { ChoiceSet, UniqueChoiceEnum, RequiredChoiceEnum } from "./ChoiceSet.js";
 import { AbilityChoice } from "./AbilityChoice.js";
 
 /**
@@ -7,6 +7,6 @@ import { AbilityChoice } from "./AbilityChoice.js";
  */
 export class AbilityChoiceSet extends ChoiceSet {
     constructor(choices: Set<AbilityChoice>, unique: boolean) {
-        super(choices, unique);
+        super(choices, UniqueChoiceEnum.IsUnique, RequiredChoiceEnum.Optional);
     }
 }

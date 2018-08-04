@@ -1,5 +1,5 @@
 ﻿import { Choice } from "./Choice.js";
-import { ChoiceSet } from "./ChoiceSet";
+import { ChoiceSet, UniqueChoiceEnum, RequiredChoiceEnum } from "./ChoiceSet";
 import { RankChoice } from "./RankChoice";
 
 
@@ -8,7 +8,7 @@ import { RankChoice } from "./RankChoice";
  * RankChoice=Specialization. RankChoiceSet=Monk,Illusionist,Rogue. RankChoice=Monk.
  */
 export class RankChoiceSet extends ChoiceSet {
-    constructor(choices: Set<RankChoice>, unique: boolean) {
-        super(choices, unique);
+    constructor(choices: Set<RankChoice>, unique: UniqueChoiceEnum, required: RequiredChoiceEnum) {
+        super(choices, unique, required);
     }
 }

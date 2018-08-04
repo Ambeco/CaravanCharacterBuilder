@@ -1,6 +1,6 @@
 ﻿import { SheetFeature } from "../types/SheetFeature.js";
 import { Choice } from "../types/Choice.js";
-import { ChoiceSet } from "../types/ChoiceSet.js";
+import { ChoiceSet, UniqueChoiceEnum, RequiredChoiceEnum } from "../types/ChoiceSet.js";
 import { ChoiceOption } from "../types/ChoiceOption.js";
 import { OptionCategory } from "../types/OptionCategory.js";
 
@@ -129,5 +129,6 @@ export const races: ChoiceSet = new ChoiceSet(
         raceKithSenses,
         raceKithIntellect,
     ]),
-    true);
+    UniqueChoiceEnum.IsUnique,
+    RequiredChoiceEnum.Required);
 export const raceOption = new ChoiceOption("race", raceCategory, races);

@@ -1,5 +1,5 @@
 ﻿import { Choice } from "./Choice.js";
-import { ChoiceSet } from "./ChoiceSet.js";
+import { ChoiceSet, RequiredChoiceEnum } from "./ChoiceSet.js";
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 import { nonNull } from "../util/nonNull.js";
@@ -46,6 +46,12 @@ export class ChoiceOption {
         while (selectElement.lastChild) {
             selectElement.removeChild(selectElement.lastChild);
         }
+        if (this.choices.required == RequiredChoiceEnum.Optional) {
+            const child = document.createElement('option');
+            child.value = "";
+            child.appendChild(document.createTextNode(""));
+            selectElement.appendChild(child);
+        }
         for (let choice of this.choices) {
             const child = document.createElement('option');
             child.value = choice.getName();
@@ -75,6 +81,8 @@ export class ChoiceOption {
                 return;
             }
         }
+        if (this.selectElement.value.length > 0)
+            throw new Error("Unable to find selection " + this.selectElement.value + " for choice option " + this.name);
         this.select(null);
     }
 
