@@ -377,6 +377,9 @@ body {
 #searchDetails {
     float:none;
 }
+#searchRanks {
+    display:none;
+}
 @media print {
     #floatingDescriptionBox {
         display: none;

@@ -4,6 +4,8 @@ import { Choice } from "./types/Choice.js";
 import { nonNull } from "./util/nonNull.js";
 import { RankFocusChangeListener, RankOption } from "./types/RankOption";
 import { Rank } from "./types/Rank";
+import { RankChoiceOption } from "./types/RankChoiceOption";
+import { RankChoice } from "./types/RankChoice";
 
 
 const floatingDescriptionBlock: HTMLElement = nonNull(document.getElementById('floatingDescriptionBox'), "cannot find floatingDescriptionBox") as HTMLElement;
@@ -16,13 +18,13 @@ const searchDetails: HTMLDivElement = nonNull(document.getElementById('searchDet
 const searchFeatures: HTMLUListElement = nonNull(document.getElementById('searchFeatures'), "cannot find searchFeatures") as HTMLUListElement;
 const searchRanks: HTMLUListElement = nonNull(document.getElementById('searchRanks'), "cannot find searchRanks") as HTMLUListElement;
 
-const cssDescriptionBlockDisplay: string = floatingDescriptionBlock.style.display || "block";
-const cssSearchBoxDisplay: string = searchBox.style.display || "block";
-const cssSearchSelectDisplay: string = searchSelect.style.display || "block";
-const cssSearchHeaderDisplay: string = searchHeader.style.display || "block";
-const cssSearchDetailsDisplay: string = searchDetails.style.display || "block";
-const cssSearchFeaturesDisplay: string = searchFeatures.style.display || "block";
-const cssSearchRanksDisplay: string = searchRanks.style.display || "block";
+const cssDescriptionBlockDisplay: string = "block";
+const cssSearchBoxDisplay: string = "block";
+const cssSearchSelectDisplay: string = "block";
+const cssSearchHeaderDisplay: string = "block";
+const cssSearchDetailsDisplay: string = "block";
+const cssSearchFeaturesDisplay: string = "block";
+const cssSearchRanksDisplay: string = "block";
 
 
 var currentCateogry: OptionCategory | null = null;
@@ -112,6 +114,9 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
     currentChoice = selectedChoice;
     searchBox.value = selectedChoice.getName();
     onChoiceSearchResults(selectedChoice);
+    if (selectedChoice instanceof RankChoice) {
+        showRankInfo(selectedChoice.getRankOption())
+    }
 }
 
 function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): void {
@@ -133,16 +138,20 @@ function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): v
         searchDetails.style.display = "none";
     }
 
-    if (hasDetailedRanks) {
-        while (searchRanks.lastChild) {
-            searchRanks.removeChild(searchRanks.lastChild);
-        }
-        for (let rank of option.getRanks()) {
-            const child = document.createElement('li');
-            child.setAttribute("value", rank.value.toString());
-            child.innerHTML = "<b>" + rank.getName() + "</b>: " + rank.description;
-            searchRanks.appendChild(child);
-        }
+    if (hasDetailedRanks)
+        showRankInfo(option);
+}
+
+function showRankInfo(option: RankOption): void {
+    searchRanks.style.display = cssSearchRanksDisplay;
+    while (searchRanks.lastChild) {
+        searchRanks.removeChild(searchRanks.lastChild);
+    }
+    for (let rank of option.getRanks()) {
+        const child = document.createElement('li');
+        child.setAttribute("value", rank.value.toString());
+        child.innerHTML = "<b>" + rank.getName() + "</b>: " + rank.description;
+        searchRanks.appendChild(child);
     }
 }
 

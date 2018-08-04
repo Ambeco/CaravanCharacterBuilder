@@ -20,7 +20,7 @@ export interface ChoiceChangeListener {
 export class ChoiceOption {
     public readonly name: string;
     public readonly category: OptionCategory;
-    private selectElement: HTMLSelectElement;
+    protected selectElement: HTMLSelectElement;
     private readonly choices: ChoiceSet;
     private readonly listeners: Set<ChoiceChangeListener>;
     public selection: Choice | null;
