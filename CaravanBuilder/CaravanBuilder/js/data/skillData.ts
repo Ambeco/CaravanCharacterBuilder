@@ -18,68 +18,68 @@ const skillRanks: Rank[] = [
 ];
 export const skillAnimals: RankOption = new RankOption("Animal Handling", skillCategory, duplicateRankArray(skillRanks),
     "This skill denotes your talent in working with animals. You might make an animal handling roll if you are attempting to calm down an agitated beast or convincing your warhorse that running towards the dragon is a good idea."
-    + "< p > <b>Focus Examples: </b> mounts, domestic animals, war beasts, mounted combat, taming</p >");
+    + "<p> <b>Focus Examples: </b> mounts, domestic animals, war beasts, mounted combat, taming</p>");
 export const skillAthletics: RankOption = new RankOption("Athletics", skillCategory, duplicateRankArray(skillRanks),
     "Skill that covers jumping, climbing, swimming, acrobatics, and other physical activities. Some examples of athletic rolls are jumping over a chasm, balancing over a tightrope or swimming."
-    + "< p > <b>Focus Examples: </b> marathon running, long jumping, swimming, rock climbing</p >");
+    + "<p> <b>Focus Examples: </b> marathon running, long jumping, swimming, rock climbing</p>");
 export const skillBrawl: RankOption = new RankOption("Brawl", skillCategory, duplicateRankArray(skillRanks),
     "Skill in fighting using your body or extreme close ranged weaponry.  This covers unarmed attacks, wrestling, and weapons that are basically an extension of your fists, such as brass knuckles or katars."
-    + "< p > <b>Focus Examples: </b> bar fighting, wrestling, boxing, martial arts, katars</p >");
+    + "<p> <b>Focus Examples: </b> bar fighting, wrestling, boxing, martial arts, katars</p>");
 export const skillCraft: RankOption = new RankOption("Craft", skillCategory, duplicateRankArray(skillRanks),
     "When you put points into craft, choose what you are learning to craft. Some examples would be blacksmithing, alchemy, leatherworking or tailoring. You can spend 5 experience to learn a new craft. This can be done as many times as you would like. Once you reach rank 4 of Craft, you don’t pick a focus like normal skills. Instead, you automatically gain the benefit of a focus for all craft rolls.");
 export const skillDeception: RankOption = new RankOption("Deception", skillCategory, duplicateRankArray(skillRanks),
     "Skill that involves all forms of lying. The ability to lie and get away with it, both with your words and your actions.  An example of a deception roll is to convince a village that you are actually a kobold in disguise (assuming you aren’t actually a kobold in disguise)."
-    + "< p > <b>Focus Examples: </b> tall tales, misdirection, believable stories</p >");
+    + "<p> <b>Focus Examples: </b> tall tales, misdirection, believable stories</p>");
 export const skillDiscipline: RankOption = new RankOption("Discipline", skillCategory, duplicateRankArray(skillRanks),
     "Innate ability to buckle down when the going gets tough and keep your cool. You might need to make a discipline check to resist a fear effect or to keep from attacking someone you don’t like."
-    + "< p > <b>Focus Examples: </b> concentration, resolve, fearless</p >");
+    + "<p> <b>Focus Examples: </b> concentration, resolve, fearless</p>");
 export const skillIntimidate: RankOption = new RankOption("Intimidate", skillCategory, duplicateRankArray(skillRanks),
     "Skill in coercing people to do what you want them to do. You might make an intimidation roll when trying to convince somebody to give you all of their belongings after threatening their life or to subtlety flaunt your muscles while you tell a creature how unfortunate it would be if they had an accident."
-    + "< p > <b>Focus Examples: </b> yelling, scowling, torture, daunting presence</p >");
+    + "<p> <b>Focus Examples: </b> yelling, scowling, torture, daunting presence</p>");
 export const skillInsight: RankOption = new RankOption("Insight", skillCategory, duplicateRankArray(skillRanks),
     "Skill in sensing things as how they truly are. Can be used to detect magic, recognize lies, identify the function of magic items or to determine an objects value."
-    + "< p > <b>Focus Examples: </b> Magic sense, detect lies, appraiser</p >");
+    + "<p> <b>Focus Examples: </b> Magic sense, detect lies, appraiser</p>");
 export const skillInvestigation: RankOption = new RankOption("Investigation", skillCategory, duplicateRankArray(skillRanks),
     "Ability to thoroughly examine an item, an area, or any other thing you might need to inspect. You might make an investigation roll if trying to find the device that opens a secret door or to find the trigger for a trap."
-    + "< p > <b>Focus Examples: </b> small details, following a lead, hidden caches, contraband</p >");
+    + "<p> <b>Focus Examples: </b> small details, following a lead, hidden caches, contraband</p>");
 export const skillKnowledge: RankOption = new RankOption("Knowledge", skillCategory, duplicateRankArray(skillRanks),
     "A collective of a creature’s learned knowledge. This is a broad skill. It covers the sciences, arts, and other basic education topics. It also covers lore and legends. It covers history. It covers the ability to research effectively, study thoroughly and have good bookkeeping skills. You might need to make an knowledge roll when seeing if your character knows the basic history of your kingdom or when attempting to research the weaknesses of an ancient dragon."
-    + "< p > <b>Focus Examples: </b> the sciences, myths and legends, research</p >");
+    + "<p> <b>Focus Examples: </b> the sciences, myths and legends, research</p>");
 export const skillLeadership: RankOption = new RankOption("Leadership", skillCategory, duplicateRankArray(skillRanks),
     "Skill in leading others. The more ranks you have, the more likely people are going to listen to what you have to say and follow your commands. You might need to make a leadership roll to direct troops in battle or to convince a warlord you are worthy to give him commands."
-    + "< p > <b>Focus Examples: </b> battlefield command, bringing out the best in others, ritual leader</p >");
+    + "<p> <b>Focus Examples: </b> battlefield command, bringing out the best in others, ritual leader</p>");
 export const skillMedicine: RankOption = new RankOption("Medicine", skillCategory, duplicateRankArray(skillRanks),
     "Knowledge of medicine and basic first aid. You might have to make a medicine roll if attempting to stabilize a creature or to determine what disease a creature is currently afflicted with."
-    + "< p > <b>Focus Examples: </b> medicinal herbs, field trauma, surgery, holistic techniques</p >");
+    + "<p> <b>Focus Examples: </b> medicinal herbs, field trauma, surgery, holistic techniques</p>");
 export const skillMelee: RankOption = new RankOption("Melee", skillCategory, duplicateRankArray(skillRanks),
     "Ability to use melee weapons. This covers swords, axes, hammers, spears, and any other melee weapon that doesn't use brawl. It also covers general knowledge of said weapons or how to clean and care for them."
-    + "< p > <b>Focus Examples: </b> swords, defensive maneuvers, axes</p >");
+    + "<p> <b>Focus Examples: </b> swords, defensive maneuvers, axes</p>");
 export const skillPerception: RankOption = new RankOption("Perception", skillCategory, duplicateRankArray(skillRanks),
     "Skill in finding or noticing physical things around you.  Whereas Investigation may be used to thoroughly search an area, Perception is your skill at picking up key details with a cursory glance. Likewise, where insight is used to identify magical effects, such as seeing through an illusion, perception covers the physical side of the world."
-    + "< p > <b>Focus Examples: </b> peripheral movement, patterns, immediate threats</p >");
+    + "<p> <b>Focus Examples: </b> peripheral movement, patterns, immediate threats</p>");
 export const skillPerform: RankOption = new RankOption("Perform", skillCategory, duplicateRankArray(skillRanks),
     "When you put points into perform, choose your performance area. Some examples would be dancing, singing, or playing a specific instrument. You can spend 5 experience to learn a new performance. This can be done as many times as you would like. Once you reach rank 4 of Perform,  you don’t pick a focus like normal skills. Instead, you automatically gain the benefit of a focus for all perform rolls.");
 export const skillPersuasion: RankOption = new RankOption("Persuasion", skillCategory, duplicateRankArray(skillRanks),
     "Ability to manipulate a conversation or speech in your favor, to encourage others to agree with your ideas and philosophies, and to convince others to do something they may not be inclined to do normally."
-    + "< p > <b>Focus Examples: </b> crowd manipulation, haggling, motivational speaker</p >");
+    + "<p> <b>Focus Examples: </b> crowd manipulation, haggling, motivational speaker</p>");
 export const skillRanged: RankOption = new RankOption("Ranged", skillCategory, duplicateRankArray(skillRanks),
     "Skill in using ranged weapons. This covers slings, bows, crossbows, guns, and thrown weapons."
-    + "< p > <b>Focus Examples: </b> bows, firearms, throwing weapons, artillery</p >");
+    + "<p> <b>Focus Examples: </b> bows, firearms, throwing weapons, artillery</p>");
 export const skillSkulduggery: RankOption = new RankOption("Skulduggery", skillCategory, duplicateRankArray(skillRanks),
     "Ability to fence stolen goods, pick locks, cheat at games of chance, use sleight of hand, trick others through your actions and in general most mischievous or illegal actions."
-    + "< p > <b>Focus Examples: </b> pickpocketing, lockpicking, fencing</p >");
+    + "<p> <b>Focus Examples: </b> pickpocketing, lockpicking, fencing</p>");
 export const skillSpellcasting: RankOption = new RankOption("Spellcasting", skillCategory, duplicateRankArray(skillRanks),
     "Skill in casting spells. Spellcasting is used whenever a fireball is slung or when a creature teleports away. Generally speaking spells are tied to the Arcane, Divine and Nature spheres. This skill also covers spell theory and general magic knowledge."
-    + "< p > <b>Focus Examples: </b> Fire spells, arcane spells, damage spells</p >");
+    + "<p> <b>Focus Examples: </b> Fire spells, arcane spells, damage spells</p>");
 export const skillStealth: RankOption = new RankOption("Stealth", skillCategory, duplicateRankArray(skillRanks),
     "Ability to move about unseen, unheard, and unnoticed. Stealth can also be used to obscure your actions from others or to disguise yourself."
-    + "< p > <b>Focus Examples: </b> silence, camouflage, blending in</p >");
+    + "<p> <b>Focus Examples: </b> silence, camouflage, blending in</p>");
 export const skillSurvival: RankOption = new RankOption("Survival", skillCategory, duplicateRankArray(skillRanks),
     "Ability to live off the land.  Small game hunting and trapping, identifying edible plants, locating sources of fresh and clean water, and tracking the trails left by other creatures in the wild."
-    + "< p > <b>Focus Examples: </b> tracking, hunting, finding water</p >");
+    + "<p> <b>Focus Examples: </b> tracking, hunting, finding water</p>");
 export const skillTechnology: RankOption = new RankOption("Technology", skillCategory, duplicateRankArray(skillRanks),
     "Knowledge of gears, guns, gadgets, and gizmos."
-    + "< p > <b>Focus Examples: </b> simple machines, mechanical repair, firearms</p >");
+    + "<p> <b>Focus Examples: </b> simple machines, mechanical repair, firearms</p>");
 
 export const skills: RankOption[] = [
     skillAnimals,
