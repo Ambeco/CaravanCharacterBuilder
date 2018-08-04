@@ -4,6 +4,9 @@ import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 import { nonNull } from "../util/nonNull.js";
 
 
+export interface RankFocusChangeListener extends CategoryFocusChangeListener {
+    onRankGainFocus(selectElement: HTMLInputElement, option: RankOption): void;
+}
 export interface RankChangeListener {
     (changed: RankOption, oldIndex: number): void;
 }
@@ -32,29 +35,31 @@ export class RankOption {
             rank.setRankOption(this);
         }
     }
-    public setUiElement(uiElement: HTMLInputElement, focusListener: CategoryFocusChangeListener) {
+    public setUiElement(uiElement: HTMLInputElement, focusListener: RankFocusChangeListener) {
         const option: RankOption = this;
         const category: OptionCategory = this.category;
         this.uiElement = uiElement;
         uiElement.onchange = function () {
             option.onUIChange();
-            focusListener.onCategoryGainFocus(uiElement, category)
+            focusListener.onRankGainFocus(uiElement, option)
         };
         uiElement.onfocus = function () {
-            focusListener.onCategoryGainFocus(uiElement, category);
+            focusListener.onRankGainFocus(uiElement, option);
         }
         const parentblock: HTMLElement|null = uiElement.parentElement;
         if (parentblock == null) throw new Error("RankOption" + name + " has no parent UI");
         parentblock.title = this.description;
-        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for RankOption " + name);
-        categoryBlock.title = stripHtml(this.category.getDescription());
-        categoryBlock.onclick = function () {
+        const optionBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "optionBlock"), "failed to find optionBlock for RankOption " + this.name);
+        optionBlock.onclick = function () {
             uiElement.focus();
         };
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for RankOption " + name);
+        categoryBlock.title = stripHtml(this.category.getDescription());
     }
 
     getName(): string { return this.name; }
     getDescription(): string { return this.description; }
+    getCategory(): OptionCategory { return this.category; }
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
     getRanks(): Rank[] { return this.ranks; }

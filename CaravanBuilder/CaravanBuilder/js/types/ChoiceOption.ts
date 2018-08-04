@@ -52,11 +52,12 @@ export class ChoiceOption {
             child.appendChild(document.createTextNode(choice.getName()));
             selectElement.appendChild(child);
         }
-        const categoryBlock: HTMLElement = nonNull(findParentWithClass(selectElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + this.name);
-        categoryBlock.title = stripHtml(this.category.getDescription());
-        categoryBlock.onclick = function () {
+        const optionBlock: HTMLElement = nonNull(findParentWithClass(selectElement, "optionBlock"), "failed to find optionBlock for ChoiceOption " + this.name);
+        optionBlock.onclick = function () {
             selectElement.focus();
         };
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(selectElement, "categoryBlock"), "failed to find categoryBlock for ChoiceOption " + this.name);
+        categoryBlock.title = stripHtml(this.category.getDescription());
     }
         
     getName(): string { return this.name; }

@@ -6,6 +6,7 @@ import { nonNull } from "../util/nonNull.js";
 import { RankChoiceSet } from "./RankChoiceSet";
 import { ChoiceOption, ChoiceFocusChangeListener } from "./ChoiceOption";
 import { RankChoice } from "./RankChoice";
+import { RankFocusChangeListener } from "./RankOption";
 
 
 /**
@@ -14,12 +15,12 @@ import { RankChoice } from "./RankChoice";
  */
 export class RankChoiceOption extends ChoiceOption {
     private inputElement: HTMLInputElement;
-    private focusListener: ChoiceFocusChangeListener;
+    private focusListener: RankFocusChangeListener;
 
     constructor(name: string, category: OptionCategory, choices: RankChoiceSet) {
         super(name, category, choices)
     }
-    setRankElement(uiElement: HTMLDivElement, focusListener: ChoiceFocusChangeListener): void {
+    setRankElement(uiElement: HTMLDivElement, focusListener: RankFocusChangeListener & ChoiceFocusChangeListener): void {
         if (!(uiElement.children[0] instanceof HTMLSelectElement)) {
             throw new Error("First child must be HTMLSelectElement");
         }

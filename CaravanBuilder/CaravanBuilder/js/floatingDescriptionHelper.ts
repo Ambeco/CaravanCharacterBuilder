@@ -2,6 +2,8 @@
 import { OptionCategory } from "./types/OptionCategory.js";
 import { Choice } from "./types/Choice.js";
 import { nonNull } from "./util/nonNull.js";
+import { RankFocusChangeListener, RankOption } from "./types/RankOption";
+import { Rank } from "./types/Rank";
 
 
 const floatingDescriptionBlock: HTMLElement = nonNull(document.getElementById('floatingDescriptionBox'), "cannot find floatingDescriptionBox") as HTMLElement;
@@ -12,6 +14,7 @@ const searchSelect: HTMLButtonElement = nonNull(document.getElementById('searchS
 const searchHeader: HTMLHeadingElement = nonNull(document.getElementById('searchHeader'), "cannot find searchHeader") as HTMLHeadingElement;
 const searchDetails: HTMLDivElement = nonNull(document.getElementById('searchDetails'), "cannot find searchDetails") as HTMLDivElement;
 const searchFeatures: HTMLUListElement = nonNull(document.getElementById('searchFeatures'), "cannot find searchFeatures") as HTMLUListElement;
+const searchRanks: HTMLUListElement = nonNull(document.getElementById('searchRanks'), "cannot find searchRanks") as HTMLUListElement;
 
 const cssDescriptionBlockDisplay: string = floatingDescriptionBlock.style.display || "block";
 const cssSearchBoxDisplay: string = searchBox.style.display || "block";
@@ -19,15 +22,17 @@ const cssSearchSelectDisplay: string = searchSelect.style.display || "block";
 const cssSearchHeaderDisplay: string = searchHeader.style.display || "block";
 const cssSearchDetailsDisplay: string = searchDetails.style.display || "block";
 const cssSearchFeaturesDisplay: string = searchFeatures.style.display || "block";
+const cssSearchRanksDisplay: string = searchRanks.style.display || "block";
 
 
 var currentCateogry: OptionCategory | null = null;
-var currentOption: ChoiceOption | null = null;
+var currentChoiceOption: ChoiceOption | null = null;
 var choiceMap: Map<string, Choice> = new Map<string, Choice>();
 var currentChoice: Choice | null = null;
+var currentRankOption: RankOption | null = null;
 
 
-function onSearchResults(choice: Choice) {
+function onChoiceSearchResults(choice: Choice) {
     searchHeader.innerHTML = choice.getName();
     searchDetails.innerHTML = choice.getDescription();
 
@@ -36,24 +41,23 @@ function onSearchResults(choice: Choice) {
     }
     for (let feature of choice.getSheetFeatures()) {
         const child = document.createElement('li');
-        child.innerHTML = "<b>" + feature.getName() + "</b> " + feature.description;
+        child.innerHTML = "<b>" + feature.getName() + "</b>: " + feature.description;
         searchFeatures.appendChild(child);
     }
-
     currentChoice = choice;
-
 }
+
 searchBox.oninput = function () {
    if (searchBox.selectedIndex != -1) {
        const choice: Choice | undefined = choiceMap.get(searchBox.value);
        if (choice != undefined) {
-           onSearchResults(choice);
+           onChoiceSearchResults(choice);
         }
     }
 }
 searchSelect.onclick = function () {
-    if (currentOption != null && currentChoice != null) {
-        currentOption.getSelectUiElement().value = currentChoice.getName();
+    if (currentChoiceOption != null && currentChoice != null) {
+        currentChoiceOption.getSelectUiElement().value = currentChoice.getName();
     }
 }
 
@@ -67,27 +71,29 @@ function onGenericCategoryGainFocus(uiElement: HTMLElement, category: OptionCate
 function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategory): void {
     if (category == currentCateogry) return;
     onGenericCategoryGainFocus(uiElement, category);
-    currentOption = null;
+    currentChoiceOption = null;
     currentChoice = null;
     searchBox.style.display = "none";
     searchSelect.style.display = "none";
     searchHeader.style.display = "none";
     searchDetails.style.display = "none";
     searchFeatures.style.display = "none";
+    searchRanks.style.display = "none";
 }
 
 function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption, selectedChoice: Choice|null): void {
-    if (option == currentOption && selectedChoice == currentChoice) return;
+    if (option == currentChoiceOption && selectedChoice == currentChoice) return;
     onGenericCategoryGainFocus(uiElement, option.getCategory());
     if (selectedChoice == null) {
         return;
     }
-    currentOption = option;
+    currentChoiceOption = option;
     searchBox.style.display = cssSearchBoxDisplay;
     searchSelect.style.display = cssSearchSelectDisplay;
     searchHeader.style.display = cssSearchHeaderDisplay;
     searchDetails.style.display = cssSearchDetailsDisplay;
     searchFeatures.style.display = cssSearchFeaturesDisplay;
+    searchRanks.style.display = "none";
     while (searchBox.lastChild) {
         searchBox.removeChild(searchBox.lastChild);
     }
@@ -100,16 +106,49 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
         choiceMap.set(choice.getName(), choice);
         if (currentChoice == null && choice === selectedChoice) {
             searchBox.value = choice.getName();
-            onSearchResults(choice);
+            onChoiceSearchResults(choice);
         }
     }
     currentChoice = selectedChoice;
     searchBox.value = selectedChoice.getName();
-    onSearchResults(selectedChoice);
+    onChoiceSearchResults(selectedChoice);
+}
+
+function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): void {
+    if (option == currentRankOption) return;
+    onGenericCategoryGainFocus(uiElement, option.getCategory());
+    currentRankOption = option;
+    const hasDetailedRanks = option.getRanks()[0].description.length > 0;
+    searchBox.style.display = "none";
+    searchSelect.style.display = "none";
+    searchHeader.style.display = cssSearchHeaderDisplay;
+    searchFeatures.style.display = "none";
+    searchRanks.style.display = hasDetailedRanks ? cssSearchRanksDisplay : "none";
+    searchHeader.innerHTML = option.getName();
+
+    if (option.getName() != option.getDescription()) {
+        searchDetails.style.display = cssSearchDetailsDisplay;
+        searchDetails.innerHTML = option.getDescription();
+    } else {
+        searchDetails.style.display = "none";
+    }
+
+    if (hasDetailedRanks) {
+        while (searchRanks.lastChild) {
+            searchRanks.removeChild(searchRanks.lastChild);
+        }
+        for (let rank of option.getRanks()) {
+            const child = document.createElement('li');
+            child.setAttribute("value", rank.value.toString());
+            child.innerHTML = "<b>" + rank.getName() + "</b>: " + rank.description;
+            searchRanks.appendChild(child);
+        }
+    }
 }
 
 
-export const focusListener: ChoiceFocusChangeListener = {
+export const focusListener: ChoiceFocusChangeListener & RankFocusChangeListener = {
     onChoiceGainFocus: onChoiceGainFocusImpl,
+    onRankGainFocus: onRankGainFocusImpl,
     onCategoryGainFocus: onCategoryGainFocusImpl
 }

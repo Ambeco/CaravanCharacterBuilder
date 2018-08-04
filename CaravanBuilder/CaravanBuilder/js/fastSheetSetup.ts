@@ -26,6 +26,7 @@ const attunementSkillsInput: HTMLInputElement = nonNull(document.getElementById(
 const attunementSkillsBlock: HTMLElement = nonNull(attunementSkillsInput.parentElement, "cannot find attunementSkillsInput.parentElement") as HTMLElement;
     
 raceOption.setSelectUiElement(raceInput, focusListener);
+console.log("moving focus to raceInput");
 raceInput.focus();
 
 for (let attunement of coreAttunements) {
