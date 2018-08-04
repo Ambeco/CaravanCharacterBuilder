@@ -16,6 +16,7 @@ const searchSelect: HTMLButtonElement = nonNull(document.getElementById('searchS
 const searchHeader: HTMLHeadingElement = nonNull(document.getElementById('searchHeader'), "cannot find searchHeader") as HTMLHeadingElement;
 const searchDetails: HTMLDivElement = nonNull(document.getElementById('searchDetails'), "cannot find searchDetails") as HTMLDivElement;
 const searchFeatures: HTMLUListElement = nonNull(document.getElementById('searchFeatures'), "cannot find searchFeatures") as HTMLUListElement;
+const searchRankValue: HTMLInputElement = nonNull(document.getElementById('searchRankValue'), "cannot find searchRankValue") as HTMLInputElement;
 const searchRanks: HTMLUListElement = nonNull(document.getElementById('searchRanks'), "cannot find searchRanks") as HTMLUListElement;
 
 const cssDescriptionBlockDisplay: string = "block";
@@ -24,6 +25,7 @@ const cssSearchSelectDisplay: string = "block";
 const cssSearchHeaderDisplay: string = "block";
 const cssSearchDetailsDisplay: string = "block";
 const cssSearchFeaturesDisplay: string = "block";
+const cssSearchRankValueDisplay: string = "block";
 const cssSearchRanksDisplay: string = "block";
 
 
@@ -32,6 +34,7 @@ var currentChoiceOption: ChoiceOption | null = null;
 var choiceMap: Map<string, Choice> = new Map<string, Choice>();
 var currentChoice: Choice | null = null;
 var currentRankOption: RankOption | null = null;
+var currentUISliderHost: HTMLInputElement | null = null;
 
 
 function onChoiceSearchResults(choice: Choice) {
@@ -80,6 +83,7 @@ function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategor
     searchHeader.style.display = "none";
     searchDetails.style.display = "none";
     searchFeatures.style.display = "none";
+    searchRankValue.style.display = "none"
     searchRanks.style.display = "none";
 }
 
@@ -115,7 +119,11 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
     searchBox.value = selectedChoice.getName();
     onChoiceSearchResults(selectedChoice);
     if (selectedChoice instanceof RankChoice) {
-        showRankInfo(selectedChoice.getRankOption())
+        currentRankOption = selectedChoice.getRankOption();
+        showRankSlider(currentRankOption);
+        showRankDetails(currentRankOption)
+    } else {
+        currentUISliderHost = null;
     }
 }
 
@@ -138,11 +146,35 @@ function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): v
         searchDetails.style.display = "none";
     }
 
+    showRankSlider(option);
     if (hasDetailedRanks)
-        showRankInfo(option);
+        showRankDetails(option);
 }
 
-function showRankInfo(option: RankOption): void {
+function showRankSlider(option: RankOption): void {
+    const hostInput = option.getUISlider();
+    currentUISliderHost = hostInput;
+
+    const currentRankValue: string = option.getSelection().getValue().toString() || hostInput.value;
+    const minRank = Math.min(option.getRanks()[0].value, option.getRanks()[option.getRanks().length - 1].value);
+    const maxRank = Math.max(option.getRanks()[0].value, option.getRanks()[option.getRanks().length - 1].value);
+
+    searchRankValue.min = minRank.toString();
+    searchRankValue.max = maxRank.toString();
+    searchRankValue.value = currentRankValue;
+    searchRankValue.style.display = cssSearchRankValueDisplay;
+
+    hostInput.onchange = function () {
+        if (currentUISliderHost == hostInput && searchRankValue.value != hostInput.value)
+            searchRankValue.value = hostInput.value;
+    }
+    searchRankValue.onchange = function () {
+        if (hostInput.value != searchRankValue.value)
+            hostInput.value = searchRankValue.value;
+    }
+}
+
+function showRankDetails(option: RankOption): void {
     searchRanks.style.display = cssSearchRanksDisplay;
     while (searchRanks.lastChild) {
         searchRanks.removeChild(searchRanks.lastChild);

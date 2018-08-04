@@ -19,7 +19,7 @@ export class RankOption {
     public readonly name: string;
     public readonly description: string;
     public readonly category: OptionCategory;
-    private uiElement: HTMLInputElement;
+    private uiSlider: HTMLInputElement;
     private readonly ranks: Rank[];
     private readonly listeners: Set<RankChangeListener>;
     public selectionIndex: number;
@@ -35,25 +35,25 @@ export class RankOption {
             rank.setRankOption(this);
         }
     }
-    public setUiElement(uiElement: HTMLInputElement, focusListener: RankFocusChangeListener) {
+    public setUiElement(uiSlider: HTMLInputElement, focusListener: RankFocusChangeListener) {
         const option: RankOption = this;
         const category: OptionCategory = this.category;
-        this.uiElement = uiElement;
-        uiElement.onchange = function () {
+        this.uiSlider = uiSlider;
+        uiSlider.onchange = function () {
             option.onUIChange();
-            focusListener.onRankGainFocus(uiElement, option)
+            focusListener.onRankGainFocus(uiSlider, option)
         };
-        uiElement.onfocus = function () {
-            focusListener.onRankGainFocus(uiElement, option);
+        uiSlider.onfocus = function () {
+            focusListener.onRankGainFocus(uiSlider, option);
         }
-        const parentblock: HTMLElement|null = uiElement.parentElement;
+        const parentblock: HTMLElement | null = uiSlider.parentElement;
         if (parentblock == null) throw new Error("RankOption" + name + " has no parent UI");
         parentblock.title = this.description;
-        const optionBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "optionBlock"), "failed to find optionBlock for RankOption " + this.name);
+        const optionBlock: HTMLElement = nonNull(findParentWithClass(uiSlider, "optionBlock"), "failed to find optionBlock for RankOption " + this.name);
         optionBlock.onclick = function () {
-            uiElement.focus();
+            uiSlider.focus();
         };
-        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiElement, "categoryBlock"), "failed to find categoryBlock for RankOption " + name);
+        const categoryBlock: HTMLElement = nonNull(findParentWithClass(uiSlider, "categoryBlock"), "failed to find categoryBlock for RankOption " + name);
         categoryBlock.title = stripHtml(this.category.getDescription());
     }
 
@@ -63,6 +63,7 @@ export class RankOption {
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
     getRanks(): Rank[] { return this.ranks; }
+    getUISlider(): HTMLInputElement { return this.uiSlider; }
 
     getRankForValue(value: number): Rank {
         for (let rank of this.ranks) {
@@ -77,7 +78,7 @@ export class RankOption {
     removeOnChangeListener(listener: RankChangeListener): boolean { return this.listeners.delete(listener); }
     onUIChange() {
         for (let rank of this.ranks) {
-            if (rank.getName() == this.uiElement.value) {
+            if (rank.getName() == this.uiSlider.value) {
                 this.select(rank);
                 return;
             }
