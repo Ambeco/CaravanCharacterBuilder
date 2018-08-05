@@ -11,11 +11,11 @@ const skillCategory: OptionCategory = new OptionCategory("Skills",
     + "<p>When determining a character’s starting skills you are given 24 points to assign to skills as you see fit. Skills cannot normally be raised above 5.</p>");
 
 const skillRanks: Rank[] = [
-    new Rank(1, null, null, null, null),
-    new Rank(2, null, null, null, null),
-    new Rank(3, null, null, null, null),
-    new Rank(4, null, null, null, null),
-    new Rank(5, null, null, null, null),
+    new Rank(1),
+    new Rank(2),
+    new Rank(3),
+    new Rank(4),
+    new Rank(5),
 ];
 export const skillAnimals: RankOption = new RankOption("Animal Handling", skillCategory, cloneArray(skillRanks),
     "This skill denotes your talent in working with animals. You might make an animal handling roll if you are attempting to calm down an agitated beast or convincing your warhorse that running towards the dragon is a good idea."

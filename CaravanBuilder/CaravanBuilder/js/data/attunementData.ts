@@ -28,12 +28,12 @@ const attunementCategory: OptionCategory = new OptionCategory("Attunement",
     + "<li>Primal(Animus / Nature 5x, all else 8x) </li></ul>");
 
 const attunementRanks: Rank[] = [
-    new Rank(8, null, null, null, null),
-    new Rank(7, null, null, null, null),
-    new Rank(6, null, null, null, null),
-    new Rank(5, null, null, null, null),
-    new Rank(4, null, null, null, null),
-    new Rank(3, null, null, null, null),
+    new Rank(8),
+    new Rank(7),
+    new Rank(6),
+    new Rank(5),
+    new Rank(4),
+    new Rank(3),
 ];
 export const attunementMartial: RankOption = new RankOption("Martial", attunementCategory, cloneArray(attunementRanks), "Martial covers non - magical, physical ability. It could be something simple, such as expertise with the bow or sword or something a little more devious, such as thievery and assassination.");
 export const attunementArcane: RankOption = new RankOption("Arcane", attunementCategory, cloneArray(attunementRanks), "Arcane is a form of magic that requires study and practice.Whereas divine magic is granted through deities and nature magic is learned from the creatures and plant life around you, arcane magic is learned through rigorous study and experimentation. Arcane mages use their knowledge of the way the world’s constants work and then twist those to suit their needs. This allows arcane magic to cover almost any aspect.");

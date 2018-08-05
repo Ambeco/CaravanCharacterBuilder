@@ -23,7 +23,12 @@ export class Rank implements AugmentSource {
     private readonly augments: Set<Augment>;
     private rankOption: RankHost;
 
-    constructor(value: number, name: string | null, description: string | null, features: Set<SheetFeature> | null, augments: Set<Augment> | null) {
+    constructor(value: number,
+        name: string | null = null,
+        description: string | null = "",
+        features: Set<SheetFeature> | null = new Set<SheetFeature>(),
+        augments: Set<Augment> | null = new Set<Augment>())
+    {
         this.name = name || ("Rank" + value.toString());
         this.value = value;
         this.description = description || "";
@@ -68,11 +73,15 @@ export class Rank implements AugmentSource {
         return this.name;
     }
     public toTypeScript(): string {
-        let result = "new Rank(" + this.value + ", \"" + this.name + "\", \"" + this.description.replace(/\"/g, '\\\"') + "\", null, ";
-        if (this.augments.size == 0) {
-            result += "null";
-        } else {
-            result += toCamelCase("augment Set " + this.rankOption.name + " " + this.name);
+        let result = "new Rank(" + this.value;
+        if (this.name != this.value.toString() || this.description != "" || this.augments.size > 0) {
+            result += ", \"" + this.name + "\"";
+        }
+        if (this.description != "" || this.augments.size > 0) {
+            result += ", \"" + this.description.replace(/\"/g, '\\\"') + "\"";
+        }
+        if (this.augments.size > 0) {
+            result += ", " + toCamelCase("augment Set " + this.rankOption.name + " " + this.name);
         }
         result += ")";
         return result;
