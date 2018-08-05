@@ -19,15 +19,16 @@ export class RankOption {
     public readonly name: string;
     public readonly description: string;
     public readonly category: OptionCategory;
-    private uiSlider: HTMLInputElement;
-    private readonly ranks: Rank[];
-    private readonly listeners: Set<RankChangeListener>;
+    protected uiSlider: HTMLInputElement | null;
+    protected readonly ranks: Rank[];
+    protected readonly listeners: Set<RankChangeListener>;
     public selectionIndex: number;
 
     constructor(newName: string, category:OptionCategory, ranks: Rank[], description:string) {
         this.name = newName;
         this.description = description;
         this.category = category;
+        this.uiSlider = null;
         this.ranks = ranks;
         this.listeners = new Set<RankChangeListener>();
         this.selectionIndex = 0;
@@ -63,7 +64,8 @@ export class RankOption {
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
     getRanks(): Rank[] { return this.ranks; }
-    getUISlider(): HTMLInputElement { return this.uiSlider; }
+    getUISlider(): HTMLInputElement { if (this.uiSlider == null) throw new Error("uiSlider is null"); return this.uiSlider; }
+    toString(): string { return "RankOption " + this.name; }
 
     getRankForValue(value: number): Rank {
         for (let rank of this.ranks) {
@@ -77,6 +79,7 @@ export class RankOption {
     addOnChangeListener(listener: RankChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: RankChangeListener): boolean { return this.listeners.delete(listener); }
     onUIChange() {
+        if (this.uiSlider == null) throw new Error("uiSlider is null");
         for (let rank of this.ranks) {
             if (rank.getName() == this.uiSlider.value) {
                 this.select(rank);

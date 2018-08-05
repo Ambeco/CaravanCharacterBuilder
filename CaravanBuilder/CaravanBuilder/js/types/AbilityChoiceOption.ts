@@ -13,16 +13,17 @@ const abilityCategory: OptionCategory = new OptionCategory("Abilities", "The abi
  * ChoiceOption=Ability#4. ChoiceSet=Taunt,Fireball,Enthrall. Choice=Fireball.
  */
 export class AbilityChoiceOption extends ChoiceOption {
-    private apUiElement: HTMLInputElement;
-    private skillUiElement: HTMLInputElement;
-    private difUiElement: HTMLInputElement;
-    private rangeUiElement: HTMLInputElement;
-    private augmentUiElement: HTMLInputElement;
-    private effectUiElement: HTMLInputElement;
+    private apUiElement: HTMLInputElement | null;
+    private skillUiElement: HTMLInputElement | null;
+    private difUiElement: HTMLInputElement | null;
+    private rangeUiElement: HTMLInputElement | null;
+    private augmentUiElement: HTMLInputElement | null;
+    private effectUiElement: HTMLInputElement | null;
 
     constructor(choices: AbilityChoiceSet) {
         super("Ability", abilityCategory, choices);
     }
+    toString(): string { return "AbilityChoiceOption " + this.name; }
     public setAbilityElement(uiElement: HTMLTableRowElement, focusListener: ChoiceFocusChangeListener) {
         super.setSelectUiElement(nonNull(uiElement.children[0].children[0], "abilityRow code doesn't match html") as HTMLSelectElement, focusListener);
         this.apUiElement = nonNull(uiElement.children[1].children[0], "abilityRow code doesn't match html") as HTMLInputElement;
@@ -34,6 +35,11 @@ export class AbilityChoiceOption extends ChoiceOption {
     }
     select(choice: Choice): boolean {
         if (!super.select(choice)) return false;
+        if (this.apUiElement == null) throw new Error("apUiElement is null");
+        if (this.skillUiElement == null) throw new Error("skillUiElement is null");
+        if (this.rangeUiElement == null) throw new Error("rangeUiElement is null");
+        if (this.augmentUiElement == null) throw new Error("augmentUiElement is null");
+        if (this.effectUiElement == null) throw new Error("effectUiElement is null");
         if (choice != null) {
             const ability: Ability = (choice as AbilityChoice).ability;
             this.apUiElement.value = ability.time != null ? ability.time.amount.toString() : "N/A";

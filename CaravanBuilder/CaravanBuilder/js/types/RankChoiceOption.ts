@@ -14,12 +14,15 @@ import { RankFocusChangeListener, RankOption } from "./RankOption";
  * RankChoice=Specialization. RankChoiceSet=Monk,Illusionist,Rogue. RankChoice=Monk.
  */
 export class RankChoiceOption extends ChoiceOption {
-    private inputElement: HTMLInputElement;
-    private focusListener: ChoiceFocusChangeListener;
+    private uiSlider: HTMLInputElement | null;
+    private focusListener: ChoiceFocusChangeListener | null;
 
     constructor(name: string, category: OptionCategory, choices: RankChoiceSet) {
         super(name, category, choices)
     }
+    toString(): string { return "RankChoiceOption " + this.name; }
+    getUiSlider(): HTMLInputElement { if (this.uiSlider == null) throw new Error("uiSlider is null"); return this.uiSlider; }
+
     setRankElement(uiElement: HTMLDivElement, focusListener: ChoiceFocusChangeListener): void {
         if (!(uiElement.children[0] instanceof HTMLSelectElement)) {
             throw new Error("First child must be HTMLSelectElement");
@@ -29,38 +32,40 @@ export class RankChoiceOption extends ChoiceOption {
         }
         const option = this;
         const selectElement = uiElement.children[0] as HTMLSelectElement;
-        this.inputElement = uiElement.children[1] as HTMLInputElement;
+        this.uiSlider = uiElement.children[1] as HTMLInputElement;
         this.focusListener = focusListener;
         super.setSelectUiElement(selectElement, focusListener);
-        this.inputElement.onchange = function () {
+        this.uiSlider.onchange = function () {
             option.onUIChange();
             focusListener.onChoiceGainFocus(selectElement, option, option.selection)
         };
-        this.inputElement.onfocus = function () {
+        this.uiSlider.onfocus = function () {
             focusListener.onChoiceGainFocus(selectElement, option, option.selection);
         };
     }
 
     select(choice: Choice | null): boolean {
         const option: ChoiceOption = this;
+        if (this.uiSlider == null) throw new Error("uiSlider is null");
+        if (this.focusListener == null) throw new Error("focusListener is null");
         if (choice == null) {
-            this.inputElement.onchange = function () { };
-            this.inputElement.onfocus = function () { };
-            this.inputElement.value = "";
+            this.uiSlider.onchange = function () { };
+            this.uiSlider.onfocus = function () { };
+            this.uiSlider.value = "";
         } else if (!(choice instanceof RankChoice)) {
             throw new Error("how did choice " + choice.name + " end up in a RankChoiceOption?");
         } else {
             const selectElement = this.selectElement;
             const focusListener = this.focusListener;
             const listener: RankFocusChangeListener = {
-                onRankGainFocus: function(inputElement: HTMLInputElement, rankOption: RankOption): void {
+                onRankGainFocus: function(uiSlider: HTMLInputElement, rankOption: RankOption): void {
                     focusListener.onChoiceGainFocus(selectElement, option, choice);
                 },
-                onCategoryGainFocus: function (inputElement: HTMLInputElement, category: OptionCategory): void {
-                    focusListener.onCategoryGainFocus(inputElement, category);
+                onCategoryGainFocus: function (uiSlider: HTMLInputElement, category: OptionCategory): void {
+                    focusListener.onCategoryGainFocus(uiSlider, category);
                 }
             }
-            choice.getRankOption().setUiElement(this.inputElement, listener);
+            choice.getRankOption().setUiElement(this.uiSlider, listener);
         }
         return super.select(choice);
     }

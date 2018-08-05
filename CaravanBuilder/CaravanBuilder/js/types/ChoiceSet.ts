@@ -38,6 +38,9 @@ export class ChoiceSet {
         const host = this.getOptionBySelection(choice);
         return host ? host.name : undefined;
     }
+    getDefault(): Choice | null {
+        return this.required ? this.choices.values().next().value : null;
+    }
     [Symbol.iterator]() {
         return this.choices[Symbol.iterator]();
     }

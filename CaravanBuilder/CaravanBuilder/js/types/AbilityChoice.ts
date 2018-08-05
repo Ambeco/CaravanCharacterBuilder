@@ -13,4 +13,5 @@ export class AbilityChoice extends Choice {
         super(ability.name, description, new Set<SheetFeature>());
         this.ability = ability;
     }
+    toString(): string { return "AbilityChoice " + this.name; }
 }

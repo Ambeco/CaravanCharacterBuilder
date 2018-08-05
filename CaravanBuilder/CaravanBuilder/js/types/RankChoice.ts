@@ -14,5 +14,6 @@ export class RankChoice extends Choice {
         super(rankOption.name, rankOption.description, new Set<SheetFeature>());
         this.rankOption = rankOption;
     }
-    getRankOption(): RankOption { return this.rankOption;}
+    getRankOption(): RankOption { return this.rankOption; }
+    toString(): string { return "RankChoice " + this.name; }
 }

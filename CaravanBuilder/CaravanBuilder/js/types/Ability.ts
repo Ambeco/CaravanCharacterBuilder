@@ -61,6 +61,7 @@ export class Ability implements AugmentSource {
         this.effect = effect;
         this.availability = availability;
     }
+    toString(): string { return this.name; }
 
     public getAbilityDescriptionHTML(): string {
         let description: string = "<h3>" + this.name + "</h3>";

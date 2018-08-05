@@ -30,7 +30,7 @@ export class ChoiceOption {
         this.category = category;
         this.choices = choices;
         this.listeners = new Set<ChoiceChangeListener>();
-        this.selection = null;
+        this.selection = choices.getDefault();
         choices.addOption(this);
     }
     public setSelectUiElement(selectElement: HTMLSelectElement, focusListener: ChoiceFocusChangeListener): void {
@@ -70,7 +70,8 @@ export class ChoiceOption {
     getSelection(): Choice | null { return this.selection; }
     getChoiceSet(): ChoiceSet { return this.choices; }
     getCategory(): OptionCategory { return this.category; }
-    getSelectUiElement(): HTMLSelectElement { return this.selectElement;}
+    getSelectUiElement(): HTMLSelectElement { return this.selectElement; }
+    toString(): string { return "ChoiceOption " + this.name; }
 
     addOnChangeListener(listener: ChoiceChangeListener): void { this.listeners.add(listener); }
     removeOnChangeListener(listener: ChoiceChangeListener): boolean { return this.listeners.delete(listener); }

@@ -38,6 +38,7 @@ var currentUISliderHost: HTMLInputElement | null = null;
 
 
 function onChoiceSearchResults(choice: Choice) {
+    console.log("Showing search details for choice " + choice.name);
     searchHeader.innerHTML = choice.getName();
     searchDetails.innerHTML = choice.getDescription();
 
@@ -49,32 +50,63 @@ function onChoiceSearchResults(choice: Choice) {
         child.innerHTML = "<b>" + feature.getName() + "</b>: " + feature.description;
         searchFeatures.appendChild(child);
     }
+    if (choice instanceof RankChoice) {
+        if (currentUISliderHost == null) throw new Error("Selected" + choice + " but currentUISliderHost==null");
+        currentRankOption = choice.getRankOption();
+        showRankSlider(currentUISliderHost, currentRankOption);
+        showRankDetails(currentRankOption)
+    } else {
+        currentUISliderHost = null;
+    }
     currentChoice = choice;
 }
 
+function clearSearchResults() {
+    searchHeader.innerHTML = "";
+    searchDetails.innerHTML = "";
+    while (searchFeatures.lastChild) {
+        searchFeatures.removeChild(searchFeatures.lastChild);
+    }
+    while (searchRanks.lastChild) {
+        searchRanks.removeChild(searchRanks.lastChild);
+    }
+    searchRankValue.style.display = "none";
+    currentChoice = null;
+}
+
+
 searchBox.oninput = function () {
-   if (searchBox.selectedIndex != -1) {
-       const choice: Choice | undefined = choiceMap.get(searchBox.value);
-       if (choice != undefined) {
-           onChoiceSearchResults(choice);
+    if (searchBox.selectedIndex != -1) {
+        const choice: Choice | undefined = choiceMap.get(searchBox.value);
+        if (choice != undefined) {
+            onChoiceSearchResults(choice);
+        } else {
+            console.log("Search failed for " + searchBox.value);
+            clearSearchResults();
         }
+    } else if (searchBox.value.length > 0) {
+        throw new Error("Dont' understand search for choice " + searchBox.value);
     }
 }
 searchSelect.onclick = function () {
     if (currentChoiceOption != null && currentChoice != null) {
         currentChoiceOption.getSelectUiElement().value = currentChoice.getName();
+    } else {
+        console.log("select button fail: currentChoiceOption=" + currentChoiceOption + " currentChoice=" + currentChoice);
     }
 }
 
 function onGenericCategoryGainFocus(uiElement: HTMLElement, category: OptionCategory): void {
+    console.log("Showing generic category " + category.name);
     floatingDescriptionBlock.style.display = cssDescriptionBlockDisplay;
-    focusTitle.textContent = category.getName();
+    focusTitle.textContent = category.name;
     focusDescription.innerHTML = category.getDescription();
     currentCateogry = category;
 }
 
 function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategory): void {
     if (category == currentCateogry) return;
+    console.log("Showing ONLY category " + category.name);
     onGenericCategoryGainFocus(uiElement, category);
     currentChoiceOption = null;
     currentChoice = null;
@@ -89,10 +121,8 @@ function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategor
 
 function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOption, selectedChoice: Choice|null): void {
     if (option == currentChoiceOption && selectedChoice == currentChoice) return;
+    console.log("Showing choice " + option + " (" + selectedChoice + ")");
     onGenericCategoryGainFocus(uiElement, option.getCategory());
-    if (selectedChoice == null) {
-        return;
-    }
     currentChoiceOption = option;
     searchBox.style.display = cssSearchBoxDisplay;
     searchSelect.style.display = cssSearchSelectDisplay;
@@ -104,31 +134,27 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
         searchBox.removeChild(searchBox.lastChild);
     }
     choiceMap.clear();
+    currentChoice = null;
     for (let choice of option.getChoiceSet()) {
         const child = document.createElement('option');
         child.value = choice.getName();
         child.appendChild(document.createTextNode(choice.getName()));
         searchBox.appendChild(child);
         choiceMap.set(choice.getName(), choice);
-        if (currentChoice == null && choice === selectedChoice) {
+        if (choice === selectedChoice) {
+            currentChoice = selectedChoice;
             searchBox.value = choice.getName();
             onChoiceSearchResults(choice);
         }
     }
-    currentChoice = selectedChoice;
-    searchBox.value = selectedChoice.getName();
-    onChoiceSearchResults(selectedChoice);
-    if (selectedChoice instanceof RankChoice) {
-        currentRankOption = selectedChoice.getRankOption();
-        showRankSlider(currentRankOption);
-        showRankDetails(currentRankOption)
-    } else {
-        currentUISliderHost = null;
+    if (currentChoice == null) {
+        searchBox.oninput(new Event("input"));
     }
 }
 
 function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): void {
     if (option == currentRankOption) return;
+    console.log("Showing rank " + option);
     onGenericCategoryGainFocus(uiElement, option.getCategory());
     currentRankOption = option;
     const hasDetailedRanks = option.getRanks()[0].description.length > 0;
@@ -146,13 +172,13 @@ function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): v
         searchDetails.style.display = "none";
     }
 
-    showRankSlider(option);
+    showRankSlider(option.getUISlider(), option);
     if (hasDetailedRanks)
         showRankDetails(option);
 }
 
-function showRankSlider(option: RankOption): void {
-    const hostInput = option.getUISlider();
+function showRankSlider(hostInput: HTMLInputElement, option: RankOption): void {
+    console.log("Showing slider for " + option);
     currentUISliderHost = hostInput;
 
     const currentRankValue: string = option.getSelection().getValue().toString() || hostInput.value;
@@ -175,6 +201,7 @@ function showRankSlider(option: RankOption): void {
 }
 
 function showRankDetails(option: RankOption): void {
+    console.log("Showing rank details for " + option);
     searchRanks.style.display = cssSearchRanksDisplay;
     while (searchRanks.lastChild) {
         searchRanks.removeChild(searchRanks.lastChild);
