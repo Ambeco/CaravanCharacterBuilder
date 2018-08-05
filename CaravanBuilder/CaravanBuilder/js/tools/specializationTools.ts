@@ -163,7 +163,7 @@ function processNewRank(text: string): void {
 function finishRank() {
     if (currentRankName != null) {
         lastRankName = currentRankName;
-        currentRanks.push(new Rank(currentRanks.length + 1, currentRankName, currentRankDescription, null, new Set<Augment>(currentAugments)));
+        currentRanks.push(new Rank(currentRanks.length + 1, currentRankName, currentRankDescription, new Set<Augment>(currentAugments)));
         currentAugments = [];
         currentRankDescription = "";
         currentRankName = null;
@@ -175,12 +175,13 @@ function finishSpecialization() {
     if (currentSpecializationName != null) {
         lastSpecializationName = currentSpecializationName;
         lastRankName = "Uninitialized";
-        const specialization = new RankOption(currentSpecializationName, specializationCategory, currentRanks, currentSpecializationDescription || currentSpecializationName);
+        const specialization = new RankOption(currentSpecializationName, specializationCategory, currentRanks, currentSpecializationDescription || "", currentSpecializationRequirements);
         nonNull(attunementMap.get(currentAttunementName), "cant find atunement " + currentAttunementName).push(specialization);
         specializations.push(specialization);
         currentRanks = [];
         currentSpecializationName = null;
         currentSpecializationDescription = null;
+        currentSpecializationRequirements = [];
     }
 }
 
@@ -253,7 +254,15 @@ function writeSpecialization(specialization: RankOption): string {
         result += "\t" + rank.toTypeScript() + ",\n\t"
     }
     result += "],\n\t";
-    result += "\"" + specialization.getDescription() + "\");\n\n";
+    result += "\"" + specialization.getDescription() + "\"";
+    if (specialization.getRequirements().length > 0) {
+        result += ",\n\t[";
+        for (let requirement of specialization.getRequirements()) {
+            result += requirement.toTypeScript() + ", ";
+        }
+        result += "]";
+    }
+    result += "); \n\n";
     return result;
 }
 

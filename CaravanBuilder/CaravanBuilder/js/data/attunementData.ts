@@ -41,13 +41,13 @@ export const attunementDivine: RankOption = new RankOption("Divine", attunementC
 export const attunementNature: RankOption = new RankOption("Nature", attunementCategory, cloneArray(attunementRanks), "Nature is all about gaining strength through the natural world around you. Learning how predators dominate an ecosystem and gaining their abilities. Discovering how certain plants survive in various climates and mirroring those talents. Nature magic allows you to shape the natural world to your liking.");
 export const attunementAnimus: RankOption = new RankOption("Animus", attunementCategory, cloneArray(attunementRanks), "Animus is all about influencing others around you. Generally there are two main way to influence people. Charm, persuasion, seduction and other such stuff have been tools for people to get what they want since people could speak. Others prefer to influence using simply their mind, through various methods of psionic ability. Psionic ability being the way to manipulate people and the world using nothing but your mind.");
 export const attunementAttributes: RankOption = new RankOption("Attributes", attunementCategory, [
-    new Rank(4, null, null, null, null),
-    new Rank(3, null, null, null, null),
+    new Rank(4),
+    new Rank(3),
 ],
 "Normally attributes require 4x your current rating, but you can spend 2 attunement points to lower the experience cost by 1x for either your attributes or skills. You can also, instead, gain 2 attunement points by raising the experience cost by 1x for your attributes. The attunement for attributes can only be raised or lowered once.");
 export const attunementSkills: RankOption = new RankOption("Skills", attunementCategory, [
-    new Rank(2, null, null, null, null),
-    new Rank(1, null, null, null, null),
+    new Rank(2),
+    new Rank(1),
 ],
     "Normally attributes require 2x your current rating, but you can spend 2 attunement points to lower the experience cost by 1x for either your attributes or skills. You can also, instead, gain 2 attunement points by raising the experience cost by 1x for your skills. The attunement for skills can only be raised or lowered once.");
 

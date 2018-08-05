@@ -2,6 +2,7 @@
 import { OptionCategory, CategoryFocusChangeListener } from "./OptionCategory.js";
 import { findParentWithClass, stripHtml } from "../util/treeNavigation.js";
 import { nonNull } from "../util/nonNull.js";
+import { Requirement } from "./Requirement";
 
 
 export interface RankFocusChangeListener extends CategoryFocusChangeListener {
@@ -19,15 +20,17 @@ export class RankOption {
     public readonly name: string;
     public readonly description: string;
     public readonly category: OptionCategory;
+    protected readonly requirements: Requirement[];
     protected uiSlider: HTMLInputElement | null;
     protected readonly ranks: Rank[];
     protected readonly listeners: Set<RankChangeListener>;
     public selectionIndex: number;
 
-    constructor(newName: string, category:OptionCategory, ranks: Rank[], description:string) {
+    constructor(newName: string, category:OptionCategory, ranks: Rank[], description:string, requirements: Requirement[]=[]) {
         this.name = newName;
         this.description = description;
         this.category = category;
+        this.requirements = requirements;
         this.uiSlider = null;
         this.ranks = ranks;
         this.listeners = new Set<RankChangeListener>();
@@ -64,6 +67,7 @@ export class RankOption {
     getSelectionIndex(): number { return this.selectionIndex; }
     getSelection(): Rank { return this.ranks[this.selectionIndex]; }
     getRanks(): Rank[] { return this.ranks; }
+    getRequirements(): Requirement[] { return this.requirements; }
     getUISlider(): HTMLInputElement { if (this.uiSlider == null) throw new Error("uiSlider is null"); return this.uiSlider; }
     toString(): string { return "RankOption " + this.name; }
 

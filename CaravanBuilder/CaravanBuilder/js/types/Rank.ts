@@ -13,30 +13,25 @@ export interface RankHost {
 /**
  * A single possibility of a number field of a form.
  * RankOption=Strength. Rank=4.
- * TODO: Add costs/requirements
+ * TODO: Add costs.
+ * TODO: Rank as SheetOption
  */
 export class Rank implements AugmentSource {
     public readonly name: string;
     public readonly value: number;
     public readonly description: string;
-    private readonly features: Set<SheetFeature>;
     private readonly augments: Set<Augment>;
     private rankOption: RankHost;
 
     constructor(value: number,
         name: string | null = null,
         description: string | null = "",
-        features: Set<SheetFeature> | null = new Set<SheetFeature>(),
         augments: Set<Augment> | null = new Set<Augment>())
     {
         this.name = name || ("Rank" + value.toString());
         this.value = value;
         this.description = description || "";
-        this.features = features || new Set<SheetFeature>();
         this.augments = augments || new Set<Augment>();
-        for (let feature of this.features) {
-            feature.setSheetFeatureSource(this);
-        }
         for (let augment of this.augments) {
             augment.setAugmentSource(this);
         }
@@ -50,7 +45,6 @@ export class Rank implements AugmentSource {
         return new Rank(this.value,
             this.name,
             this.description,
-            cloneSet(this.features),
             cloneSet(this.augments));
     }
 
@@ -60,9 +54,6 @@ export class Rank implements AugmentSource {
     }
     getRankOption(): RankHost {
         return this.rankOption;
-    }
-    getSheetFeatures(): Set<SheetFeature> {
-        return this.features;
     }
 
     isSelected(): boolean { return this.rankOption.getSelection() === this; }
@@ -87,7 +78,7 @@ export class Rank implements AugmentSource {
         return result;
     }
     public augmentsToTypeScript(): string {
-        let result: string = "export const " + toCamelCase("augment set " + this.rankOption.name + " " + this.name) + ": Set<Augment> = new Set<Augment>([\n\t";
+        let result: string = "const " + toCamelCase("augment set " + this.rankOption.name + " " + this.name) + ": Set<Augment> = new Set<Augment>([\n\t";
         for (let augment of this.augments) {
             result += augment.toTypeScript() + ",\n\t";
         }
