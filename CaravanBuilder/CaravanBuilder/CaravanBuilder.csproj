@@ -92,6 +92,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="js\data\tagData.ts" />
     <TypeScriptCompile Include="js\specializationSheetSetup.ts" />
     <TypeScriptCompile Include="js\data\currencyData.ts" />
     <TypeScriptCompile Include="js\tools\abilityTools.ts" />
@@ -114,6 +115,7 @@
     <TypeScriptCompile Include="js\types\RankChoiceOption.ts" />
     <TypeScriptCompile Include="js\types\RankChoiceSet.ts" />
     <TypeScriptCompile Include="js\types\Requirement.ts" />
+    <TypeScriptCompile Include="js\types\Tag.ts" />
     <TypeScriptCompile Include="js\util\camelCase.ts" />
     <TypeScriptCompile Include="js\util\clarifyError.ts" />
     <TypeScriptCompile Include="js\types\Cost.ts" />
@@ -131,6 +133,7 @@
     <TypeScriptCompile Include="js\types\SheetFeature.ts" />
     <TypeScriptCompile Include="js\types\Transaction.ts" />
     <TypeScriptCompile Include="js\types\Wallet.ts" />
+    <TypeScriptCompile Include="js\util\Clonable.ts" />
     <TypeScriptCompile Include="js\util\nonNull.ts" />
     <TypeScriptCompile Include="js\util\treeNavigation.ts" />
   </ItemGroup>

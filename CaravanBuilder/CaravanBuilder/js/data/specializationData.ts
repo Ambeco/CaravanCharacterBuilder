@@ -1,4 +1,4 @@
-﻿import { Rank, duplicateRankArray } from "../types/Rank.js";
+﻿import { Rank } from "../types/Rank.js";
 import { OptionCategory } from "../types/OptionCategory.js";
 import { RankOption } from "../types/RankOption.js";
 import { Augment } from "../types/Augment.js";

@@ -1,7 +1,8 @@
 ﻿import { RankOption } from "../types/RankOption.js";
-import { Rank, duplicateRankArray } from "../types/Rank.js";
+import { Rank } from "../types/Rank.js";
 import { SheetFeature } from "../types/SheetFeature.js";
 import { OptionCategory } from "../types/OptionCategory.js";
+import { cloneArray } from "../util/Clonable";
 
 const attunementCategory: OptionCategory = new OptionCategory("Attunement",
     "<p>All heroes are attuned in different ways. Certain spheres of power come naturally to you, whereas others might not.</p>"
@@ -34,11 +35,11 @@ const attunementRanks: Rank[] = [
     new Rank(4, null, null, null, null),
     new Rank(3, null, null, null, null),
 ];
-export const attunementMartial: RankOption = new RankOption("Martial", attunementCategory, duplicateRankArray(attunementRanks), "Martial covers non - magical, physical ability. It could be something simple, such as expertise with the bow or sword or something a little more devious, such as thievery and assassination.");
-export const attunementArcane: RankOption = new RankOption("Arcane", attunementCategory, duplicateRankArray(attunementRanks), "Arcane is a form of magic that requires study and practice.Whereas divine magic is granted through deities and nature magic is learned from the creatures and plant life around you, arcane magic is learned through rigorous study and experimentation. Arcane mages use their knowledge of the way the world’s constants work and then twist those to suit their needs. This allows arcane magic to cover almost any aspect.");
-export const attunementDivine: RankOption = new RankOption("Divine", attunementCategory, duplicateRankArray(attunementRanks), "Divine is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.");
-export const attunementNature: RankOption = new RankOption("Nature", attunementCategory, duplicateRankArray(attunementRanks), "Nature is all about gaining strength through the natural world around you. Learning how predators dominate an ecosystem and gaining their abilities. Discovering how certain plants survive in various climates and mirroring those talents. Nature magic allows you to shape the natural world to your liking.");
-export const attunementAnimus: RankOption = new RankOption("Animus", attunementCategory, duplicateRankArray(attunementRanks), "Animus is all about influencing others around you. Generally there are two main way to influence people. Charm, persuasion, seduction and other such stuff have been tools for people to get what they want since people could speak. Others prefer to influence using simply their mind, through various methods of psionic ability. Psionic ability being the way to manipulate people and the world using nothing but your mind.");
+export const attunementMartial: RankOption = new RankOption("Martial", attunementCategory, cloneArray(attunementRanks), "Martial covers non - magical, physical ability. It could be something simple, such as expertise with the bow or sword or something a little more devious, such as thievery and assassination.");
+export const attunementArcane: RankOption = new RankOption("Arcane", attunementCategory, cloneArray(attunementRanks), "Arcane is a form of magic that requires study and practice.Whereas divine magic is granted through deities and nature magic is learned from the creatures and plant life around you, arcane magic is learned through rigorous study and experimentation. Arcane mages use their knowledge of the way the world’s constants work and then twist those to suit their needs. This allows arcane magic to cover almost any aspect.");
+export const attunementDivine: RankOption = new RankOption("Divine", attunementCategory, cloneArray(attunementRanks), "Divine is the sphere connected to deities. You don't need to worship a specific deity, but your power comes from them. Divine magic has a lot of healing and buffing, but also has plenty of offense.");
+export const attunementNature: RankOption = new RankOption("Nature", attunementCategory, cloneArray(attunementRanks), "Nature is all about gaining strength through the natural world around you. Learning how predators dominate an ecosystem and gaining their abilities. Discovering how certain plants survive in various climates and mirroring those talents. Nature magic allows you to shape the natural world to your liking.");
+export const attunementAnimus: RankOption = new RankOption("Animus", attunementCategory, cloneArray(attunementRanks), "Animus is all about influencing others around you. Generally there are two main way to influence people. Charm, persuasion, seduction and other such stuff have been tools for people to get what they want since people could speak. Others prefer to influence using simply their mind, through various methods of psionic ability. Psionic ability being the way to manipulate people and the world using nothing but your mind.");
 export const attunementAttributes: RankOption = new RankOption("Attributes", attunementCategory, [
     new Rank(4, null, null, null, null),
     new Rank(3, null, null, null, null),

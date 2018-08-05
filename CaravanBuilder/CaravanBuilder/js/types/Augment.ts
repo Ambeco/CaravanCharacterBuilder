@@ -20,6 +20,8 @@ export class Augment {
         this.source = source;
     }
 
+    public clone(): Augment { return new Augment(this.name, this.cost, this.effect); }
+
     public toString(): string {
         return this.name;
     }

@@ -24,4 +24,6 @@ export class SheetFeature {
     getName(): string { return this.name; }
     getDescription(): string { return this.description; }
     getSourceName(): string { return nonNull(this.source, "Feature " + name + " has no source").getSheetFeatureSourceName(); }
+
+    clone(): SheetFeature { return new SheetFeature(this.name, this.description); }
 }

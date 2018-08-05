@@ -21,6 +21,8 @@ export class Cost {
     getAmount(): number { return this.amount; }
     getCurrency(): Currency { return this.currency; }
 
+    clone(): Cost { return new Cost(this.amount, this.currency); }
+
     toString() { return this.amount + " " + this.currency.name; }
     toTypeScript() {
         return "new Cost(" + this.amount + ", " + toCamelCase("currency " + this.currency.name) + ")";

@@ -1,6 +1,9 @@
 ﻿import { SheetFeature } from "./SheetFeature.js";
 import { AugmentSource, Augment } from "./Augment.js";
 import { toCamelCase } from "../util/Camelcase";
+import { Cost } from "./Cost";
+import { Requirement } from "./Requirement";
+import { cloneSet } from "../util/Clonable";
 
 
 export interface RankHost {
@@ -16,10 +19,10 @@ export class Rank implements AugmentSource {
     public readonly name: string;
     public readonly value: number;
     public readonly description: string;
-    private readonly features: Set<SheetFeature>
-    private readonly augments: Set<Augment>
+    private readonly features: Set<SheetFeature>;
+    private readonly augments: Set<Augment>;
     private rankOption: RankHost;
-    
+
     constructor(value: number, name: string | null, description: string | null, features: Set<SheetFeature> | null, augments: Set<Augment> | null) {
         this.name = name || ("Rank" + value.toString());
         this.value = value;
@@ -42,8 +45,8 @@ export class Rank implements AugmentSource {
         return new Rank(this.value,
             this.name,
             this.description,
-            duplicateFeatureSet(this.features),
-            duplicateAugmentSet(this.augments));
+            cloneSet(this.features),
+            cloneSet(this.augments));
     }
 
     setRankOption(rankOption: RankHost): void {
@@ -82,25 +85,4 @@ export class Rank implements AugmentSource {
         result += "]);\n";
         return result;
     }
-}
-function duplicateFeatureSet(features: Set<SheetFeature>): Set<SheetFeature> {
-    const result = new Set<SheetFeature>();
-    for (let feature of features) {
-        result.add(new SheetFeature(feature.name, feature.description));
-    }
-    return result;
-}
-function duplicateAugmentSet(augments: Set<Augment>): Set<Augment> {
-    const result = new Set<Augment>();
-    for (let augment of augments) {
-        result.add(new Augment(augment.name, augment.cost, augment.effect));
-    }
-    return result;
-}
-export function duplicateRankArray(ranks: Rank[]): Rank[] {
-    const result: Rank[] = new Array<Rank>(ranks.length);
-    for (let i = 0; i < ranks.length; i++) {
-        result[i] = ranks[i].clone();
-    }
-    return result;
 }

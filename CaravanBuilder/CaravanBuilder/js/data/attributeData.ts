@@ -1,7 +1,8 @@
 ﻿import { RankOption } from "../types/RankOption.js";
-import { Rank, duplicateRankArray } from "../types/Rank.js";
+import { Rank } from "../types/Rank.js";
 import { SheetFeature } from "../types/SheetFeature.js";
 import { OptionCategory } from "../types/OptionCategory.js";
+import { cloneArray } from "../util/Clonable";
 
 const attributeCategory: OptionCategory = new OptionCategory("Attribute",
     "<p>A character’s Attributes represent various innate qualities, such as how strong, charming, or mindful that character is.</p>"
@@ -14,12 +15,12 @@ const attunementRanks: Rank[] = [
     new Rank(4, null, null, null, null),
     new Rank(5, null, null, null, null),
 ];
-export const attributeBrawn: RankOption = new RankOption("Brawn", attributeCategory, duplicateRankArray(attunementRanks), "Brawn is a measure of how strong and hearty a creature is.");
-export const attributeDexterity: RankOption = new RankOption("Dexterity", attributeCategory, duplicateRankArray(attunementRanks), "Dexterity is a measure of how agile and deft a creature is.");
-export const attributePresence: RankOption = new RankOption("Presence", attributeCategory, duplicateRankArray(attunementRanks), "Presence is a measure of the force of personality and charm a creature has.");
-export const attributeSubterfuge: RankOption = new RankOption("Subterfuge", attributeCategory, duplicateRankArray(attunementRanks), "Subterfuge is a measure of how beguiling or deceitful a creature is.");
-export const attributeSenses: RankOption = new RankOption("Senses", attributeCategory, duplicateRankArray(attunementRanks), "Senses is a measure of the wits and mindfulness of a creature.");
-export const attributeIntellect: RankOption = new RankOption("Intellect", attributeCategory, duplicateRankArray(attunementRanks), "Intellect is a measure of the intuition and reason of a creature.");
+export const attributeBrawn: RankOption = new RankOption("Brawn", attributeCategory, cloneArray(attunementRanks), "Brawn is a measure of how strong and hearty a creature is.");
+export const attributeDexterity: RankOption = new RankOption("Dexterity", attributeCategory, cloneArray(attunementRanks), "Dexterity is a measure of how agile and deft a creature is.");
+export const attributePresence: RankOption = new RankOption("Presence", attributeCategory, cloneArray(attunementRanks), "Presence is a measure of the force of personality and charm a creature has.");
+export const attributeSubterfuge: RankOption = new RankOption("Subterfuge", attributeCategory, cloneArray(attunementRanks), "Subterfuge is a measure of how beguiling or deceitful a creature is.");
+export const attributeSenses: RankOption = new RankOption("Senses", attributeCategory, cloneArray(attunementRanks), "Senses is a measure of the wits and mindfulness of a creature.");
+export const attributeIntellect: RankOption = new RankOption("Intellect", attributeCategory, cloneArray(attunementRanks), "Intellect is a measure of the intuition and reason of a creature.");
 
 export const attributes: RankOption[] = [
     attributeBrawn,
