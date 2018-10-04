@@ -8,8 +8,9 @@ import { Ability } from "./Ability";
 
 
 export interface Requirement {
-    toTypeScript(): string;
     clone(): Requirement;
+    toString(): string;
+    toTypeScript(): string;
     // ? :(
 }
 
@@ -30,9 +31,8 @@ export class CurrencyRequirement implements Requirement {
     getCurrency(): Currency { return this.currency; }
 
     clone(): CurrencyRequirement { return new CurrencyRequirement(this.amount, this.currency); }
-
-    toString() { return this.amount + " " + this.currency.getName(); }
-
+    
+    toString() { return "(Requires at least" + this.amount + " " + this.currency.getName() + ")" }
     toTypeScript(): string {
         return "new CurrencyRequirement(\'" + this.amount + ",Currency.getCurrency(\"" + this.currency + "\"))";
     }
@@ -55,10 +55,9 @@ export class TagRequirement implements Requirement {
     getAmount(): number { return this.amount; }
     getTag(): Tag { return this.tag; }
 
-    clone(): TagRequirement { return new TagRequirement(this.amount, this.tag);  }
+    clone(): TagRequirement { return new TagRequirement(this.amount, this.tag); }
 
-    toString() { return this.amount + " ranks of any " + this.tag + " specialization"; }
-
+    toString() { return "(Requires at least" + this.amount + " ranks in " + this.tag + " specializations)"; }
     toTypeScript(): string {
         return "new TagRequirement(" + this.amount + ", " + toCamelCase("tag " + this.tag.name) + ")";
     }
@@ -78,8 +77,7 @@ export class AbilityRequirement implements Requirement {
 
     clone(): AbilityRequirement { return new AbilityRequirement(this.ability); }
 
-    toString() { return "Requires the ability " + this.ability; }
-
+    toString() { return "(Requires the ability, " + this.ability + ")"; }
     toTypeScript(): string {
         return "new AbilityRequirement(ability" + toCamelCase(this.ability.name) + ")";
     }
@@ -99,12 +97,13 @@ export abstract class RankRequirement implements Requirement {
     geRank(): Rank { return this.rank; }
     getOption(): RankHost { return this.rank.getRankOption(); }
     abstract clone(): RankRequirement;
+    toString() { return "(Requires at least " + this.rank.value + " ranks of " + this.rank.getRankOption().name + ")"; }
     abstract toTypeScript(): string;
 
-    toString() { return this.rank.value + " ranks of " + this.rank.getRankOption().name; }
 }
 export class SkillRequirement extends RankRequirement {
     clone(): SkillRequirement { return new SkillRequirement(this.rank); }
+    toString() { return this.rank.value + " ranks of " + this.rank.getRankOption().name; }
     toTypeScript(): string {
         return "new SkillRequirement(skill" + toCamelCase(this.rank.getRankOption().name) + ".getRankForValue(" + this.rank.value + "))";
     }
@@ -123,6 +122,7 @@ export class AttunementRequirement extends RankRequirement {
 }
 export class SpecializationRequirement extends RankRequirement {
     clone(): SpecializationRequirement { return new SpecializationRequirement(this.rank); }
+    toString() { return "(Requires at least " + this.rank.value + " ranks in the " + this.rank.getRankOption().name + " specialization)"; }
     toTypeScript(): string {
         return "new SpecializationRequirement(specialization" + toCamelCase(this.rank.getRankOption().name) + ".getRankForValue(" + this.rank.value + "))";
     }

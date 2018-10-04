@@ -15,6 +15,7 @@ const searchBox: HTMLSelectElement = nonNull(document.getElementById('searchBox'
 const searchSelect: HTMLButtonElement = nonNull(document.getElementById('searchSelect'), "cannot find searchSelect") as HTMLButtonElement;
 const searchHeader: HTMLHeadingElement = nonNull(document.getElementById('searchHeader'), "cannot find searchHeader") as HTMLHeadingElement;
 const searchDetails: HTMLDivElement = nonNull(document.getElementById('searchDetails'), "cannot find searchDetails") as HTMLDivElement;
+const searchRequirements: HTMLDivElement = nonNull(document.getElementById('searchRequirements'), "cannot find searchRequirements") as HTMLDivElement;
 const searchFeatures: HTMLUListElement = nonNull(document.getElementById('searchFeatures'), "cannot find searchFeatures") as HTMLUListElement;
 const searchRankValue: HTMLInputElement = nonNull(document.getElementById('searchRankValue'), "cannot find searchRankValue") as HTMLInputElement;
 const searchRanks: HTMLUListElement = nonNull(document.getElementById('searchRanks'), "cannot find searchRanks") as HTMLUListElement;
@@ -24,6 +25,7 @@ const cssSearchBoxDisplay: string = "block";
 const cssSearchSelectDisplay: string = "block";
 const cssSearchHeaderDisplay: string = "block";
 const cssSearchDetailsDisplay: string = "block";
+const cssSearchRequirementsDisplay: string = "block";
 const cssSearchFeaturesDisplay: string = "block";
 const cssSearchRankValueDisplay: string = "block";
 const cssSearchRanksDisplay: string = "block";
@@ -41,7 +43,7 @@ function onChoiceSearchResults(choice: Choice) {
     console.log("Showing search details for choice " + choice.name);
     searchHeader.innerHTML = choice.getName();
     searchDetails.innerHTML = choice.getDescription();
-
+    showRequirements(currentRankOption);
     while (searchFeatures.lastChild) {
         searchFeatures.removeChild(searchFeatures.lastChild);
     }
@@ -64,6 +66,7 @@ function onChoiceSearchResults(choice: Choice) {
 function clearSearchResults() {
     searchHeader.innerHTML = "";
     searchDetails.innerHTML = "";
+    searchRequirements.innerHTML = "";
     while (searchFeatures.lastChild) {
         searchFeatures.removeChild(searchFeatures.lastChild);
     }
@@ -114,6 +117,7 @@ function onCategoryGainFocusImpl(uiElement: HTMLElement, category: OptionCategor
     searchSelect.style.display = "none";
     searchHeader.style.display = "none";
     searchDetails.style.display = "none";
+    searchRequirements.style.display = "none";
     searchFeatures.style.display = "none";
     searchRankValue.style.display = "none"
     searchRanks.style.display = "none";
@@ -128,6 +132,7 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
     searchSelect.style.display = cssSearchSelectDisplay;
     searchHeader.style.display = cssSearchHeaderDisplay;
     searchDetails.style.display = cssSearchDetailsDisplay;
+    searchDetails.style.display = cssSearchRequirementsDisplay;
     searchFeatures.style.display = cssSearchFeaturesDisplay;
     searchRanks.style.display = "none";
     while (searchBox.lastChild) {
@@ -135,6 +140,9 @@ function onChoiceGainFocusImpl(uiElement: HTMLSelectElement, option: ChoiceOptio
     }
     choiceMap.clear();
     currentChoice = null;
+    if (selectedChoice != null && option instanceof RankChoiceOption) {
+        currentUISliderHost = option.getUiSlider();
+    }
     for (let choice of option.getChoiceSet()) {
         const child = document.createElement('option');
         child.value = choice.getName();
@@ -172,9 +180,22 @@ function onRankGainFocusImpl(uiElement: HTMLInputElement, option: RankOption): v
         searchDetails.style.display = "none";
     }
 
+    showRequirements(option);
     showRankSlider(option.getUISlider(), option);
     if (hasDetailedRanks)
         showRankDetails(option);
+}
+function showRequirements(option: RankOption | null): void {
+    if (option != null && option.getRequirements().length > 0) {
+        searchRequirements.style.display = cssSearchRequirementsDisplay;
+        let requirements = "";
+        for (let requirement of option.getRequirements()) {
+            requirements += requirement.toString() + "\n";
+        }
+        searchRequirements.innerText = requirements;
+    } else {
+        searchRequirements.style.display = "none";
+    }
 }
 
 function showRankSlider(hostInput: HTMLInputElement, option: RankOption): void {

@@ -377,6 +377,9 @@ body {
 #searchDetails {
     float:none;
 }
+#searchRequirements {
+    display: none;
+}
 #searchRankValue {
     display: none;
 }
